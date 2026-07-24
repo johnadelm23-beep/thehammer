@@ -9,13 +9,14 @@ const ASSETS_TO_CACHE = [
   "./index.html",
   "./images/One_Png1.png",
   "./images/logo_dark_mode.jpeg",
-  "./images/darkModelLogoWithoutNameThehammer.jpeg",
-  ".images/PSM-Electric-Pump.jpg",
+  "./images/PSM-Electric-Pump.jpg",
   "./style.css",
+  "./animations.css",
   "./js/i18n.js",
   "./js/store.js",
   "./js/media-manager.js",
   "./js/app.js",
+  "./js/animations.js",
   "./manifest.json",
 ];
 
