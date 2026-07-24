@@ -1754,6 +1754,17 @@ html[dir="rtl"] .mobile-nav-content {
     padding: 4rem 0;
   }
 
+  .hero-slider::before {
+    background-image:
+      linear-gradient(
+        180deg,
+        rgba(10, 10, 10, 0.95) 0%,
+        rgba(10, 10, 10, 0.85) 60%,
+        rgba(10, 10, 10, 0.5) 100%
+      ),
+      url("images/heromobilebackround.jpeg") !important;
+  }
+
   html[dir="rtl"] .hero-slider {
     background-image:
       linear-gradient(
@@ -1763,6 +1774,17 @@ html[dir="rtl"] .mobile-nav-content {
         rgba(10, 10, 10, 0.5) 100%
       ),
       url("images/heromobilebackround.jpeg");
+  }
+
+  html[dir="rtl"] .hero-slider::before {
+    background-image:
+      linear-gradient(
+        180deg,
+        rgba(10, 10, 10, 0.95) 0%,
+        rgba(10, 10, 10, 0.85) 60%,
+        rgba(10, 10, 10, 0.5) 100%
+      ),
+      url("images/heromobilebackround.jpeg") !important;
   }
 
   .quote-btn-text {
