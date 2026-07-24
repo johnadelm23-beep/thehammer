@@ -1,0 +1,22 @@
+{
+  "name": "THEHAMMER Industrial Water Pump Solutions",
+  "short_name": "THEHAMMER",
+  "description": "Industrial water pumps, fire fighting pump systems, electric motors, and pressure booster stations.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#C8102E",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=192&h=192&q=80",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=512&h=512&q=80",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}

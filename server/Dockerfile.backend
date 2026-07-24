@@ -1,0 +1,27 @@
+# Dockerfile for EuroPrecision Node.js Backend API
+FROM node:20-alpine AS base
+
+WORKDIR /app
+
+# Copy package files if available
+COPY package*.json ./
+COPY schema.prisma ./
+
+# Install production dependencies
+RUN npm install --only=production || true
+
+# Copy application source code
+COPY . .
+
+# Run container as non-root user for security
+USER node
+
+EXPOSE 5000
+
+ENV NODE_ENV=production
+ENV PORT=5000
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
+  CMD wget --no-verbose --tries=1 --spider http://localhost:5000/health || exit 1
+
+CMD ["node", "server.js"]

@@ -1,0 +1,168 @@
+// THEHAMMER Industrial Water Pump Solutions - Prisma Schema
+// PostgreSQL Database Definition
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  SUPER_ADMIN
+  CONTENT_EDITOR
+  VIEWER
+}
+
+enum ContactMethod {
+  EMAIL
+  PHONE
+  WHATSAPP
+}
+
+enum QuoteStatus {
+  NEW
+  IN_REVIEW
+  QUOTED
+  CLOSED
+  REJECTED
+}
+
+model User {
+  id           String     @id @default(uuid())
+  email        String     @unique
+  passwordHash String
+  fullName     String
+  role         Role       @default(CONTENT_EDITOR)
+  active       Boolean    @default(true)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  auditLogs    AuditLog[]
+}
+
+model PumpProduct {
+  id           String               @id @default(uuid())
+  model        String               @unique
+  categoryId   String
+  brandId      String
+  category     Category             @relation(fields: [categoryId], references: [id])
+  brand        Brand                @relation(fields: [brandId], references: [id])
+  translations ProductTranslation[]
+  
+  // Pump Technical Specs
+  powerKw      String
+  flowM3h      String
+  headM        String
+  voltage      String
+  frequency    String
+  motorType    String
+  applications String?
+  
+  image        String
+  images       String[]
+  datasheetPdf String?
+  specs        Json?
+  active       Boolean              @default(true)
+  featured     Boolean              @default(false)
+  createdAt    DateTime             @default(now())
+  updatedAt    DateTime             @updatedAt
+}
+
+model ProductTranslation {
+  id          String      @id @default(uuid())
+  productId   String
+  product     PumpProduct @relation(fields: [productId], references: [id], onDelete: Cascade)
+  language    String      // 'en', 'it', 'ar'
+  name        String
+  description String
+  metaTitle   String?
+  metaDesc    String?
+
+  @@unique([productId, language])
+}
+
+model Category {
+  id           String                @id @default(uuid())
+  slug         String                @unique
+  icon         String?
+  products     PumpProduct[]
+  translations CategoryTranslation[]
+}
+
+model CategoryTranslation {
+  id          String   @id @default(uuid())
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  language    String   // 'en', 'it'
+  title       String
+  description String?
+
+  @@unique([categoryId, language])
+}
+
+model Brand {
+  id        String        @id @default(uuid())
+  name      String        @unique
+  country   String
+  logoUrl   String
+  website   String?
+  products  PumpProduct[]
+}
+
+model QuoteRequest {
+  id            String        @id @default(uuid())
+  rfqNumber     String        @unique // e.g. HM-QT-2026-0104
+  companyName   String
+  fullName      String
+  email         String
+  phone         String
+  country       String
+  productName   String
+  model         String?
+  quantity      Int           @default(1)
+  contactMethod ContactMethod @default(EMAIL)
+  message       String?
+  attachmentUrl String?
+  status        QuoteStatus   @default(NEW)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model Certificate {
+  id       String  @id @default(uuid())
+  titleEN  String
+  titleIT  String
+  issuer   String
+  code     String  @unique
+  pdfUrl   String
+}
+
+model Downloadable {
+  id            String   @id @default(uuid())
+  titleEN       String
+  titleIT       String
+  category      String
+  fileName      String
+  fileUrl       String
+  downloadCount Int      @default(0)
+  createdAt     DateTime @default(now())
+}
+
+model AuditLog {
+  id        String   @id @default(uuid())
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id])
+  action    String
+  entity    String
+  ipAddress String?
+  createdAt DateTime @default(now())
+}
+
+model WebsiteSetting {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  value     String
+  updatedAt DateTime @updatedAt
+}

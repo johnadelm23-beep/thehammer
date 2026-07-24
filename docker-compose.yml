@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  # 1. Frontend Nginx Server
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: europrecision-frontend
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - euro-network
+
+  # 2. Express Backend REST API
+  backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile.backend
+    container_name: europrecision-backend
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      - PORT=5000
+      - DATABASE_URL=postgresql://euro_user:EuroPass2026!@postgres:5432/europrecision_db?schema=public
+      - JWT_SECRET=europrecision_production_jwt_secret_2026_key
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - euro-network
+
+  # 3. PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: europrecision-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: euro_user
+      POSTGRES_PASSWORD: EuroPass2026!
+      POSTGRES_DB: europrecision_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U euro_user -d europrecision_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - euro-network
+
+volumes:
+  pgdata:
+    driver: local
+
+networks:
+  euro-network:
+    driver: bridge
