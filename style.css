@@ -1748,7 +1748,7 @@ html[dir="rtl"] .mobile-nav-content {
         rgba(10, 10, 10, 0.85) 60%,
         rgba(10, 10, 10, 0.5) 100%
       ),
-      url("images/heromobilebackround.jpeg");
+      url("images/herobackgroundformobile.jpeg");
     background-position: 20% center;
     min-height: 700px;
     padding: 4rem 0;
@@ -1762,7 +1762,7 @@ html[dir="rtl"] .mobile-nav-content {
         rgba(10, 10, 10, 0.85) 60%,
         rgba(10, 10, 10, 0.5) 100%
       ),
-      url("images/heromobilebackround.jpeg") !important;
+      url("images/herobackgroundformobile.jpeg") !important;
   }
 
   html[dir="rtl"] .hero-slider {
@@ -1773,7 +1773,7 @@ html[dir="rtl"] .mobile-nav-content {
         rgba(10, 10, 10, 0.85) 60%,
         rgba(10, 10, 10, 0.5) 100%
       ),
-      url("images/heromobilebackround.jpeg");
+      url("images/herobackgroundformobile.jpeg");
   }
 
   html[dir="rtl"] .hero-slider::before {
@@ -1784,7 +1784,7 @@ html[dir="rtl"] .mobile-nav-content {
         rgba(10, 10, 10, 0.85) 60%,
         rgba(10, 10, 10, 0.5) 100%
       ),
-      url("images/heromobilebackround.jpeg") !important;
+      url("images/herobackgroundformobile.jpeg") !important;
   }
 
   .quote-btn-text {
