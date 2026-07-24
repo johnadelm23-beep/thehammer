@@ -263,6 +263,86 @@ body {
 }
 
 /* ==========================================================================
+   IMAGE LIGHTBOX MODAL
+   ========================================================================== */
+.image-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.88);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.image-lightbox.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.image-lightbox img {
+  display: block;
+  max-width: min(1100px, 94vw);
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 10px;
+  transform: scale(0.96);
+  transition: transform 0.25s ease;
+}
+
+.image-lightbox.is-open img {
+  transform: scale(1);
+}
+
+.image-lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.image-lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.05);
+}
+
+.image-lightbox-close:active {
+  transform: scale(0.95);
+}
+
+/* Zoom pointers for clickable layout details */
+.product-detail img,
+.product-images img,
+.product-gallery img,
+.product-modal img,
+.product-specifications img,
+#productDetailModal img,
+.product-detail-image,
+.product-img-wrapper img,
+.detail-image,
+.modal-component-img {
+  cursor: zoom-in;
+}
+
+/* ==========================================================================
    ACCESSIBILITY & REDUCED MOTION PREFERENCES
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {

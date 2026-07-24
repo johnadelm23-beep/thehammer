@@ -163,6 +163,18 @@ const DICTIONARIES = {
       rights:
         "© 2026 THEHAMMER Industrial Water Pump Solutions. All Rights Reserved.",
     },
+    about: {
+      tag: "ABOUT THEHAMMER",
+      title: "Reliable Pump Solutions for Industrial & Fire Protection Systems",
+      text1: "THEHAMMER manufactures robust water pumps, certified fire protection pump packages, high-torque electric motors, and automated pressure boosting systems for water utilities, power plants, and industrial complexes worldwide.",
+      text2: "Every pump undergoes hydrostatic testing up to 40 bar, dynamic impeller balancing to ISO 1940 standards, and 100% full-load hydraulic curve verification before dispatch.",
+      stat1Value: "100%",
+      stat1Label: "Hydrostatic Pressure Tested",
+      stat2Value: "NFPA-20",
+      stat2Label: "Fire Safety Compliant",
+      stat3Value: "IE3/IE4",
+      stat3Label: "Super Premium Efficiency",
+    },
   },
   it: {
     nav: {
@@ -321,6 +333,18 @@ const DICTIONARIES = {
       rights:
         "© 2026 THEHAMMER Industrial Water Pump Solutions. Tutti i diritti riservati.",
     },
+    about: {
+      tag: "INFORMAZIONI SU THEHAMMER",
+      title: "Soluzioni affidabili per pompe industriali e sistemi antincendio",
+      text1: "THEHAMMER produce pompe per acqua robuste, pacchetti di pompe antincendio certificati, motori elettrici a coppia elevata e sistemi automatizzati di aumento della pressione per aziende idriche, centrali elettriche e complessi industriali in tutto il mondo.",
+      text2: "Ogni pompa viene sottoposta a test idrostatici fino a 40 bar, bilanciamento dinamico della girante secondo gli standard ISO 1940 e verifica al 100% della curva idraulica a pieno carico prima della spedizione.",
+      stat1Value: "100%",
+      stat1Label: "Testato per Pressione Idrostatica",
+      stat2Value: "NFPA-20",
+      stat2Label: "Conforme alla Sicurezza Antincendio",
+      stat3Value: "IE3/IE4",
+      stat3Label: "Efficienza Super Premium",
+    },
   },
   ar: {
     nav: {
@@ -478,6 +502,18 @@ const DICTIONARIES = {
         "THEHAMMER هي شركة تصنيع عالمية لمضخات المياه الصناعية الثقيلة، ومجموعات مضخات مكافحة الحريق، والمحركات الكهربائية، وأنظمة ضغط المياه.",
       rights:
         "جميع الحقوق محفوظة © 2026 لمصنع THEHAMMER لحلول مضخات المياه الصناعية.",
+    },
+    about: {
+      tag: "حول THEHAMMER",
+      title: "حلول مضخات موثوقة للأنظمة الصناعية وأنظمة مكافحة الحرائق",
+      text1: "تقوم شركة THEHAMMER بتصنيع مضخات مياه قوية، ومجموعات مضخات مكافحة الحرائق المعتمدة، والمحركات الكهربائية ذات العزم العالي، وأنظمة تعزيز الضغط الآلية للمرافق المائية، ومحطات الطاقة، والمجمعات الصناعية في جميع أنحاء العالم.",
+      text2: "تخضع كل مضخة لاختبار هيدروستاتيكي يصل إلى 40 بار، وموازنة ديناميكية للمكره وفقًا لمعايير ISO 1940، وتحقق بنسبة 100% من منحنى الأداء الهيدروليكي تحت الحمل الكامل قبل الشحن.",
+      stat1Value: "١٠٠٪",
+      stat1Label: "تم اختباره هيدروستاتيكيًا",
+      stat2Value: "معيار NFPA-20",
+      stat2Label: "متوافق مع معايير السلامة من الحرائق",
+      stat3Value: "IE3/IE4",
+      stat3Label: "كفاءة طاقة فائقة الجودة",
     },
   },
 };

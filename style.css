@@ -44,7 +44,7 @@
   --font-body: "Inter", -apple-system, sans-serif;
   --font-mono: "JetBrains Mono", monospace;
 
-  --header-height: clamp(65px, 6vw + 35px, 115px);
+  --header-height: clamp(75px, 6vw + 35px, 115px);
   --transition-normal: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -258,10 +258,13 @@ button {
   align-items: center;
 }
 
+.site-logo img,
+.header-logo img,
+.nav-logo img,
 .site-logo-image {
   width: auto;
-  height: clamp(38px, 5vw + 20px, 95px);
-  max-width: 100%;
+  height: clamp(70px, 5vw, 90px);
+  max-width: 220px;
   object-fit: contain;
   display: block;
   flex-shrink: 0;
@@ -1009,6 +1012,7 @@ html[dir="rtl"] .mobile-nav-content {
   font-size: clamp(1rem, 2vw, 1.25rem);
   color: #cccccc;
   margin-bottom: 2.25rem;
+  margin-top: 17rem;
   line-height: 1.6;
 }
 
@@ -1716,6 +1720,18 @@ html[dir="rtl"] .mobile-nav-content {
   .grid-cols-3 {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .hero-slider {
+    background-position: 35% center;
+  }
+
+  .site-logo img,
+  .header-logo img,
+  .nav-logo img,
+  .site-logo-image {
+    height: 65px;
+    max-width: 190px;
+  }
 }
 
 /* 768px (Tablets / Portrait Viewports) */
@@ -1733,8 +1749,8 @@ html[dir="rtl"] .mobile-nav-content {
         rgba(10, 10, 10, 0.5) 100%
       ),
       url("images/herobackground.jpeg");
-    background-position: 65% center;
-    min-height: clamp(520px, 75vh, 650px);
+    background-position: 20% center;
+    min-height: 700px;
     padding: 4rem 0;
   }
 
@@ -1760,6 +1776,14 @@ html[dir="rtl"] .mobile-nav-content {
   .about-grid {
     grid-template-columns: 1fr !important;
     gap: 2.5rem !important;
+  }
+
+  .site-logo img,
+  .header-logo img,
+  .nav-logo img,
+  .site-logo-image {
+    height: 55px;
+    max-width: 170px;
   }
 }
 
@@ -1817,6 +1841,10 @@ html[dir="rtl"] .mobile-nav-content {
 
   .hero-actions .btn {
     width: 100%;
+  }
+
+  .hero-slider {
+    background-position: 15% center;
   }
 }
 

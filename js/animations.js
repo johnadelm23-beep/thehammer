@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCountUp(prefersReducedMotion);
   initDynamicCatalogObserver();
   initModalAnimations();
+  initImageLightbox();
 });
 
 /**
@@ -185,12 +186,14 @@ function initModalAnimations() {
       if (mutation.attributeName === 'class') {
         const target = mutation.target;
         if (target.classList.contains('show')) {
-          document.body.style.overflow = 'hidden'; // Prevent background scrolling
+          document.body.style.overflow = 'hidden';
+          document.documentElement.style.overflow = 'hidden';
         } else {
           // If all modals are closed, reset overflow
           const anyOpen = Array.from(modals).some(m => m.classList.contains('show'));
           if (!anyOpen) {
             document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
           }
         }
       }
@@ -199,5 +202,80 @@ function initModalAnimations() {
 
   modals.forEach(modal => {
     observer.observe(modal, { attributes: true, attributeFilter: ['class'] });
+  });
+}
+
+/**
+ * Reusable full-screen image lightbox modal with event delegation
+ */
+function initImageLightbox() {
+  const lightbox = document.getElementById("imageLightbox");
+  const lightboxPreview = document.getElementById("imageLightboxPreview");
+  const lightboxClose = document.querySelector(".image-lightbox-close");
+
+  if (!lightbox || !lightboxPreview) return;
+
+  function openImageLightbox(imageSrc, imageAlt) {
+    lightboxPreview.src = imageSrc;
+    lightboxPreview.alt = imageAlt || "Product preview";
+
+    lightbox.classList.add("is-open");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+
+    // Lock scroll on active modals behind the lightbox
+    document.querySelectorAll(".modal-backdrop.show").forEach(m => {
+      m.style.overflowY = "hidden";
+    });
+  }
+
+  function closeImageLightbox() {
+    lightbox.classList.remove("is-open");
+    lightbox.setAttribute("aria-hidden", "true");
+
+    // Restore scroll on active modals
+    document.querySelectorAll(".modal-backdrop.show").forEach(m => {
+      m.style.overflowY = "";
+    });
+
+    // Maintain modal scroll lock if any other backdrop modal remains visible
+    const anyModalOpen = Array.from(document.querySelectorAll('.modal-backdrop')).some(m => m.classList.contains('show'));
+    if (!anyModalOpen) {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    }
+
+    setTimeout(() => {
+      lightboxPreview.src = "";
+    }, 250);
+  }
+
+  // Delegated click listener
+  document.addEventListener("click", (event) => {
+    if (event.target.tagName !== "IMG") {
+      if (event.target === lightbox) {
+        closeImageLightbox();
+      }
+      return;
+    }
+
+    const img = event.target;
+    // Matches explicit styling classes or any images within specification/modal containers
+    const isClickable = img.matches(
+      ".product-detail img, .product-images img, .product-gallery img, .product-modal img, .product-specifications img, #productDetailModal img, .product-detail-image, .product-img-wrapper img, .product-img, .detail-image, .modal-component-img"
+    ) || img.closest(".product-detail, .product-images, .product-gallery, .product-modal, .product-specifications, #productDetailModal");
+
+    if (isClickable) {
+      openImageLightbox(img.currentSrc || img.src, img.alt);
+    }
+  });
+
+  lightboxClose?.addEventListener("click", closeImageLightbox);
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && lightbox.classList.contains("is-open")) {
+      closeImageLightbox();
+    }
   });
 }
