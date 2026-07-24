@@ -413,7 +413,7 @@ html[dir="rtl"] .logo-symbol {
       rgba(10, 10, 10, 0.65) 48%,
       rgba(10, 10, 10, 0.25) 100%
     ),
-    url("images/herobackground.jpeg");
+    url("images/final_hero.jpeg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -650,7 +650,7 @@ html[dir="rtl"] .hero-slider {
       rgba(10, 10, 10, 0.65) 48%,
       rgba(10, 10, 10, 0.25) 100%
     ),
-    url("images/herobackground.jpeg");
+    url("images/final_hero.jpeg");
 }
 
 html[dir="rtl"] .whatsapp-float {
@@ -976,7 +976,6 @@ html[dir="rtl"] .mobile-nav-content {
   max-width: 760px;
   position: relative;
   z-index: 5;
-  margin-top: 200px; /* عدل الرقم حسب اللي يناسبك */
 }
 
 .hero-logo-container {
@@ -1012,7 +1011,7 @@ html[dir="rtl"] .mobile-nav-content {
   font-size: clamp(1rem, 2vw, 1.25rem);
   color: #cccccc;
   margin-bottom: 2.25rem;
-  margin-top: 17rem;
+  margin-top: 1.25rem;
   line-height: 1.6;
 }
 
@@ -1748,9 +1747,9 @@ html[dir="rtl"] .mobile-nav-content {
         rgba(10, 10, 10, 0.85) 60%,
         rgba(10, 10, 10, 0.5) 100%
       ),
-      url("images/herobackgroundmobilefinal.jpeg");
-    background-position: 20% center;
-    min-height: 700px;
+      url("images/final_hero.jpeg");
+    background-position: center center;
+    min-height: clamp(480px, 80vh, 650px);
     padding: 4rem 0;
   }
 
@@ -1762,7 +1761,7 @@ html[dir="rtl"] .mobile-nav-content {
         rgba(10, 10, 10, 0.85) 60%,
         rgba(10, 10, 10, 0.5) 100%
       ),
-      url("images/herobackgroundmobilefinal.jpeg") !important;
+      url("images/final_hero.jpeg") !important;
   }
 
   html[dir="rtl"] .hero-slider {
@@ -1773,7 +1772,7 @@ html[dir="rtl"] .mobile-nav-content {
         rgba(10, 10, 10, 0.85) 60%,
         rgba(10, 10, 10, 0.5) 100%
       ),
-      url("images/herobackgroundmobilefinal.jpeg");
+      url("images/final_hero.jpeg");
   }
 
   html[dir="rtl"] .hero-slider::before {
@@ -1784,7 +1783,7 @@ html[dir="rtl"] .mobile-nav-content {
         rgba(10, 10, 10, 0.85) 60%,
         rgba(10, 10, 10, 0.5) 100%
       ),
-      url("images/herobackgroundmobilefinal.jpeg") !important;
+      url("images/final_hero.jpeg") !important;
   }
 
   .quote-btn-text {
@@ -1866,7 +1865,7 @@ html[dir="rtl"] .mobile-nav-content {
   }
 
   .hero-slider {
-    background-position: 15% center;
+    background-position: center center;
   }
 }
 

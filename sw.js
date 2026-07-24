@@ -3,14 +3,14 @@
  * Precaching, Offline Fallback, Background Sync, and Push Notification Handling
  */
 
-const CACHE_NAME = "europrecision-pwa-v4";
+const CACHE_NAME = "europrecision-pwa-v5";
 const ASSETS_TO_CACHE = [
   "./",
   "./index.html",
   "./images/One_Png1.png",
   "./images/logo_dark_mode.jpeg",
   "./images/PSM-Electric-Pump.jpg",
-  "./images/herobackgroundmobilefinal.jpeg",
+  "./images/final_hero.jpeg",
   "./style.css",
   "./animations.css",
   "./js/i18n.js",
