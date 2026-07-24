@@ -475,7 +475,7 @@ function renderCertificates() {
   grid.innerHTML = certs
     .map(
       (c) => `
-    <div class="certificate-card">
+    <div class="certificate-card stagger-item">
       <i data-lucide="shield-check" class="certificate-icon"></i>
       <h4 class="certificate-title">${c[titleKey] || c.titleEN}</h4>
       <p class="certificate-issuer">Issuer: ${c.issuer} (${c.code})</p>
@@ -504,7 +504,7 @@ function renderDownloads() {
   grid.innerHTML = downloads
     .map(
       (d) => `
-    <div class="download-card">
+    <div class="download-card stagger-item">
       <div>
         <h4 class="download-title">${d[titleKey] || d.titleEN}</h4>
         <span class="download-info">Category: ${d.category} • Downloads: ${d.count}</span>

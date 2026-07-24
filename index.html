@@ -80,6 +80,7 @@
 
     <!-- Core CSS -->
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="animations.css" />
     <script src="https://unpkg.com/lucide@latest"></script>
   </head>
   <body>
@@ -340,11 +341,18 @@
           </div>
 
           <div class="hero-stats-grid">
-            <div>
-              <div class="hero-stat-number"></div>
+            <div class="hero-stat-item stagger-item">
+              <div class="hero-stat-number">12,000+</div>
+              <p class="hero-stat-label" data-i18n="hero.stat1Label">Max Flow Rate</p>
             </div>
-            <div></div>
-            <div></div>
+            <div class="hero-stat-item stagger-item">
+              <div class="hero-stat-number">40 Bar</div>
+              <p class="hero-stat-label" data-i18n="hero.stat2Label">Head Pressure</p>
+            </div>
+            <div class="hero-stat-item stagger-item">
+              <div class="hero-stat-number">1,500+</div>
+              <p class="hero-stat-label" data-i18n="hero.stat3Label">Global Installations</p>
+            </div>
           </div>
         </div>
       </div>
@@ -355,7 +363,7 @@
        ========================================================================== -->
     <section id="catalog" class="section">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header reveal reveal-up">
           <div>
             <h2 class="section-title" data-i18n="catalog.title">
               Industrial Product Catalog
@@ -366,7 +374,7 @@
             </p>
           </div>
 
-          <div class="catalog-filters">
+          <div class="catalog-filters reveal reveal-up">
             <input
               type="text"
               id="catalogSearchInput"
@@ -447,7 +455,7 @@
     <section id="about" class="section section-secondary">
       <div class="container">
         <div class="grid grid-cols-2 about-grid">
-          <div>
+          <div class="reveal reveal-left">
             <span class="section-tag">ABOUT THEHAMMER</span>
             <h2 class="section-title">
               Reliable Pump Solutions for Industrial & Fire Protection Systems
@@ -465,22 +473,22 @@
             </p>
 
             <div class="about-stats">
-              <div>
+              <div class="about-stat-item stagger-item">
                 <h4 class="about-stat-value">100%</h4>
                 <p class="about-stat-label">Hydrostatic Pressure Tested</p>
               </div>
-              <div>
-                <h4 class="about-stat-value"></h4>
+              <div class="about-stat-item stagger-item">
+                <h4 class="about-stat-value">NFPA-20</h4>
                 <p class="about-stat-label">Fire Safety Compliant</p>
               </div>
-              <div>
-                <h4 class="about-stat-value"></h4>
+              <div class="about-stat-item stagger-item">
+                <h4 class="about-stat-value">IE3/IE4</h4>
                 <p class="about-stat-label">Super Premium Efficiency</p>
               </div>
             </div>
           </div>
 
-          <div class="about-logo-wrapper">
+          <div class="about-logo-wrapper reveal reveal-right">
             <div class="about-logo-card">
               <img
                 src="images/One_Png1.png"
@@ -498,7 +506,7 @@
        ========================================================================== -->
     <section id="certificates" class="section">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header reveal reveal-up">
           <h2 class="section-title" data-i18n="nav.certificates">
             Certificates & Quality Standards
           </h2>
@@ -508,7 +516,7 @@
           </p>
         </div>
 
-        <div class="grid grid-cols-3" id="certificatesGrid">
+        <div class="grid grid-cols-3 reveal reveal-up" id="certificatesGrid">
           <!-- Rendered dynamically -->
         </div>
       </div>
@@ -519,7 +527,7 @@
        ========================================================================== -->
     <section id="downloads" class="section section-secondary">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header reveal reveal-up">
           <h2 class="section-title" data-i18n="nav.downloads">
             Technical Download Center
           </h2>
@@ -529,7 +537,7 @@
           </p>
         </div>
 
-        <div class="grid grid-cols-2" id="downloadsGrid">
+        <div class="grid grid-cols-2 reveal reveal-up" id="downloadsGrid">
           <!-- Rendered dynamically -->
         </div>
       </div>
@@ -543,14 +551,14 @@
        ========================================================================== -->
     <section id="contact" class="section section-contact">
       <div class="container">
-        <div class="section-header text-center">
+        <div class="section-header text-center reveal reveal-up">
           <h2 class="section-title" data-i18n="contact.title">Contact Us</h2>
           <p class="section-subtitle" data-i18n="contact.subtitle">
             Have questions or need technical support? Send us a message directly
             via WhatsApp.
           </p>
         </div>
-        <div class="contact-card">
+        <div class="contact-card reveal reveal-scale">
           <form id="contactForm" onsubmit="handleContactSubmit(event)">
             <div class="grid grid-cols-2">
               <div class="form-group">
@@ -655,8 +663,8 @@
 
     <footer class="site-footer" id="footer">
       <div class="container">
-        <div class="grid grid-cols-4 footer-grid">
-          <div>
+        <div class="grid grid-cols-4 footer-grid reveal reveal-up">
+          <div class="stagger-item">
             <div class="footer-logo-wrapper">
               <a href="index.html" aria-label="Go to The Hammer home page">
                 <img
@@ -678,7 +686,7 @@
             </p>
           </div>
 
-          <div>
+          <div class="stagger-item">
             <h4 class="footer-heading">Navigation</h4>
             <ul class="footer-list">
               <li class="footer-list-item">
@@ -697,7 +705,7 @@
             </ul>
           </div>
 
-          <div>
+          <div class="stagger-item">
             <h4 class="footer-heading">Global Headquarters</h4>
             <p class="footer-contact-item">
               <i data-lucide="map-pin" class="footer-icon"></i>
@@ -713,7 +721,7 @@
             </p>
           </div>
 
-          <div>
+          <div class="stagger-item">
             <h4 class="footer-heading">Direct Pump Support</h4>
             <button
               class="btn whatsapp-button btn-sm"
@@ -736,7 +744,7 @@
           </div>
         </div>
 
-        <div class="footer-bottom" data-i18n="footer.rights">
+        <div class="footer-bottom reveal reveal-up" data-i18n="footer.rights">
           © 2026 THEHAMMER Industrial Water Pump Solutions. All Rights Reserved.
         </div>
       </div>
@@ -1281,6 +1289,7 @@
     <script src="js/store.js"></script>
     <script src="js/media-manager.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/animations.js"></script>
 
     <script>
       lucide.createIcons();

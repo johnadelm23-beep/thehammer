@@ -1,0 +1,291 @@
+/* ==========================================================================
+   THEHAMMER - PREMIUM MOTION & INTERACTIVE SYSTEM
+   ========================================================================== */
+
+/* Page Load Entry Fade-in */
+body {
+  animation: fadeInEntry 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeInEntry {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Header & Nav Elements */
+.site-header {
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease !important;
+}
+
+.site-header.header-scrolled {
+  background: var(--bg-primary) !important;
+  box-shadow: var(--shadow-md) !important;
+  border-bottom-color: var(--primary-red) !important;
+}
+
+.main-nav .nav-link {
+  position: relative;
+  transition: color 0.25s ease !important;
+}
+
+.main-nav .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary-red);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.main-nav .nav-link:hover::after,
+.main-nav .nav-link.active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Subtle Logo Hover Scale */
+.site-logo-image:hover,
+.hero-logo-image:hover,
+.about-logo-image:hover {
+  transform: scale(1.025) !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Hero Elements Entrance Animation */
+.hero-slider {
+  overflow: hidden;
+}
+
+.hero-slider::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: inherit;
+  background-size: inherit;
+  background-position: inherit;
+  background-repeat: inherit;
+  z-index: 1;
+  transform: scale(1.05);
+  animation: heroBgZoom 8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  pointer-events: none;
+}
+
+@keyframes heroBgZoom {
+  to {
+    transform: scale(1);
+  }
+}
+
+.hero-slider .hero-logo-container,
+.hero-slider .hero-subtitle-tag,
+.hero-slider .hero-title,
+.hero-slider .hero-desc,
+.hero-slider .hero-actions,
+.hero-slider .hero-stats-grid .stagger-item {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: heroFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes heroFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-slider .hero-logo-container { animation-delay: 0.1s; }
+.hero-slider .hero-subtitle-tag { animation-delay: 0.2s; }
+.hero-slider .hero-title { animation-delay: 0.3s; }
+.hero-slider .hero-desc { animation-delay: 0.4s; }
+.hero-slider .hero-actions { animation-delay: 0.5s; }
+.hero-slider .hero-stats-grid .stagger-item:nth-child(1) { animation-delay: 0.6s; }
+.hero-slider .hero-stats-grid .stagger-item:nth-child(2) { animation-delay: 0.7s; }
+.hero-slider .hero-stats-grid .stagger-item:nth-child(3) { animation-delay: 0.8s; }
+
+/* Scroll Reveal Framework */
+.reveal {
+  opacity: 0;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.reveal-up {
+  transform: translateY(24px);
+}
+
+.reveal-left {
+  transform: translateX(-24px);
+}
+
+.reveal-right {
+  transform: translateX(24px);
+}
+
+.reveal-scale {
+  transform: scale(0.96);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translate(0) scale(1);
+}
+
+/* Stagger List Reveal System */
+.stagger-item {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.is-visible .stagger-item,
+.reveal.is-visible.stagger-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.is-visible .stagger-item:nth-child(1) { transition-delay: 0.05s; }
+.is-visible .stagger-item:nth-child(2) { transition-delay: 0.1s; }
+.is-visible .stagger-item:nth-child(3) { transition-delay: 0.15s; }
+.is-visible .stagger-item:nth-child(4) { transition-delay: 0.2s; }
+.is-visible .stagger-item:nth-child(5) { transition-delay: 0.25s; }
+.is-visible .stagger-item:nth-child(6) { transition-delay: 0.3s; }
+.is-visible .stagger-item:nth-child(7) { transition-delay: 0.35s; }
+.is-visible .stagger-item:nth-child(8) { transition-delay: 0.4s; }
+
+/* Product Cards Micro-Animations */
+.product-card {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.product-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: var(--shadow-lg) !important;
+  border-color: var(--primary-red) !important;
+}
+
+.product-img-wrapper {
+  overflow: hidden !important;
+}
+
+.product-img-wrapper .product-img {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.product-card:hover .product-img-wrapper .product-img {
+  transform: scale(1.05) !important;
+}
+
+/* Button & Link Hover Transitions */
+.btn {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, color 0.25s ease !important;
+}
+
+.btn:hover {
+  transform: translateY(-2px) !important;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0 12px var(--primary-red-glow), 0 4px 12px rgba(200, 16, 46, 0.3) !important;
+}
+
+.btn:active,
+.btn:focus-visible {
+  transform: translateY(0) !important;
+  outline: 2px solid var(--primary-red) !important;
+  outline-offset: 2px !important;
+}
+
+/* Form focus glows */
+.form-input,
+.form-select,
+.form-textarea {
+  transition: border-color 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+/* Modal Animations */
+.modal-backdrop {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease !important;
+}
+
+.modal-backdrop.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-container {
+  transform: scale(0.97) translateY(12px);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.modal-backdrop.show .modal-container {
+  transform: scale(1) translateY(0);
+}
+
+/* Floating WhatsApp Button Interactivity */
+.whatsapp-float {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  animation: whatsAppPulse 8s infinite ease-in-out;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.08) !important;
+  animation-play-state: paused !important;
+}
+
+@keyframes whatsAppPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 16px rgba(16, 185, 129, 0.4);
+  }
+}
+
+/* Responsive reveals for mobile (stack reveals vertically) */
+@media (max-width: 768px) {
+  .reveal-left,
+  .reveal-right {
+    transform: translateY(24px) !important;
+  }
+}
+
+/* ==========================================================================
+   ACCESSIBILITY & REDUCED MOTION PREFERENCES
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+    transform: none !important;
+  }
+
+  .hero-slider::before {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .whatsapp-float {
+    animation: none !important;
+    transform: none !important;
+  }
+}
