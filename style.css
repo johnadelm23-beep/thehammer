@@ -1748,7 +1748,7 @@ html[dir="rtl"] .mobile-nav-content {
         rgba(10, 10, 10, 0.85) 60%,
         rgba(10, 10, 10, 0.5) 100%
       ),
-      url("images/herobackground.jpeg");
+      url("images/heromobilebackround.jpeg");
     background-position: 20% center;
     min-height: 700px;
     padding: 4rem 0;
@@ -1762,7 +1762,7 @@ html[dir="rtl"] .mobile-nav-content {
         rgba(10, 10, 10, 0.85) 60%,
         rgba(10, 10, 10, 0.5) 100%
       ),
-      url("images/herobackground.jpeg");
+      url("images/heromobilebackround.jpeg");
   }
 
   .quote-btn-text {
