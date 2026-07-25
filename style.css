@@ -400,10 +400,9 @@ html[dir="rtl"] .logo-symbol {
   background: var(--primary-red);
 }
 
-/* Hero Section */
 .hero-slider {
   position: relative;
-  min-height: clamp(580px, 88vh, 850px);
+  min-height: calc(100vh - var(--header-height));
   display: flex;
   align-items: center;
   background-image:
@@ -415,7 +414,7 @@ html[dir="rtl"] .logo-symbol {
     ),
     url("images/final_hero.jpeg");
   background-size: cover;
-  background-position: center;
+  background-position: center top;
   background-repeat: no-repeat;
   color: #ffffff;
   padding: clamp(3.5rem, 6vh, 6rem) 0;
@@ -1748,7 +1747,7 @@ html[dir="rtl"] .mobile-nav-content {
         rgba(10, 10, 10, 0.5) 100%
       ),
       url("images/final_hero.jpeg");
-    background-position: center center;
+    background-position: center top;
     min-height: clamp(480px, 80vh, 650px);
     padding: 4rem 0;
   }
@@ -1865,7 +1864,7 @@ html[dir="rtl"] .mobile-nav-content {
   }
 
   .hero-slider {
-    background-position: center center;
+    background-position: center top;
   }
 }
 
