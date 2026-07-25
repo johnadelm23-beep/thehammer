@@ -703,7 +703,7 @@ html[dir="rtl"] #quoteListEmail {
 /* Prevent horizontal body overflow */
 html,
 body {
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* Responsive Headings */

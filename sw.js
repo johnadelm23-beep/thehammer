@@ -3,7 +3,7 @@
  * Precaching, Offline Fallback, Background Sync, and Push Notification Handling
  */
 
-const CACHE_NAME = "europrecision-pwa-v6";
+const CACHE_NAME = "europrecision-pwa-v7";
 const ASSETS_TO_CACHE = [
   "./",
   "./index.html",
