@@ -402,7 +402,7 @@ html[dir="rtl"] .logo-symbol {
 
 .hero-slider {
   position: relative;
-  min-height: calc(110vh - var(--header-height));
+  min-height: calc(150vh - var(--header-height));
   display: flex;
   align-items: center;
   background-image:
