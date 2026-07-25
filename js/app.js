@@ -654,7 +654,7 @@ function openProductDetail(productId) {
       <!-- Diesel Pump Card -->
       <div class="modal-component-card">
         <div class="modal-component-img-wrapper">
-          <img src="${dieselImg}" alt="Diesel Pump Component" class="modal-component-img" onerror="this.src='images/PSM-Electric-Pump.jpg'" />
+          <img src="${dieselImg}" alt="Diesel Pump Component" class="modal-component-img" onerror="this.src='images/PSD-Diesel-Pump.jpeg'" />
         </div>
         <div class="modal-component-body ${alignClass}">
           <div>
