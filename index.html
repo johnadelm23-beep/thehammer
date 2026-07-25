@@ -343,15 +343,21 @@
           <div class="hero-stats-grid">
             <div class="hero-stat-item stagger-item">
               <div class="hero-stat-number">12,000+</div>
-              <p class="hero-stat-label" data-i18n="hero.stat1Label">Max Flow Rate</p>
+              <p class="hero-stat-label" data-i18n="hero.stat1Label">
+                Max Flow Rate
+              </p>
             </div>
             <div class="hero-stat-item stagger-item">
               <div class="hero-stat-number">40 Bar</div>
-              <p class="hero-stat-label" data-i18n="hero.stat2Label">Head Pressure</p>
+              <p class="hero-stat-label" data-i18n="hero.stat2Label">
+                Head Pressure
+              </p>
             </div>
             <div class="hero-stat-item stagger-item">
               <div class="hero-stat-number">1,500+</div>
-              <p class="hero-stat-label" data-i18n="hero.stat3Label">Global Installations</p>
+              <p class="hero-stat-label" data-i18n="hero.stat3Label">
+                Global Installations
+              </p>
             </div>
           </div>
         </div>
@@ -456,7 +462,9 @@
       <div class="container">
         <div class="grid grid-cols-2 about-grid">
           <div class="reveal reveal-left">
-            <span class="section-tag" data-i18n="about.tag">ABOUT THEHAMMER</span>
+            <span class="section-tag" data-i18n="about.tag"
+              >ABOUT THEHAMMER</span
+            >
             <h2 class="section-title" data-i18n="about.title">
               Reliable Pump Solutions for Industrial & Fire Protection Systems
             </h2>
@@ -474,16 +482,28 @@
 
             <div class="about-stats">
               <div class="about-stat-item stagger-item">
-                <h4 class="about-stat-value" data-i18n="about.stat1Value">100%</h4>
-                <p class="about-stat-label" data-i18n="about.stat1Label">Hydrostatic Pressure Tested</p>
+                <h4 class="about-stat-value" data-i18n="about.stat1Value">
+                  100%
+                </h4>
+                <p class="about-stat-label" data-i18n="about.stat1Label">
+                  Hydrostatic Pressure Tested
+                </p>
               </div>
               <div class="about-stat-item stagger-item">
-                <h4 class="about-stat-value" data-i18n="about.stat2Value">NFPA-20</h4>
-                <p class="about-stat-label" data-i18n="about.stat2Label">Fire Safety Compliant</p>
+                <h4 class="about-stat-value" data-i18n="about.stat2Value">
+                  NFPA-20
+                </h4>
+                <p class="about-stat-label" data-i18n="about.stat2Label">
+                  Fire Safety Compliant
+                </p>
               </div>
               <div class="about-stat-item stagger-item">
-                <h4 class="about-stat-value" data-i18n="about.stat3Value">IE3/IE4</h4>
-                <p class="about-stat-label" data-i18n="about.stat3Label">Super Premium Efficiency</p>
+                <h4 class="about-stat-value" data-i18n="about.stat3Value">
+                  IE3/IE4
+                </h4>
+                <p class="about-stat-label" data-i18n="about.stat3Label">
+                  Super Premium Efficiency
+                </p>
               </div>
             </div>
           </div>
@@ -1284,7 +1304,13 @@
       ></span>
     </a>
     <!-- Image Lightbox Modal -->
-    <div id="imageLightbox" class="image-lightbox" aria-hidden="true" role="dialog" aria-label="Product Image Viewer">
+    <div
+      id="imageLightbox"
+      class="image-lightbox"
+      aria-hidden="true"
+      role="dialog"
+      aria-label="Product Image Viewer"
+    >
       <button
         class="image-lightbox-close"
         type="button"
@@ -1292,14 +1318,12 @@
       >
         &times;
       </button>
-      <img
-        id="imageLightboxPreview"
-        src=""
-        alt="Product preview"
-      />
+      <img id="imageLightboxPreview" src="" alt="Product preview" />
     </div>
 
     <!-- Scripts -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
     <script src="js/i18n.js"></script>
     <script src="js/store.js"></script>
     <script src="js/media-manager.js"></script>
@@ -1307,10 +1331,19 @@
     <script src="js/animations.js"></script>
 
     <script>
-      lucide.createIcons();
+      window.addEventListener("DOMContentLoaded", () => {
+        if (window.lucide) {
+          lucide.createIcons();
+        } else {
+          console.error("Lucide library failed to load");
+        }
+      });
+
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
-          navigator.serviceWorker.register("./sw.js");
+          navigator.serviceWorker
+            .register("./sw.js")
+            .catch((error) => console.error("Service Worker error:", error));
         });
       }
     </script>
