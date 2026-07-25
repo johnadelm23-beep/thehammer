@@ -49,7 +49,9 @@ function initApp() {
   const icon = document.getElementById("themeIcon");
   if (icon) {
     icon.setAttribute("data-lucide", savedTheme === "dark" ? "moon" : "sun");
-    lucide.createIcons();
+    if (window.lucide) {
+      lucide.createIcons();
+    }
   }
 
   renderCategoryFilter();
@@ -89,7 +91,9 @@ function toggleDarkMode() {
   const icon = document.getElementById("themeIcon");
   if (icon) {
     icon.setAttribute("data-lucide", newTheme === "dark" ? "moon" : "sun");
-    lucide.createIcons();
+    if (window.lucide) {
+      lucide.createIcons();
+    }
   }
   updateThemeLogos(newTheme);
 }
@@ -386,7 +390,10 @@ function renderCatalog() {
         <h3>${window.i18n.t("catalog.noResults")}</h3>
       </div>
     `;
-    lucide.createIcons();
+    if (window.lucide) {
+      lucide.createIcons();
+    }
+
     return;
   }
 
@@ -456,7 +463,9 @@ function renderCatalog() {
     })
     .join("");
 
-  lucide.createIcons();
+  if (window.lucide) {
+    lucide.createIcons();
+  }
 }
 
 function renderCertificates() {
@@ -485,7 +494,9 @@ function renderCertificates() {
     )
     .join("");
 
-  lucide.createIcons();
+  if (window.lucide) {
+    lucide.createIcons();
+  }
 }
 
 function renderDownloads() {
@@ -514,8 +525,9 @@ function renderDownloads() {
   `,
     )
     .join("");
-
-  lucide.createIcons();
+  if (window.lucide) {
+    lucide.createIcons();
+  }
 }
 
 function triggerDownload(id, filename) {
@@ -904,7 +916,9 @@ function renderQuoteList() {
       `;
       })
       .join("");
-    lucide.createIcons();
+    if (window.lucide) {
+      lucide.createIcons();
+    }
   }
 }
 
