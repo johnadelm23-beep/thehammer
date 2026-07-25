@@ -667,7 +667,7 @@ function openProductDetail(productId) {
       <!-- Jockey Pump Card -->
       <div class="modal-component-card">
         <div class="modal-component-img-wrapper">
-          <img src="${jockeyImg}" alt="Jockey Pump Component" class="modal-component-img" onerror="this.src='images/PSM-Electric-Pump.jpg'" />
+          <img src="${jockeyImg}" alt="Jockey Pump Component" class="modal-component-img" onerror="this.src='images/PVTS-Jockey-Pump.jpg'" />
         </div>
         <div class="modal-component-body ${alignClass}">
           <div>
