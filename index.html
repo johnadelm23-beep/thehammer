@@ -3,67 +3,128 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      THEHAMMER | Industrial Water Pump Solutions & Fire Protection Systems
-    </title>
 
-    <!-- SEO & Schema.org JSON-LD -->
+    <title>THEHAMMER | Industrial Water Pumps & Fire Protection Systems</title>
+
+    <!-- Basic SEO -->
     <meta
       name="description"
-      content="THEHAMMER is a premier manufacturer of heavy-duty industrial water pumps, NFPA-20 fire fighting pump sets, electric motors, and pressure booster stations."
+      content="THEHAMMER provides heavy-duty industrial water pumps, NFPA-20 fire fighting pump sets, electric motors, diesel pumps, jockey pumps, and pressure booster stations."
     />
+
     <meta
       name="keywords"
-      content="THEHAMMER, water pumps, fire fighting pumps, electric motors, pressure booster, centrifugal pump, NFPA-20, industrial hydraulics"
+      content="THEHAMMER, industrial water pumps, fire fighting pumps, NFPA-20 pump sets, electric motors, diesel pumps, jockey pumps, pressure booster stations"
     />
-    <meta name="author" content="THEHAMMER Industrial Water Pump Solutions" />
-    <link rel="canonical" href="https://thehammer-pumps.com/" />
 
-    <!-- OpenGraph -->
+    <meta name="author" content="THEHAMMER Industrial Water Pump Solutions" />
+
+    <meta name="robots" content="index, follow" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://thehammer.uk/" />
+
+    <!-- Open Graph -->
     <meta
       property="og:title"
-      content="THEHAMMER | Industrial Water Pump Solutions"
+      content="THEHAMMER | Industrial Water Pumps & Fire Protection Systems"
     />
+
     <meta
       property="og:description"
-      content="High-capacity water pumps, NFPA-20 fire fighting systems, electric motors, and pressure booster stations."
+      content="Heavy-duty industrial water pumps, NFPA-20 fire fighting pump sets, electric motors, diesel pumps, jockey pumps, and pressure booster systems."
     />
+
+    <meta property="og:url" content="https://thehammer.uk/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="THEHAMMER" />
+
     <meta
       property="og:image"
-      content="https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=1200&q=80"
+      content="https://thehammer.uk/images/herobackground.jpeg"
     />
-    <meta property="og:type" content="website" />
 
-    <!-- JSON-LD Structured Data -->
+    <meta
+      property="og:image:alt"
+      content="THEHAMMER industrial water pumps and fire protection systems"
+    />
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <meta name="twitter:title" content="THEHAMMER | Industrial Water Pumps" />
+
+    <meta
+      name="twitter:description"
+      content="Industrial water pumps, NFPA-20 fire fighting systems, electric motors, diesel pumps, jockey pumps, and pressure booster stations."
+    />
+
+    <meta
+      name="twitter:image"
+      content="https://thehammer.uk/images/herobackground.jpeg"
+    />
+
+    <!-- Organization Structured Data -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "name": "THEHAMMER Industrial Water Pump Solutions",
-        "url": "https://thehammer-pumps.com",
-        "logo": "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=200&q=80",
+        "@id": "https://thehammer.uk/#organization",
+        "name": "THEHAMMER",
+        "alternateName": "THEHAMMER Industrial Water Pump Solutions",
+        "url": "https://thehammer.uk/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://thehammer.uk/images/One_Png1.png"
+        },
+        "image": "https://thehammer.uk/images/herobackground.jpeg",
+        "description": "Industrial water pump solutions, NFPA-20 fire fighting pump sets, electric motors, diesel pumps, jockey pumps, and pressure booster stations.",
         "contactPoint": {
           "@type": "ContactPoint",
-          "telephone": "01226806622",
-          "contactType": "Sales & Technical Support",
-          "areaServed": "Global"
+          "telephone": "+201226806622",
+          "contactType": "Sales and Technical Support",
+          "availableLanguage": ["English", "Arabic", "Italian"],
+          "areaServed": "Worldwide"
         }
       }
     </script>
 
+    <!-- Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-H3PZS91XY4"
+    ></script>
+
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+
+      gtag("js", new Date());
+      gtag("config", "G-H3PZS91XY4");
+    </script>
+
+    <!-- Theme Script -->
     <script>
       (function () {
         const savedTheme = localStorage.getItem("hammer_theme") || "light";
+
         document.documentElement.setAttribute("data-theme", savedTheme);
       })();
     </script>
 
+    <!-- Logo Error Handler -->
     <script>
       function handleLogoError(image) {
         image.style.display = "none";
+
         const container = image.parentElement;
+
         if (container) {
           const fallbackSpan = container.querySelector(".logo-text-fallback");
+
           if (fallbackSpan) {
             fallbackSpan.style.display = "inline-flex";
           }
