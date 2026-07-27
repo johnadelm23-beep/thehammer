@@ -1063,7 +1063,7 @@ ${itemsListString}`;
     }
 
     const encoded = encodeURIComponent(waMessage);
-    const whatsappUrl = `https://wa.me/201226806622?text=${encoded}`;
+    const whatsappUrl = `https://wa.me/201203666634?text=${encoded}`;
 
     const newTab = window.open(whatsappUrl, "_blank", "noopener,noreferrer");
     if (newTab) {
@@ -1374,7 +1374,7 @@ Thank you.`;
 
   const encoded = encodeURIComponent(message);
   window.open(
-    `https://wa.me/201226806622?text=${encoded}`,
+    `https://wa.me/201203666634?text=${encoded}`,
     "_blank",
     "noopener,noreferrer",
   );

@@ -92,7 +92,7 @@ const DICTIONARIES = {
       companyPlaceholder: "e.g. Thames Water / Veolia",
       namePlaceholder: "e.g. Eng. David Sterling",
       emailPlaceholder: "engineering@company.com",
-      phonePlaceholder: "+201226806622",
+      phonePlaceholder: "201203666634",
       countryPlaceholder: "United Kingdom / Italy / UAE",
       messagePlaceholder:
         "Specify required flow rate (m³/h), head pressure (m), fluid temperature, or electrical Hz frequency...",
@@ -122,7 +122,7 @@ const DICTIONARIES = {
       messageLabel: "Message *",
       submitBtn: "Send Message",
       namePlaceholder: "e.g. John Doe",
-      phonePlaceholder: "e.g. +201226806622",
+      phonePlaceholder: "e.g. +201203666634",
       emailPlaceholder: "e.g. john@example.com",
       companyPlaceholder: "e.g. Company Ltd.",
       subjectPlaceholder: "e.g. Technical Support",
@@ -166,8 +166,10 @@ const DICTIONARIES = {
     about: {
       tag: "ABOUT THEHAMMER",
       title: "Reliable Pump Solutions for Industrial & Fire Protection Systems",
-      text1: "THEHAMMER manufactures robust water pumps, certified fire protection pump packages, high-torque electric motors, and automated pressure boosting systems for water utilities, power plants, and industrial complexes worldwide.",
-      text2: "Every pump undergoes hydrostatic testing up to 40 bar, dynamic impeller balancing to ISO 1940 standards, and 100% full-load hydraulic curve verification before dispatch.",
+      text1:
+        "THEHAMMER manufactures robust water pumps, certified fire protection pump packages, high-torque electric motors, and automated pressure boosting systems for water utilities, power plants, and industrial complexes worldwide.",
+      text2:
+        "Every pump undergoes hydrostatic testing up to 40 bar, dynamic impeller balancing to ISO 1940 standards, and 100% full-load hydraulic curve verification before dispatch.",
       stat1Value: "100%",
       stat1Label: "Hydrostatic Pressure Tested",
       stat2Value: "NFPA-20",
@@ -262,7 +264,7 @@ const DICTIONARIES = {
       companyPlaceholder: "es. Thames Water / Veolia",
       namePlaceholder: "es. Ingg. David Sterling",
       emailPlaceholder: "ingegneria@azienda.com",
-      phonePlaceholder: "+201226806622",
+      phonePlaceholder: "+201203666634",
       countryPlaceholder: "Regno Unito / Italia / EAU",
       messagePlaceholder:
         "Specificare la portata richiesta (m³/h), la prevalenza (m), la temperatura del fluido o la frequenza Hz...",
@@ -292,7 +294,7 @@ const DICTIONARIES = {
       messageLabel: "Messaggio *",
       submitBtn: "Invia Messaggio",
       namePlaceholder: "es. Mario Rossi",
-      phonePlaceholder: "es. +201226806622",
+      phonePlaceholder: "es. +201203666634",
       emailPlaceholder: "es. mario@esempio.com",
       companyPlaceholder: "es. Azienda S.r.l.",
       subjectPlaceholder: "es. Supporto Tecnico",
@@ -336,8 +338,10 @@ const DICTIONARIES = {
     about: {
       tag: "INFORMAZIONI SU THEHAMMER",
       title: "Soluzioni affidabili per pompe industriali e sistemi antincendio",
-      text1: "THEHAMMER produce pompe per acqua robuste, pacchetti di pompe antincendio certificati, motori elettrici a coppia elevata e sistemi automatizzati di aumento della pressione per aziende idriche, centrali elettriche e complessi industriali in tutto il mondo.",
-      text2: "Ogni pompa viene sottoposta a test idrostatici fino a 40 bar, bilanciamento dinamico della girante secondo gli standard ISO 1940 e verifica al 100% della curva idraulica a pieno carico prima della spedizione.",
+      text1:
+        "THEHAMMER produce pompe per acqua robuste, pacchetti di pompe antincendio certificati, motori elettrici a coppia elevata e sistemi automatizzati di aumento della pressione per aziende idriche, centrali elettriche e complessi industriali in tutto il mondo.",
+      text2:
+        "Ogni pompa viene sottoposta a test idrostatici fino a 40 bar, bilanciamento dinamico della girante secondo gli standard ISO 1940 e verifica al 100% della curva idraulica a pieno carico prima della spedizione.",
       stat1Value: "100%",
       stat1Label: "Testato per Pressione Idrostatica",
       stat2Value: "NFPA-20",
@@ -432,7 +436,7 @@ const DICTIONARIES = {
       companyPlaceholder: "مثال: مياه التايمز / فيوليا",
       namePlaceholder: "مثال: م. ديفيد ستيرلينغ",
       emailPlaceholder: "engineering@company.com",
-      phonePlaceholder: "+201226806622",
+      phonePlaceholder: "+201203666634",
       countryPlaceholder: "المملكة المتحدة / إيطاليا / الإمارات",
       messagePlaceholder:
         "حدد معدل التدفق المطلوب (m³/h)، ضغط الارتفاع (m)، درجة حرارة السائل، أو التردد الكهربائي بالهرتز...",
@@ -506,8 +510,10 @@ const DICTIONARIES = {
     about: {
       tag: "حول THEHAMMER",
       title: "حلول مضخات موثوقة للأنظمة الصناعية وأنظمة مكافحة الحرائق",
-      text1: "تقوم شركة THEHAMMER بتصنيع مضخات مياه قوية، ومجموعات مضخات مكافحة الحرائق المعتمدة، والمحركات الكهربائية ذات العزم العالي، وأنظمة تعزيز الضغط الآلية للمرافق المائية، ومحطات الطاقة، والمجمعات الصناعية في جميع أنحاء العالم.",
-      text2: "تخضع كل مضخة لاختبار هيدروستاتيكي يصل إلى 40 بار، وموازنة ديناميكية للمكره وفقًا لمعايير ISO 1940، وتحقق بنسبة 100% من منحنى الأداء الهيدروليكي تحت الحمل الكامل قبل الشحن.",
+      text1:
+        "تقوم شركة THEHAMMER بتصنيع مضخات مياه قوية، ومجموعات مضخات مكافحة الحرائق المعتمدة، والمحركات الكهربائية ذات العزم العالي، وأنظمة تعزيز الضغط الآلية للمرافق المائية، ومحطات الطاقة، والمجمعات الصناعية في جميع أنحاء العالم.",
+      text2:
+        "تخضع كل مضخة لاختبار هيدروستاتيكي يصل إلى 40 بار، وموازنة ديناميكية للمكره وفقًا لمعايير ISO 1940، وتحقق بنسبة 100% من منحنى الأداء الهيدروليكي تحت الحمل الكامل قبل الشحن.",
       stat1Value: "١٠٠٪",
       stat1Label: "تم اختباره هيدروستاتيكيًا",
       stat2Value: "معيار NFPA-20",

@@ -9,9 +9,9 @@ const SEED_DATA = {
     tagline: "Heavy Duty Hydraulic & Fire Protection Pump Systems",
     logoUrl:
       "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=200&q=80",
-    phone: "+201226806622",
-    email: "johnadelm23@gmail.com",
-    whatsAppNumber: "201226806622",
+    phone: "+201203666634",
+    email: "example@gmail.com",
+    whatsAppNumber: "201203666634",
     addressEN: "THEHAMMER Industrial Park, Works Avenue 100, London, UK",
     addressIT: "THEHAMMER Industrial Park, Works Avenue 100, Londra, UK",
     addressAR: "مجمع هامر الصناعي، شارع الأعمال 100، لندن، المملكة المتحدة",
@@ -87,9 +87,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 50/6-5.5-8.6-2 - Option 1",
       nameIT: "Gruppo Pompe Antincendio PEDJ 50/6-5.5-8.6-2 - Option 1",
       nameAR: "مجموعة مضخات الحريق PEDJ 50/6-5.5-8.6-2 - Option 1",
-      descEN: "Industrial Fire Pump System configuration PEDJ 50/6-5.5-8.6-2 - Option 1. Features high-performance P2C 32-200/40 5.5HP electric drive, PSD 32-250/55 8.6HP diesel engine backup, and PV 4x9/2HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 50/6-5.5-8.6-2 - Option 1. Dotato di azionamento elettrico P2C 32-200/40 5.5HP, azionamento diesel PSD 32-250/55 8.6HP e pompa jockey PV 4x9/2HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 50/6-5.5-8.6-2 - Option 1. يحتوي على مضخة كهربائية P2C 32-200/40 5.5HP، مضخة ديزل احتياطية PSD 32-250/55 8.6HP، ومضخة جوكي PV 4x9/2HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 50/6-5.5-8.6-2 - Option 1. Features high-performance P2C 32-200/40 5.5HP electric drive, PSD 32-250/55 8.6HP diesel engine backup, and PV 4x9/2HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 50/6-5.5-8.6-2 - Option 1. Dotato di azionamento elettrico P2C 32-200/40 5.5HP, azionamento diesel PSD 32-250/55 8.6HP e pompa jockey PV 4x9/2HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 50/6-5.5-8.6-2 - Option 1. يحتوي على مضخة كهربائية P2C 32-200/40 5.5HP، مضخة ديزل احتياطية PSD 32-250/55 8.6HP، ومضخة جوكي PV 4x9/2HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 50,
       hBar: "6",
@@ -98,7 +101,7 @@ const SEED_DATA = {
       jockeyPump: "PV 4x9/2HP",
       configuration: "Close Coupled Electric + Plastic Jockey",
       active: true,
-      featured: true
+      featured: true,
     },
     {
       id: "pedj-pedj-50-6-5-5-8-6-2---option-2",
@@ -108,9 +111,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 50/6-5.5-8.6-2 - Option 2",
       nameIT: "Gruppo Pompe Antincendio PEDJ 50/6-5.5-8.6-2 - Option 2",
       nameAR: "مجموعة مضخات الحريق PEDJ 50/6-5.5-8.6-2 - Option 2",
-      descEN: "Industrial Fire Pump System configuration PEDJ 50/6-5.5-8.6-2 - Option 2. Features high-performance PSM 32-250/55 7.5HP electric drive, PSD 32-250/55 8.6HP diesel engine backup, and PVT(S) 1-15 1HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 50/6-5.5-8.6-2 - Option 2. Dotato di azionamento elettrico PSM 32-250/55 7.5HP, azionamento diesel PSD 32-250/55 8.6HP e pompa jockey PVT(S) 1-15 1HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 50/6-5.5-8.6-2 - Option 2. يحتوي على مضخة كهربائية PSM 32-250/55 7.5HP، مضخة ديزل احتياطية PSD 32-250/55 8.6HP، ومضخة جوكي PVT(S) 1-15 1HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 50/6-5.5-8.6-2 - Option 2. Features high-performance PSM 32-250/55 7.5HP electric drive, PSD 32-250/55 8.6HP diesel engine backup, and PVT(S) 1-15 1HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 50/6-5.5-8.6-2 - Option 2. Dotato di azionamento elettrico PSM 32-250/55 7.5HP, azionamento diesel PSD 32-250/55 8.6HP e pompa jockey PVT(S) 1-15 1HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 50/6-5.5-8.6-2 - Option 2. يحتوي على مضخة كهربائية PSM 32-250/55 7.5HP، مضخة ديزل احتياطية PSD 32-250/55 8.6HP، ومضخة جوكي PVT(S) 1-15 1HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 50,
       hBar: "6",
@@ -119,7 +125,7 @@ const SEED_DATA = {
       jockeyPump: "PVT(S) 1-15 1HP",
       configuration: "Separate Coupled Electric + SS304 Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-50-7-7-5-10-2---option-1",
@@ -129,9 +135,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 50/7-7.5-10-2 - Option 1",
       nameIT: "Gruppo Pompe Antincendio PEDJ 50/7-7.5-10-2 - Option 1",
       nameAR: "مجموعة مضخات الحريق PEDJ 50/7-7.5-10-2 - Option 1",
-      descEN: "Industrial Fire Pump System configuration PEDJ 50/7-7.5-10-2 - Option 1. Features high-performance P2C 40-210/55 7.5HP electric drive, PSD 32-250/75 10HP diesel engine backup, and PV 4x9/2HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 50/7-7.5-10-2 - Option 1. Dotato di azionamento elettrico P2C 40-210/55 7.5HP, azionamento diesel PSD 32-250/75 10HP e pompa jockey PV 4x9/2HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 50/7-7.5-10-2 - Option 1. يحتوي على مضخة كهربائية P2C 40-210/55 7.5HP، مضخة ديزل احتياطية PSD 32-250/75 10HP، ومضخة جوكي PV 4x9/2HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 50/7-7.5-10-2 - Option 1. Features high-performance P2C 40-210/55 7.5HP electric drive, PSD 32-250/75 10HP diesel engine backup, and PV 4x9/2HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 50/7-7.5-10-2 - Option 1. Dotato di azionamento elettrico P2C 40-210/55 7.5HP, azionamento diesel PSD 32-250/75 10HP e pompa jockey PV 4x9/2HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 50/7-7.5-10-2 - Option 1. يحتوي على مضخة كهربائية P2C 40-210/55 7.5HP، مضخة ديزل احتياطية PSD 32-250/75 10HP، ومضخة جوكي PV 4x9/2HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 50,
       hBar: "7",
@@ -140,7 +149,7 @@ const SEED_DATA = {
       jockeyPump: "PV 4x9/2HP",
       configuration: "Close Coupled Electric + Plastic Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-50-7-7-5-10-2---option-2",
@@ -150,9 +159,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 50/7-7.5-10-2 - Option 2",
       nameIT: "Gruppo Pompe Antincendio PEDJ 50/7-7.5-10-2 - Option 2",
       nameAR: "مجموعة مضخات الحريق PEDJ 50/7-7.5-10-2 - Option 2",
-      descEN: "Industrial Fire Pump System configuration PEDJ 50/7-7.5-10-2 - Option 2. Features high-performance PSM 32-250/75 10HP electric drive, PSD 32-250/75 10HP diesel engine backup, and PVT(S) 1-15 1HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 50/7-7.5-10-2 - Option 2. Dotato di azionamento elettrico PSM 32-250/75 10HP, azionamento diesel PSD 32-250/75 10HP e pompa jockey PVT(S) 1-15 1HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 50/7-7.5-10-2 - Option 2. يحتوي على مضخة كهربائية PSM 32-250/75 10HP، مضخة ديزل احتياطية PSD 32-250/75 10HP، ومضخة جوكي PVT(S) 1-15 1HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 50/7-7.5-10-2 - Option 2. Features high-performance PSM 32-250/75 10HP electric drive, PSD 32-250/75 10HP diesel engine backup, and PVT(S) 1-15 1HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 50/7-7.5-10-2 - Option 2. Dotato di azionamento elettrico PSM 32-250/75 10HP, azionamento diesel PSD 32-250/75 10HP e pompa jockey PVT(S) 1-15 1HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 50/7-7.5-10-2 - Option 2. يحتوي على مضخة كهربائية PSM 32-250/75 10HP، مضخة ديزل احتياطية PSD 32-250/75 10HP، ومضخة جوكي PVT(S) 1-15 1HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 50,
       hBar: "7",
@@ -161,7 +173,7 @@ const SEED_DATA = {
       jockeyPump: "PVT(S) 1-15 1HP",
       configuration: "Separate Coupled Electric + SS304 Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-50-8-10-12-3---option-1",
@@ -171,9 +183,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 50/8-10-12-3 - Option 1",
       nameIT: "Gruppo Pompe Antincendio PEDJ 50/8-10-12-3 - Option 1",
       nameAR: "مجموعة مضخات الحريق PEDJ 50/8-10-12-3 - Option 1",
-      descEN: "Industrial Fire Pump System configuration PEDJ 50/8-10-12-3 - Option 1. Features high-performance P2C 40-210/75 10HP electric drive, PSD 32-250/110 12HP diesel engine backup, and PV 4x13/3HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 50/8-10-12-3 - Option 1. Dotato di azionamento elettrico P2C 40-210/75 10HP, azionamento diesel PSD 32-250/110 12HP e pompa jockey PV 4x13/3HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 50/8-10-12-3 - Option 1. يحتوي على مضخة كهربائية P2C 40-210/75 10HP، مضخة ديزل احتياطية PSD 32-250/110 12HP، ومضخة جوكي PV 4x13/3HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 50/8-10-12-3 - Option 1. Features high-performance P2C 40-210/75 10HP electric drive, PSD 32-250/110 12HP diesel engine backup, and PV 4x13/3HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 50/8-10-12-3 - Option 1. Dotato di azionamento elettrico P2C 40-210/75 10HP, azionamento diesel PSD 32-250/110 12HP e pompa jockey PV 4x13/3HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 50/8-10-12-3 - Option 1. يحتوي على مضخة كهربائية P2C 40-210/75 10HP، مضخة ديزل احتياطية PSD 32-250/110 12HP، ومضخة جوكي PV 4x13/3HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 50,
       hBar: "8",
@@ -182,7 +197,7 @@ const SEED_DATA = {
       jockeyPump: "PV 4x13/3HP",
       configuration: "Close Coupled Electric + Plastic Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-50-8-10-12-3---option-2",
@@ -192,9 +207,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 50/8-10-12-3 - Option 2",
       nameIT: "Gruppo Pompe Antincendio PEDJ 50/8-10-12-3 - Option 2",
       nameAR: "مجموعة مضخات الحريق PEDJ 50/8-10-12-3 - Option 2",
-      descEN: "Industrial Fire Pump System configuration PEDJ 50/8-10-12-3 - Option 2. Features high-performance PSM 32-250/110 15HP electric drive, PSD 32-250/110 12HP diesel engine backup, and PVT(S) 1-15 1HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 50/8-10-12-3 - Option 2. Dotato di azionamento elettrico PSM 32-250/110 15HP, azionamento diesel PSD 32-250/110 12HP e pompa jockey PVT(S) 1-15 1HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 50/8-10-12-3 - Option 2. يحتوي على مضخة كهربائية PSM 32-250/110 15HP، مضخة ديزل احتياطية PSD 32-250/110 12HP، ومضخة جوكي PVT(S) 1-15 1HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 50/8-10-12-3 - Option 2. Features high-performance PSM 32-250/110 15HP electric drive, PSD 32-250/110 12HP diesel engine backup, and PVT(S) 1-15 1HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 50/8-10-12-3 - Option 2. Dotato di azionamento elettrico PSM 32-250/110 15HP, azionamento diesel PSD 32-250/110 12HP e pompa jockey PVT(S) 1-15 1HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 50/8-10-12-3 - Option 2. يحتوي على مضخة كهربائية PSM 32-250/110 15HP، مضخة ديزل احتياطية PSD 32-250/110 12HP، ومضخة جوكي PVT(S) 1-15 1HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 50,
       hBar: "8",
@@ -203,7 +221,7 @@ const SEED_DATA = {
       jockeyPump: "PVT(S) 1-15 1HP",
       configuration: "Separate Coupled Electric + SS304 Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-50-9-10-27-3---option-1",
@@ -213,9 +231,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 50/9-10-27-3 - Option 1",
       nameIT: "Gruppo Pompe Antincendio PEDJ 50/9-10-27-3 - Option 1",
       nameAR: "مجموعة مضخات الحريق PEDJ 50/9-10-27-3 - Option 1",
-      descEN: "Industrial Fire Pump System configuration PEDJ 50/9-10-27-3 - Option 1. Features high-performance P2C 40-210/75 10HP electric drive, PSD 32-250/150 27HP diesel engine backup, and PV 4x13/3HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 50/9-10-27-3 - Option 1. Dotato di azionamento elettrico P2C 40-210/75 10HP, azionamento diesel PSD 32-250/150 27HP e pompa jockey PV 4x13/3HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 50/9-10-27-3 - Option 1. يحتوي على مضخة كهربائية P2C 40-210/75 10HP، مضخة ديزل احتياطية PSD 32-250/150 27HP، ومضخة جوكي PV 4x13/3HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 50/9-10-27-3 - Option 1. Features high-performance P2C 40-210/75 10HP electric drive, PSD 32-250/150 27HP diesel engine backup, and PV 4x13/3HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 50/9-10-27-3 - Option 1. Dotato di azionamento elettrico P2C 40-210/75 10HP, azionamento diesel PSD 32-250/150 27HP e pompa jockey PV 4x13/3HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 50/9-10-27-3 - Option 1. يحتوي على مضخة كهربائية P2C 40-210/75 10HP، مضخة ديزل احتياطية PSD 32-250/150 27HP، ومضخة جوكي PV 4x13/3HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 50,
       hBar: "9",
@@ -224,7 +245,7 @@ const SEED_DATA = {
       jockeyPump: "PV 4x13/3HP",
       configuration: "Close Coupled Electric + Plastic Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-50-9-10-27-3---option-2",
@@ -234,9 +255,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 50/9-10-27-3 - Option 2",
       nameIT: "Gruppo Pompe Antincendio PEDJ 50/9-10-27-3 - Option 2",
       nameAR: "مجموعة مضخات الحريق PEDJ 50/9-10-27-3 - Option 2",
-      descEN: "Industrial Fire Pump System configuration PEDJ 50/9-10-27-3 - Option 2. Features high-performance PSM 32-250/150 20HP electric drive, PSD 32-250/150 27HP diesel engine backup, and PVT(S) 1-17 1.5HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 50/9-10-27-3 - Option 2. Dotato di azionamento elettrico PSM 32-250/150 20HP, azionamento diesel PSD 32-250/150 27HP e pompa jockey PVT(S) 1-17 1.5HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 50/9-10-27-3 - Option 2. يحتوي على مضخة كهربائية PSM 32-250/150 20HP، مضخة ديزل احتياطية PSD 32-250/150 27HP، ومضخة جوكي PVT(S) 1-17 1.5HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 50/9-10-27-3 - Option 2. Features high-performance PSM 32-250/150 20HP electric drive, PSD 32-250/150 27HP diesel engine backup, and PVT(S) 1-17 1.5HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 50/9-10-27-3 - Option 2. Dotato di azionamento elettrico PSM 32-250/150 20HP, azionamento diesel PSD 32-250/150 27HP e pompa jockey PVT(S) 1-17 1.5HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 50/9-10-27-3 - Option 2. يحتوي على مضخة كهربائية PSM 32-250/150 20HP، مضخة ديزل احتياطية PSD 32-250/150 27HP، ومضخة جوكي PVT(S) 1-17 1.5HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 50,
       hBar: "9",
@@ -245,7 +269,7 @@ const SEED_DATA = {
       jockeyPump: "PVT(S) 1-17 1.5HP",
       configuration: "Separate Coupled Electric + SS304 Jockey",
       active: true,
-      featured: true
+      featured: true,
     },
     {
       id: "pedj-pedj-100-7-10-10-2---option-1",
@@ -255,9 +279,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 100/7-10-10-2 - Option 1",
       nameIT: "Gruppo Pompe Antincendio PEDJ 100/7-10-10-2 - Option 1",
       nameAR: "مجموعة مضخات الحريق PEDJ 100/7-10-10-2 - Option 1",
-      descEN: "Industrial Fire Pump System configuration PEDJ 100/7-10-10-2 - Option 1. Features high-performance PST 32-250/75 10HP electric drive, PSD 32-250/75 10HP diesel engine backup, and PV 4x9/2HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 100/7-10-10-2 - Option 1. Dotato di azionamento elettrico PST 32-250/75 10HP, azionamento diesel PSD 32-250/75 10HP e pompa jockey PV 4x9/2HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 100/7-10-10-2 - Option 1. يحتوي على مضخة كهربائية PST 32-250/75 10HP، مضخة ديزل احتياطية PSD 32-250/75 10HP، ومضخة جوكي PV 4x9/2HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 100/7-10-10-2 - Option 1. Features high-performance PST 32-250/75 10HP electric drive, PSD 32-250/75 10HP diesel engine backup, and PV 4x9/2HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 100/7-10-10-2 - Option 1. Dotato di azionamento elettrico PST 32-250/75 10HP, azionamento diesel PSD 32-250/75 10HP e pompa jockey PV 4x9/2HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 100/7-10-10-2 - Option 1. يحتوي على مضخة كهربائية PST 32-250/75 10HP، مضخة ديزل احتياطية PSD 32-250/75 10HP، ومضخة جوكي PV 4x9/2HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 100,
       hBar: "6-7",
@@ -266,7 +293,7 @@ const SEED_DATA = {
       jockeyPump: "PV 4x9/2HP",
       configuration: "Close Coupled Electric + Plastic Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-100-7-10-10-2---option-2",
@@ -276,9 +303,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 100/7-10-10-2 - Option 2",
       nameIT: "Gruppo Pompe Antincendio PEDJ 100/7-10-10-2 - Option 2",
       nameAR: "مجموعة مضخات الحريق PEDJ 100/7-10-10-2 - Option 2",
-      descEN: "Industrial Fire Pump System configuration PEDJ 100/7-10-10-2 - Option 2. Features high-performance PSM 32-250/75 10HP electric drive, PSD 32-250/75 10HP diesel engine backup, and PVT(S) 2-11 1.5HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 100/7-10-10-2 - Option 2. Dotato di azionamento elettrico PSM 32-250/75 10HP, azionamento diesel PSD 32-250/75 10HP e pompa jockey PVT(S) 2-11 1.5HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 100/7-10-10-2 - Option 2. يحتوي على مضخة كهربائية PSM 32-250/75 10HP، مضخة ديزل احتياطية PSD 32-250/75 10HP، ومضخة جوكي PVT(S) 2-11 1.5HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 100/7-10-10-2 - Option 2. Features high-performance PSM 32-250/75 10HP electric drive, PSD 32-250/75 10HP diesel engine backup, and PVT(S) 2-11 1.5HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 100/7-10-10-2 - Option 2. Dotato di azionamento elettrico PSM 32-250/75 10HP, azionamento diesel PSD 32-250/75 10HP e pompa jockey PVT(S) 2-11 1.5HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 100/7-10-10-2 - Option 2. يحتوي على مضخة كهربائية PSM 32-250/75 10HP، مضخة ديزل احتياطية PSD 32-250/75 10HP، ومضخة جوكي PVT(S) 2-11 1.5HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 100,
       hBar: "6-7",
@@ -287,7 +317,7 @@ const SEED_DATA = {
       jockeyPump: "PVT(S) 2-11 1.5HP",
       configuration: "Separate Coupled Electric + SS304 Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-100-8-15-27-3---option-1",
@@ -297,9 +327,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 100/8-15-27-3 - Option 1",
       nameIT: "Gruppo Pompe Antincendio PEDJ 100/8-15-27-3 - Option 1",
       nameAR: "مجموعة مضخات الحريق PEDJ 100/8-15-27-3 - Option 1",
-      descEN: "Industrial Fire Pump System configuration PEDJ 100/8-15-27-3 - Option 1. Features high-performance P2C 40-200/110 15HP electric drive, PSD 32-250/150 27HP diesel engine backup, and PV 4x13/3HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 100/8-15-27-3 - Option 1. Dotato di azionamento elettrico P2C 40-200/110 15HP, azionamento diesel PSD 32-250/150 27HP e pompa jockey PV 4x13/3HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 100/8-15-27-3 - Option 1. يحتوي على مضخة كهربائية P2C 40-200/110 15HP، مضخة ديزل احتياطية PSD 32-250/150 27HP، ومضخة جوكي PV 4x13/3HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 100/8-15-27-3 - Option 1. Features high-performance P2C 40-200/110 15HP electric drive, PSD 32-250/150 27HP diesel engine backup, and PV 4x13/3HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 100/8-15-27-3 - Option 1. Dotato di azionamento elettrico P2C 40-200/110 15HP, azionamento diesel PSD 32-250/150 27HP e pompa jockey PV 4x13/3HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 100/8-15-27-3 - Option 1. يحتوي على مضخة كهربائية P2C 40-200/110 15HP، مضخة ديزل احتياطية PSD 32-250/150 27HP، ومضخة جوكي PV 4x13/3HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 100,
       hBar: "8",
@@ -308,7 +341,7 @@ const SEED_DATA = {
       jockeyPump: "PV 4x13/3HP",
       configuration: "Close Coupled Electric + Plastic Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-100-8-15-27-3---option-2",
@@ -318,9 +351,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 100/8-15-27-3 - Option 2",
       nameIT: "Gruppo Pompe Antincendio PEDJ 100/8-15-27-3 - Option 2",
       nameAR: "مجموعة مضخات الحريق PEDJ 100/8-15-27-3 - Option 2",
-      descEN: "Industrial Fire Pump System configuration PEDJ 100/8-15-27-3 - Option 2. Features high-performance PSM 32-250/150 20HP electric drive, PSD 32-250/150 27HP diesel engine backup, and PVT(S) 2-13 2HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 100/8-15-27-3 - Option 2. Dotato di azionamento elettrico PSM 32-250/150 20HP, azionamento diesel PSD 32-250/150 27HP e pompa jockey PVT(S) 2-13 2HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 100/8-15-27-3 - Option 2. يحتوي على مضخة كهربائية PSM 32-250/150 20HP، مضخة ديزل احتياطية PSD 32-250/150 27HP، ومضخة جوكي PVT(S) 2-13 2HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 100/8-15-27-3 - Option 2. Features high-performance PSM 32-250/150 20HP electric drive, PSD 32-250/150 27HP diesel engine backup, and PVT(S) 2-13 2HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 100/8-15-27-3 - Option 2. Dotato di azionamento elettrico PSM 32-250/150 20HP, azionamento diesel PSD 32-250/150 27HP e pompa jockey PVT(S) 2-13 2HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 100/8-15-27-3 - Option 2. يحتوي على مضخة كهربائية PSM 32-250/150 20HP، مضخة ديزل احتياطية PSD 32-250/150 27HP، ومضخة جوكي PVT(S) 2-13 2HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 100,
       hBar: "8",
@@ -329,7 +365,7 @@ const SEED_DATA = {
       jockeyPump: "PVT(S) 2-13 2HP",
       configuration: "Separate Coupled Electric + SS304 Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-100-9-17-5-27-3---option-1",
@@ -339,9 +375,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 100/9-17.5-27-3 - Option 1",
       nameIT: "Gruppo Pompe Antincendio PEDJ 100/9-17.5-27-3 - Option 1",
       nameAR: "مجموعة مضخات الحريق PEDJ 100/9-17.5-27-3 - Option 1",
-      descEN: "Industrial Fire Pump System configuration PEDJ 100/9-17.5-27-3 - Option 1. Features high-performance P2C 40-250/130 17.5HP electric drive, PSD 40-250/185 27HP diesel engine backup, and PV 4x13/3HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 100/9-17.5-27-3 - Option 1. Dotato di azionamento elettrico P2C 40-250/130 17.5HP, azionamento diesel PSD 40-250/185 27HP e pompa jockey PV 4x13/3HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 100/9-17.5-27-3 - Option 1. يحتوي على مضخة كهربائية P2C 40-250/130 17.5HP، مضخة ديزل احتياطية PSD 40-250/185 27HP، ومضخة جوكي PV 4x13/3HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 100/9-17.5-27-3 - Option 1. Features high-performance P2C 40-250/130 17.5HP electric drive, PSD 40-250/185 27HP diesel engine backup, and PV 4x13/3HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 100/9-17.5-27-3 - Option 1. Dotato di azionamento elettrico P2C 40-250/130 17.5HP, azionamento diesel PSD 40-250/185 27HP e pompa jockey PV 4x13/3HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 100/9-17.5-27-3 - Option 1. يحتوي على مضخة كهربائية P2C 40-250/130 17.5HP، مضخة ديزل احتياطية PSD 40-250/185 27HP، ومضخة جوكي PV 4x13/3HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 100,
       hBar: "9",
@@ -350,7 +389,7 @@ const SEED_DATA = {
       jockeyPump: "PV 4x13/3HP",
       configuration: "Close Coupled Electric + Plastic Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-100-9-17-5-27-3---option-2",
@@ -360,9 +399,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 100/9-17.5-27-3 - Option 2",
       nameIT: "Gruppo Pompe Antincendio PEDJ 100/9-17.5-27-3 - Option 2",
       nameAR: "مجموعة مضخات الحريق PEDJ 100/9-17.5-27-3 - Option 2",
-      descEN: "Industrial Fire Pump System configuration PEDJ 100/9-17.5-27-3 - Option 2. Features high-performance PSM 40-250/185 25HP electric drive, PSD 40-250/185 27HP diesel engine backup, and PVT(S) 2-13 2HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 100/9-17.5-27-3 - Option 2. Dotato di azionamento elettrico PSM 40-250/185 25HP, azionamento diesel PSD 40-250/185 27HP e pompa jockey PVT(S) 2-13 2HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 100/9-17.5-27-3 - Option 2. يحتوي على مضخة كهربائية PSM 40-250/185 25HP، مضخة ديزل احتياطية PSD 40-250/185 27HP، ومضخة جوكي PVT(S) 2-13 2HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 100/9-17.5-27-3 - Option 2. Features high-performance PSM 40-250/185 25HP electric drive, PSD 40-250/185 27HP diesel engine backup, and PVT(S) 2-13 2HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 100/9-17.5-27-3 - Option 2. Dotato di azionamento elettrico PSM 40-250/185 25HP, azionamento diesel PSD 40-250/185 27HP e pompa jockey PVT(S) 2-13 2HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 100/9-17.5-27-3 - Option 2. يحتوي على مضخة كهربائية PSM 40-250/185 25HP، مضخة ديزل احتياطية PSD 40-250/185 27HP، ومضخة جوكي PVT(S) 2-13 2HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 100,
       hBar: "9",
@@ -371,7 +413,7 @@ const SEED_DATA = {
       jockeyPump: "PVT(S) 2-13 2HP",
       configuration: "Separate Coupled Electric + SS304 Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-120-7-10-12-3---option-1",
@@ -381,9 +423,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 120/7-10-12-3 - Option 1",
       nameIT: "Gruppo Pompe Antincendio PEDJ 120/7-10-12-3 - Option 1",
       nameAR: "مجموعة مضخات الحريق PEDJ 120/7-10-12-3 - Option 1",
-      descEN: "Industrial Fire Pump System configuration PEDJ 120/7-10-12-3 - Option 1. Features high-performance PST 32-250/75D 10HP electric drive, PSD 32-250/75H 12HP diesel engine backup, and PV 4x13/3HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 120/7-10-12-3 - Option 1. Dotato di azionamento elettrico PST 32-250/75D 10HP, azionamento diesel PSD 32-250/75H 12HP e pompa jockey PV 4x13/3HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 120/7-10-12-3 - Option 1. يحتوي على مضخة كهربائية PST 32-250/75D 10HP، مضخة ديزل احتياطية PSD 32-250/75H 12HP، ومضخة جوكي PV 4x13/3HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 120/7-10-12-3 - Option 1. Features high-performance PST 32-250/75D 10HP electric drive, PSD 32-250/75H 12HP diesel engine backup, and PV 4x13/3HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 120/7-10-12-3 - Option 1. Dotato di azionamento elettrico PST 32-250/75D 10HP, azionamento diesel PSD 32-250/75H 12HP e pompa jockey PV 4x13/3HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 120/7-10-12-3 - Option 1. يحتوي على مضخة كهربائية PST 32-250/75D 10HP، مضخة ديزل احتياطية PSD 32-250/75H 12HP، ومضخة جوكي PV 4x13/3HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 120,
       hBar: "7",
@@ -392,7 +437,7 @@ const SEED_DATA = {
       jockeyPump: "PV 4x13/3HP",
       configuration: "Close Coupled Electric + Plastic Jockey",
       active: true,
-      featured: true
+      featured: true,
     },
     {
       id: "pedj-pedj-120-7-10-12-3---option-2",
@@ -402,9 +447,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 120/7-10-12-3 - Option 2",
       nameIT: "Gruppo Pompe Antincendio PEDJ 120/7-10-12-3 - Option 2",
       nameAR: "مجموعة مضخات الحريق PEDJ 120/7-10-12-3 - Option 2",
-      descEN: "Industrial Fire Pump System configuration PEDJ 120/7-10-12-3 - Option 2. Features high-performance PSM 32-250/75H 10HP electric drive, PSD 32-250/75H 12HP diesel engine backup, and PVT(S) 2-13 2HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 120/7-10-12-3 - Option 2. Dotato di azionamento elettrico PSM 32-250/75H 10HP, azionamento diesel PSD 32-250/75H 12HP e pompa jockey PVT(S) 2-13 2HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 120/7-10-12-3 - Option 2. يحتوي على مضخة كهربائية PSM 32-250/75H 10HP، مضخة ديزل احتياطية PSD 32-250/75H 12HP، ومضخة جوكي PVT(S) 2-13 2HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 120/7-10-12-3 - Option 2. Features high-performance PSM 32-250/75H 10HP electric drive, PSD 32-250/75H 12HP diesel engine backup, and PVT(S) 2-13 2HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 120/7-10-12-3 - Option 2. Dotato di azionamento elettrico PSM 32-250/75H 10HP, azionamento diesel PSD 32-250/75H 12HP e pompa jockey PVT(S) 2-13 2HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 120/7-10-12-3 - Option 2. يحتوي على مضخة كهربائية PSM 32-250/75H 10HP، مضخة ديزل احتياطية PSD 32-250/75H 12HP، ومضخة جوكي PVT(S) 2-13 2HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 120,
       hBar: "7",
@@ -413,7 +461,7 @@ const SEED_DATA = {
       jockeyPump: "PVT(S) 2-13 2HP",
       configuration: "Separate Coupled Electric + SS304 Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-150-7-15-12-3---option-1",
@@ -423,9 +471,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 150/7-15-12-3 - Option 1",
       nameIT: "Gruppo Pompe Antincendio PEDJ 150/7-15-12-3 - Option 1",
       nameAR: "مجموعة مضخات الحريق PEDJ 150/7-15-12-3 - Option 1",
-      descEN: "Industrial Fire Pump System configuration PEDJ 150/7-15-12-3 - Option 1. Features high-performance PST 40-250/110 15HP electric drive, PSD 40-250/110 12HP diesel engine backup, and PV 4x13/3HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 150/7-15-12-3 - Option 1. Dotato di azionamento elettrico PST 40-250/110 15HP, azionamento diesel PSD 40-250/110 12HP e pompa jockey PV 4x13/3HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 150/7-15-12-3 - Option 1. يحتوي على مضخة كهربائية PST 40-250/110 15HP، مضخة ديزل احتياطية PSD 40-250/110 12HP، ومضخة جوكي PV 4x13/3HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 150/7-15-12-3 - Option 1. Features high-performance PST 40-250/110 15HP electric drive, PSD 40-250/110 12HP diesel engine backup, and PV 4x13/3HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 150/7-15-12-3 - Option 1. Dotato di azionamento elettrico PST 40-250/110 15HP, azionamento diesel PSD 40-250/110 12HP e pompa jockey PV 4x13/3HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 150/7-15-12-3 - Option 1. يحتوي على مضخة كهربائية PST 40-250/110 15HP، مضخة ديزل احتياطية PSD 40-250/110 12HP، ومضخة جوكي PV 4x13/3HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 150,
       hBar: "7",
@@ -434,7 +485,7 @@ const SEED_DATA = {
       jockeyPump: "PV 4x13/3HP",
       configuration: "Close Coupled Electric + Plastic Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-150-7-15-12-3---option-2",
@@ -444,9 +495,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 150/7-15-12-3 - Option 2",
       nameIT: "Gruppo Pompe Antincendio PEDJ 150/7-15-12-3 - Option 2",
       nameAR: "مجموعة مضخات الحريق PEDJ 150/7-15-12-3 - Option 2",
-      descEN: "Industrial Fire Pump System configuration PEDJ 150/7-15-12-3 - Option 2. Features high-performance PSM 40-250/110 15HP electric drive, PSD 40-250/110 12HP diesel engine backup, and PVT(S) 4-10 3HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 150/7-15-12-3 - Option 2. Dotato di azionamento elettrico PSM 40-250/110 15HP, azionamento diesel PSD 40-250/110 12HP e pompa jockey PVT(S) 4-10 3HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 150/7-15-12-3 - Option 2. يحتوي على مضخة كهربائية PSM 40-250/110 15HP، مضخة ديزل احتياطية PSD 40-250/110 12HP، ومضخة جوكي PVT(S) 4-10 3HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 150/7-15-12-3 - Option 2. Features high-performance PSM 40-250/110 15HP electric drive, PSD 40-250/110 12HP diesel engine backup, and PVT(S) 4-10 3HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 150/7-15-12-3 - Option 2. Dotato di azionamento elettrico PSM 40-250/110 15HP, azionamento diesel PSD 40-250/110 12HP e pompa jockey PVT(S) 4-10 3HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 150/7-15-12-3 - Option 2. يحتوي على مضخة كهربائية PSM 40-250/110 15HP، مضخة ديزل احتياطية PSD 40-250/110 12HP، ومضخة جوكي PVT(S) 4-10 3HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 150,
       hBar: "7",
@@ -455,7 +509,7 @@ const SEED_DATA = {
       jockeyPump: "PVT(S) 4-10 3HP",
       configuration: "Separate Coupled Electric + SS304 Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-200-6-20-27-3---option-1",
@@ -465,9 +519,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 200/6-20-27-3 - Option 1",
       nameIT: "Gruppo Pompe Antincendio PEDJ 200/6-20-27-3 - Option 1",
       nameAR: "مجموعة مضخات الحريق PEDJ 200/6-20-27-3 - Option 1",
-      descEN: "Industrial Fire Pump System configuration PEDJ 200/6-20-27-3 - Option 1. Features high-performance PST 50-250/150 20HP electric drive, PSD 50-250/150 27HP diesel engine backup, and PV 4x13/3HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 200/6-20-27-3 - Option 1. Dotato di azionamento elettrico PST 50-250/150 20HP, azionamento diesel PSD 50-250/150 27HP e pompa jockey PV 4x13/3HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 200/6-20-27-3 - Option 1. يحتوي على مضخة كهربائية PST 50-250/150 20HP، مضخة ديزل احتياطية PSD 50-250/150 27HP، ومضخة جوكي PV 4x13/3HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 200/6-20-27-3 - Option 1. Features high-performance PST 50-250/150 20HP electric drive, PSD 50-250/150 27HP diesel engine backup, and PV 4x13/3HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 200/6-20-27-3 - Option 1. Dotato di azionamento elettrico PST 50-250/150 20HP, azionamento diesel PSD 50-250/150 27HP e pompa jockey PV 4x13/3HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 200/6-20-27-3 - Option 1. يحتوي على مضخة كهربائية PST 50-250/150 20HP، مضخة ديزل احتياطية PSD 50-250/150 27HP، ومضخة جوكي PV 4x13/3HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 200,
       hBar: "6",
@@ -476,7 +533,7 @@ const SEED_DATA = {
       jockeyPump: "PV 4x13/3HP",
       configuration: "Close Coupled Electric + Plastic Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-200-6-20-27-3---option-2",
@@ -486,9 +543,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 200/6-20-27-3 - Option 2",
       nameIT: "Gruppo Pompe Antincendio PEDJ 200/6-20-27-3 - Option 2",
       nameAR: "مجموعة مضخات الحريق PEDJ 200/6-20-27-3 - Option 2",
-      descEN: "Industrial Fire Pump System configuration PEDJ 200/6-20-27-3 - Option 2. Features high-performance PSM 50-250/150 20HP electric drive, PSD 50-250/150 27HP diesel engine backup, and PVT(S) 4-10 3HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 200/6-20-27-3 - Option 2. Dotato di azionamento elettrico PSM 50-250/150 20HP, azionamento diesel PSD 50-250/150 27HP e pompa jockey PVT(S) 4-10 3HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 200/6-20-27-3 - Option 2. يحتوي على مضخة كهربائية PSM 50-250/150 20HP، مضخة ديزل احتياطية PSD 50-250/150 27HP، ومضخة جوكي PVT(S) 4-10 3HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 200/6-20-27-3 - Option 2. Features high-performance PSM 50-250/150 20HP electric drive, PSD 50-250/150 27HP diesel engine backup, and PVT(S) 4-10 3HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 200/6-20-27-3 - Option 2. Dotato di azionamento elettrico PSM 50-250/150 20HP, azionamento diesel PSD 50-250/150 27HP e pompa jockey PVT(S) 4-10 3HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 200/6-20-27-3 - Option 2. يحتوي على مضخة كهربائية PSM 50-250/150 20HP، مضخة ديزل احتياطية PSD 50-250/150 27HP، ومضخة جوكي PVT(S) 4-10 3HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 200,
       hBar: "6",
@@ -497,7 +557,7 @@ const SEED_DATA = {
       jockeyPump: "PVT(S) 4-10 3HP",
       configuration: "Separate Coupled Electric + SS304 Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-200-7-25-27-3---option-1",
@@ -507,9 +567,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 200/7-25-27-3 - Option 1",
       nameIT: "Gruppo Pompe Antincendio PEDJ 200/7-25-27-3 - Option 1",
       nameAR: "مجموعة مضخات الحريق PEDJ 200/7-25-27-3 - Option 1",
-      descEN: "Industrial Fire Pump System configuration PEDJ 200/7-25-27-3 - Option 1. Features high-performance PST 50-250/185 25HP electric drive, PSD 50-250/185 27HP diesel engine backup, and PV 4x13/3HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 200/7-25-27-3 - Option 1. Dotato di azionamento elettrico PST 50-250/185 25HP, azionamento diesel PSD 50-250/185 27HP e pompa jockey PV 4x13/3HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 200/7-25-27-3 - Option 1. يحتوي على مضخة كهربائية PST 50-250/185 25HP، مضخة ديزل احتياطية PSD 50-250/185 27HP، ومضخة جوكي PV 4x13/3HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 200/7-25-27-3 - Option 1. Features high-performance PST 50-250/185 25HP electric drive, PSD 50-250/185 27HP diesel engine backup, and PV 4x13/3HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 200/7-25-27-3 - Option 1. Dotato di azionamento elettrico PST 50-250/185 25HP, azionamento diesel PSD 50-250/185 27HP e pompa jockey PV 4x13/3HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 200/7-25-27-3 - Option 1. يحتوي على مضخة كهربائية PST 50-250/185 25HP، مضخة ديزل احتياطية PSD 50-250/185 27HP، ومضخة جوكي PV 4x13/3HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 200,
       hBar: "7",
@@ -518,7 +581,7 @@ const SEED_DATA = {
       jockeyPump: "PV 4x13/3HP",
       configuration: "Close Coupled Electric + Plastic Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-200-7-25-27-3---option-2",
@@ -528,9 +591,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 200/7-25-27-3 - Option 2",
       nameIT: "Gruppo Pompe Antincendio PEDJ 200/7-25-27-3 - Option 2",
       nameAR: "مجموعة مضخات الحريق PEDJ 200/7-25-27-3 - Option 2",
-      descEN: "Industrial Fire Pump System configuration PEDJ 200/7-25-27-3 - Option 2. Features high-performance PSM 50-250/185 25HP electric drive, PSD 50-250/185 27HP diesel engine backup, and PVT(S) 4-10 3HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 200/7-25-27-3 - Option 2. Dotato di azionamento elettrico PSM 50-250/185 25HP, azionamento diesel PSD 50-250/185 27HP e pompa jockey PVT(S) 4-10 3HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 200/7-25-27-3 - Option 2. يحتوي على مضخة كهربائية PSM 50-250/185 25HP، مضخة ديزل احتياطية PSD 50-250/185 27HP، ومضخة جوكي PVT(S) 4-10 3HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 200/7-25-27-3 - Option 2. Features high-performance PSM 50-250/185 25HP electric drive, PSD 50-250/185 27HP diesel engine backup, and PVT(S) 4-10 3HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 200/7-25-27-3 - Option 2. Dotato di azionamento elettrico PSM 50-250/185 25HP, azionamento diesel PSD 50-250/185 27HP e pompa jockey PVT(S) 4-10 3HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 200/7-25-27-3 - Option 2. يحتوي على مضخة كهربائية PSM 50-250/185 25HP، مضخة ديزل احتياطية PSD 50-250/185 27HP، ومضخة جوكي PVT(S) 4-10 3HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 200,
       hBar: "7",
@@ -539,7 +605,7 @@ const SEED_DATA = {
       jockeyPump: "PVT(S) 4-10 3HP",
       configuration: "Separate Coupled Electric + SS304 Jockey",
       active: true,
-      featured: true
+      featured: true,
     },
     {
       id: "pedj-pedj-200-8-30-32-3---option-1",
@@ -549,9 +615,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 200/8-30-32-3 - Option 1",
       nameIT: "Gruppo Pompe Antincendio PEDJ 200/8-30-32-3 - Option 1",
       nameAR: "مجموعة مضخات الحريق PEDJ 200/8-30-32-3 - Option 1",
-      descEN: "Industrial Fire Pump System configuration PEDJ 200/8-30-32-3 - Option 1. Features high-performance PST 50-250/220 30HP electric drive, PSD 50-250/220 32HP diesel engine backup, and PV 4x13/3HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 200/8-30-32-3 - Option 1. Dotato di azionamento elettrico PST 50-250/220 30HP, azionamento diesel PSD 50-250/220 32HP e pompa jockey PV 4x13/3HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 200/8-30-32-3 - Option 1. يحتوي على مضخة كهربائية PST 50-250/220 30HP، مضخة ديزل احتياطية PSD 50-250/220 32HP، ومضخة جوكي PV 4x13/3HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 200/8-30-32-3 - Option 1. Features high-performance PST 50-250/220 30HP electric drive, PSD 50-250/220 32HP diesel engine backup, and PV 4x13/3HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 200/8-30-32-3 - Option 1. Dotato di azionamento elettrico PST 50-250/220 30HP, azionamento diesel PSD 50-250/220 32HP e pompa jockey PV 4x13/3HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 200/8-30-32-3 - Option 1. يحتوي على مضخة كهربائية PST 50-250/220 30HP، مضخة ديزل احتياطية PSD 50-250/220 32HP، ومضخة جوكي PV 4x13/3HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 200,
       hBar: "8",
@@ -560,7 +629,7 @@ const SEED_DATA = {
       jockeyPump: "PV 4x13/3HP",
       configuration: "Close Coupled Electric + Plastic Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-200-8-30-32-3---option-2",
@@ -570,9 +639,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 200/8-30-32-3 - Option 2",
       nameIT: "Gruppo Pompe Antincendio PEDJ 200/8-30-32-3 - Option 2",
       nameAR: "مجموعة مضخات الحريق PEDJ 200/8-30-32-3 - Option 2",
-      descEN: "Industrial Fire Pump System configuration PEDJ 200/8-30-32-3 - Option 2. Features high-performance PSM 50-250/220 30HP electric drive, PSD 50-250/220 32HP diesel engine backup, and PVT(S) 4-12 3HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 200/8-30-32-3 - Option 2. Dotato di azionamento elettrico PSM 50-250/220 30HP, azionamento diesel PSD 50-250/220 32HP e pompa jockey PVT(S) 4-12 3HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 200/8-30-32-3 - Option 2. يحتوي على مضخة كهربائية PSM 50-250/220 30HP، مضخة ديزل احتياطية PSD 50-250/220 32HP، ومضخة جوكي PVT(S) 4-12 3HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 200/8-30-32-3 - Option 2. Features high-performance PSM 50-250/220 30HP electric drive, PSD 50-250/220 32HP diesel engine backup, and PVT(S) 4-12 3HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 200/8-30-32-3 - Option 2. Dotato di azionamento elettrico PSM 50-250/220 30HP, azionamento diesel PSD 50-250/220 32HP e pompa jockey PVT(S) 4-12 3HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 200/8-30-32-3 - Option 2. يحتوي على مضخة كهربائية PSM 50-250/220 30HP، مضخة ديزل احتياطية PSD 50-250/220 32HP، ومضخة جوكي PVT(S) 4-12 3HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 200,
       hBar: "8",
@@ -581,7 +653,7 @@ const SEED_DATA = {
       jockeyPump: "PVT(S) 4-12 3HP",
       configuration: "Separate Coupled Electric + SS304 Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-200-9-40-38-4---option-2",
@@ -591,9 +663,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 200/9-40-38-4 - Option 2",
       nameIT: "Gruppo Pompe Antincendio PEDJ 200/9-40-38-4 - Option 2",
       nameAR: "مجموعة مضخات الحريق PEDJ 200/9-40-38-4 - Option 2",
-      descEN: "Industrial Fire Pump System configuration PEDJ 200/9-40-38-4 - Option 2. Features high-performance PSM 50-250/300 40HP electric drive, PSD 50-250/300 38HP diesel engine backup, and PVT(S) 4-12 3HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 200/9-40-38-4 - Option 2. Dotato di azionamento elettrico PSM 50-250/300 40HP, azionamento diesel PSD 50-250/300 38HP e pompa jockey PVT(S) 4-12 3HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 200/9-40-38-4 - Option 2. يحتوي على مضخة كهربائية PSM 50-250/300 40HP، مضخة ديزل احتياطية PSD 50-250/300 38HP، ومضخة جوكي PVT(S) 4-12 3HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 200/9-40-38-4 - Option 2. Features high-performance PSM 50-250/300 40HP electric drive, PSD 50-250/300 38HP diesel engine backup, and PVT(S) 4-12 3HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 200/9-40-38-4 - Option 2. Dotato di azionamento elettrico PSM 50-250/300 40HP, azionamento diesel PSD 50-250/300 38HP e pompa jockey PVT(S) 4-12 3HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 200/9-40-38-4 - Option 2. يحتوي على مضخة كهربائية PSM 50-250/300 40HP، مضخة ديزل احتياطية PSD 50-250/300 38HP، ومضخة جوكي PVT(S) 4-12 3HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 200,
       hBar: "9",
@@ -602,7 +677,7 @@ const SEED_DATA = {
       jockeyPump: "PVT(S) 4-12 3HP",
       configuration: "Separate Coupled Electric + SS304 Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-200-10-50-58-4---option-2",
@@ -612,9 +687,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 200/10-50-58-4 - Option 2",
       nameIT: "Gruppo Pompe Antincendio PEDJ 200/10-50-58-4 - Option 2",
       nameAR: "مجموعة مضخات الحريق PEDJ 200/10-50-58-4 - Option 2",
-      descEN: "Industrial Fire Pump System configuration PEDJ 200/10-50-58-4 - Option 2. Features high-performance PSM 50-315/370 50HP electric drive, PSD 50-315/370 58HP diesel engine backup, and PVT(S) 4-14 4HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 200/10-50-58-4 - Option 2. Dotato di azionamento elettrico PSM 50-315/370 50HP, azionamento diesel PSD 50-315/370 58HP e pompa jockey PVT(S) 4-14 4HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 200/10-50-58-4 - Option 2. يحتوي على مضخة كهربائية PSM 50-315/370 50HP، مضخة ديزل احتياطية PSD 50-315/370 58HP، ومضخة جوكي PVT(S) 4-14 4HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 200/10-50-58-4 - Option 2. Features high-performance PSM 50-315/370 50HP electric drive, PSD 50-315/370 58HP diesel engine backup, and PVT(S) 4-14 4HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 200/10-50-58-4 - Option 2. Dotato di azionamento elettrico PSM 50-315/370 50HP, azionamento diesel PSD 50-315/370 58HP e pompa jockey PVT(S) 4-14 4HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 200/10-50-58-4 - Option 2. يحتوي على مضخة كهربائية PSM 50-315/370 50HP، مضخة ديزل احتياطية PSD 50-315/370 58HP، ومضخة جوكي PVT(S) 4-14 4HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 200,
       hBar: "10",
@@ -623,7 +701,7 @@ const SEED_DATA = {
       jockeyPump: "PVT(S) 4-14 4HP",
       configuration: "Separate Coupled Electric + SS304 Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-250-7-25-27-4---option-1",
@@ -633,9 +711,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 250/7-25-27-4 - Option 1",
       nameIT: "Gruppo Pompe Antincendio PEDJ 250/7-25-27-4 - Option 1",
       nameAR: "مجموعة مضخات الحريق PEDJ 250/7-25-27-4 - Option 1",
-      descEN: "Industrial Fire Pump System configuration PEDJ 250/7-25-27-4 - Option 1. Features high-performance PST 50-250/185 25HP electric drive, PSD 50-250/185 27HP diesel engine backup, and PV 6x15/4HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 250/7-25-27-4 - Option 1. Dotato di azionamento elettrico PST 50-250/185 25HP, azionamento diesel PSD 50-250/185 27HP e pompa jockey PV 6x15/4HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 250/7-25-27-4 - Option 1. يحتوي على مضخة كهربائية PST 50-250/185 25HP، مضخة ديزل احتياطية PSD 50-250/185 27HP، ومضخة جوكي PV 6x15/4HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 250/7-25-27-4 - Option 1. Features high-performance PST 50-250/185 25HP electric drive, PSD 50-250/185 27HP diesel engine backup, and PV 6x15/4HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 250/7-25-27-4 - Option 1. Dotato di azionamento elettrico PST 50-250/185 25HP, azionamento diesel PSD 50-250/185 27HP e pompa jockey PV 6x15/4HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 250/7-25-27-4 - Option 1. يحتوي على مضخة كهربائية PST 50-250/185 25HP، مضخة ديزل احتياطية PSD 50-250/185 27HP، ومضخة جوكي PV 6x15/4HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 250,
       hBar: "7",
@@ -644,7 +725,7 @@ const SEED_DATA = {
       jockeyPump: "PV 6x15/4HP",
       configuration: "Close Coupled Electric + Plastic Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-250-7-25-27-4---option-2",
@@ -654,9 +735,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 250/7-25-27-4 - Option 2",
       nameIT: "Gruppo Pompe Antincendio PEDJ 250/7-25-27-4 - Option 2",
       nameAR: "مجموعة مضخات الحريق PEDJ 250/7-25-27-4 - Option 2",
-      descEN: "Industrial Fire Pump System configuration PEDJ 250/7-25-27-4 - Option 2. Features high-performance PSM 50-250/185 25HP electric drive, PSD 50-250/185 27HP diesel engine backup, and PVT(S) 4-12 3HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 250/7-25-27-4 - Option 2. Dotato di azionamento elettrico PSM 50-250/185 25HP, azionamento diesel PSD 50-250/185 27HP e pompa jockey PVT(S) 4-12 3HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 250/7-25-27-4 - Option 2. يحتوي على مضخة كهربائية PSM 50-250/185 25HP، مضخة ديزل احتياطية PSD 50-250/185 27HP، ومضخة جوكي PVT(S) 4-12 3HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 250/7-25-27-4 - Option 2. Features high-performance PSM 50-250/185 25HP electric drive, PSD 50-250/185 27HP diesel engine backup, and PVT(S) 4-12 3HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 250/7-25-27-4 - Option 2. Dotato di azionamento elettrico PSM 50-250/185 25HP, azionamento diesel PSD 50-250/185 27HP e pompa jockey PVT(S) 4-12 3HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 250/7-25-27-4 - Option 2. يحتوي على مضخة كهربائية PSM 50-250/185 25HP، مضخة ديزل احتياطية PSD 50-250/185 27HP، ومضخة جوكي PVT(S) 4-12 3HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 250,
       hBar: "7",
@@ -665,7 +749,7 @@ const SEED_DATA = {
       jockeyPump: "PVT(S) 4-12 3HP",
       configuration: "Separate Coupled Electric + SS304 Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-250-6-25-27-4---option-1",
@@ -675,9 +759,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 250/6-25-27-4 - Option 1",
       nameIT: "Gruppo Pompe Antincendio PEDJ 250/6-25-27-4 - Option 1",
       nameAR: "مجموعة مضخات الحريق PEDJ 250/6-25-27-4 - Option 1",
-      descEN: "Industrial Fire Pump System configuration PEDJ 250/6-25-27-4 - Option 1. Features high-performance PST 50-250/185 25HP electric drive, PSD 50-250/185 27HP diesel engine backup, and PV 6x15/4HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 250/6-25-27-4 - Option 1. Dotato di azionamento elettrico PST 50-250/185 25HP, azionamento diesel PSD 50-250/185 27HP e pompa jockey PV 6x15/4HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 250/6-25-27-4 - Option 1. يحتوي على مضخة كهربائية PST 50-250/185 25HP، مضخة ديزل احتياطية PSD 50-250/185 27HP، ومضخة جوكي PV 6x15/4HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 250/6-25-27-4 - Option 1. Features high-performance PST 50-250/185 25HP electric drive, PSD 50-250/185 27HP diesel engine backup, and PV 6x15/4HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 250/6-25-27-4 - Option 1. Dotato di azionamento elettrico PST 50-250/185 25HP, azionamento diesel PSD 50-250/185 27HP e pompa jockey PV 6x15/4HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 250/6-25-27-4 - Option 1. يحتوي على مضخة كهربائية PST 50-250/185 25HP، مضخة ديزل احتياطية PSD 50-250/185 27HP، ومضخة جوكي PV 6x15/4HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 250,
       hBar: "6",
@@ -686,7 +773,7 @@ const SEED_DATA = {
       jockeyPump: "PV 6x15/4HP",
       configuration: "Close Coupled Electric + Plastic Jockey",
       active: true,
-      featured: true
+      featured: true,
     },
     {
       id: "pedj-pedj-250-6-25-27-4---option-2",
@@ -696,9 +783,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 250/6-25-27-4 - Option 2",
       nameIT: "Gruppo Pompe Antincendio PEDJ 250/6-25-27-4 - Option 2",
       nameAR: "مجموعة مضخات الحريق PEDJ 250/6-25-27-4 - Option 2",
-      descEN: "Industrial Fire Pump System configuration PEDJ 250/6-25-27-4 - Option 2. Features high-performance PSM 50-250/185 25HP electric drive, PSD 50-250/185 27HP diesel engine backup, and PVT(S) 8-6 3HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 250/6-25-27-4 - Option 2. Dotato di azionamento elettrico PSM 50-250/185 25HP, azionamento diesel PSD 50-250/185 27HP e pompa jockey PVT(S) 8-6 3HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 250/6-25-27-4 - Option 2. يحتوي على مضخة كهربائية PSM 50-250/185 25HP، مضخة ديزل احتياطية PSD 50-250/185 27HP، ومضخة جوكي PVT(S) 8-6 3HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 250/6-25-27-4 - Option 2. Features high-performance PSM 50-250/185 25HP electric drive, PSD 50-250/185 27HP diesel engine backup, and PVT(S) 8-6 3HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 250/6-25-27-4 - Option 2. Dotato di azionamento elettrico PSM 50-250/185 25HP, azionamento diesel PSD 50-250/185 27HP e pompa jockey PVT(S) 8-6 3HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 250/6-25-27-4 - Option 2. يحتوي على مضخة كهربائية PSM 50-250/185 25HP، مضخة ديزل احتياطية PSD 50-250/185 27HP، ومضخة جوكي PVT(S) 8-6 3HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 250,
       hBar: "6",
@@ -707,7 +797,7 @@ const SEED_DATA = {
       jockeyPump: "PVT(S) 8-6 3HP",
       configuration: "Separate Coupled Electric + SS304 Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-250-7-30-32-4---option-1",
@@ -717,9 +807,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 250/7-30-32-4 - Option 1",
       nameIT: "Gruppo Pompe Antincendio PEDJ 250/7-30-32-4 - Option 1",
       nameAR: "مجموعة مضخات الحريق PEDJ 250/7-30-32-4 - Option 1",
-      descEN: "Industrial Fire Pump System configuration PEDJ 250/7-30-32-4 - Option 1. Features high-performance PST 50-250/220 30HP electric drive, PSD 50-250/220 32HP diesel engine backup, and PV 6x15/4HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 250/7-30-32-4 - Option 1. Dotato di azionamento elettrico PST 50-250/220 30HP, azionamento diesel PSD 50-250/220 32HP e pompa jockey PV 6x15/4HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 250/7-30-32-4 - Option 1. يحتوي على مضخة كهربائية PST 50-250/220 30HP، مضخة ديزل احتياطية PSD 50-250/220 32HP، ومضخة جوكي PV 6x15/4HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 250/7-30-32-4 - Option 1. Features high-performance PST 50-250/220 30HP electric drive, PSD 50-250/220 32HP diesel engine backup, and PV 6x15/4HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 250/7-30-32-4 - Option 1. Dotato di azionamento elettrico PST 50-250/220 30HP, azionamento diesel PSD 50-250/220 32HP e pompa jockey PV 6x15/4HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 250/7-30-32-4 - Option 1. يحتوي على مضخة كهربائية PST 50-250/220 30HP، مضخة ديزل احتياطية PSD 50-250/220 32HP، ومضخة جوكي PV 6x15/4HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 250,
       hBar: "7",
@@ -728,7 +821,7 @@ const SEED_DATA = {
       jockeyPump: "PV 6x15/4HP",
       configuration: "Close Coupled Electric + Plastic Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-250-7-30-32-4---option-2",
@@ -738,9 +831,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 250/7-30-32-4 - Option 2",
       nameIT: "Gruppo Pompe Antincendio PEDJ 250/7-30-32-4 - Option 2",
       nameAR: "مجموعة مضخات الحريق PEDJ 250/7-30-32-4 - Option 2",
-      descEN: "Industrial Fire Pump System configuration PEDJ 250/7-30-32-4 - Option 2. Features high-performance PSM 50-250/220 30HP electric drive, PSD 50-250/220 32HP diesel engine backup, and PVT(S) 8-8 4HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 250/7-30-32-4 - Option 2. Dotato di azionamento elettrico PSM 50-250/220 30HP, azionamento diesel PSD 50-250/220 32HP e pompa jockey PVT(S) 8-8 4HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 250/7-30-32-4 - Option 2. يحتوي على مضخة كهربائية PSM 50-250/220 30HP، مضخة ديزل احتياطية PSD 50-250/220 32HP، ومضخة جوكي PVT(S) 8-8 4HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 250/7-30-32-4 - Option 2. Features high-performance PSM 50-250/220 30HP electric drive, PSD 50-250/220 32HP diesel engine backup, and PVT(S) 8-8 4HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 250/7-30-32-4 - Option 2. Dotato di azionamento elettrico PSM 50-250/220 30HP, azionamento diesel PSD 50-250/220 32HP e pompa jockey PVT(S) 8-8 4HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 250/7-30-32-4 - Option 2. يحتوي على مضخة كهربائية PSM 50-250/220 30HP، مضخة ديزل احتياطية PSD 50-250/220 32HP، ومضخة جوكي PVT(S) 8-8 4HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 250,
       hBar: "7",
@@ -749,7 +845,7 @@ const SEED_DATA = {
       jockeyPump: "PVT(S) 8-8 4HP",
       configuration: "Separate Coupled Electric + SS304 Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-250-8-40-58-4---option-2",
@@ -759,9 +855,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 250/8-40-58-4 - Option 2",
       nameIT: "Gruppo Pompe Antincendio PEDJ 250/8-40-58-4 - Option 2",
       nameAR: "مجموعة مضخات الحريق PEDJ 250/8-40-58-4 - Option 2",
-      descEN: "Industrial Fire Pump System configuration PEDJ 250/8-40-58-4 - Option 2. Features high-performance PSM 50-250/250 40HP electric drive, PSD 50-250/250 58HP diesel engine backup, and PVT(S) 8-8 4HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 250/8-40-58-4 - Option 2. Dotato di azionamento elettrico PSM 50-250/250 40HP, azionamento diesel PSD 50-250/250 58HP e pompa jockey PVT(S) 8-8 4HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 250/8-40-58-4 - Option 2. يحتوي على مضخة كهربائية PSM 50-250/250 40HP، مضخة ديزل احتياطية PSD 50-250/250 58HP، ومضخة جوكي PVT(S) 8-8 4HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 250/8-40-58-4 - Option 2. Features high-performance PSM 50-250/250 40HP electric drive, PSD 50-250/250 58HP diesel engine backup, and PVT(S) 8-8 4HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 250/8-40-58-4 - Option 2. Dotato di azionamento elettrico PSM 50-250/250 40HP, azionamento diesel PSD 50-250/250 58HP e pompa jockey PVT(S) 8-8 4HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 250/8-40-58-4 - Option 2. يحتوي على مضخة كهربائية PSM 50-250/250 40HP، مضخة ديزل احتياطية PSD 50-250/250 58HP، ومضخة جوكي PVT(S) 8-8 4HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 250,
       hBar: "8",
@@ -770,7 +869,7 @@ const SEED_DATA = {
       jockeyPump: "PVT(S) 8-8 4HP",
       configuration: "Separate Coupled Electric + SS304 Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-300-10-50-58-5-5---option-2",
@@ -780,9 +879,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 300/10-50-58-5.5 - Option 2",
       nameIT: "Gruppo Pompe Antincendio PEDJ 300/10-50-58-5.5 - Option 2",
       nameAR: "مجموعة مضخات الحريق PEDJ 300/10-50-58-5.5 - Option 2",
-      descEN: "Industrial Fire Pump System configuration PEDJ 300/10-50-58-5.5 - Option 2. Features high-performance PSM 50-315/370 50HP electric drive, PSD 50-315/370 58HP diesel engine backup, and PVT(S) 8-12 5.5HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 300/10-50-58-5.5 - Option 2. Dotato di azionamento elettrico PSM 50-315/370 50HP, azionamento diesel PSD 50-315/370 58HP e pompa jockey PVT(S) 8-12 5.5HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 300/10-50-58-5.5 - Option 2. يحتوي على مضخة كهربائية PSM 50-315/370 50HP، مضخة ديزل احتياطية PSD 50-315/370 58HP، ومضخة جوكي PVT(S) 8-12 5.5HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 300/10-50-58-5.5 - Option 2. Features high-performance PSM 50-315/370 50HP electric drive, PSD 50-315/370 58HP diesel engine backup, and PVT(S) 8-12 5.5HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 300/10-50-58-5.5 - Option 2. Dotato di azionamento elettrico PSM 50-315/370 50HP, azionamento diesel PSD 50-315/370 58HP e pompa jockey PVT(S) 8-12 5.5HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 300/10-50-58-5.5 - Option 2. يحتوي على مضخة كهربائية PSM 50-315/370 50HP، مضخة ديزل احتياطية PSD 50-315/370 58HP، ومضخة جوكي PVT(S) 8-12 5.5HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 300,
       hBar: "9-10",
@@ -791,7 +893,7 @@ const SEED_DATA = {
       jockeyPump: "PVT(S) 8-12 5.5HP",
       configuration: "Separate Coupled Electric + SS304 Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-350-7-30-32-4---option-1",
@@ -801,9 +903,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 350/7-30-32-4 - Option 1",
       nameIT: "Gruppo Pompe Antincendio PEDJ 350/7-30-32-4 - Option 1",
       nameAR: "مجموعة مضخات الحريق PEDJ 350/7-30-32-4 - Option 1",
-      descEN: "Industrial Fire Pump System configuration PEDJ 350/7-30-32-4 - Option 1. Features high-performance PST 50-250/220 30HP electric drive, PSD 50-250/220 32HP diesel engine backup, and PV 8x12/4HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 350/7-30-32-4 - Option 1. Dotato di azionamento elettrico PST 50-250/220 30HP, azionamento diesel PSD 50-250/220 32HP e pompa jockey PV 8x12/4HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 350/7-30-32-4 - Option 1. يحتوي على مضخة كهربائية PST 50-250/220 30HP، مضخة ديزل احتياطية PSD 50-250/220 32HP، ومضخة جوكي PV 8x12/4HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 350/7-30-32-4 - Option 1. Features high-performance PST 50-250/220 30HP electric drive, PSD 50-250/220 32HP diesel engine backup, and PV 8x12/4HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 350/7-30-32-4 - Option 1. Dotato di azionamento elettrico PST 50-250/220 30HP, azionamento diesel PSD 50-250/220 32HP e pompa jockey PV 8x12/4HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 350/7-30-32-4 - Option 1. يحتوي على مضخة كهربائية PST 50-250/220 30HP، مضخة ديزل احتياطية PSD 50-250/220 32HP، ومضخة جوكي PV 8x12/4HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 350,
       hBar: "7",
@@ -812,7 +917,7 @@ const SEED_DATA = {
       jockeyPump: "PV 8x12/4HP",
       configuration: "Close Coupled Electric + Plastic Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-350-7-30-32-4---option-2",
@@ -822,9 +927,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 350/7-30-32-4 - Option 2",
       nameIT: "Gruppo Pompe Antincendio PEDJ 350/7-30-32-4 - Option 2",
       nameAR: "مجموعة مضخات الحريق PEDJ 350/7-30-32-4 - Option 2",
-      descEN: "Industrial Fire Pump System configuration PEDJ 350/7-30-32-4 - Option 2. Features high-performance PSM 50-250/220 30HP electric drive, PSD 50-250/220 32HP diesel engine backup, and PVT(S) 8-8 4HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 350/7-30-32-4 - Option 2. Dotato di azionamento elettrico PSM 50-250/220 30HP, azionamento diesel PSD 50-250/220 32HP e pompa jockey PVT(S) 8-8 4HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 350/7-30-32-4 - Option 2. يحتوي على مضخة كهربائية PSM 50-250/220 30HP، مضخة ديزل احتياطية PSD 50-250/220 32HP، ومضخة جوكي PVT(S) 8-8 4HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 350/7-30-32-4 - Option 2. Features high-performance PSM 50-250/220 30HP electric drive, PSD 50-250/220 32HP diesel engine backup, and PVT(S) 8-8 4HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 350/7-30-32-4 - Option 2. Dotato di azionamento elettrico PSM 50-250/220 30HP, azionamento diesel PSD 50-250/220 32HP e pompa jockey PVT(S) 8-8 4HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 350/7-30-32-4 - Option 2. يحتوي على مضخة كهربائية PSM 50-250/220 30HP، مضخة ديزل احتياطية PSD 50-250/220 32HP، ومضخة جوكي PVT(S) 8-8 4HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 350,
       hBar: "7",
@@ -833,7 +941,7 @@ const SEED_DATA = {
       jockeyPump: "PVT(S) 8-8 4HP",
       configuration: "Separate Coupled Electric + SS304 Jockey",
       active: true,
-      featured: true
+      featured: true,
     },
     {
       id: "pedj-pedj-400-6-30-32-4---option-1",
@@ -843,9 +951,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 400/6-30-32-4 - Option 1",
       nameIT: "Gruppo Pompe Antincendio PEDJ 400/6-30-32-4 - Option 1",
       nameAR: "مجموعة مضخات الحريق PEDJ 400/6-30-32-4 - Option 1",
-      descEN: "Industrial Fire Pump System configuration PEDJ 400/6-30-32-4 - Option 1. Features high-performance PST 65-250/220 30HP electric drive, PSD 65-250/220 32HP diesel engine backup, and PV 8x12/4HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 400/6-30-32-4 - Option 1. Dotato di azionamento elettrico PST 65-250/220 30HP, azionamento diesel PSD 65-250/220 32HP e pompa jockey PV 8x12/4HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 400/6-30-32-4 - Option 1. يحتوي على مضخة كهربائية PST 65-250/220 30HP، مضخة ديزل احتياطية PSD 65-250/220 32HP، ومضخة جوكي PV 8x12/4HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 400/6-30-32-4 - Option 1. Features high-performance PST 65-250/220 30HP electric drive, PSD 65-250/220 32HP diesel engine backup, and PV 8x12/4HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 400/6-30-32-4 - Option 1. Dotato di azionamento elettrico PST 65-250/220 30HP, azionamento diesel PSD 65-250/220 32HP e pompa jockey PV 8x12/4HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 400/6-30-32-4 - Option 1. يحتوي على مضخة كهربائية PST 65-250/220 30HP، مضخة ديزل احتياطية PSD 65-250/220 32HP، ومضخة جوكي PV 8x12/4HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 400,
       hBar: "6",
@@ -854,7 +965,7 @@ const SEED_DATA = {
       jockeyPump: "PV 8x12/4HP",
       configuration: "Close Coupled Electric + Plastic Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-400-6-30-32-4---option-2",
@@ -864,9 +975,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 400/6-30-32-4 - Option 2",
       nameIT: "Gruppo Pompe Antincendio PEDJ 400/6-30-32-4 - Option 2",
       nameAR: "مجموعة مضخات الحريق PEDJ 400/6-30-32-4 - Option 2",
-      descEN: "Industrial Fire Pump System configuration PEDJ 400/6-30-32-4 - Option 2. Features high-performance PSM 65-250/220 30HP electric drive, PSD 65-250/220 32HP diesel engine backup, and PVT(S) 8-8 4HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 400/6-30-32-4 - Option 2. Dotato di azionamento elettrico PSM 65-250/220 30HP, azionamento diesel PSD 65-250/220 32HP e pompa jockey PVT(S) 8-8 4HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 400/6-30-32-4 - Option 2. يحتوي على مضخة كهربائية PSM 65-250/220 30HP، مضخة ديزل احتياطية PSD 65-250/220 32HP، ومضخة جوكي PVT(S) 8-8 4HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 400/6-30-32-4 - Option 2. Features high-performance PSM 65-250/220 30HP electric drive, PSD 65-250/220 32HP diesel engine backup, and PVT(S) 8-8 4HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 400/6-30-32-4 - Option 2. Dotato di azionamento elettrico PSM 65-250/220 30HP, azionamento diesel PSD 65-250/220 32HP e pompa jockey PVT(S) 8-8 4HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 400/6-30-32-4 - Option 2. يحتوي على مضخة كهربائية PSM 65-250/220 30HP، مضخة ديزل احتياطية PSD 65-250/220 32HP، ومضخة جوكي PVT(S) 8-8 4HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 400,
       hBar: "6",
@@ -875,7 +989,7 @@ const SEED_DATA = {
       jockeyPump: "PVT(S) 8-8 4HP",
       configuration: "Separate Coupled Electric + SS304 Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-400-7-40-38-5-5---option-1",
@@ -885,9 +999,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 400/7-40-38-5.5 - Option 1",
       nameIT: "Gruppo Pompe Antincendio PEDJ 400/7-40-38-5.5 - Option 1",
       nameAR: "مجموعة مضخات الحريق PEDJ 400/7-40-38-5.5 - Option 1",
-      descEN: "Industrial Fire Pump System configuration PEDJ 400/7-40-38-5.5 - Option 1. Features high-performance PST 65-250/300 40HP electric drive, PSD 65-250/300 38HP diesel engine backup, and PV 8x16/5.5HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 400/7-40-38-5.5 - Option 1. Dotato di azionamento elettrico PST 65-250/300 40HP, azionamento diesel PSD 65-250/300 38HP e pompa jockey PV 8x16/5.5HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 400/7-40-38-5.5 - Option 1. يحتوي على مضخة كهربائية PST 65-250/300 40HP، مضخة ديزل احتياطية PSD 65-250/300 38HP، ومضخة جوكي PV 8x16/5.5HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 400/7-40-38-5.5 - Option 1. Features high-performance PST 65-250/300 40HP electric drive, PSD 65-250/300 38HP diesel engine backup, and PV 8x16/5.5HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 400/7-40-38-5.5 - Option 1. Dotato di azionamento elettrico PST 65-250/300 40HP, azionamento diesel PSD 65-250/300 38HP e pompa jockey PV 8x16/5.5HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 400/7-40-38-5.5 - Option 1. يحتوي على مضخة كهربائية PST 65-250/300 40HP، مضخة ديزل احتياطية PSD 65-250/300 38HP، ومضخة جوكي PV 8x16/5.5HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 400,
       hBar: "7",
@@ -896,7 +1013,7 @@ const SEED_DATA = {
       jockeyPump: "PV 8x16/5.5HP",
       configuration: "Close Coupled Electric + Plastic Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-400-7-40-38-5-5---option-2",
@@ -906,9 +1023,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 400/7-40-38-5.5 - Option 2",
       nameIT: "Gruppo Pompe Antincendio PEDJ 400/7-40-38-5.5 - Option 2",
       nameAR: "مجموعة مضخات الحريق PEDJ 400/7-40-38-5.5 - Option 2",
-      descEN: "Industrial Fire Pump System configuration PEDJ 400/7-40-38-5.5 - Option 2. Features high-performance PSM 65-250/300 40HP electric drive, PSD 65-250/300 38HP diesel engine backup, and PVT(S) 8-8 4HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 400/7-40-38-5.5 - Option 2. Dotato di azionamento elettrico PSM 65-250/300 40HP, azionamento diesel PSD 65-250/300 38HP e pompa jockey PVT(S) 8-8 4HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 400/7-40-38-5.5 - Option 2. يحتوي على مضخة كهربائية PSM 65-250/300 40HP، مضخة ديزل احتياطية PSD 65-250/300 38HP، ومضخة جوكي PVT(S) 8-8 4HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 400/7-40-38-5.5 - Option 2. Features high-performance PSM 65-250/300 40HP electric drive, PSD 65-250/300 38HP diesel engine backup, and PVT(S) 8-8 4HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 400/7-40-38-5.5 - Option 2. Dotato di azionamento elettrico PSM 65-250/300 40HP, azionamento diesel PSD 65-250/300 38HP e pompa jockey PVT(S) 8-8 4HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 400/7-40-38-5.5 - Option 2. يحتوي على مضخة كهربائية PSM 65-250/300 40HP، مضخة ديزل احتياطية PSD 65-250/300 38HP، ومضخة جوكي PVT(S) 8-8 4HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 400,
       hBar: "7",
@@ -917,7 +1037,7 @@ const SEED_DATA = {
       jockeyPump: "PVT(S) 8-8 4HP",
       configuration: "Separate Coupled Electric + SS304 Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-400-8-50-58-5-5---option-1",
@@ -927,9 +1047,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 400/8-50-58-5.5 - Option 1",
       nameIT: "Gruppo Pompe Antincendio PEDJ 400/8-50-58-5.5 - Option 1",
       nameAR: "مجموعة مضخات الحريق PEDJ 400/8-50-58-5.5 - Option 1",
-      descEN: "Industrial Fire Pump System configuration PEDJ 400/8-50-58-5.5 - Option 1. Features high-performance PST 65-250/370 50HP electric drive, PSD 65-250/370 58HP diesel engine backup, and PV 8x16/5.5HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 400/8-50-58-5.5 - Option 1. Dotato di azionamento elettrico PST 65-250/370 50HP, azionamento diesel PSD 65-250/370 58HP e pompa jockey PV 8x16/5.5HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 400/8-50-58-5.5 - Option 1. يحتوي على مضخة كهربائية PST 65-250/370 50HP، مضخة ديزل احتياطية PSD 65-250/370 58HP، ومضخة جوكي PV 8x16/5.5HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 400/8-50-58-5.5 - Option 1. Features high-performance PST 65-250/370 50HP electric drive, PSD 65-250/370 58HP diesel engine backup, and PV 8x16/5.5HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 400/8-50-58-5.5 - Option 1. Dotato di azionamento elettrico PST 65-250/370 50HP, azionamento diesel PSD 65-250/370 58HP e pompa jockey PV 8x16/5.5HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 400/8-50-58-5.5 - Option 1. يحتوي على مضخة كهربائية PST 65-250/370 50HP، مضخة ديزل احتياطية PSD 65-250/370 58HP، ومضخة جوكي PV 8x16/5.5HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 400,
       hBar: "8",
@@ -938,7 +1061,7 @@ const SEED_DATA = {
       jockeyPump: "PV 8x16/5.5HP",
       configuration: "Close Coupled Electric + Plastic Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-400-8-50-58-5-5---option-2",
@@ -948,9 +1071,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 400/8-50-58-5.5 - Option 2",
       nameIT: "Gruppo Pompe Antincendio PEDJ 400/8-50-58-5.5 - Option 2",
       nameAR: "مجموعة مضخات الحريق PEDJ 400/8-50-58-5.5 - Option 2",
-      descEN: "Industrial Fire Pump System configuration PEDJ 400/8-50-58-5.5 - Option 2. Features high-performance PSM 65-250/370 50HP electric drive, PSD 65-250/370 58HP diesel engine backup, and PVT(S) 8-10 5.5HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 400/8-50-58-5.5 - Option 2. Dotato di azionamento elettrico PSM 65-250/370 50HP, azionamento diesel PSD 65-250/370 58HP e pompa jockey PVT(S) 8-10 5.5HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 400/8-50-58-5.5 - Option 2. يحتوي على مضخة كهربائية PSM 65-250/370 50HP، مضخة ديزل احتياطية PSD 65-250/370 58HP، ومضخة جوكي PVT(S) 8-10 5.5HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 400/8-50-58-5.5 - Option 2. Features high-performance PSM 65-250/370 50HP electric drive, PSD 65-250/370 58HP diesel engine backup, and PVT(S) 8-10 5.5HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 400/8-50-58-5.5 - Option 2. Dotato di azionamento elettrico PSM 65-250/370 50HP, azionamento diesel PSD 65-250/370 58HP e pompa jockey PVT(S) 8-10 5.5HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 400/8-50-58-5.5 - Option 2. يحتوي على مضخة كهربائية PSM 65-250/370 50HP، مضخة ديزل احتياطية PSD 65-250/370 58HP، ومضخة جوكي PVT(S) 8-10 5.5HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 400,
       hBar: "8",
@@ -959,7 +1085,7 @@ const SEED_DATA = {
       jockeyPump: "PVT(S) 8-10 5.5HP",
       configuration: "Separate Coupled Electric + SS304 Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-400-9-60-61-7-5---option-1",
@@ -969,9 +1095,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 400/9-60-61-7.5 - Option 1",
       nameIT: "Gruppo Pompe Antincendio PEDJ 400/9-60-61-7.5 - Option 1",
       nameAR: "مجموعة مضخات الحريق PEDJ 400/9-60-61-7.5 - Option 1",
-      descEN: "Industrial Fire Pump System configuration PEDJ 400/9-60-61-7.5 - Option 1. Features high-performance PST 65-315/450 60HP electric drive, PSD 65-315/450 61HP diesel engine backup, and PV 12x17/7.5HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 400/9-60-61-7.5 - Option 1. Dotato di azionamento elettrico PST 65-315/450 60HP, azionamento diesel PSD 65-315/450 61HP e pompa jockey PV 12x17/7.5HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 400/9-60-61-7.5 - Option 1. يحتوي على مضخة كهربائية PST 65-315/450 60HP، مضخة ديزل احتياطية PSD 65-315/450 61HP، ومضخة جوكي PV 12x17/7.5HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 400/9-60-61-7.5 - Option 1. Features high-performance PST 65-315/450 60HP electric drive, PSD 65-315/450 61HP diesel engine backup, and PV 12x17/7.5HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 400/9-60-61-7.5 - Option 1. Dotato di azionamento elettrico PST 65-315/450 60HP, azionamento diesel PSD 65-315/450 61HP e pompa jockey PV 12x17/7.5HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 400/9-60-61-7.5 - Option 1. يحتوي على مضخة كهربائية PST 65-315/450 60HP، مضخة ديزل احتياطية PSD 65-315/450 61HP، ومضخة جوكي PV 12x17/7.5HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 400,
       hBar: "9",
@@ -980,7 +1109,7 @@ const SEED_DATA = {
       jockeyPump: "PV 12x17/7.5HP",
       configuration: "Close Coupled Electric + Plastic Jockey",
       active: true,
-      featured: true
+      featured: true,
     },
     {
       id: "pedj-pedj-400-9-60-61-7-5---option-2",
@@ -990,9 +1119,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 400/9-60-61-7.5 - Option 2",
       nameIT: "Gruppo Pompe Antincendio PEDJ 400/9-60-61-7.5 - Option 2",
       nameAR: "مجموعة مضخات الحريق PEDJ 400/9-60-61-7.5 - Option 2",
-      descEN: "Industrial Fire Pump System configuration PEDJ 400/9-60-61-7.5 - Option 2. Features high-performance PSM 65-315/450 60HP electric drive, PSD 65-315/450 61HP diesel engine backup, and PVT(S) 8-12 5.5HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 400/9-60-61-7.5 - Option 2. Dotato di azionamento elettrico PSM 65-315/450 60HP, azionamento diesel PSD 65-315/450 61HP e pompa jockey PVT(S) 8-12 5.5HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 400/9-60-61-7.5 - Option 2. يحتوي على مضخة كهربائية PSM 65-315/450 60HP، مضخة ديزل احتياطية PSD 65-315/450 61HP، ومضخة جوكي PVT(S) 8-12 5.5HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 400/9-60-61-7.5 - Option 2. Features high-performance PSM 65-315/450 60HP electric drive, PSD 65-315/450 61HP diesel engine backup, and PVT(S) 8-12 5.5HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 400/9-60-61-7.5 - Option 2. Dotato di azionamento elettrico PSM 65-315/450 60HP, azionamento diesel PSD 65-315/450 61HP e pompa jockey PVT(S) 8-12 5.5HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 400/9-60-61-7.5 - Option 2. يحتوي على مضخة كهربائية PSM 65-315/450 60HP، مضخة ديزل احتياطية PSD 65-315/450 61HP، ومضخة جوكي PVT(S) 8-12 5.5HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 400,
       hBar: "9",
@@ -1001,7 +1133,7 @@ const SEED_DATA = {
       jockeyPump: "PVT(S) 8-12 5.5HP",
       configuration: "Separate Coupled Electric + SS304 Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-500-8-75-75-5-5---option-2",
@@ -1011,9 +1143,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 500/8-75-75-5.5 - Option 2",
       nameIT: "Gruppo Pompe Antincendio PEDJ 500/8-75-75-5.5 - Option 2",
       nameAR: "مجموعة مضخات الحريق PEDJ 500/8-75-75-5.5 - Option 2",
-      descEN: "Industrial Fire Pump System configuration PEDJ 500/8-75-75-5.5 - Option 2. Features high-performance PSM 80-250/450 75HP electric drive, PSD 80-250/450 75HP diesel engine backup, and PVT(S) 8-10 5.5HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 500/8-75-75-5.5 - Option 2. Dotato di azionamento elettrico PSM 80-250/450 75HP, azionamento diesel PSD 80-250/450 75HP e pompa jockey PVT(S) 8-10 5.5HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 500/8-75-75-5.5 - Option 2. يحتوي على مضخة كهربائية PSM 80-250/450 75HP، مضخة ديزل احتياطية PSD 80-250/450 75HP، ومضخة جوكي PVT(S) 8-10 5.5HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 500/8-75-75-5.5 - Option 2. Features high-performance PSM 80-250/450 75HP electric drive, PSD 80-250/450 75HP diesel engine backup, and PVT(S) 8-10 5.5HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 500/8-75-75-5.5 - Option 2. Dotato di azionamento elettrico PSM 80-250/450 75HP, azionamento diesel PSD 80-250/450 75HP e pompa jockey PVT(S) 8-10 5.5HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 500/8-75-75-5.5 - Option 2. يحتوي على مضخة كهربائية PSM 80-250/450 75HP، مضخة ديزل احتياطية PSD 80-250/450 75HP، ومضخة جوكي PVT(S) 8-10 5.5HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 500,
       hBar: "8",
@@ -1022,7 +1157,7 @@ const SEED_DATA = {
       jockeyPump: "PVT(S) 8-10 5.5HP",
       configuration: "Separate Coupled Electric + SS304 Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-500-10-100-100-5-5---option-2",
@@ -1032,9 +1167,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 500/10-100-100-5.5 - Option 2",
       nameIT: "Gruppo Pompe Antincendio PEDJ 500/10-100-100-5.5 - Option 2",
       nameAR: "مجموعة مضخات الحريق PEDJ 500/10-100-100-5.5 - Option 2",
-      descEN: "Industrial Fire Pump System configuration PEDJ 500/10-100-100-5.5 - Option 2. Features high-performance PSM 80-315/750 100HP electric drive, PSD 80-315/750 100HP diesel engine backup, and PVT(S) 8-10 5.5HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 500/10-100-100-5.5 - Option 2. Dotato di azionamento elettrico PSM 80-315/750 100HP, azionamento diesel PSD 80-315/750 100HP e pompa jockey PVT(S) 8-10 5.5HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 500/10-100-100-5.5 - Option 2. يحتوي على مضخة كهربائية PSM 80-315/750 100HP، مضخة ديزل احتياطية PSD 80-315/750 100HP، ومضخة جوكي PVT(S) 8-10 5.5HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 500/10-100-100-5.5 - Option 2. Features high-performance PSM 80-315/750 100HP electric drive, PSD 80-315/750 100HP diesel engine backup, and PVT(S) 8-10 5.5HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 500/10-100-100-5.5 - Option 2. Dotato di azionamento elettrico PSM 80-315/750 100HP, azionamento diesel PSD 80-315/750 100HP e pompa jockey PVT(S) 8-10 5.5HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 500/10-100-100-5.5 - Option 2. يحتوي على مضخة كهربائية PSM 80-315/750 100HP، مضخة ديزل احتياطية PSD 80-315/750 100HP، ومضخة جوكي PVT(S) 8-10 5.5HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 500,
       hBar: "10",
@@ -1043,7 +1181,7 @@ const SEED_DATA = {
       jockeyPump: "PVT(S) 8-10 5.5HP",
       configuration: "Separate Coupled Electric + SS304 Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-750-8-100-99-10---option-2",
@@ -1053,9 +1191,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 750/8-100-99-10 - Option 2",
       nameIT: "Gruppo Pompe Antincendio PEDJ 750/8-100-99-10 - Option 2",
       nameAR: "مجموعة مضخات الحريق PEDJ 750/8-100-99-10 - Option 2",
-      descEN: "Industrial Fire Pump System configuration PEDJ 750/8-100-99-10 - Option 2. Features high-performance PSM 100-250/750 100HP electric drive, PSD 100-250/750 99HP diesel engine backup, and PVT(S) 20-8 15HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 750/8-100-99-10 - Option 2. Dotato di azionamento elettrico PSM 100-250/750 100HP, azionamento diesel PSD 100-250/750 99HP e pompa jockey PVT(S) 20-8 15HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 750/8-100-99-10 - Option 2. يحتوي على مضخة كهربائية PSM 100-250/750 100HP، مضخة ديزل احتياطية PSD 100-250/750 99HP، ومضخة جوكي PVT(S) 20-8 15HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 750/8-100-99-10 - Option 2. Features high-performance PSM 100-250/750 100HP electric drive, PSD 100-250/750 99HP diesel engine backup, and PVT(S) 20-8 15HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 750/8-100-99-10 - Option 2. Dotato di azionamento elettrico PSM 100-250/750 100HP, azionamento diesel PSD 100-250/750 99HP e pompa jockey PVT(S) 20-8 15HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 750/8-100-99-10 - Option 2. يحتوي على مضخة كهربائية PSM 100-250/750 100HP، مضخة ديزل احتياطية PSD 100-250/750 99HP، ومضخة جوكي PVT(S) 20-8 15HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 750,
       hBar: "8",
@@ -1064,7 +1205,7 @@ const SEED_DATA = {
       jockeyPump: "PVT(S) 20-8 15HP",
       configuration: "Separate Coupled Electric + SS304 Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-750-10-150-150-12---option-2",
@@ -1074,9 +1215,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 750/10-150-150-12 - Option 2",
       nameIT: "Gruppo Pompe Antincendio PEDJ 750/10-150-150-12 - Option 2",
       nameAR: "مجموعة مضخات الحريق PEDJ 750/10-150-150-12 - Option 2",
-      descEN: "Industrial Fire Pump System configuration PEDJ 750/10-150-150-12 - Option 2. Features high-performance PSM 100-315/750 150HP electric drive, PSD 100-315/750 150HP diesel engine backup, and PVT(S) 20-10 15HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 750/10-150-150-12 - Option 2. Dotato di azionamento elettrico PSM 100-315/750 150HP, azionamento diesel PSD 100-315/750 150HP e pompa jockey PVT(S) 20-10 15HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 750/10-150-150-12 - Option 2. يحتوي على مضخة كهربائية PSM 100-315/750 150HP، مضخة ديزل احتياطية PSD 100-315/750 150HP، ومضخة جوكي PVT(S) 20-10 15HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 750/10-150-150-12 - Option 2. Features high-performance PSM 100-315/750 150HP electric drive, PSD 100-315/750 150HP diesel engine backup, and PVT(S) 20-10 15HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 750/10-150-150-12 - Option 2. Dotato di azionamento elettrico PSM 100-315/750 150HP, azionamento diesel PSD 100-315/750 150HP e pompa jockey PVT(S) 20-10 15HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 750/10-150-150-12 - Option 2. يحتوي على مضخة كهربائية PSM 100-315/750 150HP، مضخة ديزل احتياطية PSD 100-315/750 150HP، ومضخة جوكي PVT(S) 20-10 15HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 750,
       hBar: "10",
@@ -1085,7 +1229,7 @@ const SEED_DATA = {
       jockeyPump: "PVT(S) 20-10 15HP",
       configuration: "Separate Coupled Electric + SS304 Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-1000-8-150-150-12---option-2",
@@ -1095,9 +1239,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 1000/8-150-150-12 - Option 2",
       nameIT: "Gruppo Pompe Antincendio PEDJ 1000/8-150-150-12 - Option 2",
       nameAR: "مجموعة مضخات الحريق PEDJ 1000/8-150-150-12 - Option 2",
-      descEN: "Industrial Fire Pump System configuration PEDJ 1000/8-150-150-12 - Option 2. Features high-performance PSM 125-250/1100 150HP electric drive, PSD 125-250/1100 150HP diesel engine backup, and PVT(S) 32-60 15HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 1000/8-150-150-12 - Option 2. Dotato di azionamento elettrico PSM 125-250/1100 150HP, azionamento diesel PSD 125-250/1100 150HP e pompa jockey PVT(S) 32-60 15HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 1000/8-150-150-12 - Option 2. يحتوي على مضخة كهربائية PSM 125-250/1100 150HP، مضخة ديزل احتياطية PSD 125-250/1100 150HP، ومضخة جوكي PVT(S) 32-60 15HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 1000/8-150-150-12 - Option 2. Features high-performance PSM 125-250/1100 150HP electric drive, PSD 125-250/1100 150HP diesel engine backup, and PVT(S) 32-60 15HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 1000/8-150-150-12 - Option 2. Dotato di azionamento elettrico PSM 125-250/1100 150HP, azionamento diesel PSD 125-250/1100 150HP e pompa jockey PVT(S) 32-60 15HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 1000/8-150-150-12 - Option 2. يحتوي على مضخة كهربائية PSM 125-250/1100 150HP، مضخة ديزل احتياطية PSD 125-250/1100 150HP، ومضخة جوكي PVT(S) 32-60 15HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 1000,
       hBar: "8",
@@ -1106,7 +1253,7 @@ const SEED_DATA = {
       jockeyPump: "PVT(S) 32-60 15HP",
       configuration: "Separate Coupled Electric + SS304 Jockey",
       active: true,
-      featured: false
+      featured: false,
     },
     {
       id: "pedj-pedj-1000-10-220-225-15---option-2",
@@ -1116,9 +1263,12 @@ const SEED_DATA = {
       nameEN: "Fire Pump System PEDJ 1000/10-220-225-15 - Option 2",
       nameIT: "Gruppo Pompe Antincendio PEDJ 1000/10-220-225-15 - Option 2",
       nameAR: "مجموعة مضخات الحريق PEDJ 1000/10-220-225-15 - Option 2",
-      descEN: "Industrial Fire Pump System configuration PEDJ 1000/10-220-225-15 - Option 2. Features high-performance PSM 125-315/1600 220HP electric drive, PSD 125-315/1600 225HP diesel engine backup, and PVT(S) 32-80 20HP jockey pressure maintenance pump.",
-      descIT: "Gruppo Pompe Antincendio Industriale modello PEDJ 1000/10-220-225-15 - Option 2. Dotato di azionamento elettrico PSM 125-315/1600 220HP, azionamento diesel PSD 125-315/1600 225HP e pompa jockey PVT(S) 32-80 20HP.",
-      descAR: "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 1000/10-220-225-15 - Option 2. يحتوي على مضخة كهربائية PSM 125-315/1600 220HP، مضخة ديزل احتياطية PSD 125-315/1600 225HP، ومضخة جوكي PVT(S) 32-80 20HP للحفاظ على الضغط.",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 1000/10-220-225-15 - Option 2. Features high-performance PSM 125-315/1600 220HP electric drive, PSD 125-315/1600 225HP diesel engine backup, and PVT(S) 32-80 20HP jockey pressure maintenance pump.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 1000/10-220-225-15 - Option 2. Dotato di azionamento elettrico PSM 125-315/1600 220HP, azionamento diesel PSD 125-315/1600 225HP e pompa jockey PVT(S) 32-80 20HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 1000/10-220-225-15 - Option 2. يحتوي على مضخة كهربائية PSM 125-315/1600 220HP، مضخة ديزل احتياطية PSD 125-315/1600 225HP، ومضخة جوكي PVT(S) 32-80 20HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
       qGpm: 1000,
       hBar: "10",
@@ -1127,8 +1277,8 @@ const SEED_DATA = {
       jockeyPump: "PVT(S) 32-80 20HP",
       configuration: "Separate Coupled Electric + SS304 Jockey",
       active: true,
-      featured: true
-    }
+      featured: true,
+    },
   ],
   certificates: [
     {
@@ -1194,7 +1344,7 @@ const SEED_DATA = {
       companyName: "Metropolitan Water Authority",
       fullName: "Eng. David Sterling",
       email: "d.sterling@mwa-water.gov.uk",
-      phone: "+201226806622",
+      phone: "+201203666634",
       country: "United Kingdom",
       productName: "Heavy Duty End-Suction Centrifugal Water Pump TH-5000X",
       model: "TH-CENTRIFUGAL 5000-X",
@@ -1238,7 +1388,10 @@ class HammerStore {
     if (existingProducts) {
       try {
         const parsed = JSON.parse(existingProducts);
-        if (parsed.length !== 50 || parsed.some(p => !p.model || !p.model.startsWith("PEDJ"))) {
+        if (
+          parsed.length !== 50 ||
+          parsed.some((p) => !p.model || !p.model.startsWith("PEDJ"))
+        ) {
           needsReset = true;
         }
       } catch (e) {
@@ -1288,9 +1441,9 @@ class HammerStore {
       const settings = this.getSettings();
       let settingsChanged = false;
       if (settings) {
-        if (settings.whatsAppNumber !== "201226806622") {
-          settings.whatsAppNumber = "201226806622";
-          settings.phone = "+201226806622";
+        if (settings.whatsAppNumber !== "201203666634") {
+          settings.whatsAppNumber = "201203666634";
+          settings.phone = "+20 12 03666634";
           settingsChanged = true;
         }
         if (settings.email !== "johnadelm23@gmail.com") {
@@ -1298,7 +1451,8 @@ class HammerStore {
           settingsChanged = true;
         }
         if (!settings.addressAR) {
-          settings.addressAR = "مجمع هامر الصناعي، شارع الأعمال 100، لندن، المملكة المتحدة";
+          settings.addressAR =
+            "مجمع هامر الصناعي، شارع الأعمال 100، لندن، المملكة المتحدة";
           settingsChanged = true;
         }
         if (settingsChanged) {
@@ -1309,8 +1463,8 @@ class HammerStore {
       // Sync categories
       const categories = this.getCategories();
       let catsChanged = false;
-      categories.forEach(c => {
-        const seedC = SEED_DATA.categories.find(sc => sc.id === c.id);
+      categories.forEach((c) => {
+        const seedC = SEED_DATA.categories.find((sc) => sc.id === c.id);
         if (seedC && !c.nameAR) {
           c.nameAR = seedC.nameAR;
           catsChanged = true;
@@ -1323,8 +1477,8 @@ class HammerStore {
       // Sync products
       const products = this.getProducts();
       let prodsChanged = false;
-      products.forEach(p => {
-        const seedP = SEED_DATA.products.find(sp => sp.id === p.id);
+      products.forEach((p) => {
+        const seedP = SEED_DATA.products.find((sp) => sp.id === p.id);
         if (seedP) {
           if (!p.nameAR) {
             p.nameAR = seedP.nameAR;
@@ -1343,8 +1497,8 @@ class HammerStore {
       // Sync certificates
       const certificates = this.getCertificates();
       let certsChanged = false;
-      certificates.forEach(c => {
-        const seedC = SEED_DATA.certificates.find(sc => sc.id === c.id);
+      certificates.forEach((c) => {
+        const seedC = SEED_DATA.certificates.find((sc) => sc.id === c.id);
         if (seedC && !c.titleAR) {
           c.titleAR = seedC.titleAR;
           certsChanged = true;
@@ -1357,8 +1511,8 @@ class HammerStore {
       // Sync downloads
       const downloads = this.getDownloads();
       let dlsChanged = false;
-      downloads.forEach(d => {
-        const seedD = SEED_DATA.downloads.find(sd => sd.id === d.id);
+      downloads.forEach((d) => {
+        const seedD = SEED_DATA.downloads.find((sd) => sd.id === d.id);
         if (seedD && !d.titleAR) {
           d.titleAR = seedD.titleAR;
           dlsChanged = true;
