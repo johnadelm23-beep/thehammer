@@ -494,7 +494,7 @@ const DICTIONARIES = {
     },
     whatsApp: {
       template:
-        "مرحبًا أستاذ John Adel،\nأود طلب عرض سعر للمنتج التالي:\n\nالمنتج: {productName}\nالموديل: {model}\nالقوة: {power}\nالتدفق: {flow}\nالضغط: {head}\nالرابط: {productUrl}\n\nيرجى التواصل معي.",
+        "مرحبًا أستاذ Mo'men،\nأود طلب عرض سعر للمنتج التالي:\n\nالمنتج: {productName}\nالموديل: {model}\nالقوة: {power}\nالتدفق: {flow}\nالضغط: {head}\nالرابط: {productUrl}\n\nيرجى التواصل معي.",
     },
     cookie: {
       text: "يستخدم THEHAMMER ملفات تعريف الارتباط الفنية الأساسية لضمان الأداء الأمثل للنظام والامتثال للوائح حماية البيانات العامة (GDPR).",

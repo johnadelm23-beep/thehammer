@@ -1283,7 +1283,7 @@ function openWhatsAppQuote(productId) {
       : "N/A";
 
     if (currentLang === "ar") {
-      message = `مرحبًا أستاذ John Adel،
+      message = `مرحبًا أستاذ  Mo'men،
 
 أرغب في الحصول على مزيد من المعلومات عن المنتج التالي:
 
@@ -1305,7 +1305,7 @@ function openWhatsAppQuote(productId) {
 
 شكرًا لك.`;
     } else if (currentLang === "it") {
-      message = `Ciao John Adel,
+      message = `Ciao Mo'men,
 
 Vorrei ricevere maggiori informazioni sul seguente prodotto:
 
@@ -1327,7 +1327,7 @@ Per favore, inviami il prezzo e le informazioni tecniche disponibili.
 
 Grazie.`;
     } else {
-      message = `Hello John Adel,
+      message = `Hello Mo'men,
 
 I would like to request more information about the following product:
 
@@ -1352,19 +1352,19 @@ Thank you.`;
   } else {
     const subject = productId || "General Inquiry";
     if (currentLang === "ar") {
-      message = `مرحبًا أستاذ John Adel،
+      message = `مرحبًا أستاذ Mo'men،
 
 أود الحصول على مزيد من المعلومات حول: ${subject}
 
 شكرًا لك.`;
     } else if (currentLang === "it") {
-      message = `Ciao John Adel,
+      message = `Ciao Mo'men,
 
 Vorrei ricevere maggiori informazioni in merito a: ${subject}
 
 Grazie.`;
     } else {
-      message = `Hello John Adel,
+      message = `Hello Mo'men,
 
 I would like to request more information regarding: ${subject}
 
