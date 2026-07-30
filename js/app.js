@@ -399,6 +399,9 @@ function openCategoryPage(slug, updateHistory = true) {
     return;
   }
 
+  // Always reset search inputs & filter selections on category navigation for complete isolation
+  resetFiltersSilent();
+
   currentCategorySlug = cat.slug;
 
   if (homeView) homeView.style.display = "none";
@@ -437,16 +440,20 @@ function openCategoryPage(slug, updateHistory = true) {
     window.history.pushState({ categorySlug: cat.slug }, "", newUrl);
   }
 
+  // Populate category-scoped filters & render catalog
+  populateFilters();
   renderCatalog();
 
   const catalogSec = document.getElementById("catalog");
-  if (catalogSec) {
+  if (catalogSec && typeof catalogSec.scrollIntoView === "function") {
     catalogSec.scrollIntoView({ behavior: "smooth" });
   }
 }
 
 function showCategoriesView(updateHistory = true) {
   currentCategorySlug = null;
+  resetFiltersSilent();
+
   const homeView = document.getElementById("homepageCategoriesView");
   const detailView = document.getElementById("categoryDetailView");
 
@@ -473,7 +480,7 @@ function showCategoriesView(updateHistory = true) {
   renderCategoryCards();
 
   const catalogSec = document.getElementById("catalog");
-  if (catalogSec) {
+  if (catalogSec && typeof catalogSec.scrollIntoView === "function") {
     catalogSec.scrollIntoView({ behavior: "smooth" });
   }
 }
@@ -512,8 +519,27 @@ function renderCategoryFilter() {
       .join("");
 }
 
+function resetFiltersSilent() {
+  const searchInput = document.getElementById("catalogSearchInput");
+  const flowRateFilter = document.getElementById("flowRateFilter");
+  const headFilter = document.getElementById("headFilter");
+  const availabilityFilter = document.getElementById("availabilityFilter");
+
+  if (searchInput) searchInput.value = "";
+  if (flowRateFilter) flowRateFilter.value = "all";
+  if (headFilter) headFilter.value = "all";
+  if (availabilityFilter) availabilityFilter.value = "all";
+}
+
 function populateFilters() {
-  const products = window.store ? window.store.getProducts() : [];
+  // Only extract products belonging to THIS category for 100% filter isolation
+  let products = [];
+  if (currentCategorySlug && window.store) {
+    products = window.store.getProductsForCategory(currentCategorySlug);
+  } else {
+    products = window.store ? window.store.getProducts() : [];
+  }
+
   const currentLang = window.i18n ? window.i18n.currentLang : "en";
 
   const flowRateFilter = document.getElementById("flowRateFilter");
@@ -524,10 +550,16 @@ function populateFilters() {
     const rates = [
       ...new Set(products.map((p) => p.qGpm).filter(Boolean)),
     ].sort((a, b) => Number(a) - Number(b));
+
     flowRateFilter.innerHTML =
       `<option value="all">${window.i18n.t("catalog.allFlowRates")}</option>` +
       rates.map((r) => `<option value="${r}">${r} GPM</option>`).join("");
-    flowRateFilter.value = savedValue;
+
+    if (rates.includes(savedValue) || savedValue === "all") {
+      flowRateFilter.value = savedValue;
+    } else {
+      flowRateFilter.value = "all";
+    }
   }
 
   if (headFilter) {
@@ -547,7 +579,12 @@ function populateFilters() {
       heads
         .map((h) => `<option value="${h}">${h} ${headBarText}</option>`)
         .join("");
-    headFilter.value = savedValue;
+
+    if (heads.includes(savedValue) || savedValue === "all") {
+      headFilter.value = savedValue;
+    } else {
+      headFilter.value = "all";
+    }
   }
 
   const resetBtn = document.getElementById("clearFiltersBtn");
@@ -557,18 +594,7 @@ function populateFilters() {
 }
 
 function resetFilters() {
-  const searchInput = document.getElementById("catalogSearchInput");
-  const categoryFilter = document.getElementById("categoryFilter");
-  const flowRateFilter = document.getElementById("flowRateFilter");
-  const headFilter = document.getElementById("headFilter");
-  const availabilityFilter = document.getElementById("availabilityFilter");
-
-  if (searchInput) searchInput.value = "";
-  if (categoryFilter) categoryFilter.value = "all";
-  if (flowRateFilter) flowRateFilter.value = "all";
-  if (headFilter) headFilter.value = "all";
-  if (availabilityFilter) availabilityFilter.value = "all";
-
+  resetFiltersSilent();
   renderCatalog();
 }
 
