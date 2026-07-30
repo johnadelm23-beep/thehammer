@@ -426,10 +426,12 @@ html[dir="rtl"] .logo-symbol {
   font-weight: 800;
   line-height: 1.1;
   margin-bottom: 1rem;
+  color: #ffffff !important;
 }
 
+
 .hero-title span {
-  color: var(--primary-red);
+   color: #ffffff !important;
 }
 
 /* Cards & Spec Badges */
