@@ -388,7 +388,7 @@ const DICTIONARIES = {
       home: "الرئيسية",
       products: "كتالوج المنتجات",
       categories: "التصنيفات",
-      about: "عن هامر",
+      about: "عن ذا هامر",
       certificates: "الشهادات",
       downloads: "مركز التحميل",
       contact: "تواصل معنا",

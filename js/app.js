@@ -1689,3 +1689,165 @@ Thank you.`;
     "noopener,noreferrer",
   );
 }
+
+/* ==========================================================================
+   WORLD-CLASS PREMIUM MOTION ENGINE (60 FPS GPU-ACCELERATED)
+   ========================================================================== */
+function initPremiumMotionEngine() {
+  // 1. IntersectionObserver for Reveal Animations
+  if ("IntersectionObserver" in window) {
+    const revealElements = document.querySelectorAll(
+      ".reveal, .reveal-up, .reveal-left, .reveal-right, .reveal-scale, .reveal-blur, .reveal-rotate, .stagger-item"
+    );
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "0px 0px -40px 0px",
+      threshold: 0.1,
+    };
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          if (entry.target.classList.contains("hero-stat-number") || entry.target.querySelector(".hero-stat-number")) {
+            animateStatNumbers(entry.target);
+          }
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    revealElements.forEach((el) => revealObserver.observe(el));
+  } else {
+    document
+      .querySelectorAll(".reveal, .stagger-item")
+      .forEach((el) => el.classList.add("is-visible"));
+  }
+
+  // 2. 3D Perspective Tilt on Mouse Hover
+  init3DTilt();
+
+  // 3. Button Click Ripples & Sheen
+  initButtonRipples();
+
+  // 4. Progressive Image Preloader & Blur-up Transition
+  initProgressiveImageLoading();
+}
+
+/* Butter-Smooth 60FPS Stat Count-up */
+function animateStatNumbers(container) {
+  const statElements = container.querySelectorAll
+    ? container.querySelectorAll(".hero-stat-number, [data-count]")
+    : [container];
+
+  statElements.forEach((el) => {
+    if (el.getAttribute("data-count-done") === "true") return;
+    el.setAttribute("data-count-done", "true");
+
+    const rawText = el.textContent.trim();
+    const matchedNumber = rawText.match(/[\d,.]+/);
+    if (!matchedNumber) return;
+
+    const targetNum = parseFloat(matchedNumber[0].replace(/,/g, ""));
+    const prefix = rawText.substring(0, rawText.indexOf(matchedNumber[0]));
+    const suffix = rawText.substring(rawText.indexOf(matchedNumber[0]) + matchedNumber[0].length);
+
+    let startTimestamp = null;
+    const duration = 1800;
+
+    function step(timestamp) {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      const easeProgress = 1 - Math.pow(1 - progress, 4);
+      const currentVal = Math.floor(easeProgress * targetNum);
+
+      el.textContent = `${prefix}${currentVal.toLocaleString()}${suffix}`;
+
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      } else {
+        el.textContent = rawText;
+      }
+    }
+
+    window.requestAnimationFrame(step);
+  });
+}
+
+/* 3D Perspective Tilt Effect for Cards */
+function init3DTilt() {
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const cardSelector = ".category-card, .product-card, .about-stat-card, .certificate-card, .download-card";
+
+  document.addEventListener("mousemove", (e) => {
+    const card = e.target.closest(cardSelector);
+    if (!card) return;
+
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateX = ((y - centerY) / centerY) * -5;
+    const rotateY = ((x - centerX) / centerX) * 5;
+
+    card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.015, 1.015, 1)`;
+  });
+
+  document.addEventListener("mouseout", (e) => {
+    const card = e.target.closest(cardSelector);
+    if (card && !card.contains(e.relatedTarget)) {
+      card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
+    }
+  });
+}
+
+/* Button Click Ripple Effect */
+function initButtonRipples() {
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest(".btn");
+    if (!btn) return;
+
+    const rect = btn.getBoundingClientRect();
+    const ripple = document.createElement("span");
+    ripple.className = "ripple-effect";
+
+    const diameter = Math.max(rect.width, rect.height);
+    const radius = diameter / 2;
+
+    ripple.style.width = ripple.style.height = `${diameter}px`;
+    ripple.style.left = `${e.clientX - rect.left - radius}px`;
+    ripple.style.top = `${e.clientY - rect.top - radius}px`;
+
+    btn.appendChild(ripple);
+
+    setTimeout(() => {
+      ripple.remove();
+    }, 600);
+  });
+}
+
+/* Progressive Image Blur-Up */
+function initProgressiveImageLoading() {
+  const images = document.querySelectorAll("img:not(.progressive-loaded)");
+  images.forEach((img) => {
+    img.classList.add("progressive-loading");
+    if (img.complete) {
+      img.classList.add("progressive-loaded");
+    } else {
+      img.addEventListener("load", () => {
+        img.classList.add("progressive-loaded");
+      });
+    }
+  });
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initPremiumMotionEngine);
+} else {
+  initPremiumMotionEngine();
+}
