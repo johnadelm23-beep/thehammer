@@ -13,6 +13,7 @@ const DICTIONARIES = {
       certificates: "Certificates",
       downloads: "Download Center",
       contact: "Contact Us",
+      language: "Language",
       requestQuote: "Request a Quote",
     },
     hero: {
@@ -199,8 +200,10 @@ const DICTIONARIES = {
       products: "Catalogo Prodotti",
       categories: "Categorie",
       about: "Chi siamo",
-      downloads: "Download",
+      certificates: "Certificati",
+      downloads: "Centro Download",
       contact: "Contatti",
+      language: "Lingua",
       requestQuote: "Richiedi un preventivo",
     },
     hero: {
@@ -383,11 +386,13 @@ const DICTIONARIES = {
   ar: {
     nav: {
       home: "الرئيسية",
-      products: "المنتجات",
+      products: "كتالوج المنتجات",
       categories: "التصنيفات",
-      about: "من نحن",
-      downloads: "التحميلات",
+      about: "عن هامر",
+      certificates: "الشهادات",
+      downloads: "مركز التحميل",
       contact: "تواصل معنا",
+      language: "اللغة",
       requestQuote: "اطلب عرض سعر",
     },
     hero: {
