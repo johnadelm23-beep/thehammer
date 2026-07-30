@@ -6,12 +6,15 @@
 const DICTIONARIES = {
   en: {
     nav: {
-  home: "Home",
-  products: "Products Catalog",
-  contact: "Contact Us",
-  language: "Language",
-  requestQuote: "Request a Quote",
-},
+      home: "Home",
+      products: "Products Catalog",
+      categories: "Categories",
+      about: "About THEHAMMER",
+      certificates: "Certificates",
+      downloads: "Download Center",
+      contact: "Contact Us",
+      requestQuote: "Request a Quote",
+    },
     hero: {
       tag: "INDUSTRIAL WATER PUMP SOLUTIONS",
 
@@ -198,7 +201,6 @@ const DICTIONARIES = {
       about: "Chi siamo",
       downloads: "Download",
       contact: "Contatti",
-      language: "Lingua",
       requestQuote: "Richiedi un preventivo",
     },
     hero: {
@@ -386,7 +388,6 @@ const DICTIONARIES = {
       about: "من نحن",
       downloads: "التحميلات",
       contact: "تواصل معنا",
-      language: "اللغة",
       requestQuote: "اطلب عرض سعر",
     },
     hero: {
