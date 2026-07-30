@@ -64,6 +64,13 @@
       content="https://thehammer.uk/images/herobackground.jpeg"
     />
 
+    <!-- Preconnect & DNS-Prefetch for Speed -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="preload" as="image" href="images/system_fire_pumb.jpeg" fetchpriority="high" />
+
     <!-- Organization Structured Data -->
     <script type="application/ld+json">
       {
@@ -86,6 +93,65 @@
           "availableLanguage": ["English", "Arabic", "Italian"],
           "areaServed": "Worldwide"
         }
+      }
+    </script>
+
+    <!-- WebSite Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": "https://thehammer.uk/#website",
+        "url": "https://thehammer.uk/",
+        "name": "THEHAMMER",
+        "description": "Industrial Water Pumps & NFPA-20 Fire Protection Systems",
+        "publisher": {
+          "@id": "https://thehammer.uk/#organization"
+        },
+        "inLanguage": ["en", "it", "ar"]
+      }
+    </script>
+
+    <!-- LocalBusiness Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "@id": "https://thehammer.uk/#localbusiness",
+        "name": "THEHAMMER Industrial Water Pump Solutions",
+        "image": "https://thehammer.uk/images/herobackground.jpeg",
+        "telephone": "+201203666634",
+        "email": "example@gmail.com",
+        "url": "https://thehammer.uk/",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Works Avenue 100",
+          "addressLocality": "London",
+          "addressCountry": "UK"
+        },
+        "priceRange": "$$$"
+      }
+    </script>
+
+    <!-- BreadcrumbList Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://thehammer.uk/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Products Catalog",
+            "item": "https://thehammer.uk/#catalog"
+          }
+        ]
       }
     </script>
 
@@ -374,21 +440,29 @@
     </div>
 
     <!-- ==========================================================================
-       HERO BUILDER SECTION
+       MAIN CONTENT CONTAINER
        ========================================================================== -->
-    <section id="hero" class="hero-slider">
-      <div class="container">
-        <div class="hero-content">
-          <div class="hero-logo-container">
-            <span class="logo-text-fallback">
-              THE<span style="color: var(--primary-red)">HAMMER</span>
-            </span>
-          </div>
+    <main id="main-content">
+      <!-- ==========================================================================
+         HERO BUILDER SECTION
+         ========================================================================== -->
+      <section id="hero" class="hero-slider">
+        <div class="container">
+          <div class="hero-content">
+            <div class="hero-logo-container">
+              <span class="logo-text-fallback">
+                THE<span style="color: var(--primary-red)">HAMMER</span>
+              </span>
+            </div>
 
-          <p class="hero-desc" data-i18n="hero.subtitle">
-            High-capacity water pumps, NFPA-20 fire fighting systems, heavy-duty
-            electric motors, and automated pressure boosters.
-          </p>
+            <h1 class="hero-title" data-i18n="hero.brandIntro">
+              THEHAMMER Industrial Water Pump Solutions
+            </h1>
+
+            <p class="hero-desc" data-i18n="hero.subtitle">
+              High-capacity water pumps, NFPA-20 fire fighting systems, heavy-duty
+              electric motors, and automated pressure boosters.
+            </p>
 
           <div class="hero-actions">
             <a
@@ -793,6 +867,7 @@
         </div>
       </div>
     </section>
+    </main>
 
     <footer class="site-footer" id="footer">
       <div class="container">
@@ -1435,13 +1510,13 @@
     </div>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script>
 
-    <script src="js/i18n.js"></script>
-    <script src="js/store.js"></script>
-    <script src="js/media-manager.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/animations.js"></script>
+    <script defer src="js/i18n.js"></script>
+    <script defer src="js/store.js"></script>
+    <script defer src="js/media-manager.js"></script>
+    <script defer src="js/app.js"></script>
+    <script defer src="js/animations.js"></script>
 
     <script>
       window.addEventListener("DOMContentLoaded", () => {

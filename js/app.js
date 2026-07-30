@@ -310,7 +310,7 @@ function renderCategoryCards() {
       return `
         <div class="category-card" data-filter-tag="${filterTag}" onclick="openCategoryPage('${cat.slug}')">
           <div class="category-card-img-wrapper">
-            <img src="${catImage}" alt="${catName} category" class="category-card-img" loading="lazy" onerror="console.error('Failed to load category image:', '${catImage}');">
+            <img src="${catImage}" alt="${catName} category" class="category-card-img" width="400" height="260" loading="lazy" decoding="async" onerror="console.error('Failed to load category image:', '${catImage}');">
             <span class="category-card-count-badge">${formattedCount}</span>
           </div>
           <div class="category-card-body">
@@ -675,6 +675,40 @@ function renderCatalog() {
     countEl.textContent = countText;
   }
 
+  // Inject Product JSON-LD Structured Data dynamically for Google SEO indexing
+  const oldProductSchema = document.getElementById("dynamicProductJsonLd");
+  if (oldProductSchema) oldProductSchema.remove();
+
+  if (filtered.length > 0) {
+    const productSchemaData = {
+      "@context": "https://schema.org",
+      "@graph": filtered.slice(0, 10).map((p) => ({
+        "@type": "Product",
+        "@id": `https://thehammer.uk/#product-${p.id || p.model}`,
+        "name": getProductName(p, currentLang),
+        "model": p.model,
+        "description": `Industrial pump model ${p.model} - Flow: ${p.qGpm} GPM, Head: ${p.hBar} Bar. ${p.configuration || ''}`,
+        "image": p.image || "https://thehammer.uk/images/system_fire_pumb.jpeg",
+        "brand": {
+          "@type": "Brand",
+          "name": "THEHAMMER"
+        },
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "url": `https://thehammer.uk/?category=${currentCategorySlug || 'fire-fighting-pumps'}`
+        }
+      }))
+    };
+
+    const scriptJsonLd = document.createElement("script");
+    scriptJsonLd.id = "dynamicProductJsonLd";
+    scriptJsonLd.type = "application/ld+json";
+    scriptJsonLd.text = JSON.stringify(productSchemaData);
+    document.head.appendChild(scriptJsonLd);
+  }
+
   if (filtered.length === 0) {
     if (products.length === 0) {
       grid.innerHTML = `
@@ -738,7 +772,7 @@ function renderCatalog() {
       return `
       <div class="product-card">
         <div class="product-img-wrapper">
-          <img src="${p.image}" alt="Fire pump set ${p.model} product model" class="product-img" loading="lazy" onerror="this.src='images/PSM-Electric-Pump.jpg'">
+          <img src="${p.image}" alt="Industrial pump ${p.model}" class="product-img" width="400" height="300" loading="lazy" decoding="async" onerror="this.src='images/PSM-Electric-Pump.jpg'">
           <span class="product-card-tag">THEHAMMER</span>
         </div>
 
