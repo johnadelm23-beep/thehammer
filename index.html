@@ -135,7 +135,7 @@
     <!-- Favicon -->
     <!-- Favicon -->
 <!-- Favicon -->
-<link rel="icon" href="images/icons/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="images/icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="images/icons/icon-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="images/icons/icon-512.png">
@@ -429,21 +429,68 @@
     </section>
 
     <!-- ==========================================================================
-       PRODUCT CATALOG & SEARCH
+       PRODUCT CATALOG & CATEGORIES SECTION
        ========================================================================== -->
     <section id="catalog" class="section">
       <div class="container">
-        <div class="section-header reveal reveal-up">
-          <div>
-            <h2 class="section-title" data-i18n="catalog.title">
-              Industrial Product Catalog
-            </h2>
-            <p class="section-subtitle" data-i18n="catalog.subtitle">
-              Select a category below or search by model number, flow rate, or
-              power output.
-            </p>
+
+        <!-- HOMEPAGE CATEGORIES VIEW (Step 1 - Step 3) -->
+        <div id="homepageCategoriesView">
+          <div class="section-header reveal reveal-up">
+            <div>
+              <h2 class="section-title" data-i18n="catalog.title">
+                Industrial Product Catalog
+              </h2>
+              <p class="section-subtitle" data-i18n="catalog.subtitle">
+                Select a category below or search by model number, flow rate, or power output.
+              </p>
+            </div>
           </div>
 
+          <!-- Filter Section (Step 2) -->
+          <div class="category-filter-bar reveal reveal-up" id="categoryFilterBar">
+            <button class="filter-pill active" data-filter="all" onclick="filterCategories('all', this)" data-i18n="catalog.filterAll">All Categories</button>
+            <button class="filter-pill" data-filter="fire-fighting" onclick="filterCategories('fire-fighting', this)" data-i18n="catalog.filterFireFighting">Fire Fighting Pumps</button>
+            <button class="filter-pill" data-filter="booster" onclick="filterCategories('booster', this)" data-i18n="catalog.filterBooster">Booster Systems</button>
+            <button class="filter-pill" data-filter="end-suction" onclick="filterCategories('end-suction', this)" data-i18n="catalog.filterEndSuction">End Suction Pumps</button>
+            <button class="filter-pill" data-filter="split-case" onclick="filterCategories('split-case', this)" data-i18n="catalog.filterSplitCase">Split Case Pumps</button>
+            <button class="filter-pill" data-filter="vertical-multistage" onclick="filterCategories('vertical-multistage', this)" data-i18n="catalog.filterVertical">Vertical Pumps</button>
+            <button class="filter-pill" data-filter="electric" onclick="filterCategories('electric', this)" data-i18n="catalog.filterElectric">Electric Pumps</button>
+            <button class="filter-pill" data-filter="diesel" onclick="filterCategories('diesel', this)" data-i18n="catalog.filterDiesel">Diesel Pumps</button>
+            <button class="filter-pill" data-filter="jockey" onclick="filterCategories('jockey', this)" data-i18n="catalog.filterJockey">Jockey Pumps</button>
+          </div>
+
+          <!-- Category Cards Grid (Step 1) -->
+          <div class="grid grid-cols-3 category-cards-grid" id="categoryCardsGrid">
+            <!-- Dynamically rendered Category Cards -->
+          </div>
+
+          <!-- Found Categories Counter (Step 3) -->
+          <div id="categoriesCountHeader" class="categories-results-count reveal reveal-up">
+            Found 8 Categories
+          </div>
+        </div>
+
+        <!-- CATEGORY DETAIL PAGE VIEW (Step 4 - Step 8) -->
+        <div id="categoryDetailView" style="display: none;">
+          <!-- Breadcrumbs (Step 6) -->
+          <nav class="breadcrumbs-container reveal reveal-up" aria-label="Breadcrumbs">
+            <ol class="breadcrumbs-list">
+              <li><a href="#hero" onclick="showCategoriesView(true)" data-i18n="nav.home">Home</a></li>
+              <li class="breadcrumb-separator" aria-hidden="true">&gt;</li>
+              <li><a href="#catalog" onclick="showCategoriesView(true)" data-i18n="nav.products">Products</a></li>
+              <li class="breadcrumb-separator" aria-hidden="true">&gt;</li>
+              <li class="breadcrumb-active" id="breadcrumbCategoryName">Category Name</li>
+            </ol>
+          </nav>
+
+          <div class="category-page-header reveal reveal-up">
+            <h1 class="category-page-title" id="selectedCategoryTitle">Category Name</h1>
+            <p class="category-page-desc" id="selectedCategoryDesc">Category Description</p>
+            <div class="category-page-count" id="selectedCategoryCount">Found 0 Products</div>
+          </div>
+
+          <!-- Product Filters & Search -->
           <div class="catalog-filters reveal reveal-up">
             <input
               type="text"
@@ -456,6 +503,7 @@
             <select
               id="categoryFilter"
               class="form-select filter-select"
+              style="display: none;"
               onchange="renderCatalog()"
             >
               <option value="all" data-i18n="catalog.allCategories">
@@ -506,16 +554,17 @@
             >
               Reset
             </button>
-            <div id="catalogProductCount" class="catalog-results-count">
+            <div id="catalogProductCount" class="catalog-results-count" style="display: none;">
               0 Products Found
             </div>
           </div>
+
+          <!-- Catalog Products Grid (Step 5) -->
+          <div class="grid grid-cols-3" id="catalogGrid">
+            <!-- Dynamically rendered Product Cards -->
+          </div>
         </div>
 
-        <!-- Catalog Grid -->
-        <div class="grid grid-cols-3" id="catalogGrid">
-          <!-- Dynamically rendered -->
-        </div>
       </div>
     </section>
 

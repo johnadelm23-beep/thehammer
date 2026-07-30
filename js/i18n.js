@@ -42,7 +42,22 @@ const DICTIONARIES = {
       addToQuote: "Add to Quote",
       clearFilters: "Clear Filters",
       productsFound: "Products Found",
+      foundProducts: "Found {count} Products",
+      foundCategories: "Found {count} Categories",
+      backToCategories: "← All Categories",
+      filterAll: "All Categories",
+      filterFireFighting: "Fire Fighting Pumps",
+      filterBooster: "Booster Systems",
+      filterEndSuction: "End Suction Pumps",
+      filterSplitCase: "Split Case Pumps",
+      filterVertical: "Vertical Pumps",
+      filterElectric: "Electric Pumps",
+      filterDiesel: "Diesel Pumps",
+      filterJockey: "Jockey Pumps",
       noResults: "No products match your search.",
+      comingSoonTitle: "Category Coming Soon",
+      comingSoonDesc: "We are currently expanding our product catalog. Products in this category will be available soon. Contact us for custom inquiries.",
+      contactSales: "Request Custom Quote",
       resultsCount: "Products Count",
       allFlowRates: "All Flow Rates",
       allHeads: "All Head Pressures",
@@ -215,7 +230,22 @@ const DICTIONARIES = {
       addToQuote: "Aggiungi al preventivo",
       clearFilters: "Cancella filtri",
       productsFound: "Prodotti trovati",
+      foundProducts: "Trovati {count} prodotti",
+      foundCategories: "Trovate {count} categorie",
+      backToCategories: "← Tutte le Categorie",
+      filterAll: "Tutte le categorie",
+      filterFireFighting: "Pompe Antincendio",
+      filterBooster: "Sistemi di Pressurizzazione",
+      filterEndSuction: "Pompe End Suction",
+      filterSplitCase: "Pompe a Cassa Divisa",
+      filterVertical: "Pompe Verticali",
+      filterElectric: "Elettropompe",
+      filterDiesel: "Motopompe Diesel",
+      filterJockey: "Pompe Jockey",
       noResults: "Nessun prodotto corrisponde alla ricerca.",
+      comingSoonTitle: "Categoria In Arrivo",
+      comingSoonDesc: "Stiamo attualmente ampliando il nostro catalogo prodotti. I prodotti in questa categoria saranno disponibili a breve. Contattaci per preventivi su misura.",
+      contactSales: "Richiedi Preventivo Personalizzato",
       resultsCount: "Prodotti trovati",
       allFlowRates: "Tutte le portate",
       allHeads: "Tutte le prevalenze",
@@ -387,7 +417,22 @@ const DICTIONARIES = {
       addToQuote: "أضف إلى طلب السعر",
       clearFilters: "مسح عوامل التصفية",
       productsFound: "المنتجات المطابقة",
+      foundProducts: "تم العثور على {count} منتجًا",
+      foundCategories: "تم العثور على {count} تصنيفات",
+      backToCategories: "← جميع التصنيفات",
+      filterAll: "جميع التصنيفات",
+      filterFireFighting: "مضخات مكافحة الحريق",
+      filterBooster: "أنظمة ضغط المياه",
+      filterEndSuction: "مضخات السحب الطرفي",
+      filterSplitCase: "مضخات انقسام العلبة",
+      filterVertical: "المضخات الرأسية",
+      filterElectric: "المضخات الكهربائية",
+      filterDiesel: "مضخات الديزل",
+      filterJockey: "مضخات الجوكي",
       noResults: "لا توجد منتجات مطابقة لبحثك.",
+      comingSoonTitle: "التصنيف قيد الإضافة قريبًا",
+      comingSoonDesc: "نعمل حاليًا على تحديث وتوسيع كتالوج المنتجات. ستكون منتجات هذا التصنيف متاحة قريبًا. تواصل معنا للحصول على عروض أسعار واستفسارات خاصة.",
+      contactSales: "طلب عرض سعر خاص",
       resultsCount: "عدد المنتجات",
       allFlowRates: "جميع معدلات التدفق",
       allHeads: "جميع مستويات الضغط",
@@ -567,25 +612,48 @@ class I18nEngine {
     }
   }
 
-  t(keyPath, fallback = "") {
+  t(keyPath, paramsOrFallback = {}, fallback = "") {
+    let params = {};
+    let defaultFallback = fallback;
+    if (typeof paramsOrFallback === "string") {
+      defaultFallback = paramsOrFallback;
+    } else if (typeof paramsOrFallback === "object" && paramsOrFallback !== null) {
+      params = paramsOrFallback;
+    }
+
     const keys = keyPath.split(".");
     let value = DICTIONARIES[this.currentLang];
+    let found = true;
 
     for (const k of keys) {
       if (value && value[k] !== undefined) {
         value = value[k];
       } else {
-        let fallbackVal = DICTIONARIES["en"];
-        for (const fk of keys) {
-          if (fallbackVal && fallbackVal[fk] !== undefined) {
-            fallbackVal = fallbackVal[fk];
-          } else {
-            return fallback || keyPath;
-          }
-        }
-        return fallbackVal;
+        found = false;
+        break;
       }
     }
+
+    if (!found) {
+      let fallbackVal = DICTIONARIES["en"];
+      let fallbackFound = true;
+      for (const fk of keys) {
+        if (fallbackVal && fallbackVal[fk] !== undefined) {
+          fallbackVal = fallbackVal[fk];
+        } else {
+          fallbackFound = false;
+          break;
+        }
+      }
+      value = fallbackFound ? fallbackVal : (defaultFallback || keyPath);
+    }
+
+    if (typeof value === "string" && params) {
+      Object.keys(params).forEach((pKey) => {
+        value = value.replace(new RegExp(`\\{${pKey}\\}`, "g"), params[pKey]);
+      });
+    }
+
     return value;
   }
 

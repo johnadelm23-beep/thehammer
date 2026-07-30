@@ -342,6 +342,34 @@ body {
   cursor: zoom-in;
 }
 
+/* Category Card Filter Transitions (250-350ms) */
+.category-card {
+  transition: opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.category-card.filtering-out {
+  opacity: 0;
+  transform: scale(0.96) translateY(8px);
+  pointer-events: none;
+}
+
+.category-card.filtering-in {
+  animation: categoryFadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes categoryFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
 /* ==========================================================================
    ACCESSIBILITY & REDUCED MOTION PREFERENCES
    ========================================================================== */

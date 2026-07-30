@@ -54,18 +54,29 @@ function initApp() {
     }
   }
 
+  renderCategoryCards();
   renderCategoryFilter();
   populateFilters();
-  renderCatalog();
   renderCertificates();
   renderDownloads();
   setupDropzone();
   updateQuoteListBadge();
 
+  checkURLCategoryOnLoad();
+
+  window.addEventListener("popstate", () => {
+    checkURLCategoryOnLoad();
+  });
+
   window.addEventListener("languageChanged", () => {
+    renderCategoryCards();
     renderCategoryFilter();
     populateFilters();
-    renderCatalog();
+    if (currentCategorySlug) {
+      openCategoryPage(currentCategorySlug, false);
+    } else {
+      renderCatalog();
+    }
     renderCertificates();
     renderDownloads();
     updateLangUI();
@@ -229,6 +240,254 @@ function getProductDesc(product, lang) {
   }
 }
 
+/* Category Filtering & Category Cards Rendering */
+let activeCategoryFilter = "all";
+let currentCategorySlug = null;
+let defaultDocumentTitle = document.title;
+
+/* Explicit Category Images Mapping & Console Error Verification */
+const CATEGORY_IMAGES = {
+  "fire-fighting-pumps": "images/system_fire_pumb.jpeg",
+  "cat-ff": "images/system_fire_pumb.jpeg",
+  "booster-systems": "images/Booster-Systems.png",
+  "cat-booster": "images/Booster-Systems.png",
+  "centrifugal-pumps": "images/Centrifugal-Pumps.png",
+  "cat-centrifugal": "images/Centrifugal-Pumps.png",
+  "end-suction-pumps": "images/end-section-pumb.jpg",
+  "cat-end-suction": "images/end-section-pumb.jpg",
+  "vertical-multistage-pumps": "images/Vertical-Multistage-Pumps.png",
+  "cat-vertical-multistage": "images/Vertical-Multistage-Pumps.png",
+  "electric-pumps": "images/Electric-Pumps.png",
+  "cat-electric": "images/Electric-Pumps.png",
+  "diesel-pumps": "images/PSD-Diesel-Pump.jpeg",
+  "cat-diesel": "images/PSD-Diesel-Pump.jpeg",
+  "jockey-pumps": "images/PV-Jockey-Pump.jpg",
+  "cat-jockey": "images/PV-Jockey-Pump.jpg",
+  "split-case-pumps": "images/Split-Case-Pumps.png",
+  "cat-split-case": "images/Split-Case-Pumps.png"
+};
+
+function getCategoryImage(cat) {
+  if (!cat) {
+    console.error("Category image missing: Invalid category object");
+    return "";
+  }
+  const key = cat.slug || cat.id;
+  const imagePath = CATEGORY_IMAGES[key] || cat.image;
+
+  if (!imagePath) {
+    console.error("Category image missing for category:", key || cat.nameEN || cat);
+  }
+
+  return imagePath || "";
+}
+
+function renderCategoryCards() {
+  const container = document.getElementById("categoryCardsGrid");
+  if (!container || !window.store) return;
+
+  const categories = window.store.getCategories();
+  const currentLang = window.i18n ? window.i18n.currentLang : "en";
+
+  container.innerHTML = categories
+    .map((cat) => {
+      const nameKey = currentLang === "ar" ? "nameAR" : currentLang === "it" ? "nameIT" : "nameEN";
+      const descKey = currentLang === "ar" ? "descAR" : currentLang === "it" ? "descIT" : "descEN";
+
+      const catName = cat[nameKey] || cat.nameEN;
+      const catDesc = cat[descKey] || cat.descEN || "";
+      const catIcon = cat.icon || "layers";
+      const catImage = getCategoryImage(cat);
+      const filterTag = cat.filterTag || "all";
+
+      const catProducts = window.store.getProductsForCategory(cat);
+      const count = catProducts.length;
+
+      const formattedCount = window.i18n
+        ? window.i18n.t("catalog.foundProducts", { count }, `Found ${count} Products`)
+        : `Found ${count} Products`;
+
+      return `
+        <div class="category-card" data-filter-tag="${filterTag}" onclick="openCategoryPage('${cat.slug}')">
+          <div class="category-card-img-wrapper">
+            <img src="${catImage}" alt="${catName} category" class="category-card-img" loading="lazy" onerror="console.error('Failed to load category image:', '${catImage}');">
+            <span class="category-card-count-badge">${formattedCount}</span>
+          </div>
+          <div class="category-card-body">
+            <h3 class="category-card-title">
+              <i data-lucide="${catIcon}"></i>
+              ${catName}
+            </h3>
+            <p class="category-card-desc">${catDesc}</p>
+            <div class="category-card-footer">
+              <span class="category-card-action">
+                ${currentLang === "ar" ? "تصفح المنتجات &larr;" : currentLang === "it" ? "Esplora Prodotti &rarr;" : "Browse Products &rarr;"}
+              </span>
+            </div>
+          </div>
+        </div>
+      `;
+    })
+    .join("");
+
+  // Update Found Categories counter (Step 3)
+  updateCategoriesCount(categories.length);
+
+  if (window.lucide) {
+    lucide.createIcons();
+  }
+}
+
+function updateCategoriesCount(count) {
+  const counterEl = document.getElementById("categoriesCountHeader");
+  if (!counterEl) return;
+  const countText = window.i18n
+    ? window.i18n.t("catalog.foundCategories", { count }, `Found ${count} Categories`)
+    : `Found ${count} Categories`;
+  counterEl.textContent = countText;
+}
+
+function filterCategories(filterKey, buttonEl) {
+  activeCategoryFilter = filterKey;
+
+  // Update active pill state
+  document.querySelectorAll("#categoryFilterBar .filter-pill").forEach((btn) => {
+    btn.classList.remove("active");
+  });
+  if (buttonEl) {
+    buttonEl.classList.add("active");
+  } else {
+    const targetPill = document.querySelector(`#categoryFilterBar .filter-pill[data-filter="${filterKey}"]`);
+    if (targetPill) targetPill.classList.add("active");
+  }
+
+  const cards = document.querySelectorAll("#categoryCardsGrid .category-card");
+  let visibleCount = 0;
+
+  cards.forEach((card) => {
+    const tag = card.getAttribute("data-filter-tag");
+    const matches = filterKey === "all" || tag === filterKey || tag.includes(filterKey) || filterKey.includes(tag);
+
+    if (matches) {
+      visibleCount++;
+      card.style.display = "flex";
+      card.classList.remove("filtering-out");
+      card.classList.add("filtering-in");
+    } else {
+      card.classList.remove("filtering-in");
+      card.classList.add("filtering-out");
+      setTimeout(() => {
+        if (card.classList.contains("filtering-out")) {
+          card.style.display = "none";
+        }
+      }, 280);
+    }
+  });
+
+  updateCategoriesCount(visibleCount);
+}
+
+function openCategoryPage(slug, updateHistory = true) {
+  if (!window.store) return;
+  const cat = window.store.getCategoryBySlug(slug);
+
+  const homeView = document.getElementById("homepageCategoriesView");
+  const detailView = document.getElementById("categoryDetailView");
+
+  if (!cat) {
+    showCategoriesView(false);
+    return;
+  }
+
+  currentCategorySlug = cat.slug;
+
+  if (homeView) homeView.style.display = "none";
+  if (detailView) detailView.style.display = "block";
+
+  const currentLang = window.i18n ? window.i18n.currentLang : "en";
+  const nameKey = currentLang === "ar" ? "nameAR" : currentLang === "it" ? "nameIT" : "nameEN";
+  const descKey = currentLang === "ar" ? "descAR" : currentLang === "it" ? "descIT" : "descEN";
+  const catName = cat[nameKey] || cat.nameEN;
+  const catDesc = cat[descKey] || cat.descEN || "";
+
+  // Step 5: Large category title & description
+  const titleEl = document.getElementById("selectedCategoryTitle");
+  if (titleEl) titleEl.textContent = catName;
+
+  const descEl = document.getElementById("selectedCategoryDesc");
+  if (descEl) descEl.textContent = catDesc;
+
+  // Step 6: Breadcrumbs update
+  const breadcrumbEl = document.getElementById("breadcrumbCategoryName");
+  if (breadcrumbEl) breadcrumbEl.textContent = catName;
+
+  // Step 8: SEO Title & Meta Description update
+  document.title = `${catName} | THEHAMMER`;
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc) {
+    metaDesc.setAttribute("content", `${catName} - ${catDesc}`);
+  }
+
+  const categorySelect = document.getElementById("categoryFilter");
+  if (categorySelect) categorySelect.value = cat.id || cat.slug;
+
+  // Update URL search query cleanly (Step 4 & Step 7)
+  if (updateHistory && window.history && window.history.pushState) {
+    const newUrl = window.location.pathname + `?category=${cat.slug}` + window.location.hash;
+    window.history.pushState({ categorySlug: cat.slug }, "", newUrl);
+  }
+
+  renderCatalog();
+
+  const catalogSec = document.getElementById("catalog");
+  if (catalogSec) {
+    catalogSec.scrollIntoView({ behavior: "smooth" });
+  }
+}
+
+function showCategoriesView(updateHistory = true) {
+  currentCategorySlug = null;
+  const homeView = document.getElementById("homepageCategoriesView");
+  const detailView = document.getElementById("categoryDetailView");
+
+  if (homeView) homeView.style.display = "block";
+  if (detailView) detailView.style.display = "none";
+
+  // Step 8: Reset SEO title & description
+  if (defaultDocumentTitle) {
+    document.title = defaultDocumentTitle;
+  }
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc) {
+    metaDesc.setAttribute("content", "THEHAMMER provides heavy-duty industrial water pumps, NFPA-20 fire fighting pump sets, electric motors, diesel pumps, jockey pumps, and pressure booster stations.");
+  }
+
+  const categorySelect = document.getElementById("categoryFilter");
+  if (categorySelect) categorySelect.value = "all";
+
+  if (updateHistory && window.history && window.history.pushState) {
+    const newUrl = window.location.pathname + window.location.hash;
+    window.history.pushState({ categorySlug: null }, "", newUrl);
+  }
+
+  renderCategoryCards();
+
+  const catalogSec = document.getElementById("catalog");
+  if (catalogSec) {
+    catalogSec.scrollIntoView({ behavior: "smooth" });
+  }
+}
+
+function checkURLCategoryOnLoad() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const catParam = urlParams.get("category");
+  if (catParam && catParam !== "all") {
+    openCategoryPage(catParam, false);
+  } else {
+    showCategoriesView(false);
+  }
+}
+
 /* Catalog Render */
 function renderCategoryFilter() {
   const categories = window.store ? window.store.getCategories() : [];
@@ -317,7 +576,15 @@ function renderCatalog() {
   const grid = document.getElementById("catalogGrid");
   if (!grid) return;
 
-  const products = window.store ? window.store.getProducts() : [];
+  const currentLang = window.i18n ? window.i18n.currentLang : "en";
+  let products = [];
+
+  if (currentCategorySlug && window.store) {
+    products = window.store.getProductsForCategory(currentCategorySlug);
+  } else {
+    products = window.store ? window.store.getProducts() : [];
+  }
+
   const searchVal = (document.getElementById("catalogSearchInput")?.value || "")
     .toLowerCase()
     .trim();
@@ -327,15 +594,13 @@ function renderCatalog() {
   const availVal =
     document.getElementById("availabilityFilter")?.value || "all";
 
-  const currentLang = window.i18n ? window.i18n.currentLang : "en";
-
   const filtered = products.filter((p) => {
     if (!p.active) return false;
 
-    // Category match
-    const matchesCategory =
-      categoryVal === "all" || p.categoryId === categoryVal;
-    if (!matchesCategory) return false;
+    // Category match if explicitly set in select
+    if (!currentCategorySlug && categoryVal !== "all") {
+      if (p.categoryId !== categoryVal) return false;
+    }
 
     // Flow GPM match
     const matchesFlow = flowVal === "all" || String(p.qGpm) === flowVal;
@@ -354,7 +619,7 @@ function renderCatalog() {
     }
     if (!matchesAvail) return false;
 
-    // Search query matches (space-tolerant, case-insensitive)
+    // Search query matches
     if (searchVal) {
       const targetSearchable =
         `${p.model} ${p.qGpm} gpm ${p.hBar} bar ${p.electricPump} ${p.dieselPump} ${p.jockeyPump} ${p.configuration}`.toLowerCase();
@@ -369,27 +634,46 @@ function renderCatalog() {
     return true;
   });
 
-  // Update product count
+  // Update Category Page count header & result counts using i18n translation key
+  const countText = window.i18n
+    ? window.i18n.t("catalog.foundProducts", { count: filtered.length }, `Found ${filtered.length} Products`)
+    : `Found ${filtered.length} Products`;
+
+  const selectedCategoryCountEl = document.getElementById("selectedCategoryCount");
+  if (selectedCategoryCountEl) {
+    selectedCategoryCountEl.textContent = countText;
+  }
+
   const countEl = document.getElementById("catalogProductCount");
   if (countEl) {
-    let countText = "";
-    if (currentLang === "ar") {
-      countText = `تم العثور على ${filtered.length} منتج`;
-    } else if (currentLang === "it") {
-      countText = `${filtered.length} ${filtered.length === 1 ? "Prodotto trovato" : "Prodotti trovati"}`;
-    } else {
-      countText = `${filtered.length} ${filtered.length === 1 ? "Product Found" : "Products Found"}`;
-    }
     countEl.textContent = countText;
   }
 
   if (filtered.length === 0) {
-    grid.innerHTML = `
-      <div class="catalog-empty-state">
-        <i data-lucide="droplet-off" class="catalog-empty-icon"></i>
-        <h3>${window.i18n.t("catalog.noResults")}</h3>
-      </div>
-    `;
+    if (products.length === 0) {
+      grid.innerHTML = `
+        <div class="coming-soon-container">
+          <div class="coming-soon-card reveal reveal-up">
+            <div class="coming-soon-icon-wrapper">
+              <i data-lucide="clock" class="coming-soon-icon"></i>
+            </div>
+            <h3 class="coming-soon-title">${window.i18n.t("catalog.comingSoonTitle")}</h3>
+            <p class="coming-soon-desc">${window.i18n.t("catalog.comingSoonDesc")}</p>
+            <button class="btn btn-primary btn-md coming-soon-btn" onclick="openQuoteModal()">
+              <i data-lucide="mail" style="width:16px;height:16px;"></i>
+              ${window.i18n.t("catalog.contactSales")}
+            </button>
+          </div>
+        </div>
+      `;
+    } else {
+      grid.innerHTML = `
+        <div class="catalog-empty-state">
+          <i data-lucide="droplet-off" class="catalog-empty-icon"></i>
+          <h3>${window.i18n.t("catalog.noResults")}</h3>
+        </div>
+      `;
+    }
     if (window.lucide) {
       lucide.createIcons();
     }

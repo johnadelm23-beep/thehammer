@@ -22,45 +22,122 @@ const SEED_DATA = {
   },
   categories: [
     {
-      id: "cat-wp",
-      nameEN: "Water Pumps",
-      nameIT: "Pompe per Acqua",
-      nameAR: "مواتير ومضخات المياه",
-      slug: "water-pumps",
-      icon: "droplet",
-    },
-    {
       id: "cat-ff",
-      nameEN: "Fire Pump Sets",
-      nameIT: "Gruppi Pompe Antincendio",
-      nameAR: "مجموعات مضخات الحريق",
       slug: "fire-fighting-pumps",
+      filterTag: "fire-fighting",
       icon: "flame",
+      image: "images/system_fire_pumb.jpeg",
+      nameEN: "Fire Fighting Pumps",
+      nameIT: "Pompe Antincendio",
+      nameAR: "مضخات مكافحة الحريق",
+      descEN: "Certified NFPA-20 fire fighting pump packages, diesel drives, and pressure maintenance systems.",
+      descIT: "Gruppi pompe antincendio certificati NFPA-20 con azionamenti diesel e sistemi jockey.",
+      descAR: "مجموعات وأنظمة مضخات مكافحة الحريق المعتمدة وفق معايير NFPA-20 مع محركات الديزل وأنظمة الضغط."
     },
     {
-      id: "cat-em",
-      nameEN: "Electric Motors",
-      nameIT: "Motori Elettrici",
-      nameAR: "المحركات الكهربائية",
-      slug: "electric-motors",
-      icon: "zap",
-    },
-    {
-      id: "cat-ps",
-      nameEN: "Pressure Systems",
+      id: "cat-booster",
+      slug: "booster-systems",
+      filterTag: "booster",
+      icon: "gauge",
+      image: "images/Booster-Systems.png",
+      nameEN: "Booster Systems",
       nameIT: "Sistemi di Pressurizzazione",
       nameAR: "أنظمة ضغط المياه",
-      slug: "pressure-systems",
-      icon: "gauge",
+      descEN: "Automated pressure booster stations for high-rise buildings and industrial water networks.",
+      descIT: "Stazioni di pressurizzazione automatiche per edifici alti e reti idriche industriali.",
+      descAR: "محطات ضغط المياه الأوتوماتيكية للمباني العالية والشبكات الصناعية."
     },
     {
-      id: "cat-pa",
-      nameEN: "Pump Accessories",
-      nameIT: "Accessori e Componenti",
-      nameAR: "ملحقات ومكونات المضخات",
-      slug: "pump-accessories",
-      icon: "sliders",
+      id: "cat-centrifugal",
+      slug: "centrifugal-pumps",
+      filterTag: "centrifugal",
+      icon: "refresh-cw",
+      image: "images/Centrifugal-Pumps.png",
+      nameEN: "Centrifugal Pumps",
+      nameIT: "Pompe Centrifughe",
+      nameAR: "مضخات طاردة مركزية",
+      descEN: "High-efficiency heavy duty centrifugal water pumps for industrial fluid transfer.",
+      descIT: "Pompe idrauliche centrifughe ad alta efficienza per il trasferimento di fluidi industriali.",
+      descAR: "مضخات مياه طاردة مركزية عالية الكفاءة لنقل السوائل الصناعية."
     },
+    {
+      id: "cat-end-suction",
+      slug: "end-suction-pumps",
+      filterTag: "end-suction",
+      icon: "arrow-right-circle",
+      image: "images/end-section-pumb.jpg",
+      nameEN: "End Suction Pumps",
+      nameIT: "Pompe End Suction",
+      nameAR: "مضخات السحب الطرفي",
+      descEN: "Single-stage horizontal end suction pumps designed to ISO/EN standard specifications.",
+      descIT: "Pompe monostadio ad aspirazione frontale progettate secondo standard ISO/EN.",
+      descAR: "مضخات أفقية أحادية المرحلة مصممة وفقًا لمعايير ISO/EN القياسية."
+    },
+    {
+      id: "cat-split-case",
+      slug: "split-case-pumps",
+      filterTag: "split-case",
+      icon: "layers",
+      image: "images/Split-Case-Pumps.png",
+      nameEN: "Split Case Pumps",
+      nameIT: "Pompe a Cassa Divisa",
+      nameAR: "مضخات انقسام العلبة",
+      descEN: "Double suction split case pumps for high volume water flow and utility installations.",
+      descIT: "Pompe a doppia aspirazione a cassa divisa per grandi portate e impianti idrici.",
+      descAR: "مضخات مزدوجة السحب ذات تدفق مرتفع للمشروعات والشبكات الكبرى."
+    },
+    {
+      id: "cat-vertical-multistage",
+      slug: "vertical-multistage-pumps",
+      filterTag: "vertical-multistage",
+      icon: "bar-chart-2",
+      image: "images/Vertical-Multistage-Pumps.png",
+      nameEN: "Vertical Multistage Pumps",
+      nameIT: "Pompe Multistadio Verticali",
+      nameAR: "مضخات رأسية متعددة المراحل",
+      descEN: "High head vertical multistage stainless steel pumps for industrial pressure boosting.",
+      descIT: "Pompe verticali multistadio in acciaio inossidabile ad alta prevalenza.",
+      descAR: "مضخات رأسية متعددة المراحل من الستانلس ستيل لضغط الارتفاع العالي."
+    },
+    {
+      id: "cat-electric",
+      slug: "electric-pumps",
+      filterTag: "electric",
+      icon: "zap",
+      image: "images/Electric-Pumps.png",
+      nameEN: "Electric Pumps",
+      nameIT: "Elettropompe",
+      nameAR: "المضخات الكهربائية",
+      descEN: "High-efficiency electric motor-driven pump packages for continuous industrial operation.",
+      descIT: "Gruppi elettropompa con motori ad alta efficienza per funzionamento continuo.",
+      descAR: "مجموعات مضخات تعمل بمحركات كهربائية عالية الكفاءة للتشغيل المستمر."
+    },
+    {
+      id: "cat-diesel",
+      slug: "diesel-pumps",
+      filterTag: "diesel",
+      icon: "fuel",
+      image: "images/PSD-Diesel-Pump.jpeg",
+      nameEN: "Diesel Pumps",
+      nameIT: "Motopompe Diesel",
+      nameAR: "مضخات الديزل",
+      descEN: "Heavy-duty diesel engine-driven emergency water and fire pump packages.",
+      descIT: "Gruppi motopompa diesel per servizi di emergenza e antincendio.",
+      descAR: "مجموعات مضخات تعمل بمحركات الديزل للطوارئ وأنظمة الحريق."
+    },
+    {
+      id: "cat-jockey",
+      slug: "jockey-pumps",
+      filterTag: "jockey",
+      icon: "activity",
+      image: "images/PV-Jockey-Pump.jpg",
+      nameEN: "Jockey Pumps",
+      nameIT: "Pompe Jockey",
+      nameAR: "مضخات الجوكي",
+      descEN: "Auxiliary pressure maintenance jockey pumps for automated fire main stabilization.",
+      descIT: "Pompe jockey ausiliarie per la stabilizzazione della pressione della rete antincendio.",
+      descAR: "مضخات جوكي مساعدة للحفاظ على ضغط شبكة مكافحة الحريق باستمرار."
+    }
   ],
   brands: [
     {
@@ -1461,15 +1538,31 @@ class HammerStore {
       }
 
       // Sync categories
-      const categories = this.getCategories();
+      let categories = this.getCategories();
       let catsChanged = false;
-      categories.forEach((c) => {
-        const seedC = SEED_DATA.categories.find((sc) => sc.id === c.id);
-        if (seedC && !c.nameAR) {
-          c.nameAR = seedC.nameAR;
-          catsChanged = true;
-        }
-      });
+
+      // If categories missing or outdated, update with SEED_DATA
+      if (!categories || categories.length < SEED_DATA.categories.length) {
+        categories = [...SEED_DATA.categories];
+        catsChanged = true;
+      } else {
+        SEED_DATA.categories.forEach((sc) => {
+          const idx = categories.findIndex((c) => c.id === sc.id || c.slug === sc.slug);
+          if (idx === -1) {
+            categories.push(sc);
+            catsChanged = true;
+          } else {
+            // Update fields if missing
+            ["filterTag", "image", "descEN", "descIT", "descAR", "slug", "icon"].forEach((key) => {
+              if (!categories[idx][key] && sc[key]) {
+                categories[idx][key] = sc[key];
+                catsChanged = true;
+              }
+            });
+          }
+        });
+      }
+
       if (catsChanged) {
         this.setItem("categories", categories);
       }
@@ -1565,6 +1658,47 @@ class HammerStore {
 
   getCategories() {
     return this.getItem("categories");
+  }
+
+  getCategoryBySlug(slug) {
+    if (!slug) return null;
+    const categories = this.getCategories();
+    return categories.find(
+      (c) =>
+        c.slug === slug ||
+        c.id === slug ||
+        c.slug.toLowerCase().includes(slug.toLowerCase()) ||
+        slug.toLowerCase().includes(c.slug.toLowerCase())
+    ) || null;
+  }
+
+  getProductsForCategory(categoryOrSlug) {
+    const products = this.getProducts().filter((p) => p.active !== false);
+    if (!categoryOrSlug || categoryOrSlug === "all") return products;
+
+    let catObj = null;
+    if (typeof categoryOrSlug === "object") {
+      catObj = categoryOrSlug;
+    } else {
+      catObj = this.getCategoryBySlug(categoryOrSlug);
+    }
+
+    const catId = catObj ? catObj.id : categoryOrSlug;
+    const catSlug = catObj ? catObj.slug : categoryOrSlug;
+    const filterTag = catObj ? catObj.filterTag : "";
+
+    return products.filter((p) => {
+      // 100% Dynamic category matching based on product category ID or slug
+      if (p.categoryId === catId || p.categoryId === catSlug) return true;
+      if (catObj && p.categoryId === catObj.id) return true;
+
+      // Category filter tag fallback for fire fighting pumps
+      if (filterTag === "fire-fighting" && (p.categoryId === "cat-ff" || p.categoryId === "fire-fighting-pumps")) {
+        return true;
+      }
+
+      return false;
+    });
   }
   getBrands() {
     return this.getItem("brands");
