@@ -1,0 +1,697 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Category Products | THEHAMMER</title>
+
+    <!-- Basic SEO -->
+    <meta
+      name="description"
+      content="Browse industrial water pumps, fire fighting pump sets, electric motors, diesel pumps, jockey pumps, and pressure booster stations by category."
+    />
+    <meta
+      name="keywords"
+      content="THEHAMMER, industrial water pumps, fire fighting pumps, NFPA-20 pump sets, electric motors, diesel pumps, jockey pumps, pressure booster stations"
+    />
+    <meta name="author" content="THEHAMMER Industrial Water Pump Solutions" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://thehammer.uk/" />
+
+    <!-- Preconnect & DNS-Prefetch -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+
+    <!-- Favicon & PWA -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="images/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/icons/icon-192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="images/icons/icon-512.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#C8102E">
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="animations.css" />
+
+    <!-- Theme Script -->
+    <script>
+      (function () {
+        const savedTheme = localStorage.getItem("hammer_theme") || "light";
+        document.documentElement.setAttribute("data-theme", savedTheme);
+      })();
+    </script>
+
+    <!-- Logo Error Handler -->
+    <script>
+      function handleLogoError(image) {
+        image.style.display = "none";
+        const container = image.parentElement;
+        if (container) {
+          const fallbackSpan = container.querySelector(".logo-text-fallback");
+          if (fallbackSpan) {
+            fallbackSpan.style.display = "inline-flex";
+          }
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <!-- ==========================================================================
+       HEADER & NAVIGATION
+       ========================================================================== -->
+    <header class="site-header">
+      <div class="container nav-wrapper">
+        <a
+          href="index.html"
+          class="site-logo"
+          aria-label="Go to The Hammer home page"
+        >
+          <img
+            src="images/logo-dark-mode.png"
+            data-light-logo="images/One_Png1.png"
+            data-dark-logo="images/logo-dark-mode.png"
+            alt="The Hammer"
+            class="theme-responsive-logo site-logo-image"
+            decoding="async"
+            onerror="handleLogoError(this)"
+          />
+          <span class="logo-text-fallback">
+            THE<span style="color: var(--primary-red)">HAMMER</span>
+          </span>
+        </a>
+
+        <nav class="main-nav">
+          <a href="index.html" class="nav-link" data-i18n="nav.home">Home</a>
+          <a href="index.html#catalog" class="nav-link active" data-i18n="nav.products">Products Catalog</a>
+          <a href="index.html#about" class="nav-link" data-i18n="nav.about">About Us</a>
+          <a href="index.html#certificates" class="nav-link" data-i18n="nav.certificates">Certificates</a>
+          <a href="index.html#downloads" class="nav-link" data-i18n="nav.downloads">Downloads</a>
+          <a href="index.html#contact" class="nav-link" data-i18n="nav.contact">Contact</a>
+        </nav>
+
+        <div class="header-actions">
+          <!-- Language Switcher -->
+          <div class="lang-switcher lang-switcher-wrapper">
+            <button
+              class="btn btn-secondary btn-sm"
+              id="langToggleBtn"
+              onclick="toggleLangDropdown()"
+            >
+              <i data-lucide="globe" style="width: 16px"></i>
+              <span id="currentLangLabel">🇬🇧 EN</span>
+              <i data-lucide="chevron-down" style="width: 14px"></i>
+            </button>
+            <div class="lang-dropdown" id="langDropdown">
+              <div onclick="switchLanguage('en')" class="lang-dropdown-item">
+                🇬🇧 English
+              </div>
+              <div onclick="switchLanguage('it')" class="lang-dropdown-item">
+                🇮🇹 Italiano
+              </div>
+              <div onclick="switchLanguage('ar')" class="lang-dropdown-item">
+                🇪🇬 العربية
+              </div>
+            </div>
+          </div>
+
+          <!-- Dark Mode Toggle -->
+          <button
+            class="btn btn-secondary btn-sm"
+            onclick="toggleDarkMode()"
+            title="Toggle Dark Mode"
+          >
+            <i data-lucide="moon" id="themeIcon" style="width: 16px"></i>
+          </button>
+
+          <!-- Request Quote CTA / Quote List -->
+          <button
+            class="btn btn-primary quote-list-btn"
+            onclick="openQuoteListModal()"
+            id="quoteListHeaderBtn"
+          >
+            <i data-lucide="shopping-cart" style="width: 18px"></i>
+            <span class="quote-btn-text" data-i18n="nav.requestQuote">Request a Quote</span>
+            <span id="quoteListBadge" class="quote-badge">0</span>
+          </button>
+
+          <!-- Mobile Menu Toggle -->
+          <button
+            class="mobile-menu-toggle"
+            onclick="toggleMobileMenu()"
+            aria-label="Toggle mobile menu"
+            aria-expanded="false"
+            aria-controls="mobileNavDrawer"
+          >
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Menu Drawer -->
+    <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-hidden="true">
+      <div class="mobile-nav-overlay" onclick="closeMobileMenu()"></div>
+      <div class="mobile-nav-content">
+        <div class="mobile-nav-header">
+          <a
+            href="index.html"
+            class="site-logo"
+            onclick="closeMobileMenu()"
+            aria-label="Go to The Hammer home page"
+          >
+            <img
+              src="images/One_Png1.png"
+              data-light-logo="images/One_Png1.png"
+              data-dark-logo="images/logo-dark-mode.png"
+              alt="The Hammer"
+              class="theme-responsive-logo mobile-menu-logo-image"
+              decoding="async"
+              onerror="handleLogoError(this)"
+            />
+            <span class="logo-text-fallback">
+              THE<span style="color: var(--primary-red)">HAMMER</span>
+            </span>
+          </a>
+          <button
+            class="mobile-nav-close"
+            onclick="closeMobileMenu()"
+            aria-label="Close menu"
+          >
+            &times;
+          </button>
+        </div>
+        <div class="mobile-nav-body">
+          <nav class="mobile-nav-links">
+            <a
+              href="index.html"
+              class="mobile-nav-link"
+              onclick="closeMobileMenu()"
+              data-i18n="nav.home"
+              >Home</a
+            >
+            <a
+              href="index.html#catalog"
+              class="mobile-nav-link"
+              onclick="closeMobileMenu()"
+              data-i18n="nav.products"
+              >Products Catalog</a
+            >
+            <a
+              href="index.html#about"
+              class="mobile-nav-link"
+              onclick="closeMobileMenu()"
+              data-i18n="nav.about"
+              >About Us</a
+            >
+            <a
+              href="index.html#certificates"
+              class="mobile-nav-link"
+              onclick="closeMobileMenu()"
+              data-i18n="nav.certificates"
+              >Certificates</a
+            >
+            <a
+              href="index.html#downloads"
+              class="mobile-nav-link"
+              onclick="closeMobileMenu()"
+              data-i18n="nav.downloads"
+              >Downloads</a
+            >
+            <a
+              href="index.html#contact"
+              class="mobile-nav-link"
+              onclick="closeMobileMenu()"
+              data-i18n="nav.contact"
+              >Contact</a
+            >
+          </nav>
+
+          <div class="mobile-nav-divider"></div>
+
+          <div class="mobile-nav-controls">
+            <div class="mobile-lang-section">
+              <span class="mobile-lang-label" data-i18n="nav.language">Language</span>
+              <div class="mobile-lang-buttons">
+                <button
+                  class="btn btn-secondary btn-sm mobile-lang-btn"
+                  onclick="switchLanguage('en'); closeMobileMenu();"
+                >
+                  🇬🇧 EN
+                </button>
+                <button
+                  class="btn btn-secondary btn-sm mobile-lang-btn"
+                  onclick="switchLanguage('it'); closeMobileMenu();"
+                >
+                  🇮🇹 IT
+                </button>
+                <button
+                  class="btn btn-secondary btn-sm mobile-lang-btn"
+                  onclick="switchLanguage('ar'); closeMobileMenu();"
+                >
+                  🇪🇬 AR
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================================================
+       MAIN CONTENT CONTAINER
+       ========================================================================== -->
+    <main id="main-content">
+      <section id="catalog" class="section">
+        <div class="container">
+          <div id="categoryDetailView">
+            <!-- Breadcrumbs -->
+            <nav class="breadcrumbs-container reveal reveal-up" aria-label="Breadcrumbs">
+              <ol class="breadcrumbs-list">
+                <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+                <li class="breadcrumb-separator" aria-hidden="true">&gt;</li>
+                <li><a href="index.html#catalog" data-i18n="nav.products">Products</a></li>
+                <li class="breadcrumb-separator" aria-hidden="true">&gt;</li>
+                <li class="breadcrumb-active" id="breadcrumbCategoryName">Category Name</li>
+              </ol>
+            </nav>
+
+            <div class="category-page-header reveal reveal-up">
+              <h1 class="category-page-title" id="selectedCategoryTitle">Category Name</h1>
+              <p class="category-page-desc" id="selectedCategoryDesc">Category Description</p>
+              <div class="category-page-count" id="selectedCategoryCount">Found 0 Products</div>
+            </div>
+
+            <!-- Product Filters & Search -->
+            <div class="catalog-filters reveal reveal-up">
+              <input
+                type="text"
+                id="catalogSearchInput"
+                class="form-input search-input-wrapper"
+                placeholder="Search by pump model, flow rate, head, pump codes..."
+                data-i18n-placeholder="catalog.searchPlaceholder"
+                oninput="renderCatalog()"
+              />
+              <select
+                id="categoryFilter"
+                class="form-select filter-select"
+                style="display: none;"
+                onchange="renderCatalog()"
+              >
+                <option value="all" data-i18n="catalog.allCategories">All Categories</option>
+              </select>
+              <select
+                id="flowRateFilter"
+                class="form-select filter-select"
+                onchange="renderCatalog()"
+              >
+                <option value="all" data-i18n="catalog.allFlowRates">All Flow Rates</option>
+              </select>
+              <select
+                id="headFilter"
+                class="form-select filter-select"
+                onchange="renderCatalog()"
+              >
+                <option value="all" data-i18n="catalog.allHeads">All Head Pressures</option>
+              </select>
+              <select
+                id="availabilityFilter"
+                class="form-select filter-select"
+                onchange="renderCatalog()"
+              >
+                <option value="all" data-i18n="catalog.allCouplings">All Coupling Types</option>
+                <option value="close" data-i18n="catalog.closeCoupledAvailable">Close Coupled Available</option>
+                <option value="separate" data-i18n="catalog.separateCoupledAvailable">Separate Coupled Available</option>
+              </select>
+              <button
+                id="clearFiltersBtn"
+                class="btn btn-secondary btn-sm btn-reset-filters"
+                onclick="resetFilters()"
+                data-i18n="catalog.reset"
+              >
+                Reset
+              </button>
+              <div id="catalogProductCount" class="catalog-results-count" style="display: none;">
+                0 Products Found
+              </div>
+            </div>
+
+            <!-- Catalog Products Grid -->
+            <div class="grid grid-cols-3" id="catalogGrid">
+              <!-- Dynamically rendered Product Cards -->
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+    <footer class="site-footer" id="footer">
+      <div class="container">
+        <div class="grid grid-cols-4 footer-grid reveal reveal-up">
+          <div class="stagger-item">
+            <div class="footer-logo-wrapper">
+              <a href="index.html" aria-label="Go to The Hammer home page">
+                <img
+                  src="images/darkmodelogo.png"
+                  alt="The Hammer"
+                  class="footer-logo-image"
+                  loading="lazy"
+                  onerror="handleLogoError(this)"
+                />
+                <span class="logo-text-fallback">
+                  THE<span style="color: var(--primary-red)">HAMMER</span>
+                </span>
+              </a>
+            </div>
+            <p class="footer-text" data-i18n="footer.companyDesc">
+              THEHAMMER is a global manufacturer of heavy-duty industrial water
+              pumps, fire protection pump sets, electric motors, and pressure
+              boosting systems.
+            </p>
+          </div>
+
+          <div class="stagger-item">
+            <h4 class="footer-heading">Navigation</h4>
+            <ul class="footer-list">
+              <li class="footer-list-item">
+                <a href="index.html#catalog" class="footer-link">Products Catalog</a>
+              </li>
+              <li class="footer-list-item">
+                <a href="index.html#certificates" class="footer-link">NFPA & ISO Certificates</a>
+              </li>
+              <li class="footer-list-item">
+                <a href="index.html#downloads" class="footer-link">CAD & Engineering Center</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="stagger-item">
+            <h4 class="footer-heading">Global Headquarters</h4>
+            <p class="footer-contact-item">
+              <i data-lucide="map-pin" class="footer-icon"></i>
+              Works Avenue 100, London, UK
+            </p>
+            <p class="footer-contact-item">
+              <i data-lucide="phone" class="footer-icon"></i>
+              +20 12 03666634
+            </p>
+            <p class="footer-contact-item">
+              <i data-lucide="mail" class="footer-icon"></i>
+              rfq@thehammer-pumps.com
+            </p>
+          </div>
+
+          <div class="stagger-item">
+            <h4 class="footer-heading">Direct Pump Support</h4>
+            <button
+              class="btn whatsapp-button btn-sm"
+              onclick="openWhatsAppQuote('General Pump Enquiry', 'THEHAMMER-HQ')"
+            >
+              <span class="whatsapp-icon" aria-hidden="true"
+                ><svg
+                  viewBox="0 0 448 512"
+                  xmlns="http://www.w3.org/2000/svg"
+                  focusable="false"
+                >
+                  <path
+                    d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"
+                  ></path></svg
+              ></span>
+              WhatsApp Support
+            </button>
+          </div>
+        </div>
+
+        <div class="footer-bottom reveal reveal-up">
+          <p data-i18n="footer.rights">
+            © 2026 THEHAMMER Industrial Water Pump Solutions. All Rights Reserved.
+          </p>
+          <p class="footer-attribution">
+            Developed by
+            <a
+              href="https://my-protofolio-orpin.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="footer-portfolio-link"
+            >
+              JohnAdel <i data-lucide="external-link" class="footer-attribution-icon"></i>
+            </a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Request Quote Modal -->
+    <div class="modal-backdrop" id="quoteModal">
+      <div class="modal-container">
+        <div class="modal-header">
+          <div class="quote-form-branding">
+            <img
+              src="images/One_Png1.png"
+              data-light-logo="images/One_Png1.png"
+              data-dark-logo="images/logo-dark-mode.png"
+              alt="The Hammer"
+              class="theme-responsive-logo quote-logo"
+              decoding="async"
+              onerror="handleLogoError(this)"
+            />
+            <span class="logo-text-fallback">
+              THE<span style="color: var(--primary-red)">HAMMER</span>
+            </span>
+            <div>
+              <h3 class="modal-title" data-i18n="quoteModal.title">
+                Request a Quotation | THEHAMMER
+              </h3>
+              <p class="modal-subtitle" data-i18n="quoteModal.subtitle">
+                Complete the technical inquiry below. Our pump engineers respond
+                within 24 business hours.
+              </p>
+            </div>
+          </div>
+          <button onclick="closeQuoteModal()" class="modal-close">
+            &times;
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <form id="quoteForm" onsubmit="handleQuoteSubmit(event)">
+            <div class="grid grid-cols-2">
+              <div class="form-group">
+                <label class="form-label" data-i18n="quoteModal.companyName">Company / Project Name *</label>
+                <input
+                  type="text"
+                  id="quoteCompany"
+                  class="form-input"
+                  required
+                  data-i18n-placeholder="quoteModal.companyPlaceholder"
+                  placeholder="e.g. Thames Water / Veolia"
+                />
+                <span class="error-msg" id="error-quoteCompany"></span>
+              </div>
+              <div class="form-group">
+                <label class="form-label" data-i18n="quoteModal.fullName">Full Name *</label>
+                <input
+                  type="text"
+                  id="quoteName"
+                  class="form-input"
+                  required
+                  data-i18n-placeholder="quoteModal.namePlaceholder"
+                  placeholder="e.g. Eng. David Sterling"
+                />
+                <span class="error-msg" id="error-quoteName"></span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2">
+              <div class="form-group">
+                <label class="form-label" data-i18n="quoteModal.email">Corporate Email Address *</label>
+                <input
+                  type="email"
+                  id="quoteEmail"
+                  class="form-input"
+                  required
+                  data-i18n-placeholder="quoteModal.emailPlaceholder"
+                  placeholder="engineering@company.com"
+                />
+                <span class="error-msg" id="error-quoteEmail"></span>
+              </div>
+              <div class="form-group">
+                <label class="form-label" data-i18n="quoteModal.phone">Phone Number (with Country Code) *</label>
+                <input
+                  type="tel"
+                  id="quotePhone"
+                  class="form-input"
+                  required
+                  data-i18n-placeholder="quoteModal.phonePlaceholder"
+                  placeholder="+20 12 03666634"
+                />
+                <span class="error-msg" id="error-quotePhone"></span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2">
+              <div class="form-group">
+                <label class="form-label" data-i18n="quoteModal.country">Country / Installation Region *</label>
+                <input
+                  type="text"
+                  id="quoteCountry"
+                  class="form-input"
+                  required
+                  data-i18n-placeholder="quoteModal.countryPlaceholder"
+                  placeholder="United Kingdom / Italy / UAE"
+                />
+                <span class="error-msg" id="error-quoteCountry"></span>
+              </div>
+              <div class="form-group">
+                <label class="form-label" data-i18n="quoteModal.quantity">Required Quantity (Units) *</label>
+                <input
+                  type="number"
+                  id="quoteQuantity"
+                  class="form-input"
+                  min="1"
+                  value="1"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" data-i18n="quoteModal.selectedProduct">Selected Pump Model & Specs</label>
+              <input
+                type="text"
+                id="quoteSelectedProduct"
+                class="form-input form-input-readonly"
+                readonly
+                placeholder="General Hydraulic Inquiry"
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" data-i18n="quoteModal.message">Message / Technical Conditions</label>
+              <textarea
+                id="quoteMessage"
+                class="form-textarea"
+                rows="3"
+                data-i18n-placeholder="quoteModal.messagePlaceholder"
+                placeholder="Specify required flow rate, head pressure, or fluid temp..."
+              ></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button
+                type="button"
+                class="btn btn-secondary btn-cancel"
+                onclick="closeQuoteModal()"
+                data-i18n="quoteModal.cancelBtn"
+              >
+                Cancel
+              </button>
+              <button type="submit" class="btn btn-primary" id="quoteSubmitBtn">
+                <i data-lucide="send" style="width: 18px"></i>
+                <span data-i18n="quoteModal.submitBtn">Submit Request</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quote List Drawer / Modal -->
+    <div class="modal-backdrop" id="quoteListModal">
+      <div class="modal-container modal-lg">
+        <div class="modal-header">
+          <div class="quote-form-branding">
+            <img
+              src="images/One_Png1.png"
+              data-light-logo="images/One_Png1.png"
+              data-dark-logo="images/logo-dark-mode.png"
+              alt="The Hammer"
+              class="theme-responsive-logo quote-logo"
+              decoding="async"
+              onerror="handleLogoError(this)"
+            />
+            <span class="logo-text-fallback">
+              THE<span style="color: var(--primary-red)">HAMMER</span>
+            </span>
+            <div>
+              <h3 class="modal-title" data-i18n="quoteList.title">Quote List</h3>
+              <p class="modal-subtitle" data-i18n="quoteList.emptyDescription">
+                Add products to request pricing and technical details.
+              </p>
+            </div>
+          </div>
+          <button onclick="closeQuoteListModal()" class="modal-close">
+            &times;
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <div id="quoteListContainer"></div>
+          <div class="modal-empty-state" id="quoteListEmptyState">
+            <i data-lucide="shopping-cart" class="modal-empty-icon"></i>
+            <p class="modal-empty-text" data-i18n="quoteList.emptyTitle">
+              Your quote list is empty
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Spec Detail Modal -->
+    <div class="modal-backdrop" id="productDetailModal">
+      <div class="modal-container modal-lg">
+        <div class="modal-header">
+          <div>
+            <span class="product-model" id="detailModel">Model</span>
+            <h3 class="modal-title" id="detailName">Product Name</h3>
+          </div>
+          <button onclick="closeProductDetailModal()" class="modal-close">
+            &times;
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <div id="detailBreakdownContainer" class="modal-breakdown-grid"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Image Lightbox Modal -->
+    <div
+      id="imageLightbox"
+      class="image-lightbox"
+      aria-hidden="true"
+      role="dialog"
+      aria-label="Product Image Viewer"
+    >
+      <button class="image-lightbox-close" type="button" aria-label="Close image">&times;</button>
+      <img id="imageLightboxPreview" src="" alt="Product preview" />
+    </div>
+
+    <!-- Scripts -->
+    <script defer src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+    <script defer src="js/i18n.js"></script>
+    <script defer src="js/store.js"></script>
+    <script defer src="js/media-manager.js"></script>
+    <script defer src="js/app.js"></script>
+    <script defer src="js/animations.js"></script>
+
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        if (window.lucide) {
+          lucide.createIcons();
+        }
+      });
+    </script>
+  </body>
+</html>

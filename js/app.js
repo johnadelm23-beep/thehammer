@@ -391,18 +391,27 @@ function openCategoryPage(slug, updateHistory = true, scrollToTop = true) {
   if (!window.store) return;
   const cat = window.store.getCategoryBySlug(slug);
 
-  const homeView = document.getElementById("homepageCategoriesView");
-  const detailView = document.getElementById("categoryDetailView");
-
   if (!cat) {
-    showCategoriesView(false);
+    if (window.location.pathname.includes("category.html")) {
+      window.location.href = "index.html";
+    } else {
+      showCategoriesView(false);
+    }
     return;
   }
 
-  // Always reset search inputs & filter selections on category navigation for complete isolation
-  resetFiltersSilent();
+  // If clicked from index.html (or another page), navigate to category.html?category=slug
+  const isCategoryPage = window.location.pathname.includes("category.html");
+  if (!isCategoryPage && updateHistory) {
+    window.location.href = `category.html?category=${encodeURIComponent(cat.slug)}`;
+    return;
+  }
 
+  resetFiltersSilent();
   currentCategorySlug = cat.slug;
+
+  const homeView = document.getElementById("homepageCategoriesView");
+  const detailView = document.getElementById("categoryDetailView");
 
   if (homeView) homeView.style.display = "none";
   if (detailView) detailView.style.display = "block";
@@ -434,9 +443,8 @@ function openCategoryPage(slug, updateHistory = true, scrollToTop = true) {
   const categorySelect = document.getElementById("categoryFilter");
   if (categorySelect) categorySelect.value = cat.id || cat.slug;
 
-  // Update URL to dedicated category page (/category/fire-fighting-pumps, etc.)
-  if (updateHistory && window.history && window.history.pushState) {
-    const targetUrl = `/category/${cat.slug}`;
+  if (updateHistory && window.history && window.history.pushState && isCategoryPage) {
+    const targetUrl = `category.html?category=${encodeURIComponent(cat.slug)}`;
     window.history.pushState({ categorySlug: cat.slug }, "", targetUrl);
   }
 
@@ -450,6 +458,12 @@ function openCategoryPage(slug, updateHistory = true, scrollToTop = true) {
 }
 
 function showCategoriesView(updateHistory = true, scrollToTop = false) {
+  const isCategoryPage = window.location.pathname.includes("category.html");
+  if (isCategoryPage) {
+    window.location.href = "index.html#catalog";
+    return;
+  }
+
   currentCategorySlug = null;
   resetFiltersSilent();
 
@@ -472,7 +486,7 @@ function showCategoriesView(updateHistory = true, scrollToTop = false) {
   if (categorySelect) categorySelect.value = "all";
 
   if (updateHistory && window.history && window.history.pushState) {
-    const newUrl = window.location.pathname.includes('/category/') ? '/' : (window.location.pathname + window.location.hash);
+    const newUrl = "index.html" + window.location.hash;
     window.history.pushState({ categorySlug: null }, "", newUrl);
   }
 
@@ -493,21 +507,22 @@ function scrollToHero() {
 }
 
 function checkURLCategoryOnLoad() {
+  const isCategoryPage = window.location.pathname.includes("category.html");
   let slug = null;
 
-  // 1. Check pathname e.g. /category/fire-fighting-pumps
-  const pathMatch = window.location.pathname.match(/\/category\/([a-zA-Z0-9-]+)/);
-  if (pathMatch && pathMatch[1]) {
-    slug = pathMatch[1];
-  }
+  // 1. Check query parameters e.g. category.html?category=fire-fighting-pumps
+  const urlParams = new URLSearchParams(window.location.search);
+  slug = urlParams.get("category");
 
-  // 2. Check query parameters fallback e.g. ?category=fire-fighting-pumps
+  // 2. Fallback check for pathname
   if (!slug) {
-    const urlParams = new URLSearchParams(window.location.search);
-    slug = urlParams.get("category");
+    const pathMatch = window.location.pathname.match(/\/category\/([a-zA-Z0-9-]+)/);
+    if (pathMatch && pathMatch[1]) {
+      slug = pathMatch[1];
+    }
   }
 
-  // 3. Check hash fallback e.g. #/category/fire-fighting-pumps or #category/fire-fighting-pumps
+  // 3. Fallback check for hash
   if (!slug && window.location.hash) {
     const hashMatch = window.location.hash.match(/#\/?category\/([a-zA-Z0-9-]+)/);
     if (hashMatch && hashMatch[1]) {
@@ -517,6 +532,13 @@ function checkURLCategoryOnLoad() {
 
   if (slug && slug !== "all") {
     openCategoryPage(slug, false, true);
+  } else if (isCategoryPage) {
+    const categories = window.store ? window.store.getCategories() : [];
+    if (categories.length > 0) {
+      openCategoryPage(categories[0].slug, false, true);
+    } else {
+      window.location.href = "index.html";
+    }
   } else {
     showCategoriesView(false, false);
   }
