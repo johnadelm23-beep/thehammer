@@ -434,7 +434,7 @@ function openCategoryPage(slug, updateHistory = true) {
   const categorySelect = document.getElementById("categoryFilter");
   if (categorySelect) categorySelect.value = cat.id || cat.slug;
 
-  // Update URL search query cleanly (Step 4 & Step 7)
+  // Update URL search query cleanly
   if (updateHistory && window.history && window.history.pushState) {
     const newUrl = window.location.pathname + `?category=${cat.slug}` + window.location.hash;
     window.history.pushState({ categorySlug: cat.slug }, "", newUrl);
@@ -444,13 +444,15 @@ function openCategoryPage(slug, updateHistory = true) {
   populateFilters();
   renderCatalog();
 
-  const catalogSec = document.getElementById("catalog");
-  if (catalogSec && typeof catalogSec.scrollIntoView === "function") {
-    catalogSec.scrollIntoView({ behavior: "smooth" });
+  if (shouldScroll) {
+    const catalogSec = document.getElementById("catalog");
+    if (catalogSec && typeof catalogSec.scrollIntoView === "function") {
+      catalogSec.scrollIntoView({ behavior: "smooth" });
+    }
   }
 }
 
-function showCategoriesView(updateHistory = true) {
+function showCategoriesView(updateHistory = true, shouldScroll = false) {
   currentCategorySlug = null;
   resetFiltersSilent();
 
@@ -460,7 +462,7 @@ function showCategoriesView(updateHistory = true) {
   if (homeView) homeView.style.display = "block";
   if (detailView) detailView.style.display = "none";
 
-  // Step 8: Reset SEO title & description
+  // Reset SEO title & description
   if (defaultDocumentTitle) {
     document.title = defaultDocumentTitle;
   }
@@ -479,9 +481,20 @@ function showCategoriesView(updateHistory = true) {
 
   renderCategoryCards();
 
-  const catalogSec = document.getElementById("catalog");
-  if (catalogSec && typeof catalogSec.scrollIntoView === "function") {
-    catalogSec.scrollIntoView({ behavior: "smooth" });
+  if (shouldScroll) {
+    const catalogSec = document.getElementById("catalog");
+    if (catalogSec && typeof catalogSec.scrollIntoView === "function") {
+      catalogSec.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+}
+
+function scrollToHero() {
+  const heroSec = document.getElementById("hero");
+  if (heroSec && typeof heroSec.scrollIntoView === "function") {
+    heroSec.scrollIntoView({ behavior: "smooth" });
+  } else {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 }
 
@@ -489,9 +502,9 @@ function checkURLCategoryOnLoad() {
   const urlParams = new URLSearchParams(window.location.search);
   const catParam = urlParams.get("category");
   if (catParam && catParam !== "all") {
-    openCategoryPage(catParam, false);
+    openCategoryPage(catParam, false, false);
   } else {
-    showCategoriesView(false);
+    showCategoriesView(false, false);
   }
 }
 
@@ -1904,6 +1917,20 @@ function initProgressiveImageLoading() {
     }
   });
 }
+
+// Disable browser scroll restoration globally
+if ("scrollRestoration" in window.history) {
+  window.history.scrollRestoration = "manual";
+}
+
+// Guarantee page load / refresh always starts at the Hero section (top: 0)
+window.addEventListener("load", () => {
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "instant"
+  });
+});
 
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initPremiumMotionEngine);
