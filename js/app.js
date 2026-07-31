@@ -810,6 +810,25 @@ function renderCatalog() {
   if (window.lucide) {
     lucide.createIcons();
   }
+
+  // Trigger IntersectionObserver for newly rendered product cards (single trigger)
+  const productCards = grid.querySelectorAll(".product-card");
+  if ("IntersectionObserver" in window) {
+    const cardObserver = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: "0px 0px -20px 0px", threshold: 0.05 }
+    );
+    productCards.forEach((c) => cardObserver.observe(c));
+  } else {
+    productCards.forEach((c) => c.classList.add("is-visible"));
+  }
 }
 
 function renderCertificates() {
@@ -1728,16 +1747,22 @@ Thank you.`;
    WORLD-CLASS PREMIUM MOTION ENGINE (60 FPS GPU-ACCELERATED)
    ========================================================================== */
 function initPremiumMotionEngine() {
-  // 1. IntersectionObserver for Reveal Animations
+  // 0. Reset scroll position on page load to open at Hero section (top of homepage)
+  if ("scrollRestoration" in window.history) {
+    window.history.scrollRestoration = "manual";
+  }
+  window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+
+  // 1. IntersectionObserver for Reveal Animations (Runs ONLY ONCE)
   if ("IntersectionObserver" in window) {
     const revealElements = document.querySelectorAll(
-      ".reveal, .reveal-up, .reveal-left, .reveal-right, .reveal-scale, .reveal-blur, .reveal-rotate, .stagger-item"
+      ".reveal, .reveal-up, .reveal-down, .reveal-left, .reveal-right, .reveal-scale, .reveal-blur, .reveal-rotate, .stagger-item, .product-card, .partner-card, .category-card"
     );
 
     const observerOptions = {
       root: null,
-      rootMargin: "0px 0px -40px 0px",
-      threshold: 0.1,
+      rootMargin: "0px 0px -30px 0px",
+      threshold: 0.08,
     };
 
     const revealObserver = new IntersectionObserver((entries, observer) => {
@@ -1755,7 +1780,7 @@ function initPremiumMotionEngine() {
     revealElements.forEach((el) => revealObserver.observe(el));
   } else {
     document
-      .querySelectorAll(".reveal, .stagger-item")
+      .querySelectorAll(".reveal, .stagger-item, .product-card, .partner-card")
       .forEach((el) => el.classList.add("is-visible"));
   }
 

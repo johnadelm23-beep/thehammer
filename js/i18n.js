@@ -29,6 +29,11 @@ const DICTIONARIES = {
       stat2Label: "Head Pressure",
       stat3Label: "Global Installations",
     },
+    partners: {
+      title: "Official Technology Partners",
+      subtitle: "THEHAMMER proudly works with internationally recognized pump manufacturers.",
+      authorized: "Authorized Technology Partner",
+    },
     catalog: {
       title: "Industrial Product Catalog",
       subtitle:
@@ -219,6 +224,11 @@ const DICTIONARIES = {
       stat2Label: "Prevalenza Max",
       stat3Label: "Installazioni Globali",
     },
+    partners: {
+      title: "Partner Tecnologici Ufficiali",
+      subtitle: "THEHAMMER lavora con orgoglio con produttori di pompe riconosciuti a livello internazionale.",
+      authorized: "Partner Tecnologico Autorizzato",
+    },
     catalog: {
       title: "Catalogo Prodotti Industriali",
       subtitle:
@@ -407,6 +417,11 @@ const DICTIONARIES = {
       stat1Label: "معدل التدفق الأقصى",
       stat2Label: "ضغط الارتفاع الأقصى",
       stat3Label: "التركيبات العالمية",
+    },
+    partners: {
+      title: "شركاء التكنولوجيا الرسميون",
+      subtitle: "تفخر هامر بالتعاون مع مصنعي المضخات المعتمدين دوليًا.",
+      authorized: "شريك تكنولوجي معتمد",
     },
     catalog: {
       title: "كتالوج المنتجات الصناعية",
