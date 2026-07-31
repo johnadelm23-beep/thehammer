@@ -387,7 +387,7 @@ function filterCategories(filterKey, buttonEl) {
   updateCategoriesCount(visibleCount);
 }
 
-function openCategoryPage(slug, updateHistory = true) {
+function openCategoryPage(slug, updateHistory = true, scrollToTop = true) {
   if (!window.store) return;
   const cat = window.store.getCategoryBySlug(slug);
 
@@ -434,25 +434,22 @@ function openCategoryPage(slug, updateHistory = true) {
   const categorySelect = document.getElementById("categoryFilter");
   if (categorySelect) categorySelect.value = cat.id || cat.slug;
 
-  // Update URL search query cleanly
+  // Update URL to dedicated category page (/category/fire-fighting-pumps, etc.)
   if (updateHistory && window.history && window.history.pushState) {
-    const newUrl = window.location.pathname + `?category=${cat.slug}` + window.location.hash;
-    window.history.pushState({ categorySlug: cat.slug }, "", newUrl);
+    const targetUrl = `/category/${cat.slug}`;
+    window.history.pushState({ categorySlug: cat.slug }, "", targetUrl);
   }
 
   // Populate category-scoped filters & render catalog
   populateFilters();
   renderCatalog();
 
-  if (shouldScroll) {
-    const catalogSec = document.getElementById("catalog");
-    if (catalogSec && typeof catalogSec.scrollIntoView === "function") {
-      catalogSec.scrollIntoView({ behavior: "smooth" });
-    }
+  if (scrollToTop) {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }
 }
 
-function showCategoriesView(updateHistory = true, shouldScroll = false) {
+function showCategoriesView(updateHistory = true, scrollToTop = false) {
   currentCategorySlug = null;
   resetFiltersSilent();
 
@@ -475,17 +472,14 @@ function showCategoriesView(updateHistory = true, shouldScroll = false) {
   if (categorySelect) categorySelect.value = "all";
 
   if (updateHistory && window.history && window.history.pushState) {
-    const newUrl = window.location.pathname + window.location.hash;
+    const newUrl = window.location.pathname.includes('/category/') ? '/' : (window.location.pathname + window.location.hash);
     window.history.pushState({ categorySlug: null }, "", newUrl);
   }
 
   renderCategoryCards();
 
-  if (shouldScroll) {
-    const catalogSec = document.getElementById("catalog");
-    if (catalogSec && typeof catalogSec.scrollIntoView === "function") {
-      catalogSec.scrollIntoView({ behavior: "smooth" });
-    }
+  if (scrollToTop) {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }
 }
 
@@ -499,10 +493,30 @@ function scrollToHero() {
 }
 
 function checkURLCategoryOnLoad() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const catParam = urlParams.get("category");
-  if (catParam && catParam !== "all") {
-    openCategoryPage(catParam, false, false);
+  let slug = null;
+
+  // 1. Check pathname e.g. /category/fire-fighting-pumps
+  const pathMatch = window.location.pathname.match(/\/category\/([a-zA-Z0-9-]+)/);
+  if (pathMatch && pathMatch[1]) {
+    slug = pathMatch[1];
+  }
+
+  // 2. Check query parameters fallback e.g. ?category=fire-fighting-pumps
+  if (!slug) {
+    const urlParams = new URLSearchParams(window.location.search);
+    slug = urlParams.get("category");
+  }
+
+  // 3. Check hash fallback e.g. #/category/fire-fighting-pumps or #category/fire-fighting-pumps
+  if (!slug && window.location.hash) {
+    const hashMatch = window.location.hash.match(/#\/?category\/([a-zA-Z0-9-]+)/);
+    if (hashMatch && hashMatch[1]) {
+      slug = hashMatch[1];
+    }
+  }
+
+  if (slug && slug !== "all") {
+    openCategoryPage(slug, false, true);
   } else {
     showCategoriesView(false, false);
   }
@@ -824,8 +838,10 @@ function renderCatalog() {
     lucide.createIcons();
   }
 
-  // Trigger IntersectionObserver for newly rendered product cards (single trigger)
+  // Make rendered product cards visible immediately
   const productCards = grid.querySelectorAll(".product-card");
+  productCards.forEach((c) => c.classList.add("is-visible"));
+
   if ("IntersectionObserver" in window) {
     const cardObserver = new IntersectionObserver(
       (entries, obs) => {
@@ -839,8 +855,6 @@ function renderCatalog() {
       { rootMargin: "0px 0px -20px 0px", threshold: 0.05 }
     );
     productCards.forEach((c) => cardObserver.observe(c));
-  } else {
-    productCards.forEach((c) => c.classList.add("is-visible"));
   }
 }
 

@@ -443,6 +443,7 @@ html[dir="rtl"] .logo-symbol {
   transition: all var(--transition-normal);
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .product-card:hover {
@@ -1228,6 +1229,50 @@ html[dir="rtl"] .mobile-nav-content {
 
 .footer-bottom {
   padding-top: 2rem;
+  margin-top: 2rem;
+  border-top: 1px solid #333;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.footer-attribution {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #888888;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.footer-portfolio-link {
+  color: #cccccc;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: color var(--transition-normal, 0.3s ease);
+}
+
+.footer-portfolio-link:hover {
+  color: var(--primary-red);
+  text-decoration: underline;
+}
+
+.footer-attribution-icon {
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  vertical-align: middle;
+  transition: transform var(--transition-normal, 0.3s ease), color var(--transition-normal, 0.3s ease);
+}
+
+.footer-portfolio-link:hover .footer-attribution-icon {
+  transform: translate(2px, -2px);
+  color: var(--primary-red);
+}
 
 /* ==========================================================================
    OFFICIAL TECHNOLOGY PARTNERS SECTION
@@ -1312,11 +1357,6 @@ html[dir="rtl"] .mobile-nav-content {
   font-size: 0.95rem;
   color: var(--text-secondary);
   font-weight: 500;
-}
-  border-top: 1px solid #333;
-  text-align: center;
-  font-size: 0.8rem;
-  color: #888;
 }
 
 /* Modal Branding & Elements */

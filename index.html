@@ -333,7 +333,7 @@
             <img
               src="images/One_Png1.png"
               data-light-logo="images/One_Png1.png"
-              data-dark-logo="images/logo_dark_mode.jpeg"
+              data-dark-logo="images/logo-dark-mode.png"
               alt="The Hammer"
               class="theme-responsive-logo mobile-menu-logo-image"
               decoding="async"
@@ -735,6 +735,7 @@
                 height="220"
                 loading="lazy"
                 decoding="async"
+                onerror="this.onerror=null; this.closest('.partner-card').style.display='none';"
               />
             </div>
             <div class="partner-card-body">
@@ -756,6 +757,7 @@
                 height="220"
                 loading="lazy"
                 decoding="async"
+                onerror="this.onerror=null; this.closest('.partner-card').style.display='none';"
               />
             </div>
             <div class="partner-card-body">
@@ -992,8 +994,21 @@
           </div>
         </div>
 
-        <div class="footer-bottom reveal reveal-up" data-i18n="footer.rights">
-          © 2026 THEHAMMER Industrial Water Pump Solutions. All Rights Reserved.
+        <div class="footer-bottom reveal reveal-up">
+          <p data-i18n="footer.rights">
+            © 2026 THEHAMMER Industrial Water Pump Solutions. All Rights Reserved.
+          </p>
+          <p class="footer-attribution">
+            Developed by
+            <a
+              href="https://my-protofolio-orpin.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="footer-portfolio-link"
+            >
+              JohnAdel <i data-lucide="external-link" class="footer-attribution-icon"></i>
+            </a>
+          </p>
         </div>
       </div>
     </footer>
@@ -1010,7 +1025,7 @@
             <img
               src="images/One_Png1.png"
               data-light-logo="images/One_Png1.png"
-              data-dark-logo="images/logo_dark_mode.jpeg"
+              data-dark-logo="images/logo-dark-mode.png"
               alt="The Hammer"
               class="theme-responsive-logo quote-logo"
               decoding="async"
