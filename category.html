@@ -606,42 +606,173 @@
       </div>
     </div>
 
-    <!-- Quote List Drawer / Modal -->
+    <!-- Quote List Modal -->
     <div class="modal-backdrop" id="quoteListModal">
-      <div class="modal-container modal-lg">
-        <div class="modal-header">
-          <div class="quote-form-branding">
+      <div class="modal-container quote-modal-container">
+        <div class="quote-modal-header">
+          <div class="quote-modal-header-branding">
             <img
               src="images/One_Png1.png"
               data-light-logo="images/One_Png1.png"
               data-dark-logo="images/logo-dark-mode.png"
               alt="The Hammer"
-              class="theme-responsive-logo quote-logo"
+              class="theme-responsive-logo quote-modal-header-logo"
               decoding="async"
               onerror="handleLogoError(this)"
             />
-            <span class="logo-text-fallback">
-              THE<span style="color: var(--primary-red)">HAMMER</span>
-            </span>
-            <div>
-              <h3 class="modal-title" data-i18n="quoteList.title">Quote List</h3>
-              <p class="modal-subtitle" data-i18n="quoteList.emptyDescription">
-                Add products to request pricing and technical details.
+            <div class="quote-modal-header-text">
+              <h3 class="quote-modal-title" data-i18n="quoteList.title">Quote List</h3>
+              <p class="quote-modal-subtitle" data-i18n="quoteList.subtitle">
+                Review your selected products before requesting a quotation.
               </p>
             </div>
           </div>
-          <button onclick="closeQuoteListModal()" class="modal-close">
+          <button onclick="closeQuoteListModal()" class="modal-close" aria-label="Close modal">
             &times;
           </button>
         </div>
 
-        <div class="modal-body">
-          <div id="quoteListContainer"></div>
-          <div class="modal-empty-state" id="quoteListEmptyState">
-            <i data-lucide="shopping-cart" class="modal-empty-icon"></i>
-            <p class="modal-empty-text" data-i18n="quoteList.emptyTitle">
-              Your quote list is empty
+        <div class="quote-modal-body">
+          <!-- Empty State -->
+          <div id="quoteListEmptyState" class="quote-empty-state">
+            <div class="quote-empty-icon-wrapper">
+              <i data-lucide="shopping-bag" class="quote-empty-icon"></i>
+            </div>
+            <h4 class="quote-empty-title" data-i18n="quoteList.emptyTitle">
+              No products added yet
+            </h4>
+            <p class="quote-empty-desc" data-i18n="quoteList.emptyDescription">
+              Explore our industrial pump catalog and add products to request a technical quotation.
             </p>
+            <button class="btn btn-primary quote-browse-btn" onclick="closeQuoteListModal();">
+              <i data-lucide="compass" style="width: 18px"></i>
+              <span data-i18n="quoteList.browseProducts">Browse Products</span>
+            </button>
+          </div>
+
+          <!-- Active Quote List Content -->
+          <div id="quoteListContent" style="display: none;">
+            <!-- Summary Bar -->
+            <div class="quote-summary-bar">
+              <span class="quote-summary-badge">
+                <i data-lucide="shopping-cart" style="width: 18px;"></i>
+                <span data-i18n="quoteList.totalProducts">Total Products</span>:
+                <strong id="quoteListTotalCount">0</strong>
+              </span>
+              <button type="button" class="btn btn-ghost btn-sm quote-clear-btn" onclick="clearQuoteList()">
+                <i data-lucide="trash-2" style="width: 14px;"></i>
+                <span data-i18n="quoteList.clearList">Clear List</span>
+              </button>
+            </div>
+
+            <div class="quote-modal-grid">
+              <!-- Left Column: Product Cards List -->
+              <div class="quote-items-column">
+                <div id="quoteListItemsGrid" class="quote-items-grid">
+                  <!-- Dynamically rendered Product Cards -->
+                </div>
+                
+                <div class="quote-items-actions">
+                  <button type="button" class="btn btn-secondary" onclick="closeQuoteListModal()">
+                    <span data-i18n="quoteList.continueShopping">Continue Shopping</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Right Column: Requester Information Form -->
+              <div class="quote-form-column">
+                <div class="quote-form-card">
+                  <h4 class="quote-form-title" data-i18n="quoteList.checkoutTitle">
+                    Requester Information
+                  </h4>
+
+                  <form id="quoteListForm" onsubmit="handleQuoteListSubmit(event)">
+                    <div class="form-group">
+                      <label class="form-label" data-i18n="quoteModal.companyName">Company / Project Name *</label>
+                      <input
+                        type="text"
+                        id="quoteListCompany"
+                        class="form-input"
+                        required
+                        data-i18n-placeholder="quoteModal.companyPlaceholder"
+                        placeholder="e.g. Thames Water / Veolia"
+                      />
+                      <span class="error-msg" id="error-quoteListCompany"></span>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-label" data-i18n="quoteModal.fullName">Full Name *</label>
+                      <input
+                        type="text"
+                        id="quoteListName"
+                        class="form-input"
+                        required
+                        data-i18n-placeholder="quoteModal.namePlaceholder"
+                        placeholder="e.g. Eng. David Sterling"
+                      />
+                      <span class="error-msg" id="error-quoteListName"></span>
+                    </div>
+
+                    <div class="grid grid-cols-2">
+                      <div class="form-group">
+                        <label class="form-label" data-i18n="quoteModal.email">Corporate Email *</label>
+                        <input
+                          type="email"
+                          id="quoteListEmail"
+                          class="form-input"
+                          required
+                          data-i18n-placeholder="quoteModal.emailPlaceholder"
+                          placeholder="engineering@company.com"
+                        />
+                        <span class="error-msg" id="error-quoteListEmail"></span>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label" data-i18n="quoteModal.phone">Phone Number *</label>
+                        <input
+                          type="tel"
+                          id="quoteListPhone"
+                          class="form-input"
+                          required
+                          data-i18n-placeholder="quoteModal.phonePlaceholder"
+                          placeholder="+20 12 03666634"
+                        />
+                        <span class="error-msg" id="error-quoteListPhone"></span>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-label" data-i18n="quoteModal.country">Country / Address *</label>
+                      <input
+                        type="text"
+                        id="quoteListCountry"
+                        class="form-input"
+                        required
+                        data-i18n-placeholder="quoteModal.countryPlaceholder"
+                        placeholder="United Kingdom / Italy / UAE"
+                      />
+                      <span class="error-msg" id="error-quoteListCountry"></span>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-label" data-i18n="quoteModal.message">Technical Operating Conditions</label>
+                      <textarea
+                        id="quoteListMessage"
+                        class="form-textarea"
+                        rows="2"
+                        data-i18n-placeholder="quoteModal.messagePlaceholder"
+                        placeholder="Specify required flow rate, head pressure, or fluid temp..."
+                      ></textarea>
+                      <span class="error-msg" id="error-quoteListMessage"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block quote-submit-btn" id="quoteListSubmitBtn">
+                      <i data-lucide="send" style="width: 18px;"></i>
+                      <span data-i18n="catalog.requestQuoteBtn">Request a Quote</span>
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

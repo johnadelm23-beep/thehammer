@@ -1268,11 +1268,15 @@ function renderQuoteList() {
   const list = getQuoteList();
   const emptyState = document.getElementById("quoteListEmptyState");
   const content = document.getElementById("quoteListContent");
-  const tbody = document.getElementById("quoteListTbody");
+  const itemsGrid = document.getElementById("quoteListItemsGrid");
+  const totalCountEl = document.getElementById("quoteListTotalCount");
   const currentLang = window.i18n ? window.i18n.currentLang : "en";
 
+  const totalQuantity = list.reduce((sum, item) => sum + (item.quantity || 1), 0);
+  if (totalCountEl) totalCountEl.textContent = totalQuantity;
+
   if (list.length === 0) {
-    if (emptyState) emptyState.style.display = "block";
+    if (emptyState) emptyState.style.display = "flex";
     if (content) content.style.display = "none";
     return;
   }
@@ -1280,57 +1284,70 @@ function renderQuoteList() {
   if (emptyState) emptyState.style.display = "none";
   if (content) content.style.display = "block";
 
-  if (tbody) {
+  if (itemsGrid) {
     const products = window.store ? window.store.getProducts() : [];
-    const prodLbl =
-      currentLang === "it"
-        ? "Prodotto"
-        : currentLang === "ar"
-          ? "المنتج"
-          : "Product";
-    const codeLbl =
-      currentLang === "it" ? "Codice" : currentLang === "ar" ? "الكود" : "Code";
-    const qtyLbl =
-      currentLang === "it"
-        ? "Quantità"
-        : currentLang === "ar"
-          ? "الكمية"
-          : "Quantity";
+    const categories = window.store ? window.store.getCategories() : [];
 
-    tbody.innerHTML = list
+    itemsGrid.innerHTML = list
       .map((item) => {
         const p = products.find((prod) => prod.id === item.productId);
         if (!p) return "";
 
         const productName = getProductName(p, currentLang);
+        const cat = categories.find((c) => c.id === p.categoryId);
+        const catName = cat
+          ? currentLang === "ar"
+            ? cat.nameAR
+            : currentLang === "it"
+              ? cat.nameIT
+              : cat.nameEN
+          : "THEHAMMER";
+
         return `
-        <tr class="quote-table-row">
-          <td data-label="${prodLbl}" class="quote-table-td-product">
-            <img src="${p.image}" alt="${productName}" class="quote-list-img">
-            <div>
-              <strong class="quote-item-name">${productName}</strong>
+        <div class="quote-item-card">
+          <div class="quote-item-img-wrapper">
+            <img src="${p.image}" alt="${productName}" class="quote-item-img" width="80" height="65" loading="lazy" onerror="this.src='images/PSM-Electric-Pump.jpg'">
+          </div>
+          <div class="quote-item-details">
+            <span class="quote-item-cat">${catName}</span>
+            <h4 class="quote-item-title">${productName}</h4>
+            <span class="quote-item-model font-mono tech-val">${p.model}</span>
+            
+            <div class="quote-item-bottom">
+              <div class="qty-selector quote-qty-selector">
+                <button type="button" class="qty-btn" onclick="updateQuoteListQty('${p.id}', -1)" aria-label="Decrease quantity">-</button>
+                <span class="qty-val">${item.quantity}</span>
+                <button type="button" class="qty-btn" onclick="updateQuoteListQty('${p.id}', 1)" aria-label="Increase quantity">+</button>
+              </div>
+              <button type="button" class="quote-remove-btn" onclick="removeFromQuoteList('${p.id}')" title="Remove item" aria-label="Remove item">
+                <i data-lucide="trash-2" class="trash-icon"></i>
+              </button>
             </div>
-          </td>
-          <td data-label="${codeLbl}" class="quote-table-td-code font-mono spec-val-ltr">${p.model}</td>
-          <td data-label="${qtyLbl}" class="quote-table-td-qty">
-            <div class="qty-selector">
-              <button type="button" class="qty-btn" onclick="updateQuoteListQty('${p.id}', -1)">-</button>
-              <span class="qty-val">${item.quantity}</span>
-              <button type="button" class="qty-btn" onclick="updateQuoteListQty('${p.id}', 1)">+</button>
-            </div>
-          </td>
-          <td class="quote-table-td-remove">
-            <button type="button" class="btn btn-secondary btn-sm" onclick="removeFromQuoteList('${p.id}')">
-              <i data-lucide="trash-2" class="trash-icon"></i>
-            </button>
-          </td>
-        </tr>
+          </div>
+        </div>
       `;
       })
       .join("");
+
     if (window.lucide) {
       lucide.createIcons();
     }
+  }
+}
+
+function clearQuoteList() {
+  const currentLang = window.i18n ? window.i18n.currentLang : "en";
+  const confirmMsg =
+    currentLang === "ar"
+      ? "هل أنت تأكد من رغبتك في مسح قائمة طلب السعر بالكامل؟"
+      : currentLang === "it"
+        ? "Sei sicuro di voler svuotare l'elenco dei preventivi?"
+        : "Are you sure you want to clear your Quote List?";
+
+  if (confirm(confirmMsg)) {
+    saveQuoteList([]);
+    updateQuoteListBadge();
+    renderQuoteList();
   }
 }
 

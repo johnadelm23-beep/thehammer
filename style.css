@@ -2555,3 +2555,348 @@ html[dir="rtl"] .mobile-nav-content {
   border-radius: 9999px;
   padding: 0.65rem 1.4rem;
 }
+
+/* ==========================================================================
+   PREMIUM QUOTE LIST MODAL REDESIGN
+   ========================================================================== */
+
+.quote-modal-container {
+  max-width: 960px;
+  width: 95%;
+  border-radius: var(--radius-lg, 16px);
+  padding: 0;
+  overflow: hidden;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-xl, 0 20px 40px rgba(0, 0, 0, 0.25));
+  animation: quoteModalScaleIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes quoteModalScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.quote-modal-header {
+  padding: 1.25rem 1.75rem;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.quote-modal-header-branding {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.quote-modal-header-logo {
+  max-height: 48px;
+  width: auto;
+  object-fit: contain;
+}
+
+.quote-modal-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.quote-modal-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin: 0.2rem 0 0 0;
+}
+
+.quote-modal-body {
+  padding: 1.75rem;
+  max-height: calc(85vh - 90px);
+  overflow-y: auto;
+}
+
+/* Empty State */
+.quote-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1.5rem;
+  text-align: center;
+}
+
+.quote-empty-icon-wrapper {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(200, 16, 46, 0.1);
+  color: var(--primary-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 0 20px rgba(200, 16, 46, 0.15);
+}
+
+.quote-empty-icon {
+  width: 36px;
+  height: 36px;
+}
+
+.quote-empty-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.quote-empty-desc {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  max-width: 440px;
+  margin-bottom: 1.75rem;
+  line-height: 1.6;
+}
+
+.quote-browse-btn {
+  border-radius: 9999px;
+  padding: 0.65rem 1.5rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Summary Bar */
+.quote-summary-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md, 10px);
+  margin-bottom: 1.25rem;
+}
+
+.quote-summary-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.quote-summary-badge strong {
+  color: var(--primary-red);
+  font-size: 1rem;
+}
+
+.quote-clear-btn {
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  transition: color 0.2s ease;
+}
+
+.quote-clear-btn:hover {
+  color: var(--primary-red);
+}
+
+/* Modal Grid Layout */
+.quote-modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 1.75rem;
+  align-items: start;
+}
+
+@media (max-width: 868px) {
+  .quote-modal-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Product Cards List */
+.quote-items-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.quote-items-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  max-height: 380px;
+  overflow-y: auto;
+  padding-inline-end: 0.25rem;
+}
+
+.quote-item-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem 1rem;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md, 10px);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.quote-item-card:hover {
+  border-color: var(--primary-red);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.quote-item-img-wrapper {
+  width: 80px;
+  height: 65px;
+  border-radius: var(--radius-sm, 6px);
+  overflow: hidden;
+  background: var(--bg-secondary);
+  flex-shrink: 0;
+}
+
+.quote-item-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.quote-item-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.quote-item-cat {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--primary-red);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.quote-item-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.25;
+}
+
+.quote-item-model {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.quote-item-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.4rem;
+}
+
+.quote-qty-selector {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: var(--bg-secondary);
+  overflow: hidden;
+}
+
+.quote-qty-selector .qty-btn {
+  width: 26px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.quote-qty-selector .qty-btn:hover {
+  background: var(--primary-red);
+  color: #fff;
+}
+
+.quote-qty-selector .qty-val {
+  padding: 0 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.quote-remove-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.3rem;
+  border-radius: 4px;
+  transition: color 0.2s ease, background 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quote-remove-btn:hover {
+  color: var(--primary-red);
+  background: rgba(200, 16, 46, 0.1);
+}
+
+.quote-items-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+/* Right Column: Requester Information Form */
+.quote-form-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md, 12px);
+  padding: 1.25rem;
+}
+
+.quote-form-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 1rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.btn-block {
+  width: 100%;
+  justify-content: center;
+}
+
+.quote-submit-btn {
+  margin-top: 0.75rem;
+  height: 46px;
+  font-weight: 700;
+}
