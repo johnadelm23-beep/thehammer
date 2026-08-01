@@ -956,16 +956,16 @@ let originalMetaDescription =
 /* Product Spec Modal */
 function openProductDetail(productId) {
   const products = window.store ? window.store.getProducts() : [];
-  const p = products.find((item) => item.id === productId);
+  const p = products.find((item) => item.id === productId || item.slug === productId);
   if (!p) return;
 
   const currentLang = window.i18n ? window.i18n.currentLang : "en";
 
-  document.getElementById("detailModel").textContent = p.model;
-  document.getElementById("detailName").textContent = getProductName(
-    p,
-    currentLang,
-  );
+  const detailModelEl = document.getElementById("detailModel");
+  if (detailModelEl) detailModelEl.textContent = p.model;
+
+  const detailNameEl = document.getElementById("detailName");
+  if (detailNameEl) detailNameEl.textContent = getProductName(p, currentLang);
 
   // Highlighting key specs in details modal
   const specHighlightHTML =
@@ -973,8 +973,11 @@ function openProductDetail(productId) {
       ? `<div class="modal-spec-highlight">معدل التدفق (Q) = ${p.qGpm} جالون/دقيقة | الضغط (H) = ${p.hBar} بار</div>`
       : `<div class="modal-spec-highlight">Flow Rate (Q) = ${p.qGpm} GPM | Head (H) = ${p.hBar} Bar</div>`;
 
-  document.getElementById("detailDesc").innerHTML =
-    specHighlightHTML + `<p>${getProductDesc(p, currentLang)}</p>`;
+  const detailDescEl = document.getElementById("detailDesc");
+  if (detailDescEl) {
+    detailDescEl.innerHTML =
+      specHighlightHTML + `<p>${getProductDesc(p, currentLang)}</p>`;
+  }
 
   const detailImg = document.getElementById("detailImage");
   if (detailImg) {
