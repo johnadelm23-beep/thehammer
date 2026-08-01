@@ -145,7 +145,7 @@ const SEED_DATA = {
       name: "THEHAMMER Master Line",
       country: "United Kingdom 🇬🇧",
       logo: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=120&q=80",
-      website: "https://thehammer-pumps.com",
+      website: "https://thehammer.uk",
     },
     {
       id: "b-euro",
@@ -1438,7 +1438,7 @@ const SEED_DATA = {
     {
       id: "usr-1",
       name: "THEHAMMER Admin Officer",
-      email: "admin@thehammer-pumps.com",
+      email: "admin@thehammer.uk",
       role: "Super Admin",
       status: "Active",
     },
@@ -1446,7 +1446,7 @@ const SEED_DATA = {
   auditLogs: [
     {
       id: "log-1",
-      user: "admin@thehammer-pumps.com",
+      user: "admin@thehammer.uk",
       action: "SYSTEM_INIT",
       entity: "THEHAMMER Data Layer Initialized",
       timestamp: new Date().toLocaleString(),
