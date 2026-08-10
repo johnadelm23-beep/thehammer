@@ -36,7 +36,7 @@ const QuoteRequestSchema = z.object({
   companyName: z.string().min(2),
   fullName: z.string().min(2),
   email: z.string().email(),
-  phone: z.string().min(5),
+  phone: z.string().optional(),
   country: z.string().min(2),
   productName: z.string(),
   quantity: z.number().positive(),

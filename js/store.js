@@ -9,9 +9,8 @@ const SEED_DATA = {
     tagline: "Heavy Duty Hydraulic & Fire Protection Pump Systems",
     logoUrl:
       "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=200&q=80",
-    phone: "+201203666634",
-    email: "example@gmail.com",
-    whatsAppNumber: "201203666634",
+    phone: "",
+    email: "johnadelm23@gmail.com",
     addressEN: "THEHAMMER Industrial Park, Works Avenue 100, London, UK",
     addressIT: "THEHAMMER Industrial Park, Works Avenue 100, Londra, UK",
     addressAR: "مجمع هامر الصناعي، شارع الأعمال 100، لندن، المملكة المتحدة",
@@ -1421,7 +1420,7 @@ const SEED_DATA = {
       companyName: "Metropolitan Water Authority",
       fullName: "Eng. David Sterling",
       email: "d.sterling@mwa-water.gov.uk",
-      phone: "+201203666634",
+      phone: "",
       country: "United Kingdom",
       productName: "Heavy Duty End-Suction Centrifugal Water Pump TH-5000X",
       model: "TH-CENTRIFUGAL 5000-X",
@@ -1518,9 +1517,12 @@ class HammerStore {
       const settings = this.getSettings();
       let settingsChanged = false;
       if (settings) {
-        if (settings.whatsAppNumber !== "201203666634") {
-          settings.whatsAppNumber = "201203666634";
-          settings.phone = "+20 12 03666634";
+        if (settings.whatsAppNumber) {
+          delete settings.whatsAppNumber;
+          settingsChanged = true;
+        }
+        if (settings.phone) {
+          settings.phone = "";
           settingsChanged = true;
         }
         if (settings.email !== "johnadelm23@gmail.com") {

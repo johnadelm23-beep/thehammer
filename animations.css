@@ -538,26 +538,28 @@ img.progressive-loaded {
   transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
 }
 
-/* Floating WhatsApp Button Interactivity */
+/* Floating Email Button Interactivity */
+.email-float,
 .whatsapp-float {
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease !important;
-  animation: whatsAppPulse 6s infinite ease-in-out;
+  animation: emailPulse 6s infinite ease-in-out;
   will-change: transform;
 }
 
+.email-float:hover,
 .whatsapp-float:hover {
   transform: scale3d(1.1, 1.1, 1) translate3d(0, -3px, 0) !important;
-  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.5) !important;
+  box-shadow: 0 10px 30px rgba(200, 16, 46, 0.5) !important;
   animation-play-state: paused !important;
 }
 
-@keyframes whatsAppPulse {
+@keyframes emailPulse {
   0%, 100% {
     transform: scale(1) translateZ(0);
   }
   50% {
     transform: scale(1.06) translateZ(0);
-    box-shadow: 0 0 20px rgba(16, 185, 129, 0.45);
+    box-shadow: 0 0 20px rgba(200, 16, 46, 0.45);
   }
 }
 
@@ -591,6 +593,7 @@ img.progressive-loaded {
     transform: none !important;
   }
 
+  .email-float,
   .whatsapp-float {
     animation: none !important;
     transform: none !important;

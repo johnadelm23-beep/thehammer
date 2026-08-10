@@ -44,7 +44,8 @@ const DICTIONARIES = {
       viewDetails: "View Details",
       requestQuoteBtn: "Add to Quote",
       downloadDatasheet: "Download PDF",
-      whatsAppQuote: "Contact via WhatsApp",
+      whatsAppQuote: "Send Inquiry",
+      sendInquiry: "Send Inquiry",
       addToQuote: "Add to Quote",
       clearFilters: "Clear Filters",
       productsFound: "Products Found",
@@ -99,8 +100,6 @@ const DICTIONARIES = {
       quantity: "Required Quantity (Units) *",
       contactMethod: "Preferred Contact Method",
       methodEmail: "Email",
-      methodPhone: "Phone Call",
-      methodWhatsApp: "WhatsApp",
       message:
         "Technical Operating Conditions (Fluid Type, Temp, Operating Hours)...",
       fileUpload:
@@ -113,7 +112,7 @@ const DICTIONARIES = {
       companyPlaceholder: "e.g. Thames Water / Veolia",
       namePlaceholder: "e.g. Eng. David Sterling",
       emailPlaceholder: "engineering@company.com",
-      phonePlaceholder: "201203666634",
+      phonePlaceholder: "",
       countryPlaceholder: "United Kingdom / Italy / UAE",
       messagePlaceholder:
         "Specify required flow rate (m³/h), head pressure (m), fluid temperature, or electrical Hz frequency...",
@@ -139,7 +138,7 @@ const DICTIONARIES = {
     contact: {
       title: "Contact Us",
       subtitle:
-        "Have questions or need technical support? Send us a message directly via WhatsApp or email.",
+        "Have questions or need technical support? Send us a message directly via email.",
       nameLabel: "Full Name *",
       phoneLabel: "Phone Number (with Country Code) *",
       emailLabel: "Email Address *",
@@ -148,12 +147,12 @@ const DICTIONARIES = {
       messageLabel: "Message *",
       submitBtn: "Send Message",
       namePlaceholder: "e.g. John Doe",
-      phonePlaceholder: "e.g. +201203666634",
+      phonePlaceholder: "",
       emailPlaceholder: "e.g. john@example.com",
       companyPlaceholder: "e.g. Company Ltd.",
       subjectPlaceholder: "e.g. Technical Support",
       messagePlaceholder: "Type your message here...",
-      contactWhatsApp: "Contact via WhatsApp",
+      contactWhatsApp: "Send an Email",
       sendEmail: "Send an Email",
       requestQuote: "Request a Quote",
     },
@@ -165,7 +164,8 @@ const DICTIONARIES = {
       productNameRequired: "Product name is required.",
       quantityMin: "Quantity must be greater than zero.",
       messageRequired: "Please enter your message.",
-      whatsappError: "Unable to open WhatsApp. Please try again.",
+      whatsappError: "Unable to open email client. Please try again.",
+      emailError: "Unable to open email client. Please try again.",
       companyRequired: "Company / Project name is required.",
       countryRequired: "Country / Installation region is required.",
       subjectRequired: "Subject is required.",
@@ -174,9 +174,9 @@ const DICTIONARIES = {
       download: "Download PDF",
       unavailable: "PDF document is currently unavailable.",
     },
-    whatsApp: {
+    emailInquiry: {
       template:
-        "Hello THEHAMMER Team,\nI would like to request a quotation for:\n\nProduct: {productName}\nModel: {model}\nPower: {power}\nFlow Rate: {flow}\nHead: {head}\nURL: {productUrl}\n\nPlease contact me.",
+        "Hello THEHAMMER Team,\nI would like to request information for:\n\nProduct: {productName}\nModel: {model}\nPower: {power}\nFlow Rate: {flow}\nHead: {head}\nURL: {productUrl}\n\nPlease contact me.",
     },
     cookie: {
       text: "THEHAMMER uses essential technical cookies to ensure optimal system performance and GDPR compliance.",
@@ -244,7 +244,8 @@ const DICTIONARIES = {
       viewDetails: "Visualizza dettagli",
       requestQuoteBtn: "Aggiungi al preventivo",
       downloadDatasheet: "Scarica PDF",
-      whatsAppQuote: "Contatta via WhatsApp",
+      whatsAppQuote: "Invia Richiesta",
+      sendInquiry: "Invia Richiesta",
       addToQuote: "Aggiungi al preventivo",
       clearFilters: "Cancella filtri",
       productsFound: "Prodotti trovati",
@@ -299,8 +300,6 @@ const DICTIONARIES = {
       quantity: "Quantità Richiesta (Unità) *",
       contactMethod: "Metodo di Contatto Preferito",
       methodEmail: "Email",
-      methodPhone: "Chiamata Telefonica",
-      methodWhatsApp: "WhatsApp",
       message:
         "Condizioni Operative Tecniche (Tipo Fluido, Temperatura, Ore Operative)...",
       fileUpload: "Allega File RFQ Progetto / Schema CAD (PDF, PNG, JPG)",
@@ -312,7 +311,7 @@ const DICTIONARIES = {
       companyPlaceholder: "es. Thames Water / Veolia",
       namePlaceholder: "es. Ingg. David Sterling",
       emailPlaceholder: "ingegneria@azienda.com",
-      phonePlaceholder: "+201203666634",
+      phonePlaceholder: "",
       countryPlaceholder: "Regno Unito / Italia / EAU",
       messagePlaceholder:
         "Specificare la portata richiesta (m³/h), la prevalenza (m), la temperatura del fluido o la frequenza Hz...",
@@ -338,7 +337,7 @@ const DICTIONARIES = {
     contact: {
       title: "Contatti",
       subtitle:
-        "Hai domande o hai bisogno di supporto tecnico? Inviaci un messaggio direttamente tramite WhatsApp o email.",
+        "Hai domande o hai bisogno di supporto tecnico? Inviaci un messaggio direttamente tramite email.",
       nameLabel: "Nome e Cognome *",
       phoneLabel: "Numero di Telefono (con prefisso) *",
       emailLabel: "Indirizzo Email *",
@@ -347,12 +346,12 @@ const DICTIONARIES = {
       messageLabel: "Messaggio *",
       submitBtn: "Invia Messaggio",
       namePlaceholder: "es. Mario Rossi",
-      phonePlaceholder: "es. +201203666634",
+      phonePlaceholder: "",
       emailPlaceholder: "es. mario@esempio.com",
       companyPlaceholder: "es. Azienda S.r.l.",
       subjectPlaceholder: "es. Supporto Tecnico",
       messagePlaceholder: "Scrivi il tuo messaggio qui...",
-      contactWhatsApp: "Contatta via WhatsApp",
+      contactWhatsApp: "Invia un'email",
       sendEmail: "Invia un'email",
       requestQuote: "Richiedi un preventivo",
     },
@@ -364,7 +363,8 @@ const DICTIONARIES = {
       productNameRequired: "Il nome del prodotto è obbligatorio.",
       quantityMin: "La quantità deve essere maggiore di zero.",
       messageRequired: "Inserisci il tuo messaggio.",
-      whatsappError: "Impossibile aprire WhatsApp. Riprova.",
+      whatsappError: "Impossibile aprire il client email. Riprova.",
+      emailError: "Impossibile aprire il client email. Riprova.",
       companyRequired: "Il nome dell'azienda/progetto è obbligatorio.",
       countryRequired: "La località/regione è obbligatoria.",
       subjectRequired: "L'oggetto è obbligatorio.",
@@ -373,9 +373,9 @@ const DICTIONARIES = {
       download: "Scarica PDF",
       unavailable: "Il documento PDF non è attualmente disponibile.",
     },
-    whatsApp: {
+    emailInquiry: {
       template:
-        "Buongiorno Team THEHAMMER,\nVorrei richiedere un preventivo per:\n\nProdotto: {productName}\nModello: {model}\nPotenza: {power}\nPortata: {flow}\nPrevalenza: {head}\nURL: {productUrl}\n\nSi prega di contattarmi.",
+        "Buongiorno Team THEHAMMER,\nVorrei richiedere informazioni per:\n\nProdotto: {productName}\nModello: {model}\nPotenza: {power}\nPortata: {flow}\nPrevalenza: {head}\nURL: {productUrl}\n\nSi prega di contattarmi.",
     },
     cookie: {
       text: "THEHAMMER utilizza cookie tecnici essenziali per garantire prestazioni ottimali in conformità al GDPR.",
@@ -443,7 +443,8 @@ const DICTIONARIES = {
       viewDetails: "عرض التفاصيل",
       requestQuoteBtn: "أضف إلى طلب السعر",
       downloadDatasheet: "تحميل ملف PDF",
-      whatsAppQuote: "تواصل عبر واتساب",
+      whatsAppQuote: "استفسار عبر البريد",
+      sendInquiry: "استفسار عبر البريد",
       addToQuote: "أضف إلى طلب السعر",
       clearFilters: "مسح عوامل التصفية",
       productsFound: "المنتجات المطابقة",
@@ -498,8 +499,6 @@ const DICTIONARIES = {
       quantity: "الكمية المطلوبة (بالوحدات) *",
       contactMethod: "طريقة الاتصال المفضلة",
       methodEmail: "البريد الإلكتروني",
-      methodPhone: "اتصال هاتفي",
-      methodWhatsApp: "واتساب",
       message:
         "ظروف التشغيل الفنية (نوع السائل، درجة الحرارة، ساعات التشغيل)...",
       fileUpload:
@@ -511,7 +510,7 @@ const DICTIONARIES = {
       companyPlaceholder: "مثال: مياه التايمز / فيوليا",
       namePlaceholder: "مثال: م. ديفيد ستيرلينغ",
       emailPlaceholder: "engineering@company.com",
-      phonePlaceholder: "+201203666634",
+      phonePlaceholder: "",
       countryPlaceholder: "المملكة المتحدة / إيطاليا / الإمارات",
       messagePlaceholder:
         "حدد معدل التدفق المطلوب (m³/h)، ضغط الارتفاع (m)، درجة حرارة السائل، أو التردد الكهربائي بالهرتز...",
@@ -537,7 +536,7 @@ const DICTIONARIES = {
     contact: {
       title: "تواصل معنا",
       subtitle:
-        "لديك أسئلة أو بحاجة إلى دعم فني؟ أرسل لنا رسالة مباشرة عبر الواتساب أو البريد الإلكتروني.",
+        "لديك أسئلة أو بحاجة إلى دعم فني؟ أرسل لنا رسالة مباشرة عبر البريد الإلكتروني.",
       nameLabel: "الاسم بالكامل *",
       phoneLabel: "رقم الهاتف (مع كود الدولة) *",
       emailLabel: "البريد الإلكتروني *",
@@ -546,12 +545,12 @@ const DICTIONARIES = {
       messageLabel: "الرسالة *",
       submitBtn: "إرسال الرسالة",
       namePlaceholder: "مثال: أحمد محمد",
-      phonePlaceholder: "مثال: +201226806622",
+      phonePlaceholder: "",
       emailPlaceholder: "مثال: ahmed@example.com",
       companyPlaceholder: "مثال: الشركة المحدودة",
       subjectPlaceholder: "مثال: الدعم الفني",
       messagePlaceholder: "اكتب رسالتك هنا...",
-      contactWhatsApp: "تواصل عبر واتساب",
+      contactWhatsApp: "إرسال بريد إلكتروني",
       sendEmail: "إرسال بريد إلكتروني",
       requestQuote: "اطلب عرض سعر",
     },
@@ -563,7 +562,8 @@ const DICTIONARIES = {
       productNameRequired: "اسم المنتج مطلوب.",
       quantityMin: "يجب أن تكون الكمية أكبر من الصفر.",
       messageRequired: "يرجى إدخال رسالتك.",
-      whatsappError: "تعذر فتح واتساب. يرجى المحاولة مرة أخرى.",
+      whatsappError: "تعذر فتح تطبيق البريد الإلكتروني. يرجى المحاولة مرة أخرى.",
+      emailError: "تعذر فتح تطبيق البريد الإلكتروني. يرجى المحاولة مرة أخرى.",
       companyRequired: "اسم الشركة / المشروع مطلوب.",
       countryRequired: "الدولة / منطقة التركيب مطلوبة.",
       subjectRequired: "الموضوع مطلوب.",
@@ -572,9 +572,9 @@ const DICTIONARIES = {
       download: "تحميل ملف PDF",
       unavailable: "ملف PDF غير متاح حاليًا.",
     },
-    whatsApp: {
+    emailInquiry: {
       template:
-        "مرحبًا أستاذ Mo'men،\nأود طلب عرض سعر للمنتج التالي:\n\nالمنتج: {productName}\nالموديل: {model}\nالقوة: {power}\nالتدفق: {flow}\nالضغط: {head}\nالرابط: {productUrl}\n\nيرجى التواصل معي.",
+        "مرحبًا فريق ذا هامر،\nأود طلب معلومات عن المنتج التالي:\n\nالمنتج: {productName}\nالموديل: {model}\nالقوة: {power}\nالتدفق: {flow}\nالضغط: {head}\nالرابط: {productUrl}\n\nيرجى التواصل معي.",
     },
     cookie: {
       text: "يستخدم THEHAMMER ملفات تعريف الارتباط الفنية الأساسية لضمان الأداء الأمثل للنظام والامتثال للوائح حماية البيانات العامة (GDPR).",

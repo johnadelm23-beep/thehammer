@@ -591,7 +591,8 @@ html[dir="rtl"] .logo-symbol {
   box-shadow: 0 0 0 3px var(--primary-red-glow);
 }
 
-/* WhatsApp Floating Button */
+/* Email Floating Button */
+.email-float,
 .whatsapp-float,
 .floating-whatsapp {
   position: fixed;
@@ -601,7 +602,7 @@ html[dir="rtl"] .logo-symbol {
   width: 58px;
   height: 58px;
   border-radius: 50%;
-  background: #25d366;
+  background: var(--primary-red);
   color: #ffffff;
   display: inline-flex;
   align-items: center;
@@ -609,21 +610,28 @@ html[dir="rtl"] .logo-symbol {
   padding: 0;
   border: none;
   text-decoration: none;
-  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-  transition: transform var(--transition-normal);
+  box-shadow: 0 4px 15px rgba(200, 16, 46, 0.4);
+  transition: transform var(--transition-normal), background var(--transition-normal);
 }
 
+.email-float:hover,
 .whatsapp-float:hover,
 .floating-whatsapp:hover {
-  background: #1ebe5d;
+  background: #a00d24;
   color: #ffffff;
   transform: scale(1.1);
 }
 
+.email-float:focus-visible,
 .whatsapp-float:focus-visible,
 .floating-whatsapp:focus-visible {
-  outline: 3px solid rgba(37, 211, 102, 0.35);
+  outline: 3px solid rgba(200, 16, 46, 0.35);
   outline-offset: 4px;
+}
+
+.email-float-icon {
+  width: 26px;
+  height: 26px;
 }
 
 /* Footer */
@@ -655,6 +663,7 @@ html[dir="rtl"] .hero-slider {
     url("images/final_hero.jpeg");
 }
 
+html[dir="rtl"] .email-float,
 html[dir="rtl"] .whatsapp-float {
   left: 2rem;
   right: auto;

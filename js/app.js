@@ -1,6 +1,6 @@
 /**
  * THEHAMMER - Public Web Application Controller
- * Handles pump catalog rendering, technical spec grid formatting, RFQs, and WhatsApp pre-filled templates.
+ * Handles pump catalog rendering, technical spec grid formatting, RFQs, and Email inquiries.
  */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -846,8 +846,9 @@ function renderCatalog() {
           <div class="product-card-footer">
             <button class="btn btn-secondary btn-sm product-card-btn" onclick="openProductDetail('${p.id}')" data-i18n="catalog.viewDetails">${window.i18n.t("catalog.viewDetails")}</button>
             <button class="btn btn-primary btn-sm product-card-btn" onclick="addToQuoteList('${p.id}')" data-i18n="catalog.addToQuote">${window.i18n.t("catalog.addToQuote")}</button>
-            <button class="btn btn-outline btn-sm" onclick="openWhatsAppQuote('${p.id}')" aria-label="${currentLang === "it" ? "WhatsApp per " + name : currentLang === "ar" ? "واتساب لـ " + name : "WhatsApp for " + name}">
-              <span class="whatsapp-icon whatsapp-icon-mini" aria-hidden="true"><svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg" focusable="false" class="whatsapp-svg"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path></svg></span>
+            <button class="btn btn-outline btn-sm product-card-btn" onclick="openEmailInquiry('${p.id}')" aria-label="${currentLang === "it" ? "Invia richiesta per " + name : currentLang === "ar" ? "استفسار لـ " + name : "Inquire for " + name}">
+              <i data-lucide="mail" class="btn-icon" style="width: 14px; margin-right: 4px;"></i>
+              <span data-i18n="catalog.sendInquiry">${window.i18n.t("catalog.sendInquiry", "Send Inquiry")}</span>
             </button>
           </div>
         </div>
@@ -1114,10 +1115,10 @@ function openProductDetail(productId) {
     };
   }
 
-  const whatsAppBtn = document.getElementById("detailWhatsAppBtn");
-  if (whatsAppBtn) {
-    whatsAppBtn.onclick = () => {
-      openWhatsAppQuote(p.id);
+  const emailBtn = document.getElementById("detailEmailBtn") || document.getElementById("detailWhatsAppBtn");
+  if (emailBtn) {
+    emailBtn.onclick = () => {
+      openEmailInquiry(p.id);
     };
   }
 
@@ -1364,12 +1365,13 @@ async function handleQuoteListSubmit(event) {
     el.textContent = "";
   });
 
-  const company = document.getElementById("quoteListCompany").value.trim();
-  const name = document.getElementById("quoteListName").value.trim();
-  const email = document.getElementById("quoteListEmail").value.trim();
-  const phone = document.getElementById("quoteListPhone").value.trim();
-  const country = document.getElementById("quoteListCountry").value.trim();
-  const message = document.getElementById("quoteListMessage").value.trim();
+  const company = document.getElementById("quoteListCompany") ? document.getElementById("quoteListCompany").value.trim() : "";
+  const name = document.getElementById("quoteListName") ? document.getElementById("quoteListName").value.trim() : "";
+  const email = document.getElementById("quoteListEmail") ? document.getElementById("quoteListEmail").value.trim() : "";
+  const phoneEl = document.getElementById("quoteListPhone");
+  const phone = phoneEl ? phoneEl.value.trim() : "";
+  const country = document.getElementById("quoteListCountry") ? document.getElementById("quoteListCountry").value.trim() : "";
+  const message = document.getElementById("quoteListMessage") ? document.getElementById("quoteListMessage").value.trim() : "";
 
   let hasError = false;
   const currentLang = window.i18n ? window.i18n.currentLang : "en";
@@ -1378,10 +1380,7 @@ async function handleQuoteListSubmit(event) {
     showError("quoteListName", window.i18n.t("validation.fullNameRequired"));
     hasError = true;
   }
-  if (!phone) {
-    showError("quoteListPhone", window.i18n.t("validation.phoneRequired"));
-    hasError = true;
-  } else if (!validatePhone(phone)) {
+  if (phoneEl && phone && !validatePhone(phone)) {
     showError("quoteListPhone", window.i18n.t("validation.phoneInvalid"));
     hasError = true;
   }
@@ -1449,65 +1448,64 @@ async function handleQuoteListSubmit(event) {
       }
     });
 
-    let waMessage = "";
+    let emailSubject = "";
+    let emailBody = "";
     if (currentLang === "ar") {
-      waMessage = `THE HAMMER - طلب عرض سعر جديد
+      emailSubject = "THE HAMMER - طلب عرض سعر جديد";
+      emailBody = `THE HAMMER - طلب عرض سعر جديد
 
 بيانات العميل:
 
 الاسم: ${name}
-رقم الهاتف: ${phone}
 البريد الإلكتروني: ${email}`;
-      if (company) waMessage += `\nاسم الشركة: ${company}`;
-      waMessage += `\nالموقع: ${country}
+      if (phone) emailBody += `\nرقم الهاتف: ${phone}`;
+      if (company) emailBody += `\nاسم الشركة: ${company}`;
+      emailBody += `\nالموقع: ${country}
 
 بيانات المنتجات المطلوبة:
 ${itemsListString}`;
-      if (message) waMessage += `\n\nتفاصيل إضافية:\n${message}`;
+      if (message) emailBody += `\n\nتفاصيل إضافية:\n${message}`;
     } else if (currentLang === "it") {
-      waMessage = `THE HAMMER - Nuova richiesta di preventivo
+      emailSubject = "THE HAMMER - Nuova richiesta di preventivo";
+      emailBody = `THE HAMMER - Nuova richiesta di preventivo
 
 Informazioni cliente:
 
 Nome: ${name}
-Telefono: ${phone}
 Email: ${email}`;
-      if (company) waMessage += `\nAzienda: ${company}`;
-      waMessage += `\nLocalità: ${country}
+      if (phone) emailBody += `\nTelefono: ${phone}`;
+      if (company) emailBody += `\nAzienda: ${company}`;
+      emailBody += `\nLocalità: ${country}
 
 Informazioni prodotti:
 ${itemsListString}`;
-      if (message) waMessage += `\n\nDettagli aggiuntivi:\n${message}`;
+      if (message) emailBody += `\n\nDettagli aggiuntivi:\n${message}`;
     } else {
-      waMessage = `THE HAMMER - New Quote Request
+      emailSubject = "THE HAMMER - New Quote Request";
+      emailBody = `THE HAMMER - New Quote Request
 
 Customer information:
 
 Name: ${name}
-Phone: ${phone}
 Email: ${email}`;
-      if (company) waMessage += `\nCompany: ${company}`;
-      waMessage += `\nLocation: ${country}
+      if (phone) emailBody += `\nPhone: ${phone}`;
+      if (company) emailBody += `\nCompany: ${company}`;
+      emailBody += `\nLocation: ${country}
 
 Product information:
 ${itemsListString}`;
-      if (message) waMessage += `\n\nAdditional details:\n${message}`;
+      if (message) emailBody += `\n\nAdditional details:\n${message}`;
     }
 
-    const encoded = encodeURIComponent(waMessage);
-    const whatsappUrl = `https://wa.me/201203666634?text=${encoded}`;
+    const mailtoUrl = `mailto:johnadelm23@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+    window.location.href = mailtoUrl;
 
-    const newTab = window.open(whatsappUrl, "_blank", "noopener,noreferrer");
-    if (newTab) {
-      closeQuoteListModal();
-      saveQuoteList([]);
-      document.getElementById("quoteListForm").reset();
-    } else {
-      alert(window.i18n.t("validation.whatsappError"));
-    }
+    closeQuoteListModal();
+    saveQuoteList([]);
+    document.getElementById("quoteListForm").reset();
   } catch (err) {
     console.error(err);
-    alert(window.i18n.t("validation.whatsappError"));
+    alert(window.i18n ? window.i18n.t("validation.emailError") : "Unable to send email inquiry.");
   } finally {
     submitBtn.disabled = false;
     submitBtn.style.opacity = "1";
@@ -1586,12 +1584,13 @@ async function handleContactSubmit(event) {
     el.textContent = "";
   });
 
-  const name = document.getElementById("contactName").value.trim();
-  const phone = document.getElementById("contactPhone").value.trim();
-  const email = document.getElementById("contactEmail").value.trim();
-  const company = document.getElementById("contactCompany").value.trim();
-  const subject = document.getElementById("contactSubject").value.trim();
-  const message = document.getElementById("contactMessage").value.trim();
+  const name = document.getElementById("contactName") ? document.getElementById("contactName").value.trim() : "";
+  const phoneEl = document.getElementById("contactPhone");
+  const phone = phoneEl ? phoneEl.value.trim() : "";
+  const email = document.getElementById("contactEmail") ? document.getElementById("contactEmail").value.trim() : "";
+  const company = document.getElementById("contactCompany") ? document.getElementById("contactCompany").value.trim() : "";
+  const subject = document.getElementById("contactSubject") ? document.getElementById("contactSubject").value.trim() : "";
+  const message = document.getElementById("contactMessage") ? document.getElementById("contactMessage").value.trim() : "";
 
   let hasError = false;
   const currentLang = window.i18n ? window.i18n.currentLang : "en";
@@ -1600,10 +1599,7 @@ async function handleContactSubmit(event) {
     showError("contactName", window.i18n.t("validation.fullNameRequired"));
     hasError = true;
   }
-  if (!phone) {
-    showError("contactPhone", window.i18n.t("validation.phoneRequired"));
-    hasError = true;
-  } else if (!validatePhone(phone)) {
+  if (phoneEl && phone && !validatePhone(phone)) {
     showError("contactPhone", window.i18n.t("validation.phoneInvalid"));
     hasError = true;
   }
@@ -1645,8 +1641,8 @@ async function handleContactSubmit(event) {
       emailBody = `رسالة تواصل جديدة من الموقع
 
 الاسم: ${name}
-رقم الهاتف: ${phone}
 البريد الإلكتروني: ${email}`;
+      if (phone) emailBody += `\nرقم الهاتف: ${phone}`;
       if (company) emailBody += `\nاسم الشركة: ${company}`;
       emailBody += `\nالموضوع: ${subject}
 
@@ -1657,8 +1653,8 @@ ${message}`;
       emailBody = `Nuovo messaggio di contatto dal sito web
 
 Nome: ${name}
-Telefono: ${phone}
 Email: ${email}`;
+      if (phone) emailBody += `\nTelefono: ${phone}`;
       if (company) emailBody += `\nAzienda: ${company}`;
       emailBody += `\nOggetto: ${subject}
 
@@ -1669,8 +1665,8 @@ ${message}`;
       emailBody = `New website contact message
 
 Name: ${name}
-Phone: ${phone}
 Email: ${email}`;
+      if (phone) emailBody += `\nPhone: ${phone}`;
       if (company) emailBody += `\nCompany: ${company}`;
       emailBody += `\nSubject: ${subject}
 
@@ -1691,14 +1687,15 @@ ${message}`;
   }
 }
 
-function openWhatsAppQuote(productId) {
+function openEmailInquiry(productId) {
   const products = window.store ? window.store.getProducts() : [];
   const p = products.find(
     (item) => item.id === productId || item.model === productId,
   );
 
   const currentLang = window.i18n ? window.i18n.currentLang : "en";
-  let message = "";
+  let subject = "";
+  let body = "";
 
   if (p) {
     const categories = window.store ? window.store.getCategories() : [];
@@ -1715,13 +1712,14 @@ function openWhatsAppQuote(productId) {
       : "N/A";
 
     if (currentLang === "ar") {
-      message = `مرحبًا أستاذ  Mo'men،
+      subject = `استفسار عن ${productName}`;
+      body = `مرحبًا فريق ذا هامر،
 
-أرغب في الحصول على مزيد من المعلومات عن المنتج التالي:
+أود الحصول على مزيد من المعلومات حول:
 
-اسم المنتج: ${productName}
-كود المنتج: ${productCode}
+المنتج: ${productName}
 التصنيف: ${categoryName}
+الموديل: ${productCode}
 
 المواصفات الفنية:
 - معدل التدفق: ${p.qGpm} GPM
@@ -1729,21 +1727,22 @@ function openWhatsAppQuote(productId) {
 - المضخة الكهربائية: ${p.electricPump}
 - مضخة الديزل: ${p.dieselPump}
 - مضخة الجوكي: ${p.jockeyPump}
-- التكوين والاقتران: ${p.configuration}
+- التكوين: ${p.configuration}
 
 رابط المنتج: ${window.location.href}
 
-برجاء إرسال السعر والمعلومات الفنية المتاحة.
+برجاء إرسال المزيد من المعلومات وعرض السعر.
 
-شكرًا لك.`;
+شكرًا لكم.`;
     } else if (currentLang === "it") {
-      message = `Ciao Mo'men,
+      subject = `Richiesta informazioni per ${productName}`;
+      body = `Ciao Team THEHAMMER,
 
-Vorrei ricevere maggiori informazioni sul seguente prodotto:
+Vorrei ricevere maggiori informazioni su:
 
-Nome prodotto: ${productName}
-Codice prodotto: ${productCode}
+Prodotto: ${productName}
 Categoria: ${categoryName}
+Modello: ${productCode}
 
 Specifiche tecniche:
 - Portata: ${p.qGpm} GPM
@@ -1755,17 +1754,18 @@ Specifiche tecniche:
 
 Pagina prodotto: ${window.location.href}
 
-Per favore, inviami il prezzo e le informazioni tecniche disponibili.
+Per favore, inviatemi maggiori informazioni e un preventivo.
 
 Grazie.`;
     } else {
-      message = `Hello Mo'men,
+      subject = `Inquiry About ${productName}`;
+      body = `Hello THEHAMMER Team,
 
-I would like to request more information about the following product:
+I would like to request more information about:
 
-Product name: ${productName}
-Product code: ${productCode}
+Product: ${productName}
 Category: ${categoryName}
+Model: ${productCode}
 
 Technical Specifications:
 - Flow Rate: ${p.qGpm} GPM
@@ -1777,39 +1777,42 @@ Technical Specifications:
 
 Product page: ${window.location.href}
 
-Please send me the price and the available technical information.
+Please send me more information and a quotation.
 
 Thank you.`;
     }
   } else {
-    const subject = productId || "General Inquiry";
+    const inquiryTopic = productId || "General Pump Enquiry";
     if (currentLang === "ar") {
-      message = `مرحبًا أستاذ Mo'men،
+      subject = `استفسار فني: ${inquiryTopic}`;
+      body = `مرحبًا فريق ذا هامر،
 
-أود الحصول على مزيد من المعلومات حول: ${subject}
+أود الحصول على مزيد من المعلومات حول: ${inquiryTopic}.
 
-شكرًا لك.`;
+شكرًا لكم.`;
     } else if (currentLang === "it") {
-      message = `Ciao Mo'men,
+      subject = `Richiesta informazioni: ${inquiryTopic}`;
+      body = `Ciao Team THEHAMMER,
 
-Vorrei ricevere maggiori informazioni in merito a: ${subject}
+Vorrei ricevere maggiori informazioni in merito a: ${inquiryTopic}.
 
 Grazie.`;
     } else {
-      message = `Hello Mo'men,
+      subject = `Inquiry: ${inquiryTopic}`;
+      body = `Hello THEHAMMER Team,
 
-I would like to request more information regarding: ${subject}
+I would like to request more information regarding: ${inquiryTopic}.
 
 Thank you.`;
     }
   }
 
-  const encoded = encodeURIComponent(message);
-  window.open(
-    `https://wa.me/201203666634?text=${encoded}`,
-    "_blank",
-    "noopener,noreferrer",
-  );
+  const mailtoUrl = `mailto:johnadelm23@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.location.href = mailtoUrl;
+}
+
+function openWhatsAppQuote(productId) {
+  openEmailInquiry(productId);
 }
 
 /* ==========================================================================
