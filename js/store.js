@@ -10,10 +10,10 @@ const SEED_DATA = {
     logoUrl:
       "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=200&q=80",
     phone: "",
-    email: "johnadelm23@gmail.com",
-    addressEN: "THEHAMMER Industrial Park, Works Avenue 100, London, UK",
-    addressIT: "THEHAMMER Industrial Park, Works Avenue 100, Londra, UK",
-    addressAR: "مجمع هامر الصناعي، شارع الأعمال 100، لندن، المملكة المتحدة",
+    email: "rfq@thehammer.uk",
+    addressEN: "THEHAMMER Industrial Water Pump Solutions",
+    addressIT: "THEHAMMER Soluzioni per Pompe Industriali",
+    addressAR: "مجمع هامر لحلول مضخات المياه الصناعية",
     themeDefault: "light",
     cloudinaryCloudName: "thehammer-pumps-cloud",
     ga4Id: "G-HAMMERPUMPS2026",
@@ -1525,13 +1525,14 @@ class HammerStore {
           settings.phone = "";
           settingsChanged = true;
         }
-        if (settings.email !== "johnadelm23@gmail.com") {
-          settings.email = "johnadelm23@gmail.com";
+        if (settings.email !== "rfq@thehammer.uk") {
+          settings.email = "rfq@thehammer.uk";
           settingsChanged = true;
         }
-        if (!settings.addressAR) {
-          settings.addressAR =
-            "مجمع هامر الصناعي، شارع الأعمال 100، لندن، المملكة المتحدة";
+        if (settings.addressEN !== "THEHAMMER Industrial Water Pump Solutions") {
+          settings.addressEN = "THEHAMMER Industrial Water Pump Solutions";
+          settings.addressIT = "THEHAMMER Soluzioni per Pompe Industriali";
+          settings.addressAR = "مجمع هامر لحلول مضخات المياه الصناعية";
           settingsChanged = true;
         }
         if (settingsChanged) {

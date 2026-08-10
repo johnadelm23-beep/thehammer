@@ -1497,7 +1497,7 @@ ${itemsListString}`;
       if (message) emailBody += `\n\nAdditional details:\n${message}`;
     }
 
-    const mailtoUrl = `mailto:johnadelm23@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+    const mailtoUrl = `mailto:rfq@thehammer.uk?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
     window.location.href = mailtoUrl;
 
     closeQuoteListModal();
@@ -1674,7 +1674,7 @@ Message:
 ${message}`;
     }
 
-    const mailtoUrl = `mailto:johnadelm23@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+    const mailtoUrl = `mailto:rfq@thehammer.uk?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
     window.location.href = mailtoUrl;
 
     document.getElementById("contactForm").reset();
@@ -1807,7 +1807,7 @@ Thank you.`;
     }
   }
 
-  const mailtoUrl = `mailto:johnadelm23@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const mailtoUrl = `mailto:rfq@thehammer.uk?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   window.location.href = mailtoUrl;
 }
 
