@@ -1497,7 +1497,8 @@ ${itemsListString}`;
       if (message) emailBody += `\n\nAdditional details:\n${message}`;
     }
 
-    const mailtoUrl = `mailto:rfq@thehammer.uk?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+    const recipientEmail = (window.store && window.store.getSettings && window.store.getSettings().email) || "info@thehammer.uk";
+    const mailtoUrl = `mailto:${recipientEmail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
     window.location.href = mailtoUrl;
 
     closeQuoteListModal();
@@ -1674,7 +1675,8 @@ Message:
 ${message}`;
     }
 
-    const mailtoUrl = `mailto:rfq@thehammer.uk?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+    const recipientEmail = (window.store && window.store.getSettings && window.store.getSettings().email) || "info@thehammer.uk";
+    const mailtoUrl = `mailto:${recipientEmail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
     window.location.href = mailtoUrl;
 
     document.getElementById("contactForm").reset();
@@ -1807,7 +1809,8 @@ Thank you.`;
     }
   }
 
-  const mailtoUrl = `mailto:rfq@thehammer.uk?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const recipientEmail = (window.store && window.store.getSettings && window.store.getSettings().email) || "info@thehammer.uk";
+  const mailtoUrl = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   window.location.href = mailtoUrl;
 }
 

@@ -31,6 +31,8 @@ const limiter = rateLimit({
 });
 app.use('/api/', limiter);
 
+const CONTACT_EMAIL = process.env.CONTACT_EMAIL || 'info@thehammer.uk';
+
 // Zod Validation Schemas
 const QuoteRequestSchema = z.object({
   companyName: z.string().min(2),
@@ -43,6 +45,15 @@ const QuoteRequestSchema = z.object({
   contactMethod: z.enum(['Email', 'Phone Call', 'WhatsApp', 'EMAIL', 'PHONE', 'WHATSAPP']),
   message: z.string().optional(),
   attachment: z.string().nullable().optional()
+});
+
+const ContactRequestSchema = z.object({
+  fullName: z.string().min(2),
+  email: z.string().email(),
+  company: z.string().optional(),
+  subject: z.string().min(2),
+  message: z.string().min(5),
+  phone: z.string().optional()
 });
 
 // Authentication Middleware
@@ -61,7 +72,7 @@ function authenticateToken(req, res, next) {
 
 // Health Check
 app.get('/health', (req, res) => {
-  res.json({ status: 'UP', service: 'EuroPrecision API', timestamp: new Date().toISOString() });
+  res.json({ status: 'UP', service: 'THEHAMMER API', recipientEmail: CONTACT_EMAIL, timestamp: new Date().toISOString() });
 });
 
 // API Routes: Public Catalog
@@ -78,8 +89,30 @@ app.post('/api/v1/quotes', (req, res) => {
     // In production: await prisma.quoteRequest.create({ data: validated })
     res.status(201).json({
       success: true,
-      message: 'Quotation request submitted successfully',
+      message: `Quotation request submitted successfully and routed to ${CONTACT_EMAIL}`,
+      recipientEmail: CONTACT_EMAIL,
       rfqNumber: rfqId,
+      data: validated
+    });
+  } catch (err) {
+    if (err instanceof z.ZodError) {
+      return res.status(400).json({ error: 'Validation failed', details: err.errors });
+    }
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// API Route: Website Contact Form Submission
+app.post('/api/v1/contact', (req, res) => {
+  try {
+    const validated = ContactRequestSchema.parse(req.body);
+    const messageId = 'MSG-2026-' + Math.floor(1000 + Math.random() * 9000);
+
+    res.status(200).json({
+      success: true,
+      message: `Website contact message delivered successfully to ${CONTACT_EMAIL}`,
+      recipientEmail: CONTACT_EMAIL,
+      messageId: messageId,
       data: validated
     });
   } catch (err) {

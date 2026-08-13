@@ -27,6 +27,7 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=5000
+      - CONTACT_EMAIL=info@thehammer.uk
       - DATABASE_URL=postgresql://euro_user:EuroPass2026!@postgres:5432/europrecision_db?schema=public
       - JWT_SECRET=europrecision_production_jwt_secret_2026_key
     depends_on:

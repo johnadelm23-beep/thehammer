@@ -10,7 +10,7 @@ const SEED_DATA = {
     logoUrl:
       "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=200&q=80",
     phone: "",
-    email: "rfq@thehammer.uk",
+    email: "info@thehammer.uk",
     addressEN: "THEHAMMER Industrial Water Pump Solutions",
     addressIT: "THEHAMMER Soluzioni per Pompe Industriali",
     addressAR: "مجمع هامر لحلول مضخات المياه الصناعية",
@@ -1525,8 +1525,8 @@ class HammerStore {
           settings.phone = "";
           settingsChanged = true;
         }
-        if (settings.email !== "rfq@thehammer.uk") {
-          settings.email = "rfq@thehammer.uk";
+        if (settings.email !== "info@thehammer.uk") {
+          settings.email = "info@thehammer.uk";
           settingsChanged = true;
         }
         if (settings.addressEN !== "THEHAMMER Industrial Water Pump Solutions") {
