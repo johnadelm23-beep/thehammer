@@ -22,7 +22,7 @@ const DICTIONARIES = {
       subtitle:
         "Explore our range of water pumps, fire pumps, motors, spare parts, and industrial solutions. Contact us for technical information and quotations.",
       brandIntro:
-        "TheHammer for Industrial equipment, pumps, motors, fire systems, and technical solutions you can rely on.",
+        "TheHammer for Industrial equipment, pumps, motors, fire systems, and technical solutions you can rely on. THEHAMMER Made in Italy",
       exploreProducts: "Browse Products",
       requestCustomQuote: "Request a Quote",
       stat1Label: "Max Flow Rate",
