@@ -21,9 +21,9 @@ const DICTIONARIES = {
 
       subtitle:
         "Explore our range of water pumps, fire pumps, motors, spare parts, and industrial solutions. Contact us for technical information and quotations.",
-      brandIntro:
-        "TheHammer for Industrial equipment, pumps, motors, fire systems, and technical solutions you can rely on. THEHAMMER Made in Italy",
-      exploreProducts: "Browse Products",
+     brandIntro:
+    "TheHammer delivers premium industrial equipment, pumps, motors, fire protection systems, and dependable engineering solutions. Italian quality. Industrial excellence. THEHAMMER – Made in Italy.",
+exploreProducts: "Discover Our Products",
       requestCustomQuote: "Request a Quote",
       stat1Label: "Max Flow Rate",
       stat2Label: "Head Pressure",
@@ -173,6 +173,24 @@ const DICTIONARIES = {
     pdf: {
       download: "Download PDF",
       unavailable: "PDF document is currently unavailable.",
+      catalogsSectionTitle: "Official Technical Product Catalogs",
+      catalogsSectionSubtitle: "Browse, preview, and download official THEHAMMER NFPA-20 fire fighting pump system catalogs with complete performance curves and technical specifications.",
+      previewPdf: "Preview PDF",
+      downloadCatalog: "Download Catalog",
+      pdfDocument: "Official PDF Catalog",
+      allFlows: "All Capacities",
+      capacity: "Capacity",
+      pressure: "Pressure",
+      pagesCount: "Pages",
+      fileSize: "File Size",
+      downloadsCount: "Downloads",
+      downloadStarted: "Starting download for:",
+      technicalCatalog: "Technical Catalog",
+      technicalCatalogs: "Technical Catalogs",
+      masterCatalog: "THEHAMMER Master Catalog",
+      fallbackNotice: "Master Catalog Fallback",
+      pressureUnknown: "Pressure Unknown",
+      completeRange: "Complete Range",
     },
     emailInquiry: {
       template:
@@ -372,6 +390,24 @@ const DICTIONARIES = {
     pdf: {
       download: "Scarica PDF",
       unavailable: "Il documento PDF non è attualmente disponibile.",
+      catalogsSectionTitle: "Cataloghi Tecnici Ufficiali Prodotti",
+      catalogsSectionSubtitle: "Sfoglia, visualizza in anteprima e scarica i cataloghi ufficiali per gruppi pompe antincendio THEHAMMER conformi a NFPA-20 con curve prestazionali e specifiche tecniche.",
+      previewPdf: "Anteprima PDF",
+      downloadCatalog: "Scarica Catalogo",
+      pdfDocument: "Catalogo PDF Ufficiale",
+      allFlows: "Tutte le Portate",
+      capacity: "Portata",
+      pressure: "Pressione",
+      pagesCount: "Pagine",
+      fileSize: "Dimensioni",
+      downloadsCount: "Download",
+      downloadStarted: "Avvio download per:",
+      technicalCatalog: "Catalogo Tecnico",
+      technicalCatalogs: "Cataloghi Tecnici",
+      masterCatalog: "Catalogo Generale THEHAMMER",
+      fallbackNotice: "Catalogo Generale di Riferimento",
+      pressureUnknown: "Pressione Non Specificata",
+      completeRange: "Gamma Completa",
     },
     emailInquiry: {
       template:
@@ -571,6 +607,24 @@ const DICTIONARIES = {
     pdf: {
       download: "تحميل ملف PDF",
       unavailable: "ملف PDF غير متاح حاليًا.",
+      catalogsSectionTitle: "كتالوجات المنتجات الفنية الرسمية",
+      catalogsSectionSubtitle: "تصفح وعاين وحمّل كتالوجات أنظمة ومجموعات مضخات الحريق الرسمية المعتمدة من THEHAMMER وفق معايير NFPA-20 مع منحنيات الأداء والمواصفات الكاملة.",
+      previewPdf: "معاينة PDF",
+      downloadCatalog: "تحميل الكتالوج",
+      pdfDocument: "كتالوج PDF رسمي",
+      allFlows: "جميع السعات",
+      capacity: "السعة",
+      pressure: "الضغط",
+      pagesCount: "الصفحات",
+      fileSize: "حجم الملف",
+      downloadsCount: "التحميلات",
+      downloadStarted: "جاري بدء تحميل:",
+      technicalCatalog: "الكتالوج الفني المعتمد",
+      technicalCatalogs: "الكتالوجات الفنية المعتمدة",
+      masterCatalog: "الكتالوج الشامل THEHAMMER",
+      fallbackNotice: "الكتالوج الشامل البديل",
+      pressureUnknown: "الضغط غير محدد",
+      completeRange: "النطاق الشامل",
     },
     emailInquiry: {
       template:

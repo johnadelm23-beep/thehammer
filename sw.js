@@ -3,7 +3,7 @@
  * Precaching, Offline Fallback, Background Sync, and Push Notification Handling
  */
 
-const CACHE_NAME = "europrecision-pwa-v7";
+const CACHE_NAME = "thehammer-pwa-v8";
 const ASSETS_TO_CACHE = [
   "./",
   "./index.html",
@@ -56,6 +56,16 @@ self.addEventListener("activate", (event) => {
 // Fetch Event (Cache-First strategy for static assets, Network-First for APIs)
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
+
+  const requestUrl = (event.request.url || "").toLowerCase();
+
+  // Bypass Service Worker completely for PDF catalog files:
+  // - Prevents filling browser CacheStorage with large 10MB PDF binaries
+  // - Prevents accidental fallback to index.html if network is slow/reconnecting
+  // - Allows browser native streaming & download manager handling
+  if (requestUrl.endsWith(".pdf") || requestUrl.includes("/images/catalogs/")) {
+    return;
+  }
 
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {

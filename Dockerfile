@@ -6,11 +6,13 @@ RUN rm -rf /usr/share/nginx/html/*
 
 # Copy website assets to Nginx web root
 COPY index.html /usr/share/nginx/html/
+COPY category.html /usr/share/nginx/html/
 COPY style.css /usr/share/nginx/html/
+COPY animations.css /usr/share/nginx/html/
 COPY manifest.json /usr/share/nginx/html/
 COPY sw.js /usr/share/nginx/html/
 COPY js/ /usr/share/nginx/html/js/
-COPY admin/ /usr/share/nginx/html/admin/
+COPY images/ /usr/share/nginx/html/images/
 
 # Custom Nginx Config with gzip and security headers
 RUN echo $'server {\n\

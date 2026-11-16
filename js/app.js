@@ -303,6 +303,11 @@ function renderCategoryCards() {
       const catProducts = window.store.getProductsForCategory(cat);
       const count = catProducts.length;
 
+      const catCatalogs = window.store && window.store.getCatalogsForCategory ? window.store.getCatalogsForCategory(cat) : [];
+      const catalogBadgeHtml = catCatalogs.length > 0
+        ? `<span class="category-card-catalog-badge"><i data-lucide="file-text" style="width: 13px; height: 13px;"></i> ${catCatalogs.length} ${currentLang === "ar" ? "كتالوجات PDF" : currentLang === "it" ? "Cataloghi PDF" : "PDF Catalogs"}</span>`
+        : "";
+
       const formattedCount = window.i18n
         ? window.i18n.t("catalog.foundProducts", { count }, `Found ${count} Products`)
         : `Found ${count} Products`;
@@ -312,6 +317,7 @@ function renderCategoryCards() {
           <div class="category-card-img-wrapper">
             <img src="${catImage}" alt="${catName} category" class="category-card-img" width="400" height="260" loading="lazy" decoding="async" onerror="console.error('Failed to load category image:', '${catImage}');">
             <span class="category-card-count-badge">${formattedCount}</span>
+            ${catalogBadgeHtml}
           </div>
           <div class="category-card-body">
             <h3 class="category-card-title">
@@ -818,6 +824,83 @@ function renderCatalog() {
             : "Head";
       const headUnit = currentLang === "ar" ? "بار" : "Bar";
 
+      const titleKey = currentLang === "ar" ? "titleAR" : currentLang === "it" ? "titleIT" : "titleEN";
+      const matchingCatalogs = (window.store && window.store.getCatalogsForProduct)
+        ? window.store.getCatalogsForProduct(p)
+        : [];
+      const isFallbackCatalog = matchingCatalogs.length === 1 && (matchingCatalogs[0].isMainFallback || matchingCatalogs[0].id === "cat-pdf-main");
+
+      const previewText = window.i18n ? window.i18n.t("pdf.previewPdf", "Preview PDF") : "Preview PDF";
+      const downloadText = window.i18n ? window.i18n.t("pdf.downloadCatalog", "Download") : "Download";
+      const pagesText = window.i18n ? window.i18n.t("pdf.pagesCount", "Pages") : "Pages";
+
+      const catalogBoxHeaderTitle = isFallbackCatalog
+        ? (window.i18n ? window.i18n.t("pdf.masterCatalog", "THEHAMMER Master Catalog") : "THEHAMMER Master Catalog")
+        : (matchingCatalogs.length > 1
+            ? (window.i18n ? window.i18n.t("pdf.technicalCatalogs", "Technical Catalogs") : "Technical Catalogs")
+            : (window.i18n ? window.i18n.t("pdf.technicalCatalog", "Technical Catalog") : "Technical Catalog"));
+
+      const catalogBoxBadge = isFallbackCatalog
+        ? (window.i18n ? window.i18n.t("pdf.completeRange", "Complete Range") : "Complete Range")
+        : (matchingCatalogs.length > 1 ? `${matchingCatalogs.length} Catalogs` : "PDF");
+
+      const catalogItemsHtml = matchingCatalogs.map((c) => {
+        const title = c[titleKey] || c.titleEN;
+        const encodedPdf = encodeURI(`images/catalogs/${c.filename}`);
+        const cleanFilename = c.cleanDownloadFilename || c.filename;
+
+        let pressureBadge = "";
+        if (c.pressureBar) {
+          pressureBadge = `<span class="catalog-mini-pill pressure-known">${c.pressureBar} Bar</span>`;
+        } else if (c.gpm) {
+          const unknownText = window.i18n ? window.i18n.t("pdf.pressureUnknown", "Pressure Unknown") : "Pressure Unknown";
+          pressureBadge = `<span class="catalog-mini-pill pressure-unknown">${unknownText}</span>`;
+        } else {
+          const rangeText = window.i18n ? window.i18n.t("pdf.fallbackNotice", "Master Catalog Fallback") : "Master Fallback";
+          pressureBadge = `<span class="catalog-mini-pill pressure-master">${rangeText}</span>`;
+        }
+
+        const capBadge = c.gpm ? `<span class="catalog-mini-pill capacity-pill">${c.gpm} GPM</span>` : "";
+
+        return `
+          <div class="product-catalog-row">
+            <div class="product-catalog-row-info">
+              <div class="product-catalog-pills">
+                ${capBadge}
+                ${pressureBadge}
+              </div>
+              <span class="product-catalog-filename" title="${title}">${title}</span>
+              <span class="product-catalog-meta">${c.pages} ${pagesText} • ${c.fileSize}</span>
+            </div>
+            <div class="product-catalog-row-actions">
+              <a href="${encodedPdf}" target="_blank" rel="noopener noreferrer" class="catalog-mini-btn btn-secondary" aria-label="${previewText}: ${title}">
+                <i data-lucide="eye" style="width: 13px; height: 13px;"></i>
+                <span>${previewText}</span>
+              </a>
+              <button type="button" class="catalog-mini-btn btn-primary" onclick="downloadCatalogPdf('${encodedPdf}', '${cleanFilename}', '${c.id}')" aria-label="${downloadText}: ${title}">
+                <i data-lucide="download" style="width: 13px; height: 13px;"></i>
+                <span>${downloadText}</span>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      const catalogBoxHtml = matchingCatalogs.length > 0 ? `
+        <div class="product-card-catalog-box ${isFallbackCatalog ? 'is-fallback' : 'is-specialized'}">
+          <div class="product-catalog-box-header">
+            <div class="product-catalog-header-title">
+              <i data-lucide="file-text" style="width: 14px; height: 14px; color: var(--primary-red);"></i>
+              <span>${catalogBoxHeaderTitle}</span>
+            </div>
+            <span class="product-catalog-type-badge">${catalogBoxBadge}</span>
+          </div>
+          <div class="product-catalog-box-list">
+            ${catalogItemsHtml}
+          </div>
+        </div>
+      ` : "";
+
       return `
       <div class="product-card">
         <div class="product-img-wrapper">
@@ -842,6 +925,9 @@ function renderCatalog() {
               <span class="spec-val tech-val spec-val-ltr">${p.hBar} ${headUnit}</span>
             </div>
           </div>
+
+          <!-- Integrated Catalog Display -->
+          ${catalogBoxHtml}
 
           <div class="product-card-footer">
             <button class="btn btn-secondary btn-sm product-card-btn" onclick="openProductDetail('${p.id}')" data-i18n="catalog.viewDetails">${window.i18n.t("catalog.viewDetails")}</button>
@@ -912,32 +998,109 @@ function renderCertificates() {
   }
 }
 
+/* ==========================================================================
+   OFFICIAL CATALOG SYSTEM: DOWNLOAD, PREVIEW & RENDERING
+   ========================================================================== */
+
+let activeCatalogFlowFilter = "all";
+
+/**
+ * Downloads a catalog PDF using Blob URL to force direct attachment download
+ * across any static server configuration (GitHub Pages, Vercel, Nginx, etc.),
+ * with graceful anchor download fallback.
+ */
+async function downloadCatalogPdf(encodedPath, cleanFilename, catalogId) {
+  if (catalogId && window.store && window.store.incrementDownloadCount) {
+    window.store.incrementDownloadCount(catalogId);
+  }
+
+  const fallbackFilename = cleanFilename || encodedPath.split("/").pop().replace(/%20/g, " ");
+
+  try {
+    // 1. Fetch as blob to guarantee real attachment file download
+    const response = await fetch(encodedPath);
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const blob = await response.blob();
+    const blobUrl = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = blobUrl;
+    a.download = fallbackFilename;
+    a.style.display = "none";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    setTimeout(() => {
+      URL.revokeObjectURL(blobUrl);
+    }, 4000);
+  } catch (err) {
+    console.warn("Direct blob download failed, falling back to anchor download:", err);
+    // 2. Fallback: Native anchor tag with download attribute
+    const a = document.createElement("a");
+    a.href = encodedPath;
+    a.download = fallbackFilename;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.style.display = "none";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+}
+
 function renderDownloads() {
   const grid = document.getElementById("downloadsGrid");
   if (!grid) return;
 
-  const downloads = window.store ? window.store.getDownloads() : [];
+  const allDownloads = window.store ? window.store.getDownloads() : [];
+  // Ensure homepage downloads section displays ONLY the main catalog (and non-catalog technical guides)
+  const downloads = allDownloads.filter((d) => !d.id.startsWith("dl-cat-") || d.id === "dl-cat-main");
   const currentLang = window.i18n ? window.i18n.currentLang : "en";
-  const titleKey =
-    currentLang === "ar"
-      ? "titleAR"
-      : currentLang === "it"
-        ? "titleIT"
-        : "titleEN";
+  const titleKey = currentLang === "ar" ? "titleAR" : currentLang === "it" ? "titleIT" : "titleEN";
+  const previewText = window.i18n ? window.i18n.t("pdf.previewPdf", "Preview PDF") : "Preview PDF";
+  const downloadText = window.i18n ? window.i18n.t("pdf.downloadCatalog", "Download") : "Download";
 
   grid.innerHTML = downloads
-    .map(
-      (d) => `
-    <div class="download-card stagger-item">
-      <div>
-        <h4 class="download-title">${d[titleKey] || d.titleEN}</h4>
-        <span class="download-info">Category: ${d.category} • Downloads: ${d.count}</span>
-      </div>
-      <button class="btn btn-primary btn-sm" onclick="triggerDownload('${d.id}', '${d.file}')">Download</button>
-    </div>
-  `,
-    )
+    .map((d) => {
+      const title = d[titleKey] || d.titleEN;
+      const isCatalog = d.category === "Fire Pump Catalog" || (d.file && d.file.endsWith(".pdf") && d.file.includes("Fire"));
+      const encodedPdf = isCatalog ? encodeURI(`images/catalogs/${d.file}`) : "";
+      const cleanName = d.cleanDownloadFilename || d.file;
+      const sizeInfo = d.fileSize ? ` • ${d.fileSize}` : "";
+
+      const previewBtnHtml = isCatalog
+        ? `<a href="${encodedPdf}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" aria-label="${previewText}: ${title}">
+            <i data-lucide="eye" style="width: 14px; height: 14px;"></i>
+            <span>${previewText}</span>
+          </a>`
+        : "";
+
+      return `
+        <div class="download-card stagger-item">
+          <div style="flex: 1;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem;">
+              <span class="badge ${isCatalog ? 'badge-primary' : 'badge-secondary'}" style="font-size: 0.725rem; font-weight: 700; font-family: var(--font-mono); padding: 0.2rem 0.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+                <i data-lucide="${isCatalog ? 'file-text' : 'package'}" style="width: 12px; height: 12px; margin-right: 4px;"></i>
+                ${d.category}
+              </span>
+              ${d.rating ? `<span style="font-size: 0.75rem; font-weight: 600; color: var(--text-muted); font-family: var(--font-mono);">${d.rating}</span>` : ''}
+            </div>
+            <h4 class="download-title">${title}</h4>
+            <span class="download-info">Downloads: ${d.count || 0}${sizeInfo}</span>
+          </div>
+          <div class="download-card-actions" style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+            ${previewBtnHtml}
+            <button type="button" class="btn btn-primary btn-sm" onclick="triggerDownload('${d.id}', '${d.file}')" aria-label="${downloadText}: ${title}">
+              <i data-lucide="download" style="width: 14px; height: 14px;"></i>
+              <span>${downloadText}</span>
+            </button>
+          </div>
+        </div>
+      `;
+    })
     .join("");
+
   if (window.lucide) {
     lucide.createIcons();
   }
@@ -945,7 +1108,10 @@ function renderDownloads() {
 
 function triggerDownload(id, filename) {
   if (window.store) window.store.incrementDownloadCount(id);
-  alert(`Downloading official catalog file: ${filename}`);
+  const download = (window.store ? window.store.getDownloads() : []).find((d) => d.id === id);
+  const cleanName = (download && download.cleanDownloadFilename) ? download.cleanDownloadFilename : filename;
+  const encodedUrl = encodeURI(`images/catalogs/${filename}`);
+  downloadCatalogPdf(encodedUrl, cleanName, id);
 }
 
 let lastActiveElement = null;
@@ -1122,10 +1288,14 @@ function openProductDetail(productId) {
     };
   }
 
+  const matchedCatalog = (window.store && window.store.getCatalogForProduct) ? window.store.getCatalogForProduct(p) : null;
+  const catalogPdfUrl = matchedCatalog ? encodeURI(`images/catalogs/${matchedCatalog.filename}`) : null;
+
   const pdfUrl =
     p.pdfUrl ||
     p.datasheetUrl ||
     p.catalogUrl ||
+    catalogPdfUrl ||
     p.documentUrl ||
     p.datasheetPdf;
   const pdfBtn = document.getElementById("detailPdfBtn");
@@ -1134,9 +1304,21 @@ function openProductDetail(productId) {
       pdfBtn.style.cursor = "pointer";
       pdfBtn.style.opacity = "1";
       pdfBtn.onclick = () => {
-        window.open(pdfUrl, "_blank", "noopener,noreferrer");
+        if (matchedCatalog) {
+          downloadCatalogPdf(pdfUrl, matchedCatalog.cleanDownloadFilename, matchedCatalog.id);
+        } else {
+          window.open(pdfUrl, "_blank", "noopener,noreferrer");
+        }
       };
-      pdfBtn.innerHTML = window.i18n.t("pdf.download");
+      const labelText = matchedCatalog
+        ? (matchedCatalog.gpm
+            ? `${window.i18n ? window.i18n.t("pdf.downloadCatalog", "Download Catalog") : "Download Catalog"} (${matchedCatalog.gpm} GPM)`
+            : (window.i18n ? window.i18n.t("pdf.masterCatalog", "THEHAMMER Master Catalog") : "THEHAMMER Master Catalog"))
+        : (window.i18n ? window.i18n.t("pdf.download", "Download PDF") : "Download PDF");
+      pdfBtn.innerHTML = `<i data-lucide="download" style="width: 16px; height: 16px; margin-right: 6px;"></i><span>${labelText}</span>`;
+      if (window.lucide) {
+        lucide.createIcons();
+      }
       pdfBtn.setAttribute(
         "aria-label",
         currentLang === "it"

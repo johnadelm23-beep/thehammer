@@ -1385,33 +1385,228 @@ const SEED_DATA = {
       pdf: "CE-Machinery-Directive.pdf",
     },
   ],
+  catalogs: [
+    {
+      id: "cat-pdf-250-8",
+      filename: "THEHAMMER Fire Pumb 250 GPM 8 bar.pdf",
+      cleanDownloadFilename: "THEHAMMER-Fire-Pump-System-250GPM-8Bar.pdf",
+      titleEN: "THEHAMMER Fire Pump System Catalog – 250 GPM @ 8 Bar",
+      titleIT: "Catalogo Gruppo Pompe Antincendio THEHAMMER – 250 GPM @ 8 Bar",
+      titleAR: "كتالوج نظام مضخات الحريق THEHAMMER – 250 GPM @ 8 بار",
+      gpm: 250,
+      pressureBar: 8,
+      categoryId: "cat-ff",
+      categorySlug: "fire-fighting-pumps",
+      productGroupEN: "Fire Fighting Pump Systems",
+      productGroupIT: "Sistemi Pompe Antincendio",
+      productGroupAR: "أنظمة مضخات مكافحة الحريق",
+      pages: 22,
+      fileSize: "9.2 MB",
+      sizeBytes: 9592557,
+      rating: "250 GPM / 8 Bar",
+      downloadCount: 342,
+    },
+    {
+      id: "cat-pdf-500-8",
+      filename: "THEHAMMER Fire Pumbs 500 GPM  8 bar.pdf",
+      cleanDownloadFilename: "THEHAMMER-Fire-Pump-System-500GPM-8Bar.pdf",
+      titleEN: "THEHAMMER Fire Pump System Catalog – 500 GPM @ 8 Bar",
+      titleIT: "Catalogo Gruppo Pompe Antincendio THEHAMMER – 500 GPM @ 8 Bar",
+      titleAR: "كتالوج نظام مضخات الحريق THEHAMMER – 500 GPM @ 8 بار",
+      gpm: 500,
+      pressureBar: 8,
+      categoryId: "cat-ff",
+      categorySlug: "fire-fighting-pumps",
+      productGroupEN: "Fire Fighting Pump Systems",
+      productGroupIT: "Sistemi Pompe Antincendio",
+      productGroupAR: "أنظمة مضخات مكافحة الحريق",
+      pages: 22,
+      fileSize: "9.2 MB",
+      sizeBytes: 9609919,
+      rating: "500 GPM / 8 Bar",
+      downloadCount: 489,
+    },
+    {
+      id: "cat-pdf-750-8",
+      filename: "THEHAMMER Fire Pumb 750 GPM 8 bar.pdf",
+      cleanDownloadFilename: "THEHAMMER-Fire-Pump-System-750GPM-8Bar.pdf",
+      titleEN: "THEHAMMER Fire Pump System Catalog – 750 GPM @ 8 Bar",
+      titleIT: "Catalogo Gruppo Pompe Antincendio THEHAMMER – 750 GPM @ 8 Bar",
+      titleAR: "كتالوج نظام مضخات الحريق THEHAMMER – 750 GPM @ 8 بار",
+      gpm: 750,
+      pressureBar: 8,
+      categoryId: "cat-ff",
+      categorySlug: "fire-fighting-pumps",
+      productGroupEN: "Fire Fighting Pump Systems",
+      productGroupIT: "Sistemi Pompe Antincendio",
+      productGroupAR: "أنظمة مضخات مكافحة الحريق",
+      pages: 22,
+      fileSize: "9.2 MB",
+      sizeBytes: 9604596,
+      rating: "750 GPM / 8 Bar",
+      downloadCount: 512,
+    },
+    {
+      id: "cat-pdf-750-9",
+      filename: "THEHAMMER_Fire  Pumb 750 GPM 9 bar.pdf",
+      cleanDownloadFilename: "THEHAMMER-Fire-Pump-System-750GPM-9Bar.pdf",
+      titleEN: "THEHAMMER Fire Pump System Catalog – 750 GPM @ 9 Bar",
+      titleIT: "Catalogo Gruppo Pompe Antincendio THEHAMMER – 750 GPM @ 9 Bar",
+      titleAR: "كتالوج نظام مضخات الحريق THEHAMMER – 750 GPM @ 9 بار",
+      gpm: 750,
+      pressureBar: 9,
+      categoryId: "cat-ff",
+      categorySlug: "fire-fighting-pumps",
+      productGroupEN: "Fire Fighting Pump Systems",
+      productGroupIT: "Sistemi Pompe Antincendio",
+      productGroupAR: "أنظمة مضخات مكافحة الحريق",
+      pages: 11,
+      fileSize: "4.8 MB",
+      sizeBytes: 5028038,
+      rating: "750 GPM / 9 Bar",
+      downloadCount: 318,
+    },
+    {
+      id: "cat-pdf-1000-8",
+      filename: "THEHAMMER Fire Pumb 1000 GPM 8 bar.pdf",
+      cleanDownloadFilename: "THEHAMMER-Fire-Pump-System-1000GPM-8Bar.pdf",
+      titleEN: "THEHAMMER Fire Pump System Catalog – 1000 GPM @ 8 Bar",
+      titleIT: "Catalogo Gruppo Pompe Antincendio THEHAMMER – 1000 GPM @ 8 Bar",
+      titleAR: "كتالوج نظام مضخات الحريق THEHAMMER – 1000 GPM @ 8 بار",
+      gpm: 1000,
+      pressureBar: 8,
+      categoryId: "cat-ff",
+      categorySlug: "fire-fighting-pumps",
+      productGroupEN: "Fire Fighting Pump Systems",
+      productGroupIT: "Sistemi Pompe Antincendio",
+      productGroupAR: "أنظمة مضخات مكافحة الحريق",
+      pages: 18,
+      fileSize: "7.6 MB",
+      sizeBytes: 8016197,
+      rating: "1000 GPM / 8 Bar",
+      downloadCount: 645,
+    },
+    {
+      id: "cat-pdf-1000-10",
+      filename: "THEHAMMER Fire  Pumb 1000 GPM 10 bar.pdf",
+      cleanDownloadFilename: "THEHAMMER-Fire-Pump-System-1000GPM-10Bar.pdf",
+      titleEN: "THEHAMMER Fire Pump System Catalog – 1000 GPM @ 10 Bar",
+      titleIT: "Catalogo Gruppo Pompe Antincendio THEHAMMER – 1000 GPM @ 10 Bar",
+      titleAR: "كتالوج نظام مضخات الحريق THEHAMMER – 1000 GPM @ 10 بار",
+      gpm: 1000,
+      pressureBar: 10,
+      categoryId: "cat-ff",
+      categorySlug: "fire-fighting-pumps",
+      productGroupEN: "Fire Fighting Pump Systems",
+      productGroupIT: "Sistemi Pompe Antincendio",
+      productGroupAR: "أنظمة مضخات مكافحة الحريق",
+      pages: 10,
+      fileSize: "4.6 MB",
+      sizeBytes: 4815156,
+      rating: "1000 GPM / 10 Bar",
+      downloadCount: 420,
+    },
+    {
+      id: "cat-pdf-1250-8",
+      filename: "THEHAMMER Fire Pumb 1250 GPM 8 bar.pdf",
+      cleanDownloadFilename: "THEHAMMER-Fire-Pump-System-1250GPM-8Bar.pdf",
+      titleEN: "THEHAMMER Fire Pump System Catalog – 1250 GPM @ 8 Bar",
+      titleIT: "Catalogo Gruppo Pompe Antincendio THEHAMMER – 1250 GPM @ 8 Bar",
+      titleAR: "كتالوج نظام مضخات الحريق THEHAMMER – 1250 GPM @ 8 بار",
+      gpm: 1250,
+      pressureBar: 8,
+      categoryId: "cat-ff",
+      categorySlug: "fire-fighting-pumps",
+      productGroupEN: "Fire Fighting Pump Systems",
+      productGroupIT: "Sistemi Pompe Antincendio",
+      productGroupAR: "أنظمة مضخات مكافحة الحريق",
+      pages: 11,
+      fileSize: "4.8 MB",
+      sizeBytes: 5003288,
+      rating: "1250 GPM / 8 Bar",
+      downloadCount: 295,
+    },
+    {
+      id: "cat-pdf-1250-unknown",
+      filename: "THEHAMMER Fire Pumb 1250 GPM.pdf",
+      cleanDownloadFilename: "THEHAMMER-Fire-Pump-System-1250GPM-Pressure-Unknown.pdf",
+      titleEN: "THEHAMMER Fire Pump System Catalog – 1250 GPM (Pressure Unknown)",
+      titleIT: "Catalogo Gruppo Pompe Antincendio THEHAMMER – 1250 GPM (Pressione Non Specificata)",
+      titleAR: "كتالوج نظام مضخات الحريق THEHAMMER – 1250 GPM (الضغط غير محدد)",
+      gpm: 1250,
+      pressureBar: null,
+      pressureLabel: "Pressure Unknown",
+      pressureLabelIT: "Pressione Non Specificata",
+      pressureLabelAR: "الضغط غير محدد",
+      categoryId: "cat-ff",
+      categorySlug: "fire-fighting-pumps",
+      productGroupEN: "Fire Fighting Pump Systems",
+      productGroupIT: "Sistemi Pompe Antincendio",
+      productGroupAR: "أنظمة مضخات مكافحة الحريق",
+      pages: 11,
+      fileSize: "4.8 MB",
+      sizeBytes: 5003550,
+      rating: "1250 GPM / Pressure Unknown",
+      downloadCount: 310,
+    },
+    {
+      id: "cat-pdf-1500-8",
+      filename: "THEHAMMER Fire Pumb 1500 GPM 8 bar.pdf",
+      cleanDownloadFilename: "THEHAMMER-Fire-Pump-System-1500GPM-8Bar.pdf",
+      titleEN: "THEHAMMER Fire Pump System Catalog – 1500 GPM @ 8 Bar",
+      titleIT: "Catalogo Gruppo Pompe Antincendio THEHAMMER – 1500 GPM @ 8 Bar",
+      titleAR: "كتالوج نظام مضخات الحريق THEHAMMER – 1500 GPM @ 8 بار",
+      gpm: 1500,
+      pressureBar: 8,
+      categoryId: "cat-ff",
+      categorySlug: "fire-fighting-pumps",
+      productGroupEN: "Fire Fighting Pump Systems",
+      productGroupIT: "Sistemi Pompe Antincendio",
+      productGroupAR: "أنظمة مضخات مكافحة الحريق",
+      pages: 10,
+      fileSize: "4.4 MB",
+      sizeBytes: 4601954,
+      rating: "1500 GPM / 8 Bar",
+      downloadCount: 578,
+    },
+    {
+      id: "cat-pdf-main",
+      filename: "THEHAMMER Fire Pumbs.pdf",
+      cleanDownloadFilename: "THEHAMMER-Fire-Pumps-Master-Catalog.pdf",
+      titleEN: "THEHAMMER Fire Pumps Master Catalog",
+      titleIT: "Catalogo Generale Pompe Antincendio THEHAMMER",
+      titleAR: "الكتالوج الرئيسي الشامل لمضخات مكافحة الحريق THEHAMMER",
+      gpm: null,
+      pressureBar: null,
+      pressureLabel: "Master Catalog",
+      pressureLabelIT: "Catalogo Generale",
+      pressureLabelAR: "الكتالوج الشامل",
+      categoryId: "cat-ff",
+      categorySlug: "fire-fighting-pumps",
+      productGroupEN: "Fire Fighting Pump Systems",
+      productGroupIT: "Sistemi Pompe Antincendio",
+      productGroupAR: "أنظمة مضخات مكافحة الحريق",
+      pages: 28,
+      fileSize: "11.6 MB",
+      sizeBytes: 12178111,
+      rating: "Master Catalog / Complete Range",
+      downloadCount: 1240,
+      isMainFallback: true,
+    },
+  ],
   downloads: [
     {
-      id: "dl-1",
-      titleEN: "THEHAMMER Master Industrial Pump Catalog 2026 (PDF 38MB)",
-      titleIT: "Catalogo Generale Pompe THEHAMMER 2026 (PDF 38MB)",
-      titleAR: "كتالوج مضخات THEHAMMER الصناعي الرئيسي 2026 (PDF 38MB)",
-      file: "THEHAMMER-Master-Catalog-2026.pdf",
-      count: 2450,
-      category: "Catalog",
-    },
-    {
-      id: "dl-2",
-      titleEN: "Centrifugal Water Pump Installation & Engineering Guide",
-      titleIT: "Guida di Installazione e Ingegneria Pompe Centrifughe",
-      titleAR: "دليل التركيب والهندسة لمضخات المياه الطاردة المركزية",
-      file: "Centrifugal-Pump-Engineering-Guide.pdf",
-      count: 1420,
-      category: "Engineering Guide",
-    },
-    {
-      id: "dl-3",
-      titleEN: "3D CAD STEP Files Pack for THEHAMMER Pump Series",
-      titleIT: "Pacchetto File CAD STEP 3D Serie Pompe THEHAMMER",
-      titleAR: "حزمة ملفات 3D CAD STEP لسلسلة مضخات THEHAMMER",
-      file: "THEHAMMER-3D-STEP-CAD.zip",
-      count: 890,
-      category: "CAD Models",
+      id: "dl-cat-main",
+      titleEN: "THEHAMMER Master Fire Pumps Catalog 2026 (PDF 11.6MB)",
+      titleIT: "Catalogo Generale Pompe Antincendio THEHAMMER 2026 (PDF 11.6MB)",
+      titleAR: "الكتالوج الرئيسي الشامل لمضخات مكافحة الحريق THEHAMMER 2026 (PDF 11.6MB)",
+      file: "THEHAMMER Fire Pumbs.pdf",
+      cleanDownloadFilename: "THEHAMMER-Fire-Pumps-Master-Catalog.pdf",
+      count: 3240,
+      category: "Fire Pump Catalog",
+      rating: "Master Catalog / Complete Range",
+      fileSize: "11.6 MB",
+      pages: 28,
     },
   ],
   quotes: [
@@ -1501,6 +1696,10 @@ class HammerStore {
       localStorage.setItem(
         "hammer_db_downloads",
         JSON.stringify(SEED_DATA.downloads),
+      );
+      localStorage.setItem(
+        "hammer_db_catalogs",
+        JSON.stringify(SEED_DATA.catalogs),
       );
       localStorage.setItem(
         "hammer_db_quotes",
@@ -1604,16 +1803,31 @@ class HammerStore {
         this.setItem("certificates", certificates);
       }
 
-      // Sync downloads
-      const downloads = this.getDownloads();
+      // Sync catalogs (ensure 10 items: 9 specialized + 1 master fallback)
+      let catalogs = this.getItem("catalogs");
+      let catsNeedUpdate = false;
+      if (!catalogs || catalogs.length < SEED_DATA.catalogs.length || catalogs.some((c) => c.id === "cat-pdf-1250-high" || (c.pressureBar === 10 && c.filename && c.filename.includes("1250 GPM.pdf")))) {
+        catsNeedUpdate = true;
+      }
+      if (catsNeedUpdate) {
+        this.setItem("catalogs", SEED_DATA.catalogs);
+      }
+
+      // Sync downloads (Homepage downloads must display the main master catalog only)
+      let downloads = this.getDownloads();
       let dlsChanged = false;
-      downloads.forEach((d) => {
-        const seedD = SEED_DATA.downloads.find((sd) => sd.id === d.id);
-        if (seedD && !d.titleAR) {
-          d.titleAR = seedD.titleAR;
+      const filteredDownloads = downloads.filter((d) => d.id === "dl-cat-main");
+      if (filteredDownloads.length !== downloads.length) {
+        downloads = filteredDownloads;
+        dlsChanged = true;
+      }
+      if (!downloads.some((d) => d.id === "dl-cat-main")) {
+        const seedMain = SEED_DATA.downloads.find((d) => d.id === "dl-cat-main");
+        if (seedMain) {
+          downloads = [seedMain];
           dlsChanged = true;
         }
-      });
+      }
       if (dlsChanged) {
         this.setItem("downloads", downloads);
       }
@@ -1730,6 +1944,46 @@ class HammerStore {
   getDownloads() {
     return this.getItem("downloads");
   }
+  getCatalogs() {
+    const data = this.getItem("catalogs");
+    return data && data.length >= SEED_DATA.catalogs.length ? data : SEED_DATA.catalogs;
+  }
+  getCatalogsForCategory(categoryOrSlug) {
+    const all = this.getCatalogs();
+    if (!categoryOrSlug) return all;
+    const slug = typeof categoryOrSlug === "object" ? categoryOrSlug.slug : categoryOrSlug;
+    const id = typeof categoryOrSlug === "object" ? categoryOrSlug.id : categoryOrSlug;
+    return all.filter((c) => c.categoryId === id || c.categorySlug === slug);
+  }
+  getCatalogById(id) {
+    return this.getCatalogs().find((c) => c.id === id) || null;
+  }
+  getCatalogsForProduct(product) {
+    if (!product) return [];
+    const catalogs = this.getCatalogs();
+    const q = Number(product.qGpm);
+
+    // Specialized catalogs matching this product capacity (GPM)
+    const specializedMatches = catalogs.filter((c) => !c.isMainFallback && c.gpm === q);
+
+    if (specializedMatches.length > 0) {
+      // Sort by pressureBar (placing unknown / null last)
+      return specializedMatches.sort((a, b) => {
+        if (a.pressureBar === null) return 1;
+        if (b.pressureBar === null) return -1;
+        return a.pressureBar - b.pressureBar;
+      });
+    }
+
+    // Fallback: If group/product has no specialized catalog, return master catalog
+    const mainCatalog = catalogs.find((c) => c.isMainFallback || c.id === "cat-pdf-main" || c.filename === "THEHAMMER Fire Pumbs.pdf");
+    return mainCatalog ? [mainCatalog] : [];
+  }
+
+  getCatalogForProduct(product) {
+    const list = this.getCatalogsForProduct(product);
+    return list.length > 0 ? list[0] : null;
+  }
   getUsers() {
     return this.getItem("users");
   }
@@ -1741,8 +1995,14 @@ class HammerStore {
     const downloads = this.getDownloads();
     const d = downloads.find((item) => item.id === id);
     if (d) {
-      d.count += 1;
+      d.count = (d.count || 0) + 1;
       this.setItem("downloads", downloads);
+    }
+    const catalogs = this.getCatalogs();
+    const c = catalogs.find((item) => item.id === id);
+    if (c) {
+      c.downloadCount = (c.downloadCount || 0) + 1;
+      this.setItem("catalogs", catalogs);
     }
   }
 }

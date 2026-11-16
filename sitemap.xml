@@ -74,4 +74,67 @@
     <priority>0.8</priority>
   </url>
 
+  <url>
+    <loc>https://thehammer.uk/category.html?category=fire-fighting-pumps</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- THEHAMMER Official Product Catalogs (PDF) -->
+  <url>
+    <loc>https://thehammer.uk/images/catalogs/THEHAMMER%20Fire%20Pumb%20250%20GPM%208%20bar.pdf</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thehammer.uk/images/catalogs/THEHAMMER%20Fire%20Pumbs%20500%20GPM%20%208%20bar.pdf</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thehammer.uk/images/catalogs/THEHAMMER%20Fire%20Pumb%20750%20GPM%208%20bar.pdf</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thehammer.uk/images/catalogs/THEHAMMER_Fire%20%20Pumb%20750%20GPM%209%20bar.pdf</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thehammer.uk/images/catalogs/THEHAMMER%20Fire%20Pumb%201000%20GPM%208%20bar.pdf</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thehammer.uk/images/catalogs/THEHAMMER%20Fire%20%20Pumb%201000%20GPM%2010%20bar.pdf</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thehammer.uk/images/catalogs/THEHAMMER%20Fire%20Pumb%201250%20GPM%208%20bar.pdf</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thehammer.uk/images/catalogs/THEHAMMER%20Fire%20Pumb%201250%20GPM.pdf</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thehammer.uk/images/catalogs/THEHAMMER%20Fire%20Pumb%201500%20GPM%208%20bar.pdf</loc>
+    <lastmod>2026-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
