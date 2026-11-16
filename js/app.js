@@ -1266,7 +1266,7 @@ function openProductDetail(productId) {
         <div class="modal-component-body ${alignClass}">
           <div>
             <h5 class="modal-component-title">${window.i18n.t("catalog.jockeyPumpLabel")}</h5>
-            <p class="modal-component-model spec-val-ltr">${p.jockeyPump}</p>
+            <p class="modal-component-model ${p.jockeyPump === '-' ? '' : 'spec-val-ltr'}">${p.jockeyPump === '-' ? `<span class="badge-unavailable">${window.i18n.t('catalog.notAvailable')}</span>` : p.jockeyPump}</p>
           </div>
         </div>
       </div>

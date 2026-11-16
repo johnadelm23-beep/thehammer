@@ -1355,6 +1355,54 @@ const SEED_DATA = {
       active: true,
       featured: true,
     },
+    {
+      id: "pedj-pedj-1250-8-180-170---option-2",
+      model: "PEDJ 1250/8-180-170 - Option 2",
+      brandId: "b-hammer",
+      categoryId: "cat-ff",
+      nameEN: "Fire Pump System PEDJ 1250/8-180-170 - Option 2",
+      nameIT: "Gruppo Pompe Antincendio PEDJ 1250/8-180-170 - Option 2",
+      nameAR: "مجموعة مضخات الحريق PEDJ 1250/8-180-170 - Option 2",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 1250/8-180-170 - Option 2. Features high-performance CSM 125-315/1320 180HP electric drive and CSD 125-315/1320 170HP diesel engine backup.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 1250/8-180-170 - Option 2. Dotato di azionamento elettrico CSM 125-315/1320 180HP e azionamento diesel CSD 125-315/1320 170HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 1250/8-180-170 - Option 2. يحتوي على مضخة كهربائية CSM 125-315/1320 180HP ومضخة ديزل احتياطية CSD 125-315/1320 170HP.",
+      image: "images/PEDJ-System.jpg",
+      qGpm: 1250,
+      hBar: "8",
+      electricPump: "CSM 125-315/1320 180HP",
+      dieselPump: "CSD 125-315/1320 170HP",
+      jockeyPump: "-",
+      configuration: "Separate Coupled Electric + Standby Diesel",
+      active: true,
+      featured: true,
+    },
+    {
+      id: "pedj-pedj-1500-8-220-225---option-2",
+      model: "PEDJ 1500/8-220-225 - Option 2",
+      brandId: "b-hammer",
+      categoryId: "cat-ff",
+      nameEN: "Fire Pump System PEDJ 1500/8-220-225 - Option 2",
+      nameIT: "Gruppo Pompe Antincendio PEDJ 1500/8-220-225 - Option 2",
+      nameAR: "مجموعة مضخات الحريق PEDJ 1500/8-220-225 - Option 2",
+      descEN:
+        "Industrial Fire Pump System configuration PEDJ 1500/8-220-225 - Option 2. Features high-performance CSM 150-250/1600 220HP electric drive and CSD 150-250/1600 225HP diesel engine backup.",
+      descIT:
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 1500/8-220-225 - Option 2. Dotato di azionamento elettrico CSM 150-250/1600 220HP e azionamento diesel CSD 150-250/1600 225HP.",
+      descAR:
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 1500/8-220-225 - Option 2. يحتوي على مضخة كهربائية CSM 150-250/1600 220HP ومضخة ديزل احتياطية CSD 150-250/1600 225HP.",
+      image: "images/PEDJ-System.jpg",
+      qGpm: 1500,
+      hBar: "8",
+      electricPump: "CSM 150-250/1600 220HP",
+      dieselPump: "CSD 150-250/1600 225HP",
+      jockeyPump: "-",
+      configuration: "Separate Coupled Electric + Standby Diesel",
+      active: true,
+      featured: true,
+    },
   ],
   certificates: [
     {
@@ -1660,7 +1708,7 @@ class HammerStore {
       try {
         const parsed = JSON.parse(existingProducts);
         if (
-          parsed.length !== 50 ||
+          parsed.length !== SEED_DATA.products.length ||
           parsed.some((p) => !p.model || !p.model.startsWith("PEDJ"))
         ) {
           needsReset = true;
@@ -1770,21 +1818,29 @@ class HammerStore {
       }
 
       // Sync products
-      const products = this.getProducts();
+      let products = this.getProducts();
       let prodsChanged = false;
-      products.forEach((p) => {
-        const seedP = SEED_DATA.products.find((sp) => sp.id === p.id);
-        if (seedP) {
-          if (!p.nameAR) {
-            p.nameAR = seedP.nameAR;
+      if (!products || products.length < SEED_DATA.products.length) {
+        products = [...SEED_DATA.products];
+        prodsChanged = true;
+      } else {
+        SEED_DATA.products.forEach((sp) => {
+          const existing = products.find((p) => p.id === sp.id);
+          if (!existing) {
+            products.push(sp);
             prodsChanged = true;
+          } else {
+            if (!existing.nameAR) {
+              existing.nameAR = sp.nameAR;
+              prodsChanged = true;
+            }
+            if (!existing.descAR) {
+              existing.descAR = sp.descAR;
+              prodsChanged = true;
+            }
           }
-          if (!p.descAR) {
-            p.descAR = seedP.descAR;
-            prodsChanged = true;
-          }
-        }
-      });
+        });
+      }
       if (prodsChanged) {
         this.setItem("products", products);
       }

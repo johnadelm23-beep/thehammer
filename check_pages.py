@@ -14,3 +14,4 @@ for label, fname in docs:
         txt = page.get_text().strip()
         first_few = [l.strip() for l in txt.split('\n') if l.strip()][:3]
         print(f"Page {pno+1}: text len={len(txt)}, sample={first_few}")
+
