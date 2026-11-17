@@ -240,7 +240,7 @@ exploreProducts: "Discover Our Products",
       subtitle:
         "Scopri la nostra gamma di pompe idrauliche, pompe antincendio, motori, ricambi e soluzioni industriali. Contattaci per informazioni tecniche e preventivi.",
       brandIntro:
-        "Attrezzature industriali, pompe, motori, sistemi antincendio e soluzioni tecniche su cui puoi contare.",
+        "TheHammer – Attrezzature industriali, pompe, motori, sistemi antincendio e soluzioni tecniche su cui puoi contare. Qualità italiana, Made in Italy 🇮🇹",
       exploreProducts: "Esplora i prodotti",
       requestCustomQuote: "Richiedi un preventivo",
       stat1Label: "Portata Massima",
@@ -457,7 +457,7 @@ exploreProducts: "Discover Our Products",
       subtitle:
         "اكتشف مجموعتنا من مواتير المياه، ومضخات الحريق، والمحركات، وقطع الغيار، والحلول الصناعية. تواصل معنا للحصول على المعلومات الفنية وعروض الأسعار.",
       brandIntro:
-        " TheHammer معدات صناعية، ومضخات، ومحركات، وأنظمة حريق، وحلول فنية يمكنك الاعتماد عليها. صنع في ايطاليا",
+        "TheHammer معدات صناعية، ومضخات، ومحركات، وأنظمة حريق، وحلول فنية يمكنك الاعتماد عليها | جودة إيطالية أصلية، صنع في إيطاليا 🇮🇹",
       exploreProducts: "تصفح المنتجات",
       requestCustomQuote: "اطلب عرض سعر",
       stat1Label: "معدل التدفق الأقصى",
