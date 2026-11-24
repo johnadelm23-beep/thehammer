@@ -368,7 +368,7 @@ app.get('/admin', (req, res) => {
 });
 
 app.use((req, res, next) => {
-  if (req.method === 'GET' && PUBLIC_STATIC_FILES.has(req.path)) {
+  if ((req.method === 'GET' || req.method === 'HEAD') && PUBLIC_STATIC_FILES.has(req.path)) {
     return res.sendFile(path.join(PUBLIC_ROOT, req.path.slice(1)));
   }
   next();

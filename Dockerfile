@@ -25,6 +25,23 @@ RUN echo $'server {\n\
     gzip on;\n\
     gzip_types text/plain text/css application/json application/javascript text/xml application/xml;\n\
 \n\
+    location ^~ /api/ {\n\
+        resolver 127.0.0.11 ipv6=off valid=30s;\n\
+        set $backend_upstream http://backend:5000;\n\
+        proxy_pass $backend_upstream;\n\
+        proxy_http_version 1.1;\n\
+        proxy_set_header Host $host;\n\
+        proxy_set_header X-Real-IP $remote_addr;\n\
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n\
+        proxy_set_header X-Forwarded-Proto $scheme;\n\
+    }\n\
+\n\
+    location = /health {\n\
+        resolver 127.0.0.11 ipv6=off valid=30s;\n\
+        set $backend_upstream http://backend:5000;\n\
+        proxy_pass $backend_upstream;\n\
+    }\n\
+\n\
     location / {\n\
         try_files $uri $uri/ /index.html;\n\
     }\n\

@@ -27,9 +27,11 @@
 
   function getApiBases() {
     const metaBase = document.querySelector('meta[name="thehammer-api-base"]')?.getAttribute('content');
-    const explicit = window.THEHAMMER_API_BASE || metaBase;
+    const explicit = (window.THEHAMMER_API_BASE || metaBase || '').trim();
     if (explicit) {
-      return [explicit.replace(/\/+$/, '')];
+      const normalized = explicit.replace(/\/+$/, '');
+      const candidates = normalized.endsWith('/api/v1') ? [normalized] : [normalized, `${normalized}/api/v1`];
+      return [...new Set(candidates)];
     }
 
     const bases = [];
@@ -37,17 +39,17 @@
     const host = window.location.hostname;
     const port = window.location.port;
 
-    // On local static servers (e.g. VS Code Live Server :5500, http-server :8080),
+    // On local static dev servers (e.g. VS Code Live Server :5500, http-server :8080, LAN IPs),
     // query the Express API on port 5000 first to avoid wasted 404s on static servers,
     // while still supporting reverse-proxied /api/v1 when served on port 80/443/5000.
     const isLocalHost = host === 'localhost' || host === '127.0.0.1' || host === '[::1]';
+    const isCustomDevPort = protocol === 'http:' && Boolean(port) && port !== '5000' && port !== '80' && port !== '443';
     if (protocol === 'file:') {
       bases.push('http://127.0.0.1:5000/api/v1', 'http://localhost:5000/api/v1');
-    } else if (isLocalHost && port && port !== '5000') {
+    } else if ((isLocalHost || isCustomDevPort) && port && port !== '5000') {
       bases.push(
         `http://${host}:5000/api/v1`,
-        'http://127.0.0.1:5000/api/v1',
-        'http://localhost:5000/api/v1',
+        ...(isLocalHost ? ['http://127.0.0.1:5000/api/v1', 'http://localhost:5000/api/v1'] : []),
         '/api/v1'
       );
     } else {
