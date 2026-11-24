@@ -81,7 +81,7 @@ function initApp() {
     renderDownloads();
     const detailModal = document.getElementById("productDetailModal");
     if (detailModal && detailModal.classList.contains("show") && window.currentDetailProductId) {
-      openProductDetail(window.currentDetailProductId, true);
+      openProductDetail(window.currentDetailProductId, true, window.currentDetailUnitViewKey || null);
     }
     const quoteModal = document.getElementById("quoteListModal");
     if (quoteModal && quoteModal.classList.contains("show")) {
@@ -666,12 +666,68 @@ function resetFilters() {
   renderCatalog();
 }
 
+window.__serialUnitViews = window.__serialUnitViews || {};
+
+function buildSerialUnitProductView(baseProduct, serialMatch) {
+  const u = serialMatch && serialMatch.unitDetails;
+  if (!u) return baseProduct;
+
+  const capMatch = String(u.capacity || "").match(/\d+/);
+  const pressMatch = String(u.pressure || "").match(/\d+(?:\.\d+)?/);
+  const effectiveGpm = capMatch ? parseInt(capMatch[0], 10) : baseProduct.qGpm;
+  const effectiveBar = pressMatch ? pressMatch[0] : baseProduct.hBar;
+  const isDiesel = u.driveType === "DIESEL_ENGINE";
+  const brand = u.brand || "THE HAMMER";
+  const pumpModel = u.pumpModel || baseProduct.model;
+  const driveSummary = u.driveModel ? `${u.driveModel} ${u.power || ""}`.trim() : (u.power || "");
+  const panelSummary = u.controlPanelModel
+    ? `${u.controlPanelModel}${u.controlPanelOrigin ? ` (${u.controlPanelOrigin})` : ""}`
+    : "-";
+
+  return {
+    ...baseProduct,
+    model: `${brand} • ${pumpModel}`,
+    qGpm: Number.isFinite(effectiveGpm) ? effectiveGpm : baseProduct.qGpm,
+    hBar: effectiveBar,
+    nameEN: `${isDiesel ? "Diesel Fire Pump" : "Electric Fire Pump"} ${pumpModel} (${u.capacity || `${effectiveGpm} GPM`} / ${u.pressure || `${effectiveBar} Bar`})`,
+    nameIT: `${isDiesel ? "Pompa Antincendio Diesel" : "Pompa Antincendio Elettrica"} ${pumpModel} (${u.capacity || `${effectiveGpm} GPM`} / ${u.pressure || `${effectiveBar} Bar`})`,
+    nameAR: `${isDiesel ? "مضخة حريق ديزل" : "مضخة حريق كهربائية"} ${pumpModel} (${u.capacity || `${effectiveGpm} GPM`} / ${u.pressure || `${effectiveBar} بار`})`,
+    descEN: `${brand} verified ${isDiesel ? "Diesel" : "Electric"} Fire Pump unit ${pumpModel} (${u.capacity || `${effectiveGpm} GPM`}, ${u.pressure || `${effectiveBar} Bar`}, ${u.pumpOrigin || "ITALY"}) with ${isDiesel ? "Diesel Engine" : "Electric Motor"} ${driveSummary} (${u.driveOrigin || "ITALY"}) and Control Panel ${panelSummary}.`,
+    descIT: `${brand} unità verificata ${isDiesel ? "Motopompa Antincendio Diesel" : "Elettropompa Antincendio"} ${pumpModel} (${u.capacity || `${effectiveGpm} GPM`}, ${u.pressure || `${effectiveBar} Bar`}, ${u.pumpOrigin || "ITALY"}) con ${isDiesel ? "Motore Diesel" : "Motore Elettrico"} ${driveSummary} (${u.driveOrigin || "ITALY"}) e Quadro di Controllo ${panelSummary}.`,
+    descAR: `وحدة ${brand} المعتمدة (${isDiesel ? "مضخة حريق ديزل" : "مضخة حريق كهربائية"}) موديل ${pumpModel} بقدرة ${u.capacity || `${effectiveGpm} GPM`} وضغط ${u.pressure || `${effectiveBar} بار`} (${u.pumpOrigin || "ITALY"}) مع ${isDiesel ? "محرك الديزل" : "الموتور الكهربائي"} ${driveSummary} (${u.driveOrigin || "ITALY"}) ولوحة التحكم ${panelSummary}.`,
+    electricPump: isDiesel ? "-" : `${pumpModel} / ${driveSummary}`,
+    dieselPump: isDiesel ? `${pumpModel} / ${driveSummary}` : "-",
+    jockeyPump: "-",
+    configuration: `${isDiesel ? "Diesel Engine Drive" : "Electric Motor Drive"} • Panel ${panelSummary}`,
+  };
+}
+
+function resolveDisplayProduct(productId, unitViewKey = null) {
+  if (unitViewKey && window.__serialUnitViews && window.__serialUnitViews[unitViewKey]) {
+    return window.__serialUnitViews[unitViewKey];
+  }
+  const products = window.store ? window.store.getProducts() : [];
+  return products.find(
+    (item) => item.id === productId || item.slug === productId || item.model === productId,
+  );
+}
+
 function renderProductCardHtml(p, options = {}) {
+  const serialMatch = options.serialMatch || null;
+  const hasVerifiedUnit = Boolean(serialMatch && serialMatch.unitDetails);
+  const unitViewKey = hasVerifiedUnit
+    ? String(serialMatch.unitDetails.pumpSerial || serialMatch.serialNumber || p.id)
+    : null;
+  const displayProduct = hasVerifiedUnit ? buildSerialUnitProductView(p, serialMatch) : p;
+  if (hasVerifiedUnit && unitViewKey) {
+    window.__serialUnitViews[unitViewKey] = displayProduct;
+  }
+
   const currentLang = window.i18n ? window.i18n.currentLang : "en";
-  const name = getProductName(p, currentLang);
-  const desc = getProductDesc(p, currentLang);
+  const name = getProductName(displayProduct, currentLang);
+  const desc = getProductDesc(displayProduct, currentLang);
   const categories = window.store ? window.store.getCategories() : [];
-  const cat = categories.find((c) => c.id === p.categoryId);
+  const cat = categories.find((c) => c.id === displayProduct.categoryId);
   const catName = cat
     ? currentLang === "ar"
       ? cat.nameAR
@@ -696,7 +752,7 @@ function renderProductCardHtml(p, options = {}) {
 
   const titleKey = currentLang === "ar" ? "titleAR" : currentLang === "it" ? "titleIT" : "titleEN";
   const matchingCatalogs = (window.store && window.store.getCatalogsForProduct)
-    ? window.store.getCatalogsForProduct(p)
+    ? window.store.getCatalogsForProduct(displayProduct)
     : [];
   const isFallbackCatalog = matchingCatalogs.length === 1 && (matchingCatalogs[0].isMainFallback || matchingCatalogs[0].id === "cat-pdf-main");
 
@@ -773,7 +829,6 @@ function renderProductCardHtml(p, options = {}) {
     </div>
   ` : "";
 
-  const serialMatch = options.serialMatch || null;
   let serialMatchHtml = "";
   let componentsBoxHtml = "";
 
@@ -871,8 +926,9 @@ function renderProductCardHtml(p, options = {}) {
       `;
     }
 
-    componentsBoxHtml = `
-      ${unitDetailsHtml}
+    componentsBoxHtml = unitDetailsHtml
+      ? unitDetailsHtml
+      : `
       <div class="serial-group-components">
         <div class="serial-group-components-title">${componentsTitle}</div>
         <div class="serial-group-components-grid">
@@ -897,16 +953,18 @@ function renderProductCardHtml(p, options = {}) {
     `;
   }
 
+  const unitKeyArg = unitViewKey ? `'${unitViewKey}'` : "null";
+
   return `
       <div class="product-card ${serialMatch ? "is-visible" : ""}">
         <div class="product-img-wrapper">
-          <img src="${p.image}" alt="Industrial pump ${p.model}" class="product-img" width="400" height="300" loading="lazy" decoding="async" onerror="this.src='images/PSM-Electric-Pump.jpg'">
+          <img src="${displayProduct.image}" alt="Industrial pump ${displayProduct.model}" class="product-img" width="400" height="300" loading="lazy" decoding="async" onerror="this.src='images/PSM-Electric-Pump.jpg'">
           <span class="product-card-tag">THEHAMMER</span>
         </div>
 
         <div class="product-card-body">
           ${serialMatchHtml}
-          <span class="product-model">${p.model}</span>
+          <span class="product-model">${displayProduct.model}</span>
           <span class="product-category">${catName}</span>
           <h3 class="product-title">${name}</h3>
           <p class="product-desc">${desc}</p>
@@ -915,11 +973,11 @@ function renderProductCardHtml(p, options = {}) {
           <div class="spec-grid product-spec-grid">
             <div class="spec-item">
               <span class="spec-key">${flowLabel}</span>
-              <span class="spec-val tech-val spec-val-ltr">${p.qGpm} GPM</span>
+              <span class="spec-val tech-val spec-val-ltr">${displayProduct.qGpm} GPM</span>
             </div>
             <div class="spec-item">
               <span class="spec-key">${headLabel}</span>
-              <span class="spec-val tech-val spec-val-ltr">${p.hBar} ${headUnit}</span>
+              <span class="spec-val tech-val spec-val-ltr">${displayProduct.hBar} ${headUnit}</span>
             </div>
           </div>
 
@@ -929,9 +987,9 @@ function renderProductCardHtml(p, options = {}) {
           ${catalogBoxHtml}
 
           <div class="product-card-footer">
-            <button class="btn btn-secondary btn-sm product-card-btn" onclick="openProductDetail('${p.id}')" data-i18n="catalog.viewDetails">${window.i18n.t("catalog.viewDetails")}</button>
+            <button class="btn btn-secondary btn-sm product-card-btn" onclick="openProductDetail('${p.id}', false, ${unitKeyArg})" data-i18n="catalog.viewDetails">${window.i18n.t("catalog.viewDetails")}</button>
             <button class="btn btn-primary btn-sm product-card-btn" onclick="addToQuoteList('${p.id}')" data-i18n="catalog.addToQuote">${window.i18n.t("catalog.addToQuote")}</button>
-            <button class="btn btn-outline btn-sm product-card-btn" onclick="openEmailInquiry('${p.id}')" aria-label="${currentLang === "it" ? "Invia richiesta per " + name : currentLang === "ar" ? "استفسار لـ " + name : "Inquire for " + name}">
+            <button class="btn btn-outline btn-sm product-card-btn" onclick="openEmailInquiry('${p.id}', ${unitKeyArg})" aria-label="${currentLang === "it" ? "Invia richiesta per " + name : currentLang === "ar" ? "استفسار لـ " + name : "Inquire for " + name}">
               <i data-lucide="mail" class="btn-icon" style="width: 14px; margin-right: 4px;"></i>
               <span data-i18n="catalog.sendInquiry">${window.i18n.t("catalog.sendInquiry", "Send Inquiry")}</span>
             </button>
@@ -1273,12 +1331,12 @@ let originalMetaDescription =
   "";
 
 /* Product Spec Modal */
-function openProductDetail(productId, preserveFocus = false) {
-  const products = window.store ? window.store.getProducts() : [];
-  const p = products.find((item) => item.id === productId || item.slug === productId);
+function openProductDetail(productId, preserveFocus = false, unitViewKey = null) {
+  const p = resolveDisplayProduct(productId, unitViewKey);
   if (!p) return;
 
   window.currentDetailProductId = p.id;
+  window.currentDetailUnitViewKey = unitViewKey || null;
   const currentLang = window.i18n ? window.i18n.currentLang : "en";
 
   const detailModelEl = document.getElementById("detailModel");
@@ -2026,11 +2084,8 @@ ${message}`;
   }
 }
 
-function openEmailInquiry(productId) {
-  const products = window.store ? window.store.getProducts() : [];
-  const p = products.find(
-    (item) => item.id === productId || item.model === productId,
-  );
+function openEmailInquiry(productId, unitViewKey = null) {
+  const p = resolveDisplayProduct(productId, unitViewKey);
 
   const currentLang = window.i18n ? window.i18n.currentLang : "en";
   let subject = "";

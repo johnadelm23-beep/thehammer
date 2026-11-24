@@ -578,6 +578,7 @@
       "requiresVerification": false,
       "productStatus": "ACTIVE",
       "unitDetails": {
+        "brand": "THE HAMMER",
         "unitType": "ELECTRIC FIRE PUMP",
         "pumpModel": "PSM 100-315/1100",
         "pumpSerial": "10004180",
@@ -615,6 +616,7 @@
       "requiresVerification": false,
       "productStatus": "ACTIVE",
       "unitDetails": {
+        "brand": "THE HAMMER",
         "unitType": "DIESEL FIRE PUMP",
         "pumpModel": "PSD 100-315/1100",
         "pumpSerial": "10004181",
