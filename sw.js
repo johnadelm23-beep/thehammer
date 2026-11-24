@@ -3,7 +3,7 @@
  * Precaching, Offline Fallback, Background Sync, and Push Notification Handling
  */
 
-const CACHE_NAME = "thehammer-pwa-v13";
+const CACHE_NAME = "thehammer-pwa-v14";
 const ASSETS_TO_CACHE = [
   "./",
   "./index.html",
