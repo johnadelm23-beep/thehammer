@@ -73,13 +73,24 @@ function initApp() {
     renderCategoryFilter();
     populateFilters();
     if (currentCategorySlug) {
-      openCategoryPage(currentCategorySlug, false);
+      openCategoryPage(currentCategorySlug, false, false, true);
     } else {
       renderCatalog();
     }
     renderCertificates();
     renderDownloads();
+    const detailModal = document.getElementById("productDetailModal");
+    if (detailModal && detailModal.classList.contains("show") && window.currentDetailProductId) {
+      openProductDetail(window.currentDetailProductId, true);
+    }
+    const quoteModal = document.getElementById("quoteListModal");
+    if (quoteModal && quoteModal.classList.contains("show")) {
+      renderQuoteList();
+    }
     updateLangUI();
+    if (window.lucide) {
+      lucide.createIcons();
+    }
   });
 
   updateLangUI();
@@ -327,7 +338,7 @@ function renderCategoryCards() {
             <p class="category-card-desc">${catDesc}</p>
             <div class="category-card-footer">
               <span class="category-card-action">
-                ${currentLang === "ar" ? "تصفح المنتجات &larr;" : currentLang === "it" ? "Esplora Prodotti &rarr;" : "Browse Products &rarr;"}
+                ${window.i18n ? window.i18n.t("catalog.browseProductsArrow") : "Browse Products &rarr;"}
               </span>
             </div>
           </div>
@@ -393,7 +404,7 @@ function filterCategories(filterKey, buttonEl) {
   updateCategoriesCount(visibleCount);
 }
 
-function openCategoryPage(slug, updateHistory = true, scrollToTop = true) {
+function openCategoryPage(slug, updateHistory = true, scrollToTop = true, preserveFilters = false) {
   if (!window.store) return;
   const cat = window.store.getCategoryBySlug(slug);
 
@@ -413,7 +424,9 @@ function openCategoryPage(slug, updateHistory = true, scrollToTop = true) {
     return;
   }
 
-  resetFiltersSilent();
+  if (!preserveFilters) {
+    resetFiltersSilent();
+  }
   currentCategorySlug = cat.slug;
 
   const homeView = document.getElementById("homepageCategoriesView");
@@ -653,6 +666,283 @@ function resetFilters() {
   renderCatalog();
 }
 
+function renderProductCardHtml(p, options = {}) {
+  const currentLang = window.i18n ? window.i18n.currentLang : "en";
+  const name = getProductName(p, currentLang);
+  const desc = getProductDesc(p, currentLang);
+  const categories = window.store ? window.store.getCategories() : [];
+  const cat = categories.find((c) => c.id === p.categoryId);
+  const catName = cat
+    ? currentLang === "ar"
+      ? cat.nameAR
+      : currentLang === "it"
+        ? cat.nameIT
+        : cat.nameEN
+    : "";
+
+  const flowLabel =
+    currentLang === "ar"
+      ? "معدل التدفق"
+      : currentLang === "it"
+        ? "Portata"
+        : "Flow Rate";
+  const headLabel =
+    currentLang === "ar"
+      ? "الضغط"
+      : currentLang === "it"
+        ? "Prevalenza"
+        : "Head";
+  const headUnit = currentLang === "ar" ? "بار" : "Bar";
+
+  const titleKey = currentLang === "ar" ? "titleAR" : currentLang === "it" ? "titleIT" : "titleEN";
+  const matchingCatalogs = (window.store && window.store.getCatalogsForProduct)
+    ? window.store.getCatalogsForProduct(p)
+    : [];
+  const isFallbackCatalog = matchingCatalogs.length === 1 && (matchingCatalogs[0].isMainFallback || matchingCatalogs[0].id === "cat-pdf-main");
+
+  const previewText = window.i18n ? window.i18n.t("pdf.previewPdf", "Preview PDF") : "Preview PDF";
+  const downloadText = window.i18n ? window.i18n.t("pdf.downloadCatalog", "Download") : "Download";
+  const pagesText = window.i18n ? window.i18n.t("pdf.pagesCount", "Pages") : "Pages";
+
+  const catalogBoxHeaderTitle = isFallbackCatalog
+    ? (window.i18n ? window.i18n.t("pdf.masterCatalog", "THEHAMMER Master Catalog") : "THEHAMMER Master Catalog")
+    : (matchingCatalogs.length > 1
+        ? (window.i18n ? window.i18n.t("pdf.technicalCatalogs", "Technical Catalogs") : "Technical Catalogs")
+        : (window.i18n ? window.i18n.t("pdf.technicalCatalog", "Technical Catalog") : "Technical Catalog"));
+
+  const catalogBoxBadge = isFallbackCatalog
+    ? (window.i18n ? window.i18n.t("pdf.completeRange", "Complete Range") : "Complete Range")
+    : (matchingCatalogs.length > 1
+        ? (window.i18n ? window.i18n.t("pdf.catalogsBadgeCount", { count: matchingCatalogs.length }, `${matchingCatalogs.length} Catalogs`) : `${matchingCatalogs.length} Catalogs`)
+        : "PDF");
+
+  const catalogItemsHtml = matchingCatalogs.map((c) => {
+    const title = c[titleKey] || c.titleEN;
+    const encodedPdf = encodeURI(`images/catalogs/${c.filename}`);
+    const cleanFilename = c.cleanDownloadFilename || c.filename;
+
+    let pressureBadge = "";
+    if (c.pressureBar) {
+      pressureBadge = `<span class="catalog-mini-pill pressure-known">${c.pressureBar} Bar</span>`;
+    } else if (c.gpm) {
+      const unknownText = window.i18n ? window.i18n.t("pdf.pressureUnknown", "Pressure Unknown") : "Pressure Unknown";
+      pressureBadge = `<span class="catalog-mini-pill pressure-unknown">${unknownText}</span>`;
+    } else {
+      const rangeText = window.i18n ? window.i18n.t("pdf.fallbackNotice", "Master Catalog Fallback") : "Master Fallback";
+      pressureBadge = `<span class="catalog-mini-pill pressure-master">${rangeText}</span>`;
+    }
+
+    const capBadge = c.gpm ? `<span class="catalog-mini-pill capacity-pill">${c.gpm} GPM</span>` : "";
+
+    return `
+      <div class="product-catalog-row">
+        <div class="product-catalog-row-info">
+          <div class="product-catalog-pills">
+            ${capBadge}
+            ${pressureBadge}
+          </div>
+          <span class="product-catalog-filename" title="${title}">${title}</span>
+          <span class="product-catalog-meta">${c.pages} ${pagesText} • ${c.fileSize}</span>
+        </div>
+        <div class="product-catalog-row-actions">
+          <a href="${encodedPdf}" target="_blank" rel="noopener noreferrer" class="catalog-mini-btn btn-secondary" aria-label="${previewText}: ${title}">
+            <i data-lucide="eye" style="width: 13px; height: 13px;"></i>
+            <span>${previewText}</span>
+          </a>
+          <button type="button" class="catalog-mini-btn btn-primary" onclick="downloadCatalogPdf('${encodedPdf}', '${cleanFilename}', '${c.id}')" aria-label="${downloadText}: ${title}">
+            <i data-lucide="download" style="width: 13px; height: 13px;"></i>
+            <span>${downloadText}</span>
+          </button>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  const catalogBoxHtml = matchingCatalogs.length > 0 ? `
+    <div class="product-card-catalog-box ${isFallbackCatalog ? 'is-fallback' : 'is-specialized'}">
+      <div class="product-catalog-box-header">
+        <div class="product-catalog-header-title">
+          <i data-lucide="file-text" style="width: 14px; height: 14px; color: var(--primary-red);"></i>
+          <span>${catalogBoxHeaderTitle}</span>
+        </div>
+        <span class="product-catalog-type-badge">${catalogBoxBadge}</span>
+      </div>
+      <div class="product-catalog-box-list">
+        ${catalogItemsHtml}
+      </div>
+    </div>
+  ` : "";
+
+  const serialMatch = options.serialMatch || null;
+  let serialMatchHtml = "";
+  let componentsBoxHtml = "";
+
+  if (serialMatch) {
+    const typeLabel =
+      serialMatch.serialType === "Motor"
+        ? (window.i18n ? window.i18n.t("serialLookup.motorType", "Motor") : "Motor")
+        : (window.i18n ? window.i18n.t("serialLookup.pumpType", "Pump") : "Pump");
+    const matchedLabel = window.i18n
+      ? window.i18n.t("serialLookup.matchedSerialBadge", "Matched Serial")
+      : "Matched Serial";
+    const componentsTitle = window.i18n
+      ? window.i18n.t("catalog.breakdownTitle", "System Configuration Breakdown")
+      : "System Configuration Breakdown";
+    const elecLabel = window.i18n ? window.i18n.t("catalog.electricPumpLabel", "Electric Pump") : "Electric Pump";
+    const dieselLabel = window.i18n ? window.i18n.t("catalog.dieselPumpLabel", "Diesel Pump") : "Diesel Pump";
+    const jockeyLabel = window.i18n ? window.i18n.t("catalog.jockeyPumpLabel", "Jockey Pump") : "Jockey Pump";
+    const configLabel = window.i18n ? window.i18n.t("catalog.configurationLabel", "Configuration") : "Configuration";
+
+    const modelHighlight = serialMatch.productModel
+      ? `<span class="serial-match-chip font-mono spec-val-ltr">${serialMatch.productModel}</span>`
+      : (Array.isArray(serialMatch.possibleModels) && serialMatch.possibleModels.length > 0
+          ? `<span class="serial-match-chip font-mono spec-val-ltr">${serialMatch.possibleModels.join(" / ")}</span>`
+          : "");
+
+    serialMatchHtml = `
+      <div class="serial-match-strip">
+        <span class="serial-badge serial-badge-type">${typeLabel}</span>
+        <span class="serial-match-label">${matchedLabel}: <strong class="font-mono spec-val-ltr">${serialMatch.serialNumber}</strong></span>
+        ${modelHighlight}
+      </div>
+    `;
+
+    let unitDetailsHtml = "";
+    if (serialMatch.unitDetails) {
+      const u = serialMatch.unitDetails;
+      const tr = (k, fb) => (window.i18n ? window.i18n.t(k, fb) : fb);
+      const isDiesel = u.driveType === "DIESEL_ENGINE";
+      const unitTitle = isDiesel
+        ? tr("serialLookup.dieselUnitType", "DIESEL FIRE PUMP")
+        : tr("serialLookup.electricUnitType", "ELECTRIC FIRE PUMP");
+      const driveModelLabel = isDiesel
+        ? tr("serialLookup.dieselEngineModelLabel", "Diesel Engine Model")
+        : tr("serialLookup.electricMotorModelLabel", "Electric Motor Model");
+
+      unitDetailsHtml = `
+        <div class="serial-unit-details-box">
+          <div class="serial-unit-details-header">
+            <span class="serial-group-components-title" style="margin:0;padding:0;border:none;">${tr("serialLookup.unitSpecTitle", "Verified Unit Specifications & Components")}</span>
+            <span class="serial-badge serial-badge-ok">${unitTitle}</span>
+          </div>
+          <div class="serial-group-components-grid">
+            <div class="serial-comp-item">
+              <span class="spec-key">${tr("serialLookup.pumpModelLabel", "Pump Model")}</span>
+              <span class="serial-comp-val font-mono spec-val-ltr">${u.pumpModel || "-"}</span>
+            </div>
+            <div class="serial-comp-item">
+              <span class="spec-key">${tr("serialLookup.pumpSerialLabel", "Pump Serial Number")}</span>
+              <span class="serial-comp-val font-mono spec-val-ltr">${u.pumpSerial || "-"}</span>
+            </div>
+            <div class="serial-comp-item">
+              <span class="spec-key">${driveModelLabel}</span>
+              <span class="serial-comp-val font-mono spec-val-ltr">${u.driveModel || "-"}</span>
+            </div>
+            <div class="serial-comp-item">
+              <span class="spec-key">${tr("serialLookup.driveSerialLabel", "Motor / Engine Serial Number")}</span>
+              <span class="serial-comp-val font-mono spec-val-ltr">${u.driveSerial || "-"}</span>
+            </div>
+            <div class="serial-comp-item">
+              <span class="spec-key">${tr("serialLookup.powerLabel", "Power")}</span>
+              <span class="serial-comp-val font-mono spec-val-ltr">${u.power || "-"}</span>
+            </div>
+            <div class="serial-comp-item">
+              <span class="spec-key">${tr("serialLookup.capacityLabel", "Capacity")} / ${tr("serialLookup.pressureLabel", "Pressure")}</span>
+              <span class="serial-comp-val font-mono spec-val-ltr">${u.capacity || "-"} • ${u.pressure || "-"}</span>
+            </div>
+            <div class="serial-comp-item">
+              <span class="spec-key">${tr("serialLookup.controlPanelLabel", "Control Panel Model")}</span>
+              <span class="serial-comp-val font-mono spec-val-ltr">${u.controlPanelModel || "-"}</span>
+            </div>
+            <div class="serial-comp-item">
+              <span class="spec-key">${tr("serialLookup.panelOriginLabel", "Control Panel Origin")}</span>
+              <span class="serial-comp-val font-mono spec-val-ltr">${u.controlPanelOrigin || "-"}</span>
+            </div>
+            <div class="serial-comp-item">
+              <span class="spec-key">${tr("serialLookup.pumpOriginLabel", "Pump Country of Origin")}</span>
+              <span class="serial-comp-val font-mono spec-val-ltr">${u.pumpOrigin || "-"}</span>
+            </div>
+            <div class="serial-comp-item">
+              <span class="spec-key">${tr("serialLookup.driveOriginLabel", "Motor / Engine Country of Origin")}</span>
+              <span class="serial-comp-val font-mono spec-val-ltr">${u.driveOrigin || "-"}</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    componentsBoxHtml = `
+      ${unitDetailsHtml}
+      <div class="serial-group-components">
+        <div class="serial-group-components-title">${componentsTitle}</div>
+        <div class="serial-group-components-grid">
+          <div class="serial-comp-item">
+            <span class="spec-key">${elecLabel}</span>
+            <span class="serial-comp-val font-mono spec-val-ltr">${p.electricPump || "-"}</span>
+          </div>
+          <div class="serial-comp-item">
+            <span class="spec-key">${dieselLabel}</span>
+            <span class="serial-comp-val font-mono spec-val-ltr">${p.dieselPump || "-"}</span>
+          </div>
+          <div class="serial-comp-item">
+            <span class="spec-key">${jockeyLabel}</span>
+            <span class="serial-comp-val font-mono spec-val-ltr">${p.jockeyPump || "-"}</span>
+          </div>
+          <div class="serial-comp-item">
+            <span class="spec-key">${configLabel}</span>
+            <span class="serial-comp-val">${p.configuration || "-"}</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  return `
+      <div class="product-card ${serialMatch ? "is-visible" : ""}">
+        <div class="product-img-wrapper">
+          <img src="${p.image}" alt="Industrial pump ${p.model}" class="product-img" width="400" height="300" loading="lazy" decoding="async" onerror="this.src='images/PSM-Electric-Pump.jpg'">
+          <span class="product-card-tag">THEHAMMER</span>
+        </div>
+
+        <div class="product-card-body">
+          ${serialMatchHtml}
+          <span class="product-model">${p.model}</span>
+          <span class="product-category">${catName}</span>
+          <h3 class="product-title">${name}</h3>
+          <p class="product-desc">${desc}</p>
+
+          <!-- Technical Specs Grid -->
+          <div class="spec-grid product-spec-grid">
+            <div class="spec-item">
+              <span class="spec-key">${flowLabel}</span>
+              <span class="spec-val tech-val spec-val-ltr">${p.qGpm} GPM</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-key">${headLabel}</span>
+              <span class="spec-val tech-val spec-val-ltr">${p.hBar} ${headUnit}</span>
+            </div>
+          </div>
+
+          ${componentsBoxHtml}
+
+          <!-- Integrated Catalog Display -->
+          ${catalogBoxHtml}
+
+          <div class="product-card-footer">
+            <button class="btn btn-secondary btn-sm product-card-btn" onclick="openProductDetail('${p.id}')" data-i18n="catalog.viewDetails">${window.i18n.t("catalog.viewDetails")}</button>
+            <button class="btn btn-primary btn-sm product-card-btn" onclick="addToQuoteList('${p.id}')" data-i18n="catalog.addToQuote">${window.i18n.t("catalog.addToQuote")}</button>
+            <button class="btn btn-outline btn-sm product-card-btn" onclick="openEmailInquiry('${p.id}')" aria-label="${currentLang === "it" ? "Invia richiesta per " + name : currentLang === "ar" ? "استفسار لـ " + name : "Inquire for " + name}">
+              <i data-lucide="mail" class="btn-icon" style="width: 14px; margin-right: 4px;"></i>
+              <span data-i18n="catalog.sendInquiry">${window.i18n.t("catalog.sendInquiry", "Send Inquiry")}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+}
+
+window.renderProductCardHtml = renderProductCardHtml;
+
 function renderCatalog() {
   const grid = document.getElementById("catalogGrid");
   if (!grid) return;
@@ -797,150 +1087,7 @@ function renderCatalog() {
   }
 
   grid.innerHTML = filtered
-    .map((p) => {
-      const name = getProductName(p, currentLang);
-      const desc = getProductDesc(p, currentLang);
-      const categories = window.store ? window.store.getCategories() : [];
-      const cat = categories.find((c) => c.id === p.categoryId);
-      const catName = cat
-        ? currentLang === "ar"
-          ? cat.nameAR
-          : currentLang === "it"
-            ? cat.nameIT
-            : cat.nameEN
-        : "";
-
-      const flowLabel =
-        currentLang === "ar"
-          ? "معدل التدفق"
-          : currentLang === "it"
-            ? "Portata"
-            : "Flow Rate";
-      const headLabel =
-        currentLang === "ar"
-          ? "الضغط"
-          : currentLang === "it"
-            ? "Prevalenza"
-            : "Head";
-      const headUnit = currentLang === "ar" ? "بار" : "Bar";
-
-      const titleKey = currentLang === "ar" ? "titleAR" : currentLang === "it" ? "titleIT" : "titleEN";
-      const matchingCatalogs = (window.store && window.store.getCatalogsForProduct)
-        ? window.store.getCatalogsForProduct(p)
-        : [];
-      const isFallbackCatalog = matchingCatalogs.length === 1 && (matchingCatalogs[0].isMainFallback || matchingCatalogs[0].id === "cat-pdf-main");
-
-      const previewText = window.i18n ? window.i18n.t("pdf.previewPdf", "Preview PDF") : "Preview PDF";
-      const downloadText = window.i18n ? window.i18n.t("pdf.downloadCatalog", "Download") : "Download";
-      const pagesText = window.i18n ? window.i18n.t("pdf.pagesCount", "Pages") : "Pages";
-
-      const catalogBoxHeaderTitle = isFallbackCatalog
-        ? (window.i18n ? window.i18n.t("pdf.masterCatalog", "THEHAMMER Master Catalog") : "THEHAMMER Master Catalog")
-        : (matchingCatalogs.length > 1
-            ? (window.i18n ? window.i18n.t("pdf.technicalCatalogs", "Technical Catalogs") : "Technical Catalogs")
-            : (window.i18n ? window.i18n.t("pdf.technicalCatalog", "Technical Catalog") : "Technical Catalog"));
-
-      const catalogBoxBadge = isFallbackCatalog
-        ? (window.i18n ? window.i18n.t("pdf.completeRange", "Complete Range") : "Complete Range")
-        : (matchingCatalogs.length > 1 ? `${matchingCatalogs.length} Catalogs` : "PDF");
-
-      const catalogItemsHtml = matchingCatalogs.map((c) => {
-        const title = c[titleKey] || c.titleEN;
-        const encodedPdf = encodeURI(`images/catalogs/${c.filename}`);
-        const cleanFilename = c.cleanDownloadFilename || c.filename;
-
-        let pressureBadge = "";
-        if (c.pressureBar) {
-          pressureBadge = `<span class="catalog-mini-pill pressure-known">${c.pressureBar} Bar</span>`;
-        } else if (c.gpm) {
-          const unknownText = window.i18n ? window.i18n.t("pdf.pressureUnknown", "Pressure Unknown") : "Pressure Unknown";
-          pressureBadge = `<span class="catalog-mini-pill pressure-unknown">${unknownText}</span>`;
-        } else {
-          const rangeText = window.i18n ? window.i18n.t("pdf.fallbackNotice", "Master Catalog Fallback") : "Master Fallback";
-          pressureBadge = `<span class="catalog-mini-pill pressure-master">${rangeText}</span>`;
-        }
-
-        const capBadge = c.gpm ? `<span class="catalog-mini-pill capacity-pill">${c.gpm} GPM</span>` : "";
-
-        return `
-          <div class="product-catalog-row">
-            <div class="product-catalog-row-info">
-              <div class="product-catalog-pills">
-                ${capBadge}
-                ${pressureBadge}
-              </div>
-              <span class="product-catalog-filename" title="${title}">${title}</span>
-              <span class="product-catalog-meta">${c.pages} ${pagesText} • ${c.fileSize}</span>
-            </div>
-            <div class="product-catalog-row-actions">
-              <a href="${encodedPdf}" target="_blank" rel="noopener noreferrer" class="catalog-mini-btn btn-secondary" aria-label="${previewText}: ${title}">
-                <i data-lucide="eye" style="width: 13px; height: 13px;"></i>
-                <span>${previewText}</span>
-              </a>
-              <button type="button" class="catalog-mini-btn btn-primary" onclick="downloadCatalogPdf('${encodedPdf}', '${cleanFilename}', '${c.id}')" aria-label="${downloadText}: ${title}">
-                <i data-lucide="download" style="width: 13px; height: 13px;"></i>
-                <span>${downloadText}</span>
-              </button>
-            </div>
-          </div>
-        `;
-      }).join("");
-
-      const catalogBoxHtml = matchingCatalogs.length > 0 ? `
-        <div class="product-card-catalog-box ${isFallbackCatalog ? 'is-fallback' : 'is-specialized'}">
-          <div class="product-catalog-box-header">
-            <div class="product-catalog-header-title">
-              <i data-lucide="file-text" style="width: 14px; height: 14px; color: var(--primary-red);"></i>
-              <span>${catalogBoxHeaderTitle}</span>
-            </div>
-            <span class="product-catalog-type-badge">${catalogBoxBadge}</span>
-          </div>
-          <div class="product-catalog-box-list">
-            ${catalogItemsHtml}
-          </div>
-        </div>
-      ` : "";
-
-      return `
-      <div class="product-card">
-        <div class="product-img-wrapper">
-          <img src="${p.image}" alt="Industrial pump ${p.model}" class="product-img" width="400" height="300" loading="lazy" decoding="async" onerror="this.src='images/PSM-Electric-Pump.jpg'">
-          <span class="product-card-tag">THEHAMMER</span>
-        </div>
-
-        <div class="product-card-body">
-          <span class="product-model">${p.model}</span>
-          <span class="product-category">${catName}</span>
-          <h3 class="product-title">${name}</h3>
-          <p class="product-desc">${desc}</p>
-
-          <!-- Technical Specs Grid -->
-          <div class="spec-grid product-spec-grid">
-            <div class="spec-item">
-              <span class="spec-key">${flowLabel}</span>
-              <span class="spec-val tech-val spec-val-ltr">${p.qGpm} GPM</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-key">${headLabel}</span>
-              <span class="spec-val tech-val spec-val-ltr">${p.hBar} ${headUnit}</span>
-            </div>
-          </div>
-
-          <!-- Integrated Catalog Display -->
-          ${catalogBoxHtml}
-
-          <div class="product-card-footer">
-            <button class="btn btn-secondary btn-sm product-card-btn" onclick="openProductDetail('${p.id}')" data-i18n="catalog.viewDetails">${window.i18n.t("catalog.viewDetails")}</button>
-            <button class="btn btn-primary btn-sm product-card-btn" onclick="addToQuoteList('${p.id}')" data-i18n="catalog.addToQuote">${window.i18n.t("catalog.addToQuote")}</button>
-            <button class="btn btn-outline btn-sm product-card-btn" onclick="openEmailInquiry('${p.id}')" aria-label="${currentLang === "it" ? "Invia richiesta per " + name : currentLang === "ar" ? "استفسار لـ " + name : "Inquire for " + name}">
-              <i data-lucide="mail" class="btn-icon" style="width: 14px; margin-right: 4px;"></i>
-              <span data-i18n="catalog.sendInquiry">${window.i18n.t("catalog.sendInquiry", "Send Inquiry")}</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    `;
-    })
+    .map((p) => renderProductCardHtml(p))
     .join("");
 
   if (window.lucide) {
@@ -1060,6 +1207,9 @@ function renderDownloads() {
   const titleKey = currentLang === "ar" ? "titleAR" : currentLang === "it" ? "titleIT" : "titleEN";
   const previewText = window.i18n ? window.i18n.t("pdf.previewPdf", "Preview PDF") : "Preview PDF";
   const downloadText = window.i18n ? window.i18n.t("pdf.downloadCatalog", "Download") : "Download";
+  const downloadsLabel = window.i18n ? window.i18n.t("pdf.downloadsLabel", "Downloads") : "Downloads";
+  const categoryBadgeLabel = window.i18n ? window.i18n.t("pdf.firePumpCategory", "Fire Pump Catalog") : "Fire Pump Catalog";
+  const rangeBadgeLabel = window.i18n ? window.i18n.t("pdf.completeRange", "Complete Range") : "Complete Range";
 
   grid.innerHTML = downloads
     .map((d) => {
@@ -1068,6 +1218,8 @@ function renderDownloads() {
       const encodedPdf = isCatalog ? encodeURI(`images/catalogs/${d.file}`) : "";
       const cleanName = d.cleanDownloadFilename || d.file;
       const sizeInfo = d.fileSize ? ` • ${d.fileSize}` : "";
+      const localizedCat = d.category === "Fire Pump Catalog" ? categoryBadgeLabel : d.category;
+      const localizedRating = d.rating && d.rating.includes("Master Catalog") ? rangeBadgeLabel : d.rating;
 
       const previewBtnHtml = isCatalog
         ? `<a href="${encodedPdf}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" aria-label="${previewText}: ${title}">
@@ -1081,13 +1233,13 @@ function renderDownloads() {
           <div style="flex: 1;">
             <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem;">
               <span class="badge ${isCatalog ? 'badge-primary' : 'badge-secondary'}" style="font-size: 0.725rem; font-weight: 700; font-family: var(--font-mono); padding: 0.2rem 0.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
-                <i data-lucide="${isCatalog ? 'file-text' : 'package'}" style="width: 12px; height: 12px; margin-right: 4px;"></i>
-                ${d.category}
+                <i data-lucide="${isCatalog ? 'file-text' : 'package'}" style="width: 12px; height: 12px; margin-inline-end: 4px;"></i>
+                ${localizedCat}
               </span>
-              ${d.rating ? `<span style="font-size: 0.75rem; font-weight: 600; color: var(--text-muted); font-family: var(--font-mono);">${d.rating}</span>` : ''}
+              ${localizedRating ? `<span style="font-size: 0.75rem; font-weight: 600; color: var(--text-muted);">${localizedRating}</span>` : ''}
             </div>
             <h4 class="download-title">${title}</h4>
-            <span class="download-info">Downloads: ${d.count || 0}${sizeInfo}</span>
+            <span class="download-info">${downloadsLabel}: ${d.count || 0}${sizeInfo}</span>
           </div>
           <div class="download-card-actions" style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
             ${previewBtnHtml}
@@ -1121,11 +1273,12 @@ let originalMetaDescription =
   "";
 
 /* Product Spec Modal */
-function openProductDetail(productId) {
+function openProductDetail(productId, preserveFocus = false) {
   const products = window.store ? window.store.getProducts() : [];
   const p = products.find((item) => item.id === productId || item.slug === productId);
   if (!p) return;
 
+  window.currentDetailProductId = p.id;
   const currentLang = window.i18n ? window.i18n.currentLang : "en";
 
   const detailModelEl = document.getElementById("detailModel");
@@ -1138,7 +1291,9 @@ function openProductDetail(productId) {
   const specHighlightHTML =
     currentLang === "ar"
       ? `<div class="modal-spec-highlight">معدل التدفق (Q) = ${p.qGpm} جالون/دقيقة | الضغط (H) = ${p.hBar} بار</div>`
-      : `<div class="modal-spec-highlight">Flow Rate (Q) = ${p.qGpm} GPM | Head (H) = ${p.hBar} Bar</div>`;
+      : currentLang === "it"
+        ? `<div class="modal-spec-highlight">Portata (Q) = ${p.qGpm} GPM | Prevalenza (H) = ${p.hBar} Bar</div>`
+        : `<div class="modal-spec-highlight">Flow Rate (Q) = ${p.qGpm} GPM | Head (H) = ${p.hBar} Bar</div>`;
 
   const detailDescEl = document.getElementById("detailDesc");
   if (detailDescEl) {
@@ -1338,12 +1493,14 @@ function openProductDetail(productId) {
     }
   }
 
-  lastActiveElement = document.activeElement;
+  if (!preserveFocus) {
+    lastActiveElement = document.activeElement;
+  }
   const modal = document.getElementById("productDetailModal");
   if (modal) {
     modal.classList.add("show");
     modal.setAttribute("tabindex", "-1");
-    modal.focus();
+    if (!preserveFocus) modal.focus();
     document.body.style.overflow = "hidden";
   }
 }
@@ -1501,11 +1658,11 @@ function renderQuoteList() {
             
             <div class="quote-item-bottom">
               <div class="qty-selector quote-qty-selector">
-                <button type="button" class="qty-btn" onclick="updateQuoteListQty('${p.id}', -1)" aria-label="Decrease quantity">-</button>
+                <button type="button" class="qty-btn" onclick="updateQuoteListQty('${p.id}', -1)" aria-label="${window.i18n ? window.i18n.t("quoteList.decreaseQty", "Decrease quantity") : "Decrease quantity"}">-</button>
                 <span class="qty-val">${item.quantity}</span>
-                <button type="button" class="qty-btn" onclick="updateQuoteListQty('${p.id}', 1)" aria-label="Increase quantity">+</button>
+                <button type="button" class="qty-btn" onclick="updateQuoteListQty('${p.id}', 1)" aria-label="${window.i18n ? window.i18n.t("quoteList.increaseQty", "Increase quantity") : "Increase quantity"}">+</button>
               </div>
-              <button type="button" class="quote-remove-btn" onclick="removeFromQuoteList('${p.id}')" title="Remove item" aria-label="Remove item">
+              <button type="button" class="quote-remove-btn" onclick="removeFromQuoteList('${p.id}')" title="${window.i18n ? window.i18n.t("quoteList.removeItem", "Remove item") : "Remove item"}" aria-label="${window.i18n ? window.i18n.t("quoteList.removeItem", "Remove item") : "Remove item"}">
                 <i data-lucide="trash-2" class="trash-icon"></i>
               </button>
             </div>
@@ -1522,13 +1679,9 @@ function renderQuoteList() {
 }
 
 function clearQuoteList() {
-  const currentLang = window.i18n ? window.i18n.currentLang : "en";
-  const confirmMsg =
-    currentLang === "ar"
-      ? "هل أنت تأكد من رغبتك في مسح قائمة طلب السعر بالكامل؟"
-      : currentLang === "it"
-        ? "Sei sicuro di voler svuotare l'elenco dei preventivi?"
-        : "Are you sure you want to clear your Quote List?";
+  const confirmMsg = window.i18n
+    ? window.i18n.t("quoteList.clearConfirm", "Are you sure you want to clear your Quote List?")
+    : "Are you sure you want to clear your Quote List?";
 
   if (confirm(confirmMsg)) {
     saveQuoteList([]);
@@ -1717,8 +1870,9 @@ function setupDropzone() {
     if (window.mediaManager) {
       window.mediaManager.setupDropzone(dropzone, (file) => {
         selectedQuoteFile = file;
-        document.getElementById("filePreviewName").textContent =
-          `Attached: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+        document.getElementById("filePreviewName").textContent = window.i18n
+          ? window.i18n.t("catalog.attachedFile", { name: file.name, size: (file.size / 1024).toFixed(1) }, `Attached: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`)
+          : `Attached: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
       });
     }
   }
@@ -1728,8 +1882,9 @@ function handleQuoteFileChange(event) {
   const file = event.target.files[0];
   if (file) {
     selectedQuoteFile = file;
-    document.getElementById("filePreviewName").textContent =
-      `Attached: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+    document.getElementById("filePreviewName").textContent = window.i18n
+      ? window.i18n.t("catalog.attachedFile", { name: file.name, size: (file.size / 1024).toFixed(1) }, `Attached: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`)
+      : `Attached: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
   }
 }
 

@@ -13,6 +13,7 @@ COPY manifest.json /usr/share/nginx/html/
 COPY sw.js /usr/share/nginx/html/
 COPY js/ /usr/share/nginx/html/js/
 COPY images/ /usr/share/nginx/html/images/
+COPY admin/ /usr/share/nginx/html/admin/
 
 # Custom Nginx Config with gzip and security headers
 RUN echo $'server {\n\

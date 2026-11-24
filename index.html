@@ -169,12 +169,16 @@
       gtag("config", "G-H3PZS91XY4");
     </script>
 
-    <!-- Theme Script -->
+    <!-- Theme & Language Script -->
     <script>
       (function () {
         const savedTheme = localStorage.getItem("hammer_theme") || "light";
-
         document.documentElement.setAttribute("data-theme", savedTheme);
+        const savedLang = localStorage.getItem("hammer_lang");
+        if (savedLang && ["en", "it", "ar"].includes(savedLang)) {
+          document.documentElement.setAttribute("lang", savedLang);
+          document.documentElement.setAttribute("dir", savedLang === "ar" ? "rtl" : "ltr");
+        }
       })();
     </script>
 
@@ -283,6 +287,8 @@
             class="btn btn-secondary btn-sm"
             onclick="toggleDarkMode()"
             title="Toggle Dark Mode"
+            data-i18n-title="nav.toggleTheme"
+            data-i18n-aria="nav.toggleTheme"
           >
             <i data-lucide="moon" id="themeIcon" style="width: 16px"></i>
           </button>
@@ -496,6 +502,63 @@
               </p>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+       SERIAL NUMBER LOOKUP SECTION
+       ========================================================================== -->
+    <section id="serial-lookup" class="section serial-lookup-section">
+      <div class="container">
+        <div class="serial-lookup-shell reveal reveal-up">
+          <div class="serial-lookup-header text-center">
+            <span class="section-tag" data-i18n="serialLookup.tag">
+              PRODUCT AUTHENTICITY &amp; TRACEABILITY
+            </span>
+            <h2 class="section-title serial-lookup-title" data-i18n="serialLookup.title">
+              SERIAL NUMBER LOOKUP
+            </h2>
+            <p class="section-subtitle serial-lookup-desc" data-i18n="serialLookup.subtitle">
+              Search for your product using the Pump or Motor serial number.
+            </p>
+          </div>
+
+          <form id="serialLookupForm" class="serial-lookup-form" novalidate>
+            <div class="serial-input-group">
+              <span class="serial-input-icon" aria-hidden="true">
+                <i data-lucide="search"></i>
+              </span>
+              <input
+                type="text"
+                id="serialLookupInput"
+                class="form-input serial-lookup-input"
+                placeholder="Enter Pump or Motor Serial Number"
+                data-i18n-placeholder="serialLookup.placeholder"
+                data-i18n-aria="serialLookup.placeholder"
+                aria-label="Enter Pump or Motor Serial Number"
+                autocomplete="off"
+                spellcheck="false"
+                maxlength="64"
+              />
+              <button
+                type="button"
+                id="serialLookupClearBtn"
+                class="serial-clear-btn"
+                aria-label="Clear serial input"
+                data-i18n-aria="serialLookup.clearAria"
+                style="display: none;"
+              >
+                &times;
+              </button>
+            </div>
+            <button type="submit" id="serialLookupBtn" class="btn btn-primary serial-search-btn">
+              <i data-lucide="search" style="width: 18px; height: 18px;"></i>
+              <span data-i18n="serialLookup.searchBtn">Search</span>
+            </button>
+          </form>
+
+          <div id="serialLookupResults" class="serial-lookup-results" aria-live="polite"></div>
         </div>
       </div>
     </section>
@@ -777,7 +840,7 @@
           <h2 class="section-title" data-i18n="nav.downloads">
             Technical Download Center
           </h2>
-          <p class="section-subtitle">
+          <p class="section-subtitle" data-i18n="downloads.subtitle">
             Download master catalogs, pump engineering manuals, and 3D CAD STEP
             files.
           </p>
@@ -920,18 +983,18 @@
           </div>
 
           <div class="stagger-item">
-            <h4 class="footer-heading">Navigation</h4>
+            <h4 class="footer-heading" data-i18n="footer.navHeading">Navigation</h4>
             <ul class="footer-list">
               <li class="footer-list-item">
-                <a href="#catalog" class="footer-link">Products Catalog</a>
+                <a href="#catalog" class="footer-link" data-i18n="footer.productsCatalog">Products Catalog</a>
               </li>
               <li class="footer-list-item">
-                <a href="#certificates" class="footer-link"
+                <a href="#certificates" class="footer-link" data-i18n="footer.certificatesLink"
                   >NFPA & ISO Certificates</a
                 >
               </li>
               <li class="footer-list-item">
-                <a href="#downloads" class="footer-link"
+                <a href="#downloads" class="footer-link" data-i18n="footer.cadCenterLink"
                   >CAD & Engineering Center</a
                 >
               </li>
@@ -940,7 +1003,7 @@
 
           <div class="stagger-item">
             <h4 class="footer-heading">THEHAMMER</h4>
-            <p class="footer-contact-item" style="font-weight: 500; color: #e0e0e0;">
+            <p class="footer-contact-item" style="font-weight: 500; color: #e0e0e0;" data-i18n="footer.industrialSolutions">
               Industrial Pump Solutions
             </p>
             <p class="footer-contact-item" style="margin-top: 0.5rem;">
@@ -950,7 +1013,7 @@
           </div>
 
           <div class="stagger-item">
-            <h4 class="footer-heading">Direct Pump Support</h4>
+            <h4 class="footer-heading" data-i18n="footer.directSupport">Direct Pump Support</h4>
             <button
               class="btn btn-primary btn-sm"
               onclick="openEmailInquiry('General Pump Enquiry')"
@@ -1184,6 +1247,7 @@
                 type="button"
                 class="btn btn-secondary btn-cancel"
                 onclick="closeQuoteModal()"
+                data-i18n="quoteModal.cancelBtn"
               >
                 Cancel
               </button>
@@ -1349,7 +1413,7 @@
 
                     <button type="submit" class="btn btn-primary btn-block quote-submit-btn" id="quoteListSubmitBtn">
                       <i data-lucide="send" style="width: 18px;"></i>
-                      <span data-i18n="catalog.requestQuoteBtn">Request a Quote</span>
+                      <span data-i18n="quoteList.sendRequest">Send Quote Request</span>
                     </button>
                   </form>
                 </div>
@@ -1381,7 +1445,7 @@
             <div>
               <p id="detailDesc" class="modal-desc"></p>
 
-              <h4 class="modal-section-title">Full Technical Parameters</h4>
+              <h4 class="modal-section-title" data-i18n="catalog.fullTechParams">Full Technical Parameters</h4>
               <table class="detail-specs-table">
                 <tbody id="detailSpecsTable"></tbody>
               </table>
@@ -1398,10 +1462,9 @@
                   class="btn btn-outline btn-sm"
                   id="detailEmailBtn"
                   onclick="openEmailInquiry(window.currentDetailProductId || '')"
-                  data-i18n="catalog.sendInquiry"
                 >
-                  <i data-lucide="mail" style="width: 16px; margin-right: 4px;"></i>
-                  Send Inquiry
+                  <i data-lucide="mail" style="width: 16px; margin-inline-end: 4px;"></i>
+                  <span data-i18n="catalog.sendInquiry">Send Inquiry</span>
                 </button>
                 <button
                   class="btn btn-outline btn-sm"
@@ -1436,7 +1499,9 @@
         openEmailInquiry('THEHAMMER Hydraulic Inquiry');
       "
       title="Direct Email Support"
-      aria-label="Contact The Hammer via Email"
+      data-i18n-title="nav.directEmail"
+      data-i18n-aria="nav.directEmail"
+      aria-label="Direct Email Support"
     >
       <i data-lucide="mail" class="email-float-icon"></i>
     </a>
@@ -1464,6 +1529,7 @@
     <script defer src="js/i18n.js"></script>
     <script defer src="js/store.js"></script>
     <script defer src="js/media-manager.js"></script>
+    <script defer src="js/serial-lookup.js"></script>
     <script defer src="js/app.js"></script>
     <script defer src="js/animations.js"></script>
 

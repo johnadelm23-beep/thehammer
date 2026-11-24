@@ -166,3 +166,68 @@ model WebsiteSetting {
   value     String
   updatedAt DateTime @updatedAt
 }
+
+// ============================================================================
+// SERIAL NUMBER LOOKUP SYSTEM (Additive Models & Indexes)
+// ============================================================================
+
+enum SerialType {
+  PUMP
+  MOTOR
+}
+
+model Shipment {
+  id            String               @id @default(uuid())
+  shipmentCode  String               @unique
+  name          String
+  shipmentDate  String
+  invoiceNumber String
+  piNumber      String
+  totalQuantity Int?
+  notes         String?
+  records       SerialNumberRecord[]
+  createdAt     DateTime             @default(now())
+  updatedAt     DateTime             @updatedAt
+
+  @@index([invoiceNumber])
+  @@index([piNumber])
+}
+
+model SerialNumberRecord {
+  id                   String     @id @default(uuid())
+  shipmentId           String
+  shipment             Shipment   @relation(fields: [shipmentId], references: [id], onDelete: Cascade)
+  productName          String     @default("FIRE PUMP")
+  serialType           SerialType
+  serialStart          String
+  serialEnd            String
+  rangeStartNum        BigInt?
+  rangeEndNum          BigInt?
+  isRange              Boolean    @default(true)
+  productGroupId       String?
+  productGroupModel    String?
+  productModel         String?
+  possibleModels       String[]
+  relatedPumpSerial    String?
+  relatedMotorSerial   String?
+  requiresVerification Boolean    @default(false)
+  isOverlapping        Boolean    @default(false)
+  overlapNote          String?
+  productStatus        String     @default("ACTIVE")
+  unitDetails          Json?
+  notes                String?
+  createdAt            DateTime   @default(now())
+  updatedAt            DateTime   @updatedAt
+
+  @@index([shipmentId])
+  @@index([serialType])
+  @@index([serialStart])
+  @@index([serialEnd])
+  @@index([rangeStartNum, rangeEndNum])
+  @@index([relatedPumpSerial])
+  @@index([relatedMotorSerial])
+  @@index([productGroupId])
+  @@index([productModel])
+  @@index([requiresVerification])
+  @@index([isOverlapping])
+}

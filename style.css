@@ -3,7 +3,7 @@
    EUROPEAN MANUFACTURER DESIGN SYSTEM
    ========================================================================== */
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@500;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+Arabic:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap");
 
 :root {
   /* THEHAMMER Brand Colors */
@@ -1163,12 +1163,12 @@ html[dir="rtl"] .mobile-nav-content {
 }
 
 .form-actions {
-  text-align: right;
+  text-align: end;
   margin-top: 1.5rem;
 }
 
 .btn-cancel {
-  margin-right: 0.5rem;
+  margin-inline-end: 0.5rem;
 }
 
 .form-input-readonly {
@@ -1594,7 +1594,7 @@ html[dir="rtl"] .mobile-nav-content {
   font-weight: 700;
   color: var(--primary-red);
   padding: 0.5rem 0.75rem;
-  border-left: 3px solid var(--primary-red);
+  border-inline-start: 3px solid var(--primary-red);
   background: var(--bg-secondary);
   border-radius: 4px;
   margin-bottom: 1.25rem;
@@ -2061,7 +2061,7 @@ html[dir="rtl"] .mobile-nav-content {
 .product-card-tag {
   position: absolute;
   top: 1rem;
-  left: 1rem;
+  inset-inline-start: 1rem;
   background: var(--primary-red);
   color: #fff;
   padding: 0.25rem 0.6rem;
@@ -2444,6 +2444,11 @@ html[dir="rtl"] .mobile-nav-content {
 .breadcrumb-separator {
   color: var(--text-muted);
   user-select: none;
+}
+
+html[dir="rtl"] .breadcrumb-separator {
+  display: inline-block;
+  transform: scaleX(-1);
 }
 
 .breadcrumb-active {
@@ -3119,5 +3124,578 @@ html[dir="rtl"] .mobile-nav-content {
 @media (max-width: 480px) {
   .product-catalog-row-actions {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   SERIAL NUMBER LOOKUP SECTION (HOMEPAGE)
+   ========================================================================== */
+
+.serial-lookup-section {
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  padding: clamp(2.75rem, 5vw, 4.5rem) 0;
+}
+
+.serial-lookup-shell {
+  max-width: 960px;
+  margin-inline: auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-top: 4px solid var(--primary-red);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 4vw, 2.75rem);
+  box-shadow: var(--shadow-lg);
+}
+
+.serial-lookup-header {
+  margin-bottom: 1.75rem;
+}
+
+.serial-lookup-title {
+  letter-spacing: 0.04em;
+  margin-bottom: 0.35rem;
+}
+
+.serial-lookup-subtitle-ar {
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  font-weight: 700;
+  color: var(--primary-red);
+  margin-bottom: 0.5rem;
+}
+
+.serial-lookup-desc {
+  max-width: 640px;
+  margin-inline: auto;
+}
+
+.serial-lookup-form {
+  display: flex;
+  gap: 0.85rem;
+  align-items: stretch;
+  max-width: 740px;
+  margin-inline: auto;
+}
+
+.serial-input-group {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.serial-input-icon {
+  position: absolute;
+  inset-inline-start: 1rem;
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.serial-input-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.serial-lookup-input {
+  width: 100%;
+  min-height: 52px;
+  padding-inline-start: 2.85rem;
+  padding-inline-end: 2.5rem;
+  font-family: var(--font-mono);
+  font-size: 1rem !important;
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.serial-clear-btn {
+  position: absolute;
+  inset-inline-end: 0.75rem;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  background: transparent;
+  transition: background var(--transition-normal), color var(--transition-normal);
+}
+
+.serial-clear-btn:hover {
+  background: var(--bg-tertiary);
+  color: var(--primary-red);
+}
+
+.serial-search-btn {
+  min-height: 52px;
+  padding-inline: 1.75rem;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.serial-lookup-results {
+  margin-top: 1.75rem;
+}
+
+.serial-lookup-results:empty {
+  display: none;
+}
+
+.serial-results-meta {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.serial-overlap-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.9rem 1.1rem;
+  border-radius: var(--radius-md);
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  color: #92400e;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+}
+
+[data-theme="dark"] .serial-overlap-banner {
+  background: rgba(245, 158, 11, 0.16);
+  color: #fcd34d;
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+.serial-results-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.serial-result-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.serial-result-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1.15rem 1.35rem;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.serial-result-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 0.45rem;
+}
+
+.serial-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.22rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.serial-badge-type {
+  background: var(--primary-red);
+  color: #ffffff;
+}
+
+.serial-badge-shipment {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.serial-badge-ok {
+  background: rgba(16, 185, 129, 0.12);
+  color: #047857;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+[data-theme="dark"] .serial-badge-ok {
+  color: #34d399;
+}
+
+.serial-badge-warn {
+  background: rgba(245, 158, 11, 0.14);
+  color: #b45309;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+}
+
+[data-theme="dark"] .serial-badge-warn {
+  color: #fbbf24;
+}
+
+.serial-badge-overlap {
+  background: rgba(200, 16, 46, 0.12);
+  color: var(--primary-red);
+  border: 1px solid rgba(200, 16, 46, 0.3);
+}
+
+.serial-result-product-name {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.serial-result-serial-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.45rem 0.85rem;
+}
+
+[dir="rtl"] .serial-result-serial-pill {
+  align-items: flex-start;
+}
+
+.serial-pill-caption {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.serial-result-serial-pill strong {
+  font-size: 1.05rem;
+  color: var(--primary-red);
+}
+
+.serial-model-banner {
+  padding: 1rem 1.35rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.serial-model-primary {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.serial-possible-models {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.serial-model-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.serial-verification-callout {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 0.9rem 1.35rem 0;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  background: rgba(245, 158, 11, 0.1);
+  border-inline-start: 3px solid var(--status-warning);
+  color: #92400e;
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+[data-theme="dark"] .serial-verification-callout {
+  color: #fcd34d;
+  background: rgba(245, 158, 11, 0.15);
+}
+
+.serial-spec-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  padding: 1.25rem 1.35rem;
+}
+
+.serial-spec-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.65rem 0.75rem;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+}
+
+.serial-field-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+.serial-field-value {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  word-break: break-word;
+}
+
+.serial-muted {
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+.serial-result-footer {
+  padding: 0.9rem 1.35rem;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.serial-shipment-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.serial-state-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+}
+
+.serial-state-loading {
+  justify-content: center;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.serial-state-error {
+  border-color: rgba(200, 16, 46, 0.35);
+  background: rgba(200, 16, 46, 0.08);
+  color: var(--primary-red);
+}
+
+.serial-state-empty {
+  align-items: flex-start;
+}
+
+.serial-empty-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--primary-red-glow);
+  color: var(--primary-red);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.serial-state-icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.serial-state-title {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+.serial-state-error .serial-state-title {
+  color: var(--primary-red);
+}
+
+.serial-state-subtitle-bilingual {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--primary-red);
+  margin-top: 0.25rem;
+}
+
+.serial-state-hint {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 0.35rem;
+}
+
+.serial-spinner {
+  width: 22px;
+  height: 22px;
+  border: 3px solid var(--border-color);
+  border-top-color: var(--primary-red);
+  border-radius: 50%;
+  animation: serialSpin 0.8s linear infinite;
+}
+
+.serial-product-grid.single-match {
+  max-width: 560px;
+  margin-inline: auto;
+}
+
+.serial-match-strip {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  padding: 0.55rem 0.75rem;
+  margin-bottom: 0.75rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-inline-start: 3px solid var(--primary-red);
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+}
+
+.serial-match-label {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.serial-match-chip {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--primary-red);
+  background: var(--primary-red-glow);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-sm);
+}
+
+.serial-group-components {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.serial-unit-details-box {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-inline-start: 3px solid var(--status-success);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem;
+  margin-bottom: 0.65rem;
+}
+
+.serial-unit-details-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.serial-group-components-title {
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.serial-group-components-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.55rem;
+}
+
+.serial-comp-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.serial-comp-val {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  word-break: break-word;
+}
+
+@media (max-width: 520px) {
+  .serial-group-components-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@keyframes serialSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 900px) {
+  .serial-spec-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .serial-lookup-form {
+    flex-direction: column;
+  }
+  .serial-search-btn {
+    width: 100%;
+  }
+  .serial-spec-grid {
+    grid-template-columns: 1fr;
+  }
+  .serial-result-header {
+    align-items: flex-start;
+  }
+  .serial-result-serial-pill {
+    width: 100%;
+    align-items: flex-start;
   }
 }

@@ -3,12 +3,12 @@
  * Precaching, Offline Fallback, Background Sync, and Push Notification Handling
  */
 
-const CACHE_NAME = "thehammer-pwa-v8";
+const CACHE_NAME = "thehammer-pwa-v10";
 const ASSETS_TO_CACHE = [
   "./",
   "./index.html",
   "./images/One_Png1.png",
-  "./images/logo_dark_mode.jpeg",
+  "./images/logo-dark-mode.png",
   "./images/PSM-Electric-Pump.jpg",
   "./images/final_hero.jpeg",
   "./style.css",
@@ -16,6 +16,7 @@ const ASSETS_TO_CACHE = [
   "./js/i18n.js",
   "./js/store.js",
   "./js/media-manager.js",
+  "./js/serial-lookup.js",
   "./js/app.js",
   "./js/animations.js",
   "./manifest.json",
@@ -59,11 +60,14 @@ self.addEventListener("fetch", (event) => {
 
   const requestUrl = (event.request.url || "").toLowerCase();
 
-  // Bypass Service Worker completely for PDF catalog files:
-  // - Prevents filling browser CacheStorage with large 10MB PDF binaries
-  // - Prevents accidental fallback to index.html if network is slow/reconnecting
-  // - Allows browser native streaming & download manager handling
-  if (requestUrl.endsWith(".pdf") || requestUrl.includes("/images/catalogs/")) {
+  // Never intercept cross-origin API calls, /api/, /admin, or PDF catalogs
+  if (
+    !requestUrl.startsWith(self.location.origin.toLowerCase()) ||
+    requestUrl.endsWith(".pdf") ||
+    requestUrl.includes("/images/catalogs/") ||
+    requestUrl.includes("/api/") ||
+    requestUrl.includes("/admin")
+  ) {
     return;
   }
 

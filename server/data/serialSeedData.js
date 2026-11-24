@@ -1,0 +1,572 @@
+/**
+ * Canonical Serial Number & Existing Product Group Mapping for THE HAMMER
+ * Packing lists are used strictly as the data source to link each Pump & Motor
+ * serial number range to its existing product group in the website catalog.
+ * All serial numbers are stored as strings; all ranges are inclusive.
+ */
+
+const SEED_SHIPMENTS = [
+  {
+    id: 'ship-1',
+    shipmentCode: 'SHIPMENT-1',
+    name: 'Packing List 1 (15/07/2025)',
+    shipmentDate: '15/07/2025',
+    invoiceNumber: '2251555',
+    piNumber: '2108590',
+    totalQuantity: 120,
+    notes: 'Source packing list 1: 120 Fire Pumps.'
+  },
+  {
+    id: 'ship-2',
+    shipmentCode: 'SHIPMENT-2',
+    name: 'Packing List 2 (19/04/2025)',
+    shipmentDate: '19/04/2025',
+    invoiceNumber: '2250969',
+    piNumber: '2103825',
+    totalQuantity: 44,
+    notes: 'Source packing list 2: 44 Fire Pumps.'
+  }
+];
+
+const SEED_SERIAL_RECORDS = [
+  // ==========================================================================
+  // GROUP: PEDJ 250/8-40-58-4 - Option 2 (50-250/250)
+  // ==========================================================================
+  {
+    id: 's1-pump-1',
+    shipmentId: 'ship-1',
+    productGroupId: 'pedj-pedj-250-8-40-58-4---option-2',
+    productGroupModel: 'PEDJ 250/8-40-58-4 - Option 2',
+    productName: 'FIRE PUMP',
+    serialType: 'PUMP',
+    serialStart: '2501345',
+    serialEnd: '2501374',
+    isRange: true,
+    productModel: null,
+    possibleModels: ['PSD 50-250/250', 'PSM 50-250/250'],
+    relatedPumpSerial: null,
+    relatedMotorSerial: null,
+    requiresVerification: true,
+    productStatus: 'ACTIVE',
+    notes: 'Pump range for 50-250/250 (covers PSD 50-250/250 & PSM 50-250/250).'
+  },
+  {
+    id: 's1-motor-1',
+    shipmentId: 'ship-1',
+    productGroupId: 'pedj-pedj-250-8-40-58-4---option-2',
+    productGroupModel: 'PEDJ 250/8-40-58-4 - Option 2',
+    productName: 'FIRE PUMP',
+    serialType: 'MOTOR',
+    serialStart: '24070259',
+    serialEnd: '24070273',
+    isRange: true,
+    productModel: 'PSD 50-250/250',
+    possibleModels: ['PSD 50-250/250'],
+    relatedPumpSerial: null,
+    relatedMotorSerial: null,
+    requiresVerification: false,
+    productStatus: 'ACTIVE',
+    notes: 'Diesel motor range for PSD 50-250/250.'
+  },
+  {
+    id: 's1-motor-2',
+    shipmentId: 'ship-1',
+    productGroupId: 'pedj-pedj-250-8-40-58-4---option-2',
+    productGroupModel: 'PEDJ 250/8-40-58-4 - Option 2',
+    productName: 'FIRE PUMP',
+    serialType: 'MOTOR',
+    serialStart: '40357950',
+    serialEnd: '40357964',
+    isRange: true,
+    productModel: 'PSM 50-250/250',
+    possibleModels: ['PSM 50-250/250'],
+    relatedPumpSerial: null,
+    relatedMotorSerial: null,
+    requiresVerification: false,
+    productStatus: 'ACTIVE',
+    notes: 'Electric motor range for PSM 50-250/250.'
+  },
+
+  // ==========================================================================
+  // GROUP: PEDJ 500/8-75-75-5.5 - Option 2 (80-250/450)
+  // ==========================================================================
+  {
+    id: 's1-pump-2',
+    shipmentId: 'ship-1',
+    productGroupId: 'pedj-pedj-500-8-75-75-5-5---option-2',
+    productGroupModel: 'PEDJ 500/8-75-75-5.5 - Option 2',
+    productName: 'FIRE PUMP',
+    serialType: 'PUMP',
+    serialStart: '50026410',
+    serialEnd: '50026449',
+    isRange: true,
+    productModel: null,
+    possibleModels: ['PSD 80-250/450', 'PSM 80-250/450'],
+    relatedPumpSerial: null,
+    relatedMotorSerial: null,
+    requiresVerification: true,
+    productStatus: 'ACTIVE',
+    notes: 'Pump range for 80-250/450 (covers PSD 80-250/450 & PSM 80-250/450).'
+  },
+  {
+    id: 's1-motor-3',
+    shipmentId: 'ship-1',
+    productGroupId: 'pedj-pedj-500-8-75-75-5-5---option-2',
+    productGroupModel: 'PEDJ 500/8-75-75-5.5 - Option 2',
+    productName: 'FIRE PUMP',
+    serialType: 'MOTOR',
+    serialStart: '6081363',
+    serialEnd: '6081382',
+    isRange: true,
+    productModel: 'PSD 80-250/450',
+    possibleModels: ['PSD 80-250/450'],
+    relatedPumpSerial: null,
+    relatedMotorSerial: null,
+    requiresVerification: false,
+    productStatus: 'ACTIVE',
+    notes: 'Diesel motor range for PSD 80-250/450.'
+  },
+  {
+    id: 's1-motor-4',
+    shipmentId: 'ship-1',
+    productGroupId: 'pedj-pedj-500-8-75-75-5-5---option-2',
+    productGroupModel: 'PEDJ 500/8-75-75-5.5 - Option 2',
+    productName: 'FIRE PUMP',
+    serialType: 'MOTOR',
+    serialStart: '75200563',
+    serialEnd: '75200582',
+    isRange: true,
+    productModel: 'PSM 80-250/450',
+    possibleModels: ['PSM 80-250/450'],
+    relatedPumpSerial: null,
+    relatedMotorSerial: null,
+    requiresVerification: false,
+    productStatus: 'ACTIVE',
+    notes: 'Electric motor range for PSM 80-250/450.'
+  },
+
+  // ==========================================================================
+  // GROUP: PEDJ 750/8-100-99-10 - Option 2 (100-250/900)
+  // ==========================================================================
+  {
+    id: 's1-pump-3',
+    shipmentId: 'ship-1',
+    productGroupId: 'pedj-pedj-750-8-100-99-10---option-2',
+    productGroupModel: 'PEDJ 750/8-100-99-10 - Option 2',
+    productName: 'FIRE PUMP',
+    serialType: 'PUMP',
+    serialStart: '75039042',
+    serialEnd: '75039081',
+    isRange: true,
+    productModel: null,
+    possibleModels: ['PSD 100-250/900', 'PSM 100-250/900'],
+    relatedPumpSerial: null,
+    relatedMotorSerial: null,
+    requiresVerification: true,
+    productStatus: 'ACTIVE',
+    notes: 'Pump range for 100-250/900 (covers PSD 100-250/900 & PSM 100-250/900).'
+  },
+  {
+    id: 's1-motor-5',
+    shipmentId: 'ship-1',
+    productGroupId: 'pedj-pedj-750-8-100-99-10---option-2',
+    productGroupModel: 'PEDJ 750/8-100-99-10 - Option 2',
+    productName: 'FIRE PUMP',
+    serialType: 'MOTOR',
+    serialStart: '7399049',
+    serialEnd: '7399068',
+    isRange: true,
+    productModel: 'PSD 100-250/900',
+    possibleModels: ['PSD 100-250/900'],
+    relatedPumpSerial: null,
+    relatedMotorSerial: null,
+    requiresVerification: false,
+    productStatus: 'ACTIVE',
+    notes: 'Diesel motor range for PSD 100-250/900.'
+  },
+  {
+    id: 's1-motor-6',
+    shipmentId: 'ship-1',
+    productGroupId: 'pedj-pedj-750-8-100-99-10---option-2',
+    productGroupModel: 'PEDJ 750/8-100-99-10 - Option 2',
+    productName: 'FIRE PUMP',
+    serialType: 'MOTOR',
+    serialStart: '10025879',
+    serialEnd: '10025898',
+    isRange: true,
+    productModel: 'PSM 100-250/900',
+    possibleModels: ['PSM 100-250/900'],
+    relatedPumpSerial: null,
+    relatedMotorSerial: null,
+    requiresVerification: false,
+    productStatus: 'ACTIVE',
+    notes: 'Electric motor range for PSM 100-250/900.'
+  },
+
+  // ==========================================================================
+  // GROUP: PEDJ 1000/8-150-150-12 - Option 2 (125-250/1100)
+  // ==========================================================================
+  {
+    id: 's1-pump-4',
+    shipmentId: 'ship-1',
+    productGroupId: 'pedj-pedj-1000-8-150-150-12---option-2',
+    productGroupModel: 'PEDJ 1000/8-150-150-12 - Option 2',
+    productName: 'FIRE PUMP',
+    serialType: 'PUMP',
+    serialStart: '10004180',
+    serialEnd: '10004189',
+    isRange: true,
+    productModel: null,
+    possibleModels: ['PSD 125-250/1100', 'PSM 125-250/1100'],
+    relatedPumpSerial: null,
+    relatedMotorSerial: null,
+    requiresVerification: true,
+    productStatus: 'ACTIVE',
+    notes: 'Pump range for 125-250/1100; overlaps with PEDJ 750/10-150-150-12 - Option 2.'
+  },
+  {
+    id: 's1-motor-7',
+    shipmentId: 'ship-1',
+    productGroupId: 'pedj-pedj-1000-8-150-150-12---option-2',
+    productGroupModel: 'PEDJ 1000/8-150-150-12 - Option 2',
+    productName: 'FIRE PUMP',
+    serialType: 'MOTOR',
+    serialStart: '11215045',
+    serialEnd: '11215049',
+    isRange: true,
+    productModel: 'PSD 125-250/1100',
+    possibleModels: ['PSD 125-250/1100'],
+    relatedPumpSerial: null,
+    relatedMotorSerial: null,
+    requiresVerification: false,
+    productStatus: 'ACTIVE',
+    notes: 'Diesel motor range for PSD 125-250/1100; overlaps with PEDJ 750/10-150-150-12 - Option 2.'
+  },
+  {
+    id: 's1-motor-8',
+    shipmentId: 'ship-1',
+    productGroupId: 'pedj-pedj-1000-8-150-150-12---option-2',
+    productGroupModel: 'PEDJ 1000/8-150-150-12 - Option 2',
+    productName: 'FIRE PUMP',
+    serialType: 'MOTOR',
+    serialStart: '15005235',
+    serialEnd: '15005239',
+    isRange: true,
+    productModel: 'PSM 125-250/1100',
+    possibleModels: ['PSM 125-250/1100'],
+    relatedPumpSerial: null,
+    relatedMotorSerial: null,
+    requiresVerification: false,
+    productStatus: 'ACTIVE',
+    notes: 'Electric motor range for PSM 125-250/1100; overlaps with PEDJ 750/10-150-150-12 - Option 2.'
+  },
+
+  // ==========================================================================
+  // GROUP: PEDJ 750/10-150-150-12 - Option 2 (100-315/1100)
+  // ==========================================================================
+  {
+    id: 's2-pump-1',
+    shipmentId: 'ship-2',
+    productGroupId: 'pedj-pedj-750-10-150-150-12---option-2',
+    productGroupModel: 'PEDJ 750/10-150-150-12 - Option 2',
+    productName: 'FIRE PUMP',
+    serialType: 'PUMP',
+    serialStart: '10004180',
+    serialEnd: '10004199',
+    isRange: true,
+    productModel: null,
+    possibleModels: ['PSD 100-315/1100', 'PSM 100-315/1100'],
+    relatedPumpSerial: null,
+    relatedMotorSerial: null,
+    requiresVerification: true,
+    productStatus: 'ACTIVE',
+    notes: 'Pump range for 100-315/1100; overlaps with PEDJ 1000/8-150-150-12 - Option 2.'
+  },
+  {
+    id: 's2-motor-1',
+    shipmentId: 'ship-2',
+    productGroupId: 'pedj-pedj-750-10-150-150-12---option-2',
+    productGroupModel: 'PEDJ 750/10-150-150-12 - Option 2',
+    productName: 'FIRE PUMP',
+    serialType: 'MOTOR',
+    serialStart: '11215045',
+    serialEnd: '11215054',
+    isRange: true,
+    productModel: 'PSD 100-315/1100',
+    possibleModels: ['PSD 100-315/1100'],
+    relatedPumpSerial: null,
+    relatedMotorSerial: null,
+    requiresVerification: false,
+    productStatus: 'ACTIVE',
+    notes: 'Diesel motor range for PSD 100-315/1100; overlaps with PEDJ 1000/8-150-150-12 - Option 2.'
+  },
+  {
+    id: 's2-motor-2',
+    shipmentId: 'ship-2',
+    productGroupId: 'pedj-pedj-750-10-150-150-12---option-2',
+    productGroupModel: 'PEDJ 750/10-150-150-12 - Option 2',
+    productName: 'FIRE PUMP',
+    serialType: 'MOTOR',
+    serialStart: '15005235',
+    serialEnd: '15005244',
+    isRange: true,
+    productModel: 'PSM 100-315/1100',
+    possibleModels: ['PSM 100-315/1100'],
+    relatedPumpSerial: null,
+    relatedMotorSerial: null,
+    requiresVerification: false,
+    productStatus: 'ACTIVE',
+    notes: 'Electric motor range for PSM 100-315/1100; overlaps with PEDJ 1000/8-150-150-12 - Option 2.'
+  },
+
+  // ==========================================================================
+  // GROUP: PEDJ 1250/8-180-170 - Option 2 (125-315/1320)
+  // ==========================================================================
+  {
+    id: 's2-pump-2',
+    shipmentId: 'ship-2',
+    productGroupId: 'pedj-pedj-1250-8-180-170---option-2',
+    productGroupModel: 'PEDJ 1250/8-180-170 - Option 2',
+    productName: 'FIRE PUMP',
+    serialType: 'PUMP',
+    serialStart: '12500805',
+    serialEnd: '12500812',
+    isRange: true,
+    productModel: null,
+    possibleModels: ['PSD 125-315/1320', 'PSM 125-315/1320'],
+    relatedPumpSerial: null,
+    relatedMotorSerial: null,
+    requiresVerification: true,
+    productStatus: 'ACTIVE',
+    notes: 'Pump range for 125-315/1320 (covers PSD 125-315/1320 & PSM 125-315/1320).'
+  },
+  {
+    id: 's2-motor-3',
+    shipmentId: 'ship-2',
+    productGroupId: 'pedj-pedj-1250-8-180-170---option-2',
+    productGroupModel: 'PEDJ 1250/8-180-170 - Option 2',
+    productName: 'FIRE PUMP',
+    serialType: 'MOTOR',
+    serialStart: '17012505',
+    serialEnd: '17012508',
+    isRange: true,
+    productModel: 'PSD 125-315/1320',
+    possibleModels: ['PSD 125-315/1320'],
+    relatedPumpSerial: null,
+    relatedMotorSerial: null,
+    requiresVerification: false,
+    productStatus: 'ACTIVE',
+    notes: 'Diesel motor range for PSD 125-315/1320.'
+  },
+  {
+    id: 's2-motor-4',
+    shipmentId: 'ship-2',
+    productGroupId: 'pedj-pedj-1250-8-180-170---option-2',
+    productGroupModel: 'PEDJ 1250/8-180-170 - Option 2',
+    productName: 'FIRE PUMP',
+    serialType: 'MOTOR',
+    serialStart: '11015005',
+    serialEnd: '11015008',
+    isRange: true,
+    productModel: 'PSM 125-315/1320',
+    possibleModels: ['PSM 125-315/1320'],
+    relatedPumpSerial: null,
+    relatedMotorSerial: null,
+    requiresVerification: false,
+    productStatus: 'ACTIVE',
+    notes: 'Electric motor range for PSM 125-315/1320.'
+  },
+
+  // ==========================================================================
+  // GROUP: PEDJ 1000/10-220-225-15 - Option 2 (125-315/1600)
+  // ==========================================================================
+  {
+    id: 's2-pump-3',
+    shipmentId: 'ship-2',
+    productGroupId: 'pedj-pedj-1000-10-220-225-15---option-2',
+    productGroupModel: 'PEDJ 1000/10-220-225-15 - Option 2',
+    productName: 'FIRE PUMP',
+    serialType: 'PUMP',
+    serialStart: '12501004',
+    serialEnd: '12501011',
+    isRange: true,
+    productModel: null,
+    possibleModels: ['PSD 125-315/1600', 'PSM 125-315/1600'],
+    relatedPumpSerial: null,
+    relatedMotorSerial: null,
+    requiresVerification: true,
+    productStatus: 'ACTIVE',
+    notes: 'Pump range for 125-315/1600 (covers PSD 125-315/1600 & PSM 125-315/1600).'
+  },
+  {
+    id: 's2-motor-5',
+    shipmentId: 'ship-2',
+    productGroupId: 'pedj-pedj-1000-10-220-225-15---option-2',
+    productGroupModel: 'PEDJ 1000/10-220-225-15 - Option 2',
+    productName: 'FIRE PUMP',
+    serialType: 'MOTOR',
+    serialStart: '16522503',
+    serialEnd: '16522507',
+    isRange: true,
+    productModel: 'PSD 125-315/1600',
+    possibleModels: ['PSD 125-315/1600'],
+    relatedPumpSerial: null,
+    relatedMotorSerial: null,
+    requiresVerification: false,
+    productStatus: 'ACTIVE',
+    notes: 'Diesel motor range for PSD 125-315/1600.'
+  },
+  {
+    id: 's2-motor-6',
+    shipmentId: 'ship-2',
+    productGroupId: 'pedj-pedj-1000-10-220-225-15---option-2',
+    productGroupModel: 'PEDJ 1000/10-220-225-15 - Option 2',
+    productName: 'FIRE PUMP',
+    serialType: 'MOTOR',
+    serialStart: '22016003',
+    serialEnd: '22016007',
+    isRange: true,
+    productModel: 'PSM 125-315/1600',
+    possibleModels: ['PSM 125-315/1600'],
+    relatedPumpSerial: null,
+    relatedMotorSerial: null,
+    requiresVerification: false,
+    productStatus: 'ACTIVE',
+    notes: 'Electric motor range for PSM 125-315/1600.'
+  },
+
+  // ==========================================================================
+  // GROUP: PEDJ 1500/8-220-225 - Option 2 (150-250/1600)
+  // ==========================================================================
+  {
+    id: 's2-pump-4',
+    shipmentId: 'ship-2',
+    productGroupId: 'pedj-pedj-1500-8-220-225---option-2',
+    productGroupModel: 'PEDJ 1500/8-220-225 - Option 2',
+    productName: 'FIRE PUMP',
+    serialType: 'PUMP',
+    serialStart: '15001005',
+    serialEnd: '15001012',
+    isRange: true,
+    productModel: null,
+    possibleModels: ['PSD 150-250/1600', 'PSM 150-250/1600'],
+    relatedPumpSerial: null,
+    relatedMotorSerial: null,
+    requiresVerification: true,
+    productStatus: 'ACTIVE',
+    notes: 'Pump range for 150-250/1600 (covers PSD 150-250/1600 & PSM 150-250/1600).'
+  },
+  {
+    id: 's2-motor-7',
+    shipmentId: 'ship-2',
+    productGroupId: 'pedj-pedj-1500-8-220-225---option-2',
+    productGroupModel: 'PEDJ 1500/8-220-225 - Option 2',
+    productName: 'FIRE PUMP',
+    serialType: 'MOTOR',
+    serialStart: '1678899',
+    serialEnd: '1678902',
+    isRange: true,
+    productModel: 'PSD 150-250/1600',
+    possibleModels: ['PSD 150-250/1600'],
+    relatedPumpSerial: null,
+    relatedMotorSerial: null,
+    requiresVerification: false,
+    productStatus: 'ACTIVE',
+    notes: 'Diesel motor range for PSD 150-250/1600.'
+  },
+  {
+    id: 's2-motor-8',
+    shipmentId: 'ship-2',
+    productGroupId: 'pedj-pedj-1500-8-220-225---option-2',
+    productGroupModel: 'PEDJ 1500/8-220-225 - Option 2',
+    productName: 'FIRE PUMP',
+    serialType: 'MOTOR',
+    serialStart: '2215889',
+    serialEnd: '2215892',
+    isRange: true,
+    productModel: 'PSM 150-250/1600',
+    possibleModels: ['PSM 150-250/1600'],
+    relatedPumpSerial: null,
+    relatedMotorSerial: null,
+    requiresVerification: false,
+    productStatus: 'ACTIVE',
+    notes: 'Electric motor range for PSM 150-250/1600.'
+  },
+
+  // ==========================================================================
+  // EXACT INDIVIDUAL UNIT RECORDS ("شركة مكاوي.pdf")
+  // Linked directly to existing group PEDJ 750/10-150-150-12 - Option 2 (100-315/1100)
+  // Card number 28201160103052 is explicitly excluded (not an equipment serial).
+  // ==========================================================================
+  {
+    id: 'makkawi-unit-1-electric',
+    shipmentId: 'ship-2',
+    productGroupId: 'pedj-pedj-750-10-150-150-12---option-2',
+    productGroupModel: 'PEDJ 750/10-150-150-12 - Option 2',
+    productName: 'FIRE PUMP',
+    serialType: 'PUMP',
+    serialStart: '10004180',
+    serialEnd: '10004180',
+    isRange: false,
+    productModel: 'PSM 100-315/1100',
+    possibleModels: ['PSM 100-315/1100'],
+    relatedPumpSerial: '10004180',
+    relatedMotorSerial: '15005235',
+    requiresVerification: false,
+    productStatus: 'ACTIVE',
+    unitDetails: {
+      unitType: 'ELECTRIC FIRE PUMP',
+      pumpModel: 'PSM 100-315/1100',
+      pumpSerial: '10004180',
+      driveType: 'ELECTRIC_MOTOR',
+      driveModel: 'YE3-315S-2',
+      driveSerial: '15005235',
+      power: '150 HP',
+      controlPanelModel: 'FPC-24-DOL-380-110',
+      controlPanelOrigin: 'LS-KOREAN',
+      capacity: '1000 GPM',
+      pressure: '10 Bar',
+      pumpOrigin: 'ITALY',
+      driveOrigin: 'ITALY'
+    },
+    notes: 'Exact unit record: Electric Fire Pump PSM 100-315/1100 (10004180) with YE3-315S-2 motor (15005235) and FPC-24-DOL-380-110 panel.'
+  },
+  {
+    id: 'makkawi-unit-2-diesel',
+    shipmentId: 'ship-2',
+    productGroupId: 'pedj-pedj-750-10-150-150-12---option-2',
+    productGroupModel: 'PEDJ 750/10-150-150-12 - Option 2',
+    productName: 'FIRE PUMP',
+    serialType: 'PUMP',
+    serialStart: '10004181',
+    serialEnd: '10004181',
+    isRange: false,
+    productModel: 'PSD 100-315/1100',
+    possibleModels: ['PSD 100-315/1100'],
+    relatedPumpSerial: '10004181',
+    relatedMotorSerial: '11215045',
+    requiresVerification: false,
+    productStatus: 'ACTIVE',
+    unitDetails: {
+      unitType: 'DIESEL FIRE PUMP',
+      pumpModel: 'PSD 100-315/1100',
+      pumpSerial: '10004181',
+      driveType: 'DIESEL_ENGINE',
+      driveModel: '6102NT',
+      driveSerial: '11215045',
+      power: '150 HP',
+      controlPanelModel: 'FPC-24-DC-24',
+      controlPanelOrigin: 'LS-KOREAN',
+      capacity: '1000 GPM',
+      pressure: '10 Bar',
+      pumpOrigin: 'ITALY',
+      driveOrigin: 'ITALY'
+    },
+    notes: 'Exact unit record: Diesel Fire Pump PSD 100-315/1100 (10004181) with 6102NT engine (11215045) and FPC-24-DC-24 panel.'
+  }
+];
+
+module.exports = {
+  SEED_SHIPMENTS,
+  SEED_SERIAL_RECORDS
+};

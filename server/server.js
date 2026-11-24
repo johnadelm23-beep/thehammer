@@ -8,14 +8,20 @@ const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
+const path = require('path');
 const { z } = require('zod');
+const serialService = require('./services/serialService');
+const { parseSpreadsheet } = require('./utils/spreadsheetParser');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 const JWT_SECRET = process.env.JWT_SECRET || 'europrecision_jwt_secret_2026_production_key';
 
 // Security Middlewares
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: false,
+  crossOriginResourcePolicy: { policy: 'cross-origin' }
+}));
 app.use(express.json({ limit: '10mb' }));
 app.use(cors({
   origin: process.env.CORS_ORIGIN || '*',
@@ -153,6 +159,219 @@ app.get('/api/v1/seo/sitemap.xml', (req, res) => {
     <priority>1.0</priority>
   </url>
 </urlset>`);
+});
+
+// ============================================================================
+// SERIAL NUMBER LOOKUP SYSTEM ROUTES (Public Read-Only + Admin Management)
+// ============================================================================
+
+function requireAdmin(req, res, next) {
+  if (!req.user || !['SUPER_ADMIN', 'CONTENT_EDITOR'].includes(req.user.role)) {
+    return res.status(403).json({ error: 'Administrator privileges required' });
+  }
+  next();
+}
+
+const SerialLookupQuerySchema = z.object({
+  serial: z.string().trim().min(1, 'Serial number is required').max(128, 'Serial number is too long')
+});
+
+const ShipmentCreateSchema = z.object({
+  shipmentCode: z.string().trim().min(1).max(64),
+  name: z.string().trim().min(1).max(120).optional(),
+  shipmentDate: z.string().trim().min(1).max(32),
+  invoiceNumber: z.string().trim().min(1).max(64),
+  piNumber: z.string().trim().min(1).max(64),
+  totalQuantity: z.union([z.number().int().nonnegative(), z.string()]).nullable().optional(),
+  notes: z.string().max(1000).nullable().optional()
+});
+
+const SerialRecordSchema = z.object({
+  shipmentId: z.string().trim().min(1),
+  productGroupId: z.string().max(160).nullable().optional(),
+  productGroupModel: z.string().max(160).nullable().optional(),
+  productName: z.string().trim().min(1).max(120).optional(),
+  serialType: z.enum(['PUMP', 'MOTOR', 'Pump', 'Motor']),
+  serialStart: z.string().trim().min(1).max(64),
+  serialEnd: z.string().trim().max(64).optional(),
+  productModel: z.string().max(120).nullable().optional(),
+  possibleModels: z.union([z.array(z.string()), z.string()]).optional(),
+  relatedPumpSerial: z.string().max(64).nullable().optional(),
+  relatedMotorSerial: z.string().max(64).nullable().optional(),
+  requiresVerification: z.boolean().optional(),
+  productStatus: z.string().max(32).optional(),
+  notes: z.string().max(1000).nullable().optional()
+});
+
+const SerialRecordUpdateSchema = SerialRecordSchema.partial();
+
+const ImportSerialsSchema = z.object({
+  filename: z.string().trim().min(1).max(255),
+  contentBase64: z.string().optional(),
+  csvText: z.string().optional()
+});
+
+// Public Read-Only Serial Number Lookup
+app.get('/api/v1/serials/lookup', async (req, res) => {
+  try {
+    const rawSerial = req.query.serial ?? req.query.q ?? '';
+    const parsed = SerialLookupQuerySchema.safeParse({ serial: String(rawSerial) });
+    if (!parsed.success) {
+      return res.status(400).json({
+        success: false,
+        error: 'Please enter a valid Pump or Motor Serial Number.'
+      });
+    }
+
+    const result = await serialService.lookupSerial(parsed.data.serial);
+    return res.json({
+      success: true,
+      ...result
+    });
+  } catch (err) {
+    const status = err.statusCode || 500;
+    return res.status(status).json({
+      success: false,
+      error: status === 400 ? err.message : 'Unable to complete serial number lookup.'
+    });
+  }
+});
+
+// Admin: Summary stats
+app.get('/api/v1/admin/serials/summary', authenticateToken, requireAdmin, async (req, res) => {
+  try {
+    const summary = await serialService.getAdminSummary();
+    res.json({ success: true, data: summary });
+  } catch {
+    res.status(500).json({ error: 'Failed to load serial summary' });
+  }
+});
+
+// Admin: List / Search / Filter serial records
+app.get('/api/v1/admin/serials', authenticateToken, requireAdmin, async (req, res) => {
+  try {
+    const data = await serialService.listAdminRecords({
+      search: req.query.search || '',
+      shipmentId: req.query.shipmentId || 'all',
+      serialType: req.query.serialType || 'all',
+      filter: req.query.filter || 'all',
+      page: req.query.page || 1,
+      limit: req.query.limit || 50
+    });
+    res.json({ success: true, ...data });
+  } catch {
+    res.status(500).json({ error: 'Failed to fetch serial number records' });
+  }
+});
+
+// Admin: Add serial record
+app.post('/api/v1/admin/serials', authenticateToken, requireAdmin, async (req, res) => {
+  try {
+    const validated = SerialRecordSchema.parse(req.body);
+    const created = await serialService.createRecord(validated);
+    res.status(201).json({ success: true, data: created });
+  } catch (err) {
+    if (err instanceof z.ZodError) {
+      return res.status(400).json({ error: 'Validation failed', details: err.issues || err.errors });
+    }
+    res.status(err.statusCode || 500).json({ error: err.message || 'Failed to create serial record' });
+  }
+});
+
+// Admin: Update serial record / associate pump-motor-model
+app.put('/api/v1/admin/serials/:id', authenticateToken, requireAdmin, async (req, res) => {
+  try {
+    const validated = SerialRecordUpdateSchema.parse(req.body);
+    const updated = await serialService.updateRecord(req.params.id, validated);
+    res.json({ success: true, data: updated });
+  } catch (err) {
+    if (err instanceof z.ZodError) {
+      return res.status(400).json({ error: 'Validation failed', details: err.issues || err.errors });
+    }
+    res.status(err.statusCode || 500).json({ error: err.message || 'Failed to update serial record' });
+  }
+});
+
+// Admin: Delete serial record
+app.delete('/api/v1/admin/serials/:id', authenticateToken, requireAdmin, async (req, res) => {
+  try {
+    const result = await serialService.deleteRecord(req.params.id);
+    res.json({ success: true, ...result });
+  } catch (err) {
+    res.status(err.statusCode || 500).json({ error: err.message || 'Failed to delete serial record' });
+  }
+});
+
+// Admin: List shipments
+app.get('/api/v1/admin/shipments', authenticateToken, requireAdmin, async (req, res) => {
+  try {
+    const shipments = await serialService.listShipments();
+    res.json({ success: true, data: shipments });
+  } catch {
+    res.status(500).json({ error: 'Failed to fetch shipments' });
+  }
+});
+
+// Admin: Add shipment
+app.post('/api/v1/admin/shipments', authenticateToken, requireAdmin, async (req, res) => {
+  try {
+    const validated = ShipmentCreateSchema.parse(req.body);
+    const shipment = await serialService.createShipment(validated);
+    res.status(201).json({ success: true, data: shipment });
+  } catch (err) {
+    if (err instanceof z.ZodError) {
+      return res.status(400).json({ error: 'Validation failed', details: err.issues || err.errors });
+    }
+    res.status(err.statusCode || 500).json({ error: err.message || 'Failed to create shipment' });
+  }
+});
+
+// Admin: Import serial records from CSV or Excel (.xlsx)
+app.post('/api/v1/admin/serials/import', authenticateToken, requireAdmin, async (req, res) => {
+  try {
+    const validated = ImportSerialsSchema.parse(req.body);
+    const rows = parseSpreadsheet(validated);
+    const summary = await serialService.importRows(rows);
+    res.status(201).json({ success: true, ...summary });
+  } catch (err) {
+    if (err instanceof z.ZodError) {
+      return res.status(400).json({ error: 'Validation failed', details: err.issues || err.errors });
+    }
+    res.status(err.statusCode || 500).json({ error: err.message || 'Failed to import serial data' });
+  }
+});
+
+// Safe Static Frontend Hosting (only explicit public frontend paths; never exposes server/ or .git/)
+const PUBLIC_ROOT = path.resolve(__dirname, '..');
+const PUBLIC_STATIC_FILES = new Set([
+  '/index.html',
+  '/category.html',
+  '/style.css',
+  '/animations.css',
+  '/manifest.json',
+  '/sw.js',
+  '/favicon.ico',
+  '/robots.txt',
+  '/sitemap.xml'
+]);
+
+app.use('/js', express.static(path.join(PUBLIC_ROOT, 'js')));
+app.use('/images', express.static(path.join(PUBLIC_ROOT, 'images')));
+app.use('/admin', express.static(path.join(PUBLIC_ROOT, 'admin')));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(PUBLIC_ROOT, 'index.html'));
+});
+
+app.get('/admin', (req, res) => {
+  res.sendFile(path.join(PUBLIC_ROOT, 'admin', 'index.html'));
+});
+
+app.use((req, res, next) => {
+  if (req.method === 'GET' && PUBLIC_STATIC_FILES.has(req.path)) {
+    return res.sendFile(path.join(PUBLIC_ROOT, req.path.slice(1)));
+  }
+  next();
 });
 
 // Start Server
