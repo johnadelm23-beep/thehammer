@@ -222,7 +222,7 @@ const SEED_SERIAL_RECORDS = [
     relatedMotorSerial: null,
     requiresVerification: true,
     productStatus: 'ACTIVE',
-    notes: 'Pump range for 125-250/1100; overlaps with PEDJ 750/10-150-150-12 - Option 2.'
+    notes: 'Pump range for 125-250/1100; overlaps with PEDJ 1000/10-150-150-12 - Option 2.'
   },
   {
     id: 's1-motor-7',
@@ -240,7 +240,7 @@ const SEED_SERIAL_RECORDS = [
     relatedMotorSerial: null,
     requiresVerification: false,
     productStatus: 'ACTIVE',
-    notes: 'Diesel motor range for PSD 125-250/1100; overlaps with PEDJ 750/10-150-150-12 - Option 2.'
+    notes: 'Diesel motor range for PSD 125-250/1100; overlaps with PEDJ 1000/10-150-150-12 - Option 2.'
   },
   {
     id: 's1-motor-8',
@@ -258,17 +258,17 @@ const SEED_SERIAL_RECORDS = [
     relatedMotorSerial: null,
     requiresVerification: false,
     productStatus: 'ACTIVE',
-    notes: 'Electric motor range for PSM 125-250/1100; overlaps with PEDJ 750/10-150-150-12 - Option 2.'
+    notes: 'Electric motor range for PSM 125-250/1100; overlaps with PEDJ 1000/10-150-150-12 - Option 2.'
   },
 
   // ==========================================================================
-  // GROUP: PEDJ 750/10-150-150-12 - Option 2 (100-315/1100)
+  // GROUP: PEDJ 1000/10-150-150-12 - Option 2 (100-315/1100)
   // ==========================================================================
   {
     id: 's2-pump-1',
     shipmentId: 'ship-2',
     productGroupId: 'pedj-pedj-750-10-150-150-12---option-2',
-    productGroupModel: 'PEDJ 750/10-150-150-12 - Option 2',
+    productGroupModel: 'PEDJ 1000/10-150-150-12 - Option 2',
     productName: 'FIRE PUMP',
     serialType: 'PUMP',
     serialStart: '10004180',
@@ -286,7 +286,7 @@ const SEED_SERIAL_RECORDS = [
     id: 's2-motor-1',
     shipmentId: 'ship-2',
     productGroupId: 'pedj-pedj-750-10-150-150-12---option-2',
-    productGroupModel: 'PEDJ 750/10-150-150-12 - Option 2',
+    productGroupModel: 'PEDJ 1000/10-150-150-12 - Option 2',
     productName: 'FIRE PUMP',
     serialType: 'MOTOR',
     serialStart: '11215045',
@@ -304,7 +304,7 @@ const SEED_SERIAL_RECORDS = [
     id: 's2-motor-2',
     shipmentId: 'ship-2',
     productGroupId: 'pedj-pedj-750-10-150-150-12---option-2',
-    productGroupModel: 'PEDJ 750/10-150-150-12 - Option 2',
+    productGroupModel: 'PEDJ 1000/10-150-150-12 - Option 2',
     productName: 'FIRE PUMP',
     serialType: 'MOTOR',
     serialStart: '15005235',

@@ -1285,20 +1285,20 @@ const SEED_DATA = {
     },
     {
       id: "pedj-pedj-750-10-150-150-12---option-2",
-      model: "PEDJ 750/10-150-150-12 - Option 2",
+      model: "PEDJ 1000/10-150-150-12 - Option 2",
       brandId: "b-hammer",
       categoryId: "cat-ff",
-      nameEN: "Fire Pump System PEDJ 750/10-150-150-12 - Option 2",
-      nameIT: "Gruppo Pompe Antincendio PEDJ 750/10-150-150-12 - Option 2",
-      nameAR: "مجموعة مضخات الحريق PEDJ 750/10-150-150-12 - Option 2",
+      nameEN: "Fire Pump System PEDJ 1000/10-150-150-12 - Option 2",
+      nameIT: "Gruppo Pompe Antincendio PEDJ 1000/10-150-150-12 - Option 2",
+      nameAR: "مجموعة مضخات الحريق PEDJ 1000/10-150-150-12 - Option 2",
       descEN:
-        "Industrial Fire Pump System configuration PEDJ 750/10-150-150-12 - Option 2. Features high-performance PSM 100-315/750 150HP electric drive, PSD 100-315/750 150HP diesel engine backup, and PVT(S) 20-10 15HP jockey pressure maintenance pump.",
+        "Industrial Fire Pump System configuration PEDJ 1000/10-150-150-12 - Option 2. Features high-performance PSM 100-315/750 150HP electric drive, PSD 100-315/750 150HP diesel engine backup, and PVT(S) 20-10 15HP jockey pressure maintenance pump.",
       descIT:
-        "Gruppo Pompe Antincendio Industriale modello PEDJ 750/10-150-150-12 - Option 2. Dotato di azionamento elettrico PSM 100-315/750 150HP, azionamento diesel PSD 100-315/750 150HP e pompa jockey PVT(S) 20-10 15HP.",
+        "Gruppo Pompe Antincendio Industriale modello PEDJ 1000/10-150-150-12 - Option 2. Dotato di azionamento elettrico PSM 100-315/750 150HP, azionamento diesel PSD 100-315/750 150HP e pompa jockey PVT(S) 20-10 15HP.",
       descAR:
-        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 750/10-150-150-12 - Option 2. يحتوي على مضخة كهربائية PSM 100-315/750 150HP، مضخة ديزل احتياطية PSD 100-315/750 150HP، ومضخة جوكي PVT(S) 20-10 15HP للحفاظ على الضغط.",
+        "نظام مضخات مكافحة الحريق الصناعي موديل PEDJ 1000/10-150-150-12 - Option 2. يحتوي على مضخة كهربائية PSM 100-315/750 150HP، مضخة ديزل احتياطية PSD 100-315/750 150HP، ومضخة جوكي PVT(S) 20-10 15HP للحفاظ على الضغط.",
       image: "images/PEDJ-System.jpg",
-      qGpm: 750,
+      qGpm: 1000,
       hBar: "10",
       electricPump: "PSM 100-315/750 150HP",
       dieselPump: "PSD 100-315/750 150HP",
@@ -1830,6 +1830,12 @@ class HammerStore {
             products.push(sp);
             prodsChanged = true;
           } else {
+            if (sp.id === "pedj-pedj-750-10-150-150-12---option-2" && (existing.model !== sp.model || existing.qGpm !== sp.qGpm)) {
+              ["model", "nameEN", "nameIT", "nameAR", "descEN", "descIT", "descAR", "qGpm", "hBar"].forEach((field) => {
+                existing[field] = sp[field];
+              });
+              prodsChanged = true;
+            }
             if (!existing.nameAR) {
               existing.nameAR = sp.nameAR;
               prodsChanged = true;
