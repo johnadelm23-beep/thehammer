@@ -12,6 +12,7 @@ COPY animations.css /usr/share/nginx/html/
 COPY manifest.json /usr/share/nginx/html/
 COPY sw.js /usr/share/nginx/html/
 COPY js/ /usr/share/nginx/html/js/
+COPY data/ /usr/share/nginx/html/data/
 COPY images/ /usr/share/nginx/html/images/
 COPY admin/ /usr/share/nginx/html/admin/
 

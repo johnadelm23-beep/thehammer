@@ -1,12 +1,16 @@
 /**
- * THE HAMMER - Serial Number Lookup Controller
- * Queries the backend API cleanly (SERIAL NUMBER -> EXISTING PRODUCT GROUP -> COMPLETE GROUP CARD).
- * Never loads all serial records into the browser and never relies on invoice-based searching.
+ * THE HAMMER - Client-Side Serial Number Lookup Controller
+ * Loads static catalog serial records from ./data/serials.json and performs
+ * exact + BigInt numeric range verification completely in the browser
+ * (zero backend/API dependency, compatible with GitHub Pages and static hosts).
+ * Relationship: SERIAL NUMBER -> EXISTING PRODUCT GROUP -> COMPLETE GROUP CARD.
  */
 
-(function () {
+(function (root) {
   let lastLookupPayload = null;
   let lastLookupErrorKey = null;
+  let datasetCache = null;
+  let datasetLoadPromise = null;
 
   function escapeHtml(value) {
     return String(value ?? '')
@@ -18,88 +22,293 @@
   }
 
   function t(key, paramsOrFallback, fallback) {
-    if (window.i18n && typeof window.i18n.t === 'function') {
+    if (typeof window !== 'undefined' && window.i18n && typeof window.i18n.t === 'function') {
       return window.i18n.t(key, paramsOrFallback, fallback);
     }
     if (typeof paramsOrFallback === 'string') return paramsOrFallback;
     return fallback || key;
   }
 
-  function getApiBases() {
-    const metaBase = document.querySelector('meta[name="thehammer-api-base"]')?.getAttribute('content');
-    const explicit = (window.THEHAMMER_API_BASE || metaBase || '').trim();
-    if (explicit) {
-      const normalized = explicit.replace(/\/+$/, '');
-      const candidates = normalized.endsWith('/api/v1') ? [normalized] : [normalized, `${normalized}/api/v1`];
-      return [...new Set(candidates)];
-    }
-
-    const bases = [];
-    const protocol = window.location.protocol;
-    const host = window.location.hostname;
-    const port = window.location.port;
-
-    // On local static dev servers (e.g. VS Code Live Server :5500, http-server :8080, LAN IPs),
-    // query the Express API on port 5000 first to avoid wasted 404s on static servers,
-    // while still supporting reverse-proxied /api/v1 when served on port 80/443/5000.
-    const isLocalHost = host === 'localhost' || host === '127.0.0.1' || host === '[::1]';
-    const isCustomDevPort = protocol === 'http:' && Boolean(port) && port !== '5000' && port !== '80' && port !== '443';
-    if (protocol === 'file:') {
-      bases.push('http://127.0.0.1:5000/api/v1', 'http://localhost:5000/api/v1');
-    } else if ((isLocalHost || isCustomDevPort) && port && port !== '5000') {
-      bases.push(
-        `http://${host}:5000/api/v1`,
-        ...(isLocalHost ? ['http://127.0.0.1:5000/api/v1', 'http://localhost:5000/api/v1'] : []),
-        '/api/v1'
-      );
-    } else {
-      bases.push('/api/v1');
-      if (isLocalHost) {
-        bases.push('http://127.0.0.1:5000/api/v1', 'http://localhost:5000/api/v1');
-      }
-    }
-
-    return [...new Set(bases)];
+  function sanitizeSerialInput(raw) {
+    return String(raw || '').replace(/\s+/g, '').trim();
   }
 
-  async function fetchSerialLookup(serialQuery) {
-    const bases = getApiBases();
-    let lastError = null;
+  function isValidSerialQuery(sanitized) {
+    if (!sanitized || sanitized.length > 64) return false;
+    return /^[A-Za-z0-9._/-]+$/.test(sanitized);
+  }
 
-    for (const base of bases) {
-      try {
-        const url = `${base}/serials/lookup?serial=${encodeURIComponent(serialQuery)}`;
-        const response = await fetch(url, {
-          method: 'GET',
-          headers: { Accept: 'application/json' }
-        });
+  function parseBigIntOrNull(val) {
+    if (val === null || val === undefined) return null;
+    const s = String(val).trim();
+    if (!/^\d+$/.test(s)) return null;
+    try {
+      return BigInt(s);
+    } catch {
+      return null;
+    }
+  }
 
-        const contentType = response.headers.get('content-type') || '';
-        if (!contentType.includes('application/json')) {
-          lastError = new Error('Non-JSON response from API endpoint');
-          continue;
-        }
+  function recordMatchesQuery(record, sanitizedQuery) {
+    const qLower = sanitizedQuery.toLowerCase();
 
-        const data = await response.json();
-        if (!response.ok) {
-          const err = new Error(data.error || 'Lookup failed');
-          err.statusCode = response.status;
-          throw err;
-        }
-        return data;
-      } catch (err) {
-        if (err && err.statusCode === 400) {
-          throw err;
-        }
-        lastError = err;
+    // 1. Exact string matches (case-insensitive, preserves leading zeros)
+    const exactCandidates = [
+      record.serialStart,
+      record.serialEnd,
+      record.relatedPumpSerial,
+      record.relatedMotorSerial
+    ].filter((v) => v !== null && v !== undefined && String(v).trim() !== '');
+
+    for (const candidate of exactCandidates) {
+      if (String(candidate).trim().toLowerCase() === qLower) {
+        return true;
       }
     }
 
-    throw lastError || new Error('Lookup service unavailable');
+    // 2. Inclusive numeric range match (BigInt preserves arbitrarily long serials)
+    const qNum = parseBigIntOrNull(sanitizedQuery);
+    const startNum = parseBigIntOrNull(record.serialStart);
+    const endNum = parseBigIntOrNull(record.serialEnd);
+
+    if (qNum !== null && startNum !== null && endNum !== null) {
+      const startStr = String(record.serialStart).trim();
+      const endStr = String(record.serialEnd).trim();
+      const rangeHasLeadingZero = startStr.startsWith('0') || endStr.startsWith('0');
+
+      if (rangeHasLeadingZero) {
+        const minLen = Math.min(startStr.length, endStr.length);
+        const maxLen = Math.max(startStr.length, endStr.length);
+        if (
+          !sanitizedQuery.startsWith('0') ||
+          sanitizedQuery.length < minLen ||
+          sanitizedQuery.length > maxLen
+        ) {
+          return false;
+        }
+      } else if (sanitizedQuery.length > 1 && sanitizedQuery.startsWith('0')) {
+        // Never drop leading zeros from user input to match a non-zero-prefixed range
+        return false;
+      }
+
+      return qNum >= startNum && qNum <= endNum;
+    }
+
+    return false;
+  }
+
+  function buildDatasetIndex(rawData) {
+    const shipments = Array.isArray(rawData?.shipments) ? rawData.shipments : [];
+    const records = Array.isArray(rawData?.records) ? rawData.records : [];
+    const shipmentMap = new Map(shipments.map((s) => [s.id, s]));
+    const exactIndex = new Map();
+    const numericRanges = [];
+
+    const addExact = (val, rec) => {
+      if (val === null || val === undefined) return;
+      const key = String(val).trim().toLowerCase();
+      if (!key) return;
+      if (!exactIndex.has(key)) exactIndex.set(key, []);
+      const list = exactIndex.get(key);
+      if (!list.includes(rec)) list.push(rec);
+    };
+
+    for (const rec of records) {
+      addExact(rec.serialStart, rec);
+      addExact(rec.serialEnd, rec);
+      addExact(rec.relatedPumpSerial, rec);
+      addExact(rec.relatedMotorSerial, rec);
+
+      const startNum = parseBigIntOrNull(rec.serialStart);
+      const endNum = parseBigIntOrNull(rec.serialEnd);
+      if (startNum !== null && endNum !== null) {
+        numericRanges.push({ startNum, endNum, rec });
+      }
+    }
+
+    numericRanges.sort((a, b) => (a.startNum < b.startNum ? -1 : a.startNum > b.startNum ? 1 : 0));
+    return { shipments, records, shipmentMap, exactIndex, numericRanges };
+  }
+
+  async function loadSerialDataset() {
+    if (datasetCache) return datasetCache;
+    if (datasetLoadPromise) return datasetLoadPromise;
+
+    datasetLoadPromise = (async () => {
+      const response = await fetch('./data/serials.json', {
+        method: 'GET',
+        cache: 'no-cache',
+        headers: { Accept: 'application/json' }
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to load serial catalog (${response.status})`);
+      }
+
+      const contentType = response.headers.get('content-type') || '';
+      if (contentType && !contentType.includes('application/json') && !contentType.includes('text/plain')) {
+        // Still attempt JSON parse in case static hosts omit content-type, but guard HTML fallbacks
+        const text = await response.text();
+        if (text.trim().startsWith('<')) {
+          throw new Error('Invalid serial dataset response');
+        }
+        datasetCache = buildDatasetIndex(JSON.parse(text));
+        return datasetCache;
+      }
+
+      const json = await response.json();
+      datasetCache = buildDatasetIndex(json);
+      return datasetCache;
+    })().catch((err) => {
+      datasetLoadPromise = null;
+      throw err;
+    });
+
+    return datasetLoadPromise;
+  }
+
+  function resolveCatalogStatus(record, products) {
+    const modelsToCheck = [
+      record.productModel,
+      ...(Array.isArray(record.possibleModels) ? record.possibleModels : [])
+    ].filter(Boolean);
+
+    if (Array.isArray(products) && products.length > 0) {
+      for (const m of modelsToCheck) {
+        const lower = String(m).toLowerCase();
+        const found = products.find((p) => {
+          const modelStr = String(p.model || '').toLowerCase();
+          const elecStr = String(p.electricPump || '').toLowerCase();
+          const dieselStr = String(p.dieselPump || '').toLowerCase();
+          return (
+            modelStr === lower ||
+            elecStr === lower ||
+            dieselStr === lower ||
+            elecStr.includes(lower) ||
+            dieselStr.includes(lower)
+          );
+        });
+        if (found) {
+          return found.active ? 'Active' : 'Inactive';
+        }
+      }
+    }
+
+    if (record.productStatus === 'INACTIVE') return 'Inactive';
+    if (record.productStatus === 'MAINTENANCE') return 'Under Review';
+    return 'Active';
+  }
+
+  function toPublicResult(record, searchedQuery, products) {
+    const possibleModels =
+      Array.isArray(record.possibleModels) && record.possibleModels.length > 0
+        ? record.possibleModels
+        : record.productModel
+          ? [record.productModel]
+          : [];
+
+    const isRangeMatch = Boolean(record.isRange && record.serialStart !== record.serialEnd);
+    const serialRange = isRangeMatch ? `${record.serialStart} – ${record.serialEnd}` : record.serialStart;
+
+    let resolvedSerialType = record.serialType === 'MOTOR' ? 'Motor' : 'Pump';
+    const qLower = String(searchedQuery || '').trim().toLowerCase();
+    if (record.relatedMotorSerial && String(record.relatedMotorSerial).trim().toLowerCase() === qLower) {
+      resolvedSerialType = 'Motor';
+    } else if (record.relatedPumpSerial && String(record.relatedPumpSerial).trim().toLowerCase() === qLower) {
+      resolvedSerialType = 'Pump';
+    }
+
+    return {
+      productGroupId: record.productGroupId || null,
+      productGroupModel: record.productGroupModel || null,
+      productName: record.productName || 'FIRE PUMP',
+      serialNumber: searchedQuery,
+      serialRange,
+      isRangeMatch,
+      serialType: resolvedSerialType,
+      productModel: record.productModel || null,
+      possibleModels,
+      requiresModelVerification: Boolean(record.requiresVerification),
+      relatedPumpSerial: record.relatedPumpSerial || null,
+      relatedMotorSerial: record.relatedMotorSerial || null,
+      unitDetails: record.unitDetails || null,
+      productStatus: resolveCatalogStatus(record, products),
+      isOverlapping: Boolean(record.isOverlapping)
+    };
+  }
+
+  function lookupSerialInDataset(dataset, rawQuery, products = []) {
+    const query = sanitizeSerialInput(rawQuery);
+    if (!isValidSerialQuery(query)) {
+      const err = new Error('Invalid serial number format. Use letters, numbers, dashes, or slashes without spaces.');
+      err.statusCode = 400;
+      throw err;
+    }
+
+    const index = dataset && dataset.exactIndex && dataset.numericRanges ? dataset : buildDatasetIndex(dataset);
+    const candidateSet = new Set();
+    const qLower = query.toLowerCase();
+
+    const exactHits = index.exactIndex.get(qLower) || [];
+    for (const rec of exactHits) candidateSet.add(rec);
+
+    const qNum = parseBigIntOrNull(query);
+    if (qNum !== null) {
+      for (const item of index.numericRanges) {
+        if (item.startNum > qNum) break;
+        if (item.endNum >= qNum && recordMatchesQuery(item.rec, query)) {
+          candidateSet.add(item.rec);
+        }
+      }
+    }
+
+    const matchedPairs = Array.from(candidateSet)
+      .filter((rec) => recordMatchesQuery(rec, query))
+      .map((rec) => ({ record: rec, shipment: index.shipmentMap.get(rec.shipmentId) || null }))
+      .sort((a, b) => {
+        const sA = a.shipment?.shipmentCode || '';
+        const sB = b.shipment?.shipmentCode || '';
+        if (sA !== sB) return sA.localeCompare(sB);
+        return String(a.record.serialStart).localeCompare(String(b.record.serialStart));
+      });
+
+    // Prioritize verified individual unit records over broad overlapping shipment ranges
+    const exactUnitPairs = matchedPairs.filter(
+      ({ record }) => !record.isRange && !record.requiresVerification
+    );
+    const effectivePairs = exactUnitPairs.length > 0 ? exactUnitPairs : matchedPairs;
+
+    const results = effectivePairs.map(({ record }) => toPublicResult(record, query, products));
+
+    return {
+      success: true,
+      query,
+      count: results.length,
+      hasOverlaps: results.length > 1 || results.some((r) => r.isOverlapping),
+      results
+    };
+  }
+
+  async function lookupSerialLocal(rawQuery) {
+    const query = sanitizeSerialInput(rawQuery);
+    if (!isValidSerialQuery(query)) {
+      const err = new Error('Invalid serial number format. Use letters, numbers, dashes, or slashes without spaces.');
+      err.statusCode = 400;
+      throw err;
+    }
+
+    const dataset = await loadSerialDataset();
+    const products =
+      typeof window !== 'undefined' && window.store && typeof window.store.getProducts === 'function'
+        ? window.store.getProducts()
+        : [];
+    return lookupSerialInDataset(dataset, query, products);
   }
 
   function findExistingProductGroup(match) {
-    if (!window.store || typeof window.store.getProducts !== 'function') return null;
+    if (typeof window === 'undefined' || !window.store || typeof window.store.getProducts !== 'function') {
+      return null;
+    }
     const products = window.store.getProducts();
     if (match.productGroupId) {
       const byId = products.find((p) => p.id === match.productGroupId);
@@ -242,7 +451,7 @@
     const searchBtn = document.getElementById('serialLookupBtn');
     if (!inputEl) return;
 
-    const cleaned = inputEl.value.replace(/\s+/g, '').trim();
+    const cleaned = sanitizeSerialInput(inputEl.value);
     inputEl.value = cleaned;
 
     if (!cleaned) {
@@ -258,7 +467,7 @@
     renderLoading();
 
     try {
-      const payload = await fetchSerialLookup(cleaned);
+      const payload = await lookupSerialLocal(cleaned);
       lastLookupPayload = payload;
       renderResults(payload);
     } catch (err) {
@@ -310,9 +519,27 @@
     });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initSerialLookup);
-  } else {
-    initSerialLookup();
+  if (typeof document !== 'undefined') {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initSerialLookup);
+    } else {
+      initSerialLookup();
+    }
   }
-})();
+
+  const exported = {
+    sanitizeSerialInput,
+    isValidSerialQuery,
+    parseBigIntOrNull,
+    recordMatchesQuery,
+    buildDatasetIndex,
+    lookupSerialInDataset
+  };
+
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = exported;
+  }
+  if (root && typeof root === 'object') {
+    root.HammerSerialLookup = exported;
+  }
+})(typeof window !== 'undefined' ? window : globalThis);

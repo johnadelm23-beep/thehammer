@@ -356,6 +356,7 @@ const PUBLIC_STATIC_FILES = new Set([
 ]);
 
 app.use('/js', express.static(path.join(PUBLIC_ROOT, 'js')));
+app.use('/data', express.static(path.join(PUBLIC_ROOT, 'data')));
 app.use('/images', express.static(path.join(PUBLIC_ROOT, 'images')));
 app.use('/admin', express.static(path.join(PUBLIC_ROOT, 'admin')));
 

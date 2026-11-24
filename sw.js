@@ -3,7 +3,7 @@
  * Precaching, Offline Fallback, Background Sync, and Push Notification Handling
  */
 
-const CACHE_NAME = "thehammer-pwa-v10";
+const CACHE_NAME = "thehammer-pwa-v11";
 const ASSETS_TO_CACHE = [
   "./",
   "./index.html",
@@ -17,6 +17,7 @@ const ASSETS_TO_CACHE = [
   "./js/store.js",
   "./js/media-manager.js",
   "./js/serial-lookup.js",
+  "./data/serials.json",
   "./js/app.js",
   "./js/animations.js",
   "./manifest.json",
@@ -59,6 +60,22 @@ self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
 
   const requestUrl = (event.request.url || "").toLowerCase();
+
+  // Network-first for serial dataset so updates appear immediately while preserving offline fallback
+  if (requestUrl.includes("/data/serials.json")) {
+    event.respondWith(
+      fetch(event.request)
+        .then((networkResponse) => {
+          if (networkResponse && networkResponse.status === 200) {
+            const copy = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+          }
+          return networkResponse;
+        })
+        .catch(() => caches.match(event.request))
+    );
+    return;
+  }
 
   // Never intercept cross-origin API calls, /api/, /admin, or PDF catalogs
   if (
